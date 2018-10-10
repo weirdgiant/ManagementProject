@@ -1,0 +1,23 @@
+﻿<Window x:Class="ManagementProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920" WindowStyle="SingleBorderWindow" >
+    <Grid>
+
+        <Grid Height="66"  VerticalAlignment="Top" Background="#FFCFCFDA" >
+            <local:WindowControlButton x:Name="close"  HorizontalAlignment="Right" Margin="0,10,25,0" Width="172" />
+            <Image x:Name="mwicon" HorizontalAlignment="Left" Width="49"/>
+            <Label x:Name="label" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="49,10,0,10" FontSize="16" VerticalAlignment="Center"/>
+            <Label x:Name="titletime"  HorizontalAlignment="Left" Margin="315,10,0,10" RenderTransformOrigin="0.148,0.589" VerticalAlignment="Center"/>
+
+
+
+        </Grid>
+
+
+    </Grid>
+</Window>
