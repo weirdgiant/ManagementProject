@@ -29,6 +29,22 @@ namespace ManagementProject
             closebt.MouseLeave += Closebt_MouseLeave;
             minbt.MouseEnter += Minbt_MouseEnter;
             minbt.MouseLeave += Minbt_MouseLeave;
+            recoverbt.MouseEnter += Recoverbt_MouseEnter;
+            recoverbt.MouseLeave += Recoverbt_MouseLeave;
+        }
+
+        private void Recoverbt_MouseLeave(object sender, MouseEventArgs e)
+        {
+            recoverbt.Background = new SolidColorBrush(Colors.Transparent);
+            recoverbt.Width = 40;
+            recoverbt.Height = 40;
+        }
+
+        private void Recoverbt_MouseEnter(object sender, MouseEventArgs e)
+        {
+            recoverbt.Background = new SolidColorBrush(Colors.Transparent);
+            recoverbt.Width = 50;
+            recoverbt.Height = 50;
         }
 
         private void Minbt_MouseLeave(object sender, MouseEventArgs e)

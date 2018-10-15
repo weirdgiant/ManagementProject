@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.MainWindowSearchBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+              d:DesignHeight="35" Width="250">
+    <Grid>
+        <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1" Height="35" Margin="0,0,0,0" VerticalAlignment="Bottom" Background="#FF2F2F2F" Opacity="0.9">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label Width="50"/>
+                <TextBox x:Name="searchcontent"  CaretBrush="White"    Text="请输入搜索内容" Width="150"  Grid.IsSharedSizeScope="True" Margin="0,0" Foreground="White" FontSize="12" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" />
+                <Button x:Name="searchbt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Width="50" Margin="0,0" VerticalAlignment="Stretch">
+                    <Image Width="25" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/search.png" />
+                </Button>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

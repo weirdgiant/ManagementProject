@@ -1,22 +1,56 @@
-﻿<Window x:Class="ManagementProject.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ManagementProject"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowStyle="SingleBorderWindow" >
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
 
-        <Grid Height="66"  VerticalAlignment="Top" Background="#FFCFCFDA" >
-            <local:WindowControlButton x:Name="close"  HorizontalAlignment="Right" Margin="0,10,25,0" Width="172" />
-            <Image x:Name="mwicon" HorizontalAlignment="Left" Width="49"/>
-            <Label x:Name="label" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="49,10,0,10" FontSize="16" VerticalAlignment="Center"/>
-            <Label x:Name="titletime"  HorizontalAlignment="Left" Margin="315,10,0,10" RenderTransformOrigin="0.148,0.589" VerticalAlignment="Center"/>
+        <Grid Name="maingrid" Height="45"  VerticalAlignment="Top" Background="#FF252525" >
+            <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25" Margin="25,0,0,0" Source="ImageSource/Icon/mainwindowicon/logo.png" />
+            <Label x:Name="title" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="52,10,0,10" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+            <Label x:Name="titletime" Content="{Binding MWModel.NowTime}"   HorizontalAlignment="Left" Margin="270,10,0,10"  FontSize="12" Foreground="White" />
 
-
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="60">
+                <Button x:Name="minbt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Click="minbt_Click">
+                    <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
+                </Button>
+                <Button x:Name="recoverbt" Content="Normal" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="75" Click="recoverbt_Click" Visibility="Collapsed"/>
+                <Button x:Name="closebt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="30">
+                    <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
+                </Button>
+            </StackPanel>
 
         </Grid>
+
+        <Frame x:Name="mainframe"  Margin="0,45,0,0"/>
+        <UserControls:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="50" Margin="23,60,0,0" VerticalAlignment="Top" Width="250"/>
+        <UserControls:MainWindowSearchBox HorizontalAlignment="Left" Height="50" Margin="23,110,0,0" VerticalAlignment="Top" Width="250"/>
+        <UserControls:MainWindowMenu Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478"/>
+        <Button x:Name="button" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,0,50,100" VerticalAlignment="Bottom" Height="50" Width="50">
+            <Image Source="ImageSource/Icon/mainwindowicon/客户端异常信息.png" />
+        </Button>
+        <Button x:Name="button1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,0,50,150" VerticalAlignment="Bottom" Height="50" Width="50">
+            <Image Source="ImageSource/Icon/mainwindowicon/摄像机异常.png" />
+        </Button>
+
+        <Button x:Name="button2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,60,50,0" VerticalAlignment="Top" Height="50" Width="50">
+            <Image Source="ImageSource/Icon/mainwindowicon/2d.png" />
+        </Button>
+        <Button x:Name="button3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,110,50,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="ImageSource/Icon/mainwindowicon/设备信息.png" />
+        </Button>
+        <UserControls:MainWindowStatistics HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50"/>
+        <UserControls:MainWindowStatistics HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50"/>
 
 
     </Grid>

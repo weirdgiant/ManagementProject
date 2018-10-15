@@ -37,7 +37,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border  BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="20" x:Name="Border">
+                        <Border  BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="2" x:Name="Border">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                     <GradientStop Color="White" />
@@ -61,9 +61,9 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Button x:Name="minbt"  Margin="5,5,105,5" Style="{DynamicResource ButtonStyle}" Click="minbt_Click"/>
-        <Button x:Name="recoverbt"  Margin="0,0,0,0" Style="{DynamicResource ButtonStyle}" Click="recoverbt_Click"/>
-        <Button x:Name="closebt"  Margin="103,5,7,5" Style="{DynamicResource ButtonStyle}" Click="closebt_Click"/>
+        <Button x:Name="minbt" Content="-"  Margin="5,5,105,5" Style="{DynamicResource ButtonStyle}" Click="minbt_Click"/>
+        <Button x:Name="recoverbt" Content=""  Margin="0,0,0,0" Style="{DynamicResource ButtonStyle}" Click="recoverbt_Click"/>
+        <Button x:Name="closebt"  Margin="103,5,7,5" Style="{DynamicResource ButtonStyle}" Click="closebt_Click" Background="White"/>
 
     </Grid>
 </UserControl>
