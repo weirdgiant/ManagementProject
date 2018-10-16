@@ -56,7 +56,15 @@ namespace ManagementProject
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadPage();
-            
+
+            BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
+            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
+            camerastatistics.image.Source = img1;
+            camerastatistics.number.Text = "7";
+            sensorstatistics.image.Source = img2;
+            sensorstatistics.number.Text = "7";
+
+
         }
 
         MainPage mp;

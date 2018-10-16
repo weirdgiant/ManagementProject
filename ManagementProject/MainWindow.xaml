@@ -17,18 +17,26 @@
 
         <Grid Name="maingrid" Height="45"  VerticalAlignment="Top" Background="#FF252525" >
             <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25" Margin="25,0,0,0" Source="ImageSource/Icon/mainwindowicon/logo.png" />
-            <Label x:Name="title" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="52,10,0,10" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
-            <Label x:Name="titletime" Content="{Binding MWModel.NowTime}"   HorizontalAlignment="Left" Margin="270,10,0,10"  FontSize="12" Foreground="White" />
+            <Label x:Name="title" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="52,0,0,0" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+            <Label x:Name="titletime" Content="{Binding MWModel.NowTime}"   HorizontalAlignment="Left" Margin="275,10,0,10"  FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="60">
-                <Button x:Name="minbt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Click="minbt_Click">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
+                <Button x:Name="minbt" ToolTip="最小化" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" Click="minbt_Click">
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
                 </Button>
                 <Button x:Name="recoverbt" Content="Normal" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="75" Click="recoverbt_Click" Visibility="Collapsed"/>
-                <Button x:Name="closebt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="30">
+                <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="45">
                     <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
                 </Button>
             </StackPanel>
+            <Button x:Name="button4" ToolTip="登录用户" Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Right" Margin="0,0,180,0" VerticalAlignment="Center"  Height="30" Width="30">
+
+                <Image Source="ImageSource/Icon/mainwindowicon/用户.png" />
+
+            </Button>
+            <Button x:Name="button5" ToolTip="拼控" Style="{StaticResource GelButton}" HorizontalAlignment="Right"  Margin="0,0,120,0" VerticalAlignment="Center"  Height="30" Width="30">
+                <Image Source="ImageSource/Icon/mainwindowicon/拼控.png" />
+            </Button>
 
         </Grid>
 
@@ -36,21 +44,21 @@
         <UserControls:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="50" Margin="23,60,0,0" VerticalAlignment="Top" Width="250"/>
         <UserControls:MainWindowSearchBox HorizontalAlignment="Left" Height="50" Margin="23,110,0,0" VerticalAlignment="Top" Width="250"/>
         <UserControls:MainWindowMenu Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478"/>
-        <Button x:Name="button" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,0,50,100" VerticalAlignment="Bottom" Height="50" Width="50">
+        <Button x:Name="button" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,0,50,100" VerticalAlignment="Bottom" Height="50" Width="50">
             <Image Source="ImageSource/Icon/mainwindowicon/客户端异常信息.png" />
         </Button>
-        <Button x:Name="button1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,0,50,150" VerticalAlignment="Bottom" Height="50" Width="50">
+        <Button x:Name="button1" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,0,50,150" VerticalAlignment="Bottom" Height="50" Width="50">
             <Image Source="ImageSource/Icon/mainwindowicon/摄像机异常.png" />
         </Button>
 
-        <Button x:Name="button2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,60,50,0" VerticalAlignment="Top" Height="50" Width="50">
+        <Button x:Name="button2" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,60,50,0" VerticalAlignment="Top" Height="50" Width="50">
             <Image Source="ImageSource/Icon/mainwindowicon/2d.png" />
         </Button>
-        <Button x:Name="button3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" Margin="0,110,50,0" VerticalAlignment="Top" Width="50" Height="50">
+        <Button x:Name="button3" Style="{StaticResource  GelButton}"  HorizontalAlignment="Right" Margin="0,110,50,0" VerticalAlignment="Top" Width="50" Height="50">
             <Image Source="ImageSource/Icon/mainwindowicon/设备信息.png" />
         </Button>
-        <UserControls:MainWindowStatistics HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50"/>
-        <UserControls:MainWindowStatistics HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50"/>
+        <UserControls:MainWindowStatistics x:Name="camerastatistics" HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50"/>
+        <UserControls:MainWindowStatistics  x:Name="sensorstatistics" HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50"/>
 
 
     </Grid>

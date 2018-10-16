@@ -173,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResourceDictionary\ButtonStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MainWindowMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,6 +301,10 @@
     <Resource Include="ImageSource\Icon\mainwindowicon\3d.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\设备信息.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\raiseup.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\摄像机.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\水压设备.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\用户.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\拼控.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
