@@ -1,8 +1,11 @@
-﻿using ManagementProject.PageView;
+﻿using ManagementProject.FunctionalWindows;
+using ManagementProject.GlobalClass;
+using ManagementProject.PageView;
 using ManagementProject.UserControls;
 using ManagementProject.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+
 
 namespace ManagementProject
 {
@@ -42,8 +46,30 @@ namespace ManagementProject
             closebt.MouseLeave += Closebt_MouseLeave;
 
             choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
+            choosetb.drapbt.Click += Drapbt_Click;
 
             this.Loaded += MainWindow_Loaded;
+        }
+
+        private void Drapbt_Click(object sender, RoutedEventArgs e)
+        {
+            if(GlobalVariable.MainWindowTextBoxIsDraped == false)
+            {
+
+                drappanel.Visibility = Visibility.Collapsed;
+
+               // GlobalVariable.MainWindowTextBoxIsDraped = true;
+
+            }
+            else
+            {
+                drappanel.Visibility = Visibility.Visible;
+
+               // GlobalVariable.MainWindowTextBoxIsDraped = false;
+            }
+            
+
+           
         }
 
         private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,6 +82,7 @@ namespace ManagementProject
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadPage();
+            LoadText();
 
             BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
             BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
@@ -64,9 +91,23 @@ namespace ManagementProject
             sensorstatistics.image.Source = img2;
             sensorstatistics.number.Text = "7";
 
-
         }
 
+        private void LoadText()
+        {
+
+
+            string titletext = ConfigurationManager.AppSettings["TitleText"];
+            title.Content = titletext;
+                
+        }
+
+        private void ChangeText()
+        {
+            Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            cfa.AppSettings.Settings["TitleText"].Value = "上海财经大学智慧平安校园管理系统";
+            cfa.Save();
+        }
         MainPage mp;
         private void LoadPage()
         {
@@ -139,6 +180,13 @@ namespace ManagementProject
         private void minbt_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            PlayerWindow newwindow = new PlayerWindow();
+            
+            newwindow.Show();
         }
     }
 }

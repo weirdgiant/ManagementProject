@@ -17,7 +17,7 @@
 
         <Grid Name="maingrid" Height="45"  VerticalAlignment="Top" Background="#FF252525" >
             <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25" Margin="25,0,0,0" Source="ImageSource/Icon/mainwindowicon/logo.png" />
-            <Label x:Name="title" Content="上海财经大学智慧平安校园管理系统" HorizontalAlignment="Left" Margin="52,0,0,0" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+            <Label x:Name="title"  HorizontalAlignment="Left" Margin="52,0,0,0" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
             <Label x:Name="titletime" Content="{Binding MWModel.NowTime}"   HorizontalAlignment="Left" Margin="275,10,0,10"  FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
@@ -54,11 +54,12 @@
         <Button x:Name="button2" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,60,50,0" VerticalAlignment="Top" Height="50" Width="50">
             <Image Source="ImageSource/Icon/mainwindowicon/2d.png" />
         </Button>
-        <Button x:Name="button3" Style="{StaticResource  GelButton}"  HorizontalAlignment="Right" Margin="0,110,50,0" VerticalAlignment="Top" Width="50" Height="50">
+        <Button x:Name="button3" Style="{StaticResource  GelButton}" Click="button3_Click"  HorizontalAlignment="Right" Margin="0,110,50,0" VerticalAlignment="Top" Width="50" Height="50">
             <Image Source="ImageSource/Icon/mainwindowicon/设备信息.png" />
         </Button>
         <UserControls:MainWindowStatistics x:Name="camerastatistics" HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50"/>
         <UserControls:MainWindowStatistics  x:Name="sensorstatistics" HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50"/>
+        <UserControls:MainWindowTextBoxDrapPanel x:Name="drappanel" Visibility="Collapsed"  HorizontalAlignment="Left" Height="220" Margin="273,76,0,0" VerticalAlignment="Top" Width="205"/>
 
 
     </Grid>

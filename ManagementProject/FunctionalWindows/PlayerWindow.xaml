@@ -1,0 +1,19 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.FunctionalWindows.PlayerWindow"
+        mc:Ignorable="d"
+        Title="PlayerWindow" Height="500" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <UserControls:Player/>
+        <UserControls:PlayerControl Margin="0,0,0,0" Grid.Row="1"/>
+
+    </Grid>
+</Window>
