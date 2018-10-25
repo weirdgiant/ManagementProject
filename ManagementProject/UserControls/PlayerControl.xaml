@@ -4,27 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="1000">
     <Grid Margin="0,0,0,0" Background="#FF2A2A2A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="122"/>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="318*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="0,0,0,0" Background="#FF1A8BDA">
-            <TextBox x:Name="textBox" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="播放时间：" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="textBox1" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="2018-10-24 15:00:00" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="textBox" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="播放时间：" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center" SelectionBrush="{x:Null}"/>
+            <TextBox x:Name="textBox1" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="0000-00-00 00:00:00" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center" SelectionBrush="{x:Null}"/>
         </StackPanel>
         <Label x:Name="label" Content="开始时间：" HorizontalAlignment="Left" Margin="53,0,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="1"/>
-        <DatePicker HorizontalAlignment="Left" Margin="123,1,0,0" VerticalAlignment="Top" Width="150" Grid.Column="1"/>
-        <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="307,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="1"/>
-        <DatePicker HorizontalAlignment="Left" Margin="377,-1,0,0" VerticalAlignment="Top" Width="150" Grid.Column="1"/>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="53,30,0,0" Width="474" Grid.Column="1"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="532,30,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Foreground="White" Grid.Column="1"/>
-        <Button x:Name="button" Content="播放"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="604,5,0,5" Width="40" Grid.Column="1"/>
-        <Button x:Name="button_Copy" Content="停止"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="663,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="1"/>
-        <Button x:Name="button_Copy1" Content="倍速"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="729,12,0,13" Width="73" Grid.Column="1" Background="#FF818181"/>
-       
+        <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A" TimeFormat="FullDateTime" TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>
+        <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
+        <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
+        <Slider x:Name="slider" Margin="53,30,0,0" Grid.Column="1" Grid.ColumnSpan="4"/>
+        <Button x:Name="button" Content="播放"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5"/>
+        <Button x:Name="button_Copy" Content="停止"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5"/>
+        <Button x:Name="button_Copy1" Content="倍速"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="193,12,0,13" Width="73" Grid.Column="5" Background="#FF818181"/>
+
 
     </Grid>
 </UserControl>

@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          mc:Ignorable="d" 
-             Height="500" Width="600" MouseDown="UserControl_MouseDown" Opacity="0.5" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" >
-    <Grid Background="#FF2F2F2F"  >
+             Height="500" Width="600" MouseDown="UserControl_MouseDown"  WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" >
+    <Grid Background="#FF2F2F2F" Opacity="0.8"  >
         <Grid.RowDefinitions>
             <RowDefinition Height="350*"/>
             <RowDefinition Height="200*"/>

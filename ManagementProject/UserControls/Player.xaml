@@ -14,10 +14,9 @@
         <MediaElement x:Name="mediaElement" Margin="0,0,0,0" Grid.RowSpan="2"/>
         <Popup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
             AllowsTransparency="True"
-            IsOpen="False"
             Placement="Bottom"
-            PlacementTarget="{Binding ElementName=WindowsFormHostPlayer}"
-            StaysOpen="True"
+            StaysOpen="{Binding IsOpened}"
+            IsOpen="{Binding IsOpened}"
             VerticalOffset="-35">
         <StackPanel  Orientation="Horizontal">
             <Grid Width="50" >

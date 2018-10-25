@@ -7,20 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManagementProject.Model
 {
-    public class MainWindowModel : INotifyPropertyChanged
-    {       
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-
-    public class MainWindowProperty:MainWindowModel
+    public class MainWindowModel : INotifyPropertyChangedClass
     {
         private string nowtime;
         public string NowTime

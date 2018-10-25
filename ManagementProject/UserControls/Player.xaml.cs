@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,51 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class Player : UserControl
     {
+
+        IsPlayerVisbility IsPlayerVisbility;
         public Player()
         {
             InitializeComponent();
+            IsPlayerVisbility = new IsPlayerVisbility();
+            DataContext = IsPlayerVisbility;
+            MouseLeftButtonDown += Player_MouseLeftButtonDown;
+        }
+
+        private void Player_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (IsPlayerVisbility.IsOpened== true)
+            {
+                IsPlayerVisbility.IsOpened = false;
+            }else
+            {
+                IsPlayerVisbility.IsOpened = true;
+            }
+            
+           
+        }
+
+        private void Player_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IsPlayerVisbility.IsOpened = false;
+        }
+
+        private void Player_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IsPlayerVisbility.IsOpened = true ;
+        }
+    }
+    public class IsPlayerVisbility : INotifyPropertyChangedClass
+    {
+        private bool isopened;
+
+        public bool IsOpened
+        {
+            get { return isopened; }
+            set
+            {
+                isopened = value;
+                NotifyPropertyChanged("IsOpened");
+            }
         }
     }
 }
