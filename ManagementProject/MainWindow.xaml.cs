@@ -191,6 +191,7 @@ namespace ManagementProject
             {
                 PlayerWindow newwindow = new PlayerWindow();
                 newwindow.Topmost = true;
+                newwindow.Owner = this;
                 newwindow.Show();
                 GlobalVariable.PlayerWindowIsOpened = true;
             }
