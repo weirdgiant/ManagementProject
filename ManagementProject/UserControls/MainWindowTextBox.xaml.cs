@@ -1,4 +1,4 @@
-﻿using ManagementProject.GlobalClass;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;

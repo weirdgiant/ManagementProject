@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManagementProject.GlobalClass
+namespace ManagementProject
 {
     public static class GlobalVariable
     {
         public static bool MainWindowTextBoxIsDraped { get; set; }
+        public static bool PlayerWindowIsOpened { get; set; }
     }
 }

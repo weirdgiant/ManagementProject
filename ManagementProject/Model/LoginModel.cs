@@ -7,14 +7,39 @@ using System.Threading.Tasks;
 
 namespace ManagementProject.Model
 {
-    public class LoginModel : INotifyPropertyChanged
+    public class LoginModel : INotifyPropertyChangedClass
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        private string username;
+        public string UserName
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                return username;
+            }
+            set
+            {
+                username = value;
+                NotifyPropertyChanged("UserName");
+            }
+        }
+
+        /// <summary>
+        /// 用户密码
+        /// </summary>
+        private string password;
+        public string PassWord
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                password = value;
+                NotifyPropertyChanged("PassWord");
             }
         }
     }

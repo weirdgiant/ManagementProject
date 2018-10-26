@@ -62,8 +62,8 @@
             </Grid.RowDefinitions>
             <Image x:Name="adminicon" Margin="0,5,4,5" Source="ImageSource/Icon/admin.png" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
             <Image x:Name="passwordicon" Margin="0,5,4,5" Source="ImageSource/Icon/password.png" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="admin" VerticalContentAlignment="Center" Margin="1,0,9,0" TextWrapping="Wrap" FontSize="18" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="5"/>
-            <TextBox x:Name="password" VerticalContentAlignment="Center" Margin="1,0,9,0" TextWrapping="Wrap" FontSize="18" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5"/>
+            <TextBox x:Name="username" Text="{Binding UserName}" VerticalContentAlignment="Center" Margin="1,0,9,0" TextWrapping="Wrap" FontSize="18" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="5"/>
+            <PasswordBox x:Name="password"   VerticalContentAlignment="Center" Margin="1,0,9,0"  FontSize="18" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5"/>
             <Image x:Name="emailicon" Margin="0,0,0,0" Source="ImageSource/Icon/email.png" RenderTransformOrigin="0.647,1.722" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2"/>
             <Image x:Name="phoneicon" Margin="0,0,0,0" Source="ImageSource/Icon/phone.png" RenderTransformOrigin="3.861,0.611" Grid.Row="7" Grid.Column="6" Grid.RowSpan="2"/>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="inquir@mangocosmos.com" FontSize="9" Foreground="#FF8B8B8B" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3"/>

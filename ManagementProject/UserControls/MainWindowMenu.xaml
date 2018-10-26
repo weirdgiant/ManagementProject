@@ -10,6 +10,7 @@
         <Button x:Name="menubt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" Margin="428,0,0,0" VerticalAlignment="Stretch" Width="50">
             <Image Name="menubtimage" Source="/ManagementProject;component/ImageSource/Icon/menuicon/menuclose.png" />
         </Button>
+        
         <Border Name="showpanel" Background="#FF2F2F2F"  CornerRadius="5" BorderBrush="Black" BorderThickness="1" Margin="0,0,50,0" Opacity="0.9">
             <Grid>
                 <StackPanel Orientation="Horizontal"  >

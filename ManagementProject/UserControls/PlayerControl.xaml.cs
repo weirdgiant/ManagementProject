@@ -20,9 +20,36 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class PlayerControl : UserControl
     {
+        public PlayerControlViewModel PlayerControlViewModel;
         public PlayerControl()
         {
             InitializeComponent();
+            PlayerControlViewModel = new PlayerControlViewModel();
+            PlayerControlViewModel.PlaybackTime = "这是播放时间";
+            this.DataContext = PlayerControlViewModel;
+                
+        }
+    }
+
+    
+
+    public class PlayerControlViewModel : INotifyPropertyChangedClass
+    {
+        /// <summary>
+        /// 播放时间
+        /// </summary>
+        private string playbacktime;
+        public string PlaybackTime
+        {
+            get
+            {
+                return playbacktime;
+            }
+            set
+            {
+                playbacktime = value;
+                NotifyPropertyChanged("PlaybackTime");
+            }
         }
     }
 }

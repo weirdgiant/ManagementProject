@@ -17,8 +17,8 @@
             <ColumnDefinition Width="318*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="0,0,0,0" Background="#FF1A8BDA">
-            <TextBox x:Name="textBox" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="播放时间：" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center" SelectionBrush="{x:Null}"/>
-            <TextBox x:Name="textBox1" Height="23" IsReadOnly="True"  TextWrapping="Wrap" Text="0000-00-00 00:00:00" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" VerticalContentAlignment="Center" SelectionBrush="{x:Null}"/>
+            <Label x:Name="textBox"  Height="25"  Content="播放时间："  Foreground="White" VerticalContentAlignment="Center" />
+            <Label x:Name="textBox1" Height="25"  Content="{Binding PlaybackTime}"  Foreground="White" VerticalContentAlignment="Center" />
         </StackPanel>
         <Label x:Name="label" Content="开始时间：" HorizontalAlignment="Left" Margin="53,0,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="1"/>
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A" TimeFormat="FullDateTime" TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>

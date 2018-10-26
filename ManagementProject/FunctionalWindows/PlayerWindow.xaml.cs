@@ -22,6 +22,12 @@ namespace ManagementProject.FunctionalWindows
         public PlayerWindow()
         {
             InitializeComponent();
+            Closing += PlayerWindow_Closing;
+        }
+
+        private void PlayerWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            GlobalVariable.PlayerWindowIsOpened = false;
         }
     }
 }

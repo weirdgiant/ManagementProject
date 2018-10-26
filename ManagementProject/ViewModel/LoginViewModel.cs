@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace ManagementProject.ViewModel
 {
     public class LoginViewModel
     {
+        public LoginModel LoginModel { get; set; }
+        public LoginViewModel()
+        {
+            LoginModel = new LoginModel();
+        }
         
     }
 }

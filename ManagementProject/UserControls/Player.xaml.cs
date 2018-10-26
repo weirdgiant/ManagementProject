@@ -28,9 +28,11 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             IsPlayerVisbility = new IsPlayerVisbility();
             DataContext = IsPlayerVisbility;
-            MouseLeftButtonDown += Player_MouseLeftButtonDown;
+           
+            bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
         }
 
+     
         private void Player_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsPlayerVisbility.IsOpened== true)
@@ -43,16 +45,7 @@ namespace ManagementProject.UserControls
             
            
         }
-
-        private void Player_MouseLeave(object sender, MouseEventArgs e)
-        {
-            IsPlayerVisbility.IsOpened = false;
-        }
-
-        private void Player_MouseEnter(object sender, MouseEventArgs e)
-        {
-            IsPlayerVisbility.IsOpened = true ;
-        }
+     
     }
     public class IsPlayerVisbility : INotifyPropertyChangedClass
     {

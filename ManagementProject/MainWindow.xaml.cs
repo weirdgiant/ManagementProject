@@ -1,5 +1,5 @@
 ﻿using ManagementProject.FunctionalWindows;
-using ManagementProject.GlobalClass;
+
 using ManagementProject.PageView;
 using ManagementProject.UserControls;
 using ManagementProject.ViewModel;
@@ -182,11 +182,19 @@ namespace ManagementProject
             WindowState = WindowState.Minimized;
         }
 
+
+        
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            PlayerWindow newwindow = new PlayerWindow();
-            
-            newwindow.Show();
+           
+            if (GlobalVariable.PlayerWindowIsOpened==false)
+            {
+                PlayerWindow newwindow = new PlayerWindow();
+                newwindow.Topmost = true;
+                newwindow.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
+           
         }
     }
 }
