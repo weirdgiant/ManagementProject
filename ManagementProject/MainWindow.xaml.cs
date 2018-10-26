@@ -144,7 +144,7 @@ namespace ManagementProject
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            titletime.Content  = DateTime.Now.ToString("yyyy-M-d HH:mm:ss");
+            titletime.Content  = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         }
 
@@ -174,7 +174,7 @@ namespace ManagementProject
                 WindowState = WindowState.Maximized;
                 windowstate = 0;
             }
-            
+
         }
 
         private void minbt_Click(object sender, RoutedEventArgs e)
