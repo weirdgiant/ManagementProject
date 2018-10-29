@@ -11,10 +11,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="122"/>
-            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="155*"/>
-            <ColumnDefinition Width="318*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="318"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="0,0,0,0" Background="#FF1A8BDA">
             <Label x:Name="textBox"  Height="25"  Content="播放时间："  Foreground="White" VerticalContentAlignment="Center" />
@@ -25,8 +25,12 @@
         <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
         <Slider x:Name="slider" Margin="53,30,0,0" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Button x:Name="button" Content="播放"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5"/>
-        <Button x:Name="button_Copy" Content="停止"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5"/>
+        <Button x:Name="button" ToolTip="播放"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
+            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/暂停 (2).png" />
+        </Button>
+        <Button x:Name="button_Copy"   Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
+            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/结束回放-点击后.png" />
+        </Button>
         <Button x:Name="button_Copy1" Content="倍速"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="193,12,0,13" Width="73" Grid.Column="5" Background="#FF818181"/>
 
 

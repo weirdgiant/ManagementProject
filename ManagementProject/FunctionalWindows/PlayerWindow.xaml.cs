@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,33 @@ namespace ManagementProject.FunctionalWindows
         {
             InitializeComponent();
             Closing += PlayerWindow_Closing;
+            MouseLeftButtonDown += PlayerWindow_MouseLeftButtonDown;
+            
+        }
+
+        private void PlayerWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
 
         private void PlayerWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             GlobalVariable.PlayerWindowIsOpened = false;
+        }
+
+        private void closebt_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void minbt_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void recoverbt_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
         }
     }
 }

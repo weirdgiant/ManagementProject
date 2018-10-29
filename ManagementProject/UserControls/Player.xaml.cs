@@ -22,7 +22,7 @@ namespace ManagementProject.UserControls
     public partial class Player : UserControl
     {
 
-        IsPlayerVisbility IsPlayerVisbility;
+        public IsPlayerVisbility IsPlayerVisbility;
         public Player()
         {
             InitializeComponent();
@@ -30,9 +30,23 @@ namespace ManagementProject.UserControls
             DataContext = IsPlayerVisbility;
            
             bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
+            SizeChanged += Player_SizeChanged;
         }
 
-     
+      
+
+        /// <summary>
+        /// 根据实际窗口大小改变全屏按钮位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Player_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double width = ActualWidth;
+            fullgrid.Margin =new Thickness(ActualWidth - 100,0,0,0);
+            IsPlayerVisbility.IsOpened = false;
+        }
+
         private void Player_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsPlayerVisbility.IsOpened== true)
@@ -40,6 +54,7 @@ namespace ManagementProject.UserControls
                 IsPlayerVisbility.IsOpened = false;
             }else
             {
+                IsPlayerVisbility.IsOpened = false;
                 IsPlayerVisbility.IsOpened = true;
             }
             

@@ -5,15 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.FunctionalWindows.PlayerWindow"
         mc:Ignorable="d"
-        Title="PlayerWindow" Height="500" Width="1000">
+        Title="PlayerWindow" Height="500" Width="1000" FlowDirection="LeftToRight" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-
-        <UserControls:Player/>
-        <UserControls:PlayerControl Margin="0,0,0,0" Grid.Row="1"/>
+        <Grid Name="maingrid" Background="#FF252525" >
+            <StackPanel  Orientation="Horizontal" Width="200"  HorizontalAlignment="Left" >
+                <Grid Width="15"/>
+                <Image Name="playerwindowlogo" Height="20" Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放.png" />
+                <Grid Width="15"/>
+                <Button   Height="20" Width="20" Style="{StaticResource GelButton}" >
+                    <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-6.png" />
+                </Button>
+                <Grid Width="15"/>
+                <Button  Height="20" Width="20" Style="{StaticResource GelButton}" >
+                    <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-9.png" />
+                </Button>
+                <Grid Width="15"/>
+                <Button  Height="20" Width="20" Style="{StaticResource GelButton}" >
+                    <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-12.png" />
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="110">
+                <Button x:Name="minbt" ToolTip="最小化" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="minbt_Click" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" >
+                    <Image Width="15"  Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/min.png" />
+                </Button>
+                <Grid Width="10"/>
+                <Button x:Name="recoverbt" ToolTip="最大化" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="recoverbt_Click" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30"  >
+                    <Image Width="15" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/max.png" />
+                </Button>
+                <Grid Width="10"/>
+                <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="closebt_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Width="30">
+                    <Image Width="15" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!--<UserControls:Player Grid.Row="1"/>-->
+        <UserControls:PlayerPanel Grid.Row="1" />
+        <UserControls:PlayerControl Margin="0,0,0,0" Grid.Row="2"/>
 
     </Grid>
 </Window>

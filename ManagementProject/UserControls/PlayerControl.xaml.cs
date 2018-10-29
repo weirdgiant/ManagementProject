@@ -25,7 +25,7 @@ namespace ManagementProject.UserControls
         {
             InitializeComponent();
             PlayerControlViewModel = new PlayerControlViewModel();
-            PlayerControlViewModel.PlaybackTime = "这是播放时间";
+            PlayerControlViewModel.PlaybackTime = "000-00-00 00:00:00";
             this.DataContext = PlayerControlViewModel;
                 
         }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:managementproject="clr-namespace:ManagementProject"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Name="bottomgrid" Background="#FF5C5C5C">
@@ -12,50 +13,73 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <MediaElement x:Name="mediaElement" Margin="0,0,0,0" Grid.RowSpan="2"/>
-        <Popup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
+        <managementproject:CusPopup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
             AllowsTransparency="True"
             Placement="Bottom"
             StaysOpen="{Binding IsOpened}"
             IsOpen="{Binding IsOpened}"
-            VerticalOffset="-35">
-        <StackPanel  Orientation="Horizontal">
-            <Grid Width="50" >
-                <Button Width="20" 
-                        Height="20" 
+            VerticalOffset="-40">
+            <Grid Margin="0,0,0,0" >
+                <StackPanel  Orientation="Horizontal">
+                    <Grid Width="50" >
+                        <Button Width="30" 
+                        Height="30" 
                         Style="{StaticResource RoundedGelButton}" 
-                        BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
-            </Grid>
-            <Grid Width="50" >
-                <Button Width="20" 
-                        Height="20" 
+                        BorderBrush="{x:Null}"
+                            ToolTip="拍照" >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/拍照.png" />
+                        </Button>
+                    </Grid>
+                    <Grid Width="50" >
+                        <Button Width="30" 
+                        Height="30" 
                         Style="{StaticResource RoundedGelButton}" 
-                        BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
+                        BorderBrush="{x:Null}"
+                            ToolTip="数字放大"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/数字放大.png" />
+                        </Button>
+                    </Grid>
+                    <Grid Width="50" >
+                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                            ToolTip="操作"
+                           >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/操作.png" />
+                        </Button>
+                    </Grid>
+                    <Grid Width="50" >
+                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                            ToolTip="信息"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/信息.png" />
+                        </Button>
+                    </Grid>
+                    <Grid Width="50" >
+                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                            ToolTip="回放"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放按钮.png" />
+                        </Button>
+                    </Grid>
+                    <Grid Width="50" >
+                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}"
+                            ToolTip="追踪"
+                            BorderBrush="{x:Null}"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/追踪按钮.png" />
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+                <Grid Width="50" Margin="750,0,0,0" Name="fullgrid" >
+                    <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                            ToolTip="全屏"
+                            >
+                        <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/全屏.png" />
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid Width="50" >
-                <Button Width="20" Height="20" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
-            </Grid>
-            <Grid Width="50" >
-                <Button Width="20" Height="20" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
-            </Grid>
-            <Grid Width="50" >
-                <Button Width="20" Height="20" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
-            </Grid>
-            <Grid Width="50" >
-                <Button Width="20" Height="20" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}">
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/用户.png" />
-                </Button>
-            </Grid>
-        </StackPanel>
-        </Popup>
+        </managementproject:CusPopup>
+
     </Grid>
 </UserControl>

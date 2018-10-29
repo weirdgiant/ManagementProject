@@ -136,6 +136,7 @@
     <Compile Include="PageView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CusPopup.cs" />
     <Compile Include="UserControls\MainWindowMenu.xaml.cs">
       <DependentUpon>MainWindowMenu.xaml</DependentUpon>
     </Compile>
@@ -159,6 +160,9 @@
     </Compile>
     <Compile Include="UserControls\PlayerControl.xaml.cs">
       <DependentUpon>PlayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerPanel.xaml.cs">
+      <DependentUpon>PlayerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SchoolMessage.xaml.cs">
       <DependentUpon>SchoolMessage.xaml</DependentUpon>
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PlayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +336,22 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-12.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-6.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-9.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\回放按钮.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\追踪按钮.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\信息.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\全屏.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\回放.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\拍照.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\操作.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\数字放大.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\暂停 %281%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\暂停 %282%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\结束回放-点击后.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\结束回放.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\追踪.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\客户端异常信息.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\摄像机异常.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\2d.png" />
@@ -345,6 +369,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\ThinkGeo.MapSuite.10.3.2\build\net45\ThinkGeo.MapSuite.targets" Condition="Exists('..\packages\ThinkGeo.MapSuite.10.3.2\build\net45\ThinkGeo.MapSuite.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
