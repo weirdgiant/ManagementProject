@@ -38,6 +38,7 @@ namespace ManagementProject.UserControls
             {
                 ColumnDefinition cd = new ColumnDefinition();
                 cd.Width = new GridLength(1, GridUnitType.Star);
+                
                 playgrid.ColumnDefinitions.Add(cd);
 
             }
@@ -51,6 +52,7 @@ namespace ManagementProject.UserControls
             }
 
             playgrid.Children.Clear();
+            playgrid.ShowGridLines = true;
 
         }
     }

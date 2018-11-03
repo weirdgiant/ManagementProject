@@ -60,8 +60,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Button x:Name="minbt" Content="-"  Margin="5,5,105,5" Style="{DynamicResource ButtonStyle}" Click="minbt_Click"/>
+    <Grid Background="White"  >
+        <Button x:Name="minbt" Content="-"  Margin="5,5,105,5" Style="{DynamicResource ButtonStyle}" Click="minbt_Click" Background="#FFF74100"/>
         <Button x:Name="recoverbt" Content=""  Margin="0,0,0,0" Style="{DynamicResource ButtonStyle}" Click="recoverbt_Click"/>
         <Button x:Name="closebt"  Margin="103,5,7,5" Style="{DynamicResource ButtonStyle}" Click="closebt_Click" Background="White"/>
 
