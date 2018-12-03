@@ -29,7 +29,7 @@
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
                 </Button>
                 <Button x:Name="recoverbt" Content="Normal" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="75" Click="recoverbt_Click" Visibility="Collapsed"/>
-                <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="45">
+                <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="45" Background="{x:Null}">
                     <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
                 </Button>
             </StackPanel>

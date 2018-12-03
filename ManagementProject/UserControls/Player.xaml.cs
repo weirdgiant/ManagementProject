@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -28,9 +29,13 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             IsPlayerVisbility = new IsPlayerVisbility();
             DataContext = IsPlayerVisbility;
-           
+            
             bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
             SizeChanged += Player_SizeChanged;
+
+            ///获取控件Handel
+            HwndSource hs = (HwndSource)PresentationSource.FromDependencyObject(mediaElement);
+
         }
 
       
