@@ -7,10 +7,10 @@
              xmlns:managementproject="clr-namespace:ManagementProject"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-    <Grid Name="bottomgrid" Background="#FF5C5C5C">
+    <Grid Name="bottomgrid" Background="#FF5C5C5C" Margin="5,5,5,5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <MediaElement x:Name="mediaElement" Margin="0,0,0,0" Grid.RowSpan="2"/>
         <managementproject:CusPopup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
@@ -21,50 +21,67 @@
             VerticalOffset="-40">
             <Grid Margin="0,0,0,0" >
                 <StackPanel  Orientation="Horizontal">
-                    <Grid Width="50" >
+                    <Grid >
                         <Button Width="30" 
-                        Height="30" 
-                        Style="{StaticResource RoundedGelButton}" 
-                        BorderBrush="{x:Null}"
+                                Height="30" 
+                                Command="{Binding PhotographCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
                             ToolTip="拍照" >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/拍照.png" />
                         </Button>
                     </Grid>
-                    <Grid Width="50" >
+                    <Grid  >
                         <Button Width="30" 
-                        Height="30" 
-                        Style="{StaticResource RoundedGelButton}" 
-                        BorderBrush="{x:Null}"
+                                Height="30" 
+                                Command="{Binding ZoomCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
                             ToolTip="数字放大"
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/数字放大.png" />
                         </Button>
                     </Grid>
-                    <Grid Width="50" >
-                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                    <Grid >
+                        <Button Width="30"
+                                Height="30" 
+                                 Command="{Binding OperationCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
                             ToolTip="操作"
                            >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/操作.png" />
                         </Button>
                     </Grid>
-                    <Grid Width="50" >
-                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                    <Grid  >
+                        <Button Width="30" 
+                                Height="30" 
+                                 Command="{Binding MessageCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
                             ToolTip="信息"
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/信息.png" />
                         </Button>
                     </Grid>
-                    <Grid Width="50" >
-                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                    <Grid >
+                        <Button Width="30"
+                                Height="30" 
+                                 Command="{Binding PlaybackCommand}"
+                                Style="{StaticResource RoundedGelButton}"
+                                BorderBrush="{x:Null}"
                             ToolTip="回放"
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放按钮.png" />
                         </Button>
                     </Grid>
-                    <Grid Width="50" >
-                        <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}"
-                            ToolTip="追踪"
-                            BorderBrush="{x:Null}"
+                    <Grid>
+                        <Button Width="30" 
+                                Height="30" 
+                                 Command="{Binding TrackCommand}"
+                                Style="{StaticResource RoundedGelButton}"
+                                BorderBrush="{x:Null}"
+                            ToolTip="追踪"                         
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/追踪按钮.png" />
                         </Button>
@@ -72,7 +89,11 @@
 
                 </StackPanel>
                 <Grid Width="50" Margin="750,0,0,0" Name="fullgrid" >
-                    <Button Width="30" Height="30" Style="{StaticResource RoundedGelButton}" BorderBrush="{x:Null}"
+                    <Button Width="30" 
+                            Height="30" 
+                            Command="{Binding FullScreenCommand}" 
+                            Style="{StaticResource RoundedGelButton}" 
+                            BorderBrush="{x:Null}"
                             ToolTip="全屏"
                             >
                         <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/全屏.png" />

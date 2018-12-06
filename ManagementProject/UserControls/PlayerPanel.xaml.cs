@@ -28,7 +28,8 @@ namespace ManagementProject.UserControls
 
         private void PlayerPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            DrawPlayGrid(3,4);
+            DrawPlayGrid(4,3);
+            InitBitkyPoleShow(4,3);
         }
 
         public void DrawPlayGrid(int columnNumber, int rowNumber)
@@ -52,8 +53,32 @@ namespace ManagementProject.UserControls
             }
 
             playgrid.Children.Clear();
-            playgrid.ShowGridLines = true;
 
         }
+
+
+        private void InitBitkyPoleShow(int columnNumber, int rowNumber)
+        {
+            var controls = new List<Player>();
+            var id = 0;
+            for (var i = 0; i < columnNumber; i++)
+            {
+                for (var j = 0; j < rowNumber; j++)
+                {
+                    var Player = new Player();
+                    //在 Grid 中动态添加控件
+                    playgrid.Children.Add(Player);
+                    //设定控件在 Grid 中的位置
+                    Grid.SetRow(Player, j);
+                    Grid.SetColumn(Player, i);
+                    //将控件添加到集合中，方便下一步的使用
+                    controls.Add(Player);
+                    //对控件使用自定义方法进行初始化
+                   // Player.setContent(id);
+                   // id++;
+                }
+            }
+        }
+
     }
 }

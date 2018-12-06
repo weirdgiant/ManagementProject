@@ -23,12 +23,12 @@ namespace ManagementProject.UserControls
     public partial class Player : UserControl
     {
 
-        public IsPlayerVisbility IsPlayerVisbility;
+        public PlayerViewModel PlayerViewModel;
         public Player()
         {
             InitializeComponent();
-            IsPlayerVisbility = new IsPlayerVisbility();
-            DataContext = IsPlayerVisbility;
+            PlayerViewModel = new PlayerViewModel();
+            DataContext = PlayerViewModel;
             
             bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
             SizeChanged += Player_SizeChanged;
@@ -48,29 +48,28 @@ namespace ManagementProject.UserControls
         private void Player_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double width = ActualWidth;
-            fullgrid.Margin =new Thickness(ActualWidth - 100,0,0,0);
-            IsPlayerVisbility.IsOpened = false;
+            fullgrid.Margin =new Thickness(ActualWidth - 50,0,0,0);
+            PlayerViewModel.IsOpened = false;
         }
 
         private void Player_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (IsPlayerVisbility.IsOpened== true)
+            if (PlayerViewModel.IsOpened== true)
             {
-                IsPlayerVisbility.IsOpened = false;
+                PlayerViewModel.IsOpened = false;
             }else
             {
-                IsPlayerVisbility.IsOpened = false;
-                IsPlayerVisbility.IsOpened = true;
+                PlayerViewModel.IsOpened = false;
+                PlayerViewModel.IsOpened = true;
             }
             
            
         }
      
     }
-    public class IsPlayerVisbility : INotifyPropertyChangedClass
+    public class PlayerModel : INotifyPropertyChangedClass
     {
         private bool isopened;
-
         public bool IsOpened
         {
             get { return isopened; }
@@ -79,6 +78,72 @@ namespace ManagementProject.UserControls
                 isopened = value;
                 NotifyPropertyChanged("IsOpened");
             }
+        }
+    }
+
+    public class PlayerViewModel:PlayerModel
+    {
+        public DelegateCommand FullScreenCommand { get; set; }
+        public DelegateCommand PhotographCommand { get; set; }
+        public DelegateCommand ZoomCommand { get; set; }
+        public DelegateCommand OperationCommand { get; set; }
+        public DelegateCommand MessageCommand { get; set; }
+        public DelegateCommand PlaybackCommand { get; set; }
+        public DelegateCommand TrackCommand { get; set; }
+
+        public PlayerViewModel()
+        {          
+
+            FullScreenCommand = new DelegateCommand();
+            FullScreenCommand.ExecuteCommand = new Action<object>(FullScreen);
+
+            PhotographCommand = new DelegateCommand();
+            PhotographCommand .ExecuteCommand =new Action<object>(Photograph);
+
+            ZoomCommand = new DelegateCommand();
+            ZoomCommand.ExecuteCommand = new Action<object>(Zoom);
+
+            OperationCommand = new DelegateCommand();
+            OperationCommand.ExecuteCommand = new Action<object>(Operation);
+
+            MessageCommand = new DelegateCommand();
+            MessageCommand.ExecuteCommand = new Action<object>(Message);
+
+            PlaybackCommand = new DelegateCommand();
+            PlaybackCommand.ExecuteCommand = new Action<object>(Playback);
+
+            TrackCommand = new DelegateCommand();
+            TrackCommand.ExecuteCommand = new Action<object>(Track);
+
+        }
+
+        private void FullScreen(object obj)
+        {
+            MessageBox.Show("这是全屏按键！");
+        }
+        private void Photograph(object obj)
+        {
+            MessageBox.Show("这是拍照！");
+        }
+        private void Zoom(object obj)
+        {
+            MessageBox.Show("这是数字放大！");
+        }
+        private void Operation(object obj)
+        {
+            MessageBox.Show("这是操作！");
+        }
+        private void Message(object obj)
+        {
+            MessageBox.Show("message");
+        }
+        private void Playback(object obj)
+        {
+            MessageBox.Show("playback");
+        }
+        private void Track(object obj)
+        {
+            MessageBox.Show("track");
         }
     }
 }

@@ -8,7 +8,14 @@ namespace ManagementProject
 {
     public static class GlobalVariable
     {
+        //controlstate
         public static bool MainWindowTextBoxIsDraped { get; set; }
+
+
+        //windowstate
         public static bool PlayerWindowIsOpened { get; set; }
+
+
+        //pagestate
     }
 }

@@ -7,4 +7,16 @@
         <Setter Property="Background"  Value="Black" />
 
     </Style>
+
+    <SolidColorBrush x:Key="myBrush" Color="White"/>
+
+    <LinearGradientBrush x:Key="mybrush" StartPoint="0,0.5" EndPoint="1,0.5" Opacity="0.5">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="GoldenRod" Offset="0" />
+                <GradientStop Color="Blue"  Offset="1" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
 </ResourceDictionary>

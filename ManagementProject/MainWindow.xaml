@@ -9,7 +9,7 @@
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+            <i:InvokeCommandAction Command="{Binding ShowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -20,10 +20,12 @@
         </Grid.RowDefinitions>
 
         <Grid Name="maingrid" Height="45"  VerticalAlignment="Top" Background="#FF252525" >
-            <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25" Margin="25,0,0,0" Source="ImageSource/Icon/mainwindowicon/logo.png" />
-            <Label x:Name="title"  HorizontalAlignment="Left" Margin="52,0,0,0" FontSize="13" VerticalAlignment="Center" Foreground="White"/>
-            <Label x:Name="titletime" Content="{Binding MWModel.NowTime}"   HorizontalAlignment="Left" Margin="275,10,0,10"  FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
-
+            <StackPanel Orientation="Horizontal" Margin="10" >
+            <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
+            
+            <Label x:Name="title" Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+            <Label x:Name="titletime" Content="{Binding NowTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
                 <Button x:Name="minbt" ToolTip="最小化" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" Click="minbt_Click">
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />

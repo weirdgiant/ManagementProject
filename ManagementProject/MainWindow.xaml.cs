@@ -29,18 +29,15 @@ namespace ManagementProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel MainWindowViewModel { get; set; }
         private WindowControlButton  ControlButton;
         public int windowstate = 0;//0-最大化 ,1正常
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel  = new MainWindowViewModel();
 
-            DataContext = new MainWindowViewModel();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            DataContext =MainWindowViewModel;
 
             closebt.MouseEnter += Closebt_MouseEnter;
             closebt.MouseLeave += Closebt_MouseLeave;
@@ -82,7 +79,6 @@ namespace ManagementProject
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadPage();
-            LoadText();
 
             BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
             BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
@@ -93,21 +89,7 @@ namespace ManagementProject
 
         }
 
-        private void LoadText()
-        {
 
-
-            string titletext = ConfigurationManager.AppSettings["TitleText"];
-            title.Content = titletext;
-                
-        }
-
-        private void ChangeText()
-        {
-            Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            cfa.AppSettings.Settings["TitleText"].Value = "上海财经大学智慧平安校园管理系统";
-            cfa.Save();
-        }
         MainPage mp;
         private void LoadPage()
         {
@@ -140,12 +122,6 @@ namespace ManagementProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            titletime.Content  = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -23,6 +23,20 @@ namespace ManagementProject.Model
             }
         }
 
+        private string titlename;
+        public string TitleName
+        {
+            get
+            {
+                return titlename;
+            }
+            set
+            {
+                titlename = value;
+                NotifyPropertyChanged("TitleName");
+            }
+        }
+
         
     }
 }
