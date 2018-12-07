@@ -67,9 +67,10 @@
                     <Grid >
                         <Button Width="30"
                                 Height="30" 
-                                 Command="{Binding PlaybackCommand}"
+                                Command="{Binding PlaybackCommand}"
                                 Style="{StaticResource RoundedGelButton}"
                                 BorderBrush="{x:Null}"
+                                Visibility="{Binding IsPlayback}"
                             ToolTip="回放"
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放按钮.png" />
@@ -78,9 +79,10 @@
                     <Grid>
                         <Button Width="30" 
                                 Height="30" 
-                                 Command="{Binding TrackCommand}"
+                                Command="{Binding TrackCommand}"
                                 Style="{StaticResource RoundedGelButton}"
                                 BorderBrush="{x:Null}"
+                                Visibility="{Binding IsTrack}"
                             ToolTip="追踪"                         
                             >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/追踪按钮.png" />

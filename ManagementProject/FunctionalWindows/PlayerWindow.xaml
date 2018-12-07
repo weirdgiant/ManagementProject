@@ -6,7 +6,7 @@
         xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.FunctionalWindows.PlayerWindow"
         mc:Ignorable="d"
         Title="PlayerWindow" Height="800" Width="1000" FlowDirection="LeftToRight" ResizeMode="NoResize" WindowStyle="None">
-    <Grid>
+    <Grid Name="grid" Background="#FF2A2A2A">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="1*"/>
@@ -15,17 +15,17 @@
         <Grid Name="maingrid" Background="#FF252525" >
             <StackPanel  Orientation="Horizontal" Width="200"  HorizontalAlignment="Left" >
                 <Grid Width="15"/>
-                <Image Name="playerwindowlogo" Height="20" Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放.png" />
+                <Image Name="playerwindowlogo" Height="20" Source="{Binding WindowLogo}" />
                 <Grid Width="15"/>
-                <Button Name="grid6"   Height="25" Width="25" Style="{StaticResource GelButton}" >
+                <Button Name="sixgrid" Visibility="{Binding WindowType}" Command="{Binding SixGridCommand}"  Height="25" Width="25" Style="{StaticResource GelButton}" >
                     <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-6.png" />
                 </Button>
                 <Grid Width="15"/>
-                <Button Name="grid9"  Height="25" Width="25" Style="{StaticResource GelButton}" >
+                <Button Name="ninegrid" Visibility="{Binding WindowType}" Command="{Binding NineGridCommand}"  Height="25" Width="25" Style="{StaticResource GelButton}" >
                     <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-9.png" />
                 </Button>
                 <Grid Width="15"/>
-                <Button Name="grid12"  Height="25" Width="25" Style="{StaticResource GelButton}" >
+                <Button Name="twelvegrid" Visibility="{Binding WindowType}" Command="{Binding TwelveGridCommand}"  Height="25" Width="25" Style="{StaticResource GelButton}" >
                     <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-12.png" />
                 </Button>
             </StackPanel>
@@ -44,7 +44,7 @@
             </StackPanel>
         </Grid>
         <!--<UserControls:Player Grid.Row="1"/>-->
-        <UserControls:PlayerPanel Grid.Row="1" />
+        
         <UserControls:PlayerControl Margin="0,0,0,0" Grid.Row="2"/>
 
     </Grid>

@@ -24,10 +24,10 @@ namespace ManagementProject.UserControls
     {
 
         public PlayerViewModel PlayerViewModel;
-        public Player()
+        public Player(PlayerWindowType type)
         {
             InitializeComponent();
-            PlayerViewModel = new PlayerViewModel();
+            PlayerViewModel = new PlayerViewModel(type);
             DataContext = PlayerViewModel;
             
             bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
@@ -79,6 +79,33 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("IsOpened");
             }
         }
+
+        private Visibility isTrack;
+        public Visibility IsTrack
+        {
+            get
+            {
+                return isTrack;
+            }
+            set
+            {
+                isTrack = value;
+                NotifyPropertyChanged("IsTrack");
+            }
+        }
+        private Visibility isPlayback;
+        public Visibility IsPlayback
+        {
+            get
+            {
+                return isPlayback;
+            }
+            set
+            {
+                isPlayback = value;
+                NotifyPropertyChanged("IsPlayback");
+            }
+        }
     }
 
     public class PlayerViewModel:PlayerModel
@@ -90,15 +117,13 @@ namespace ManagementProject.UserControls
         public DelegateCommand MessageCommand { get; set; }
         public DelegateCommand PlaybackCommand { get; set; }
         public DelegateCommand TrackCommand { get; set; }
-
-        public PlayerViewModel()
-        {          
-
+        private void Init()
+        {
             FullScreenCommand = new DelegateCommand();
             FullScreenCommand.ExecuteCommand = new Action<object>(FullScreen);
 
             PhotographCommand = new DelegateCommand();
-            PhotographCommand .ExecuteCommand =new Action<object>(Photograph);
+            PhotographCommand.ExecuteCommand = new Action<object>(Photograph);
 
             ZoomCommand = new DelegateCommand();
             ZoomCommand.ExecuteCommand = new Action<object>(Zoom);
@@ -114,8 +139,39 @@ namespace ManagementProject.UserControls
 
             TrackCommand = new DelegateCommand();
             TrackCommand.ExecuteCommand = new Action<object>(Track);
+        }
+
+        public PlayerViewModel(PlayerWindowType type)
+        {
+            IsVisbility(type);
+            Init();
 
         }
+
+
+        private void IsVisbility(PlayerWindowType type)
+        {
+            if (type ==PlayerWindowType.Playerback )
+            {
+                IsPlayback = Visibility.Collapsed;
+                IsTrack = Visibility.Visible;
+            }
+            else if (type ==PlayerWindowType.Track )
+            {
+                IsPlayback = Visibility.Visible;
+                IsTrack = Visibility.Collapsed;
+            }
+            else
+            {
+                IsPlayback = Visibility.Visible;
+                IsTrack = Visibility.Visible;
+            }
+        }
+
+        
+
+
+       
 
         private void FullScreen(object obj)
         {

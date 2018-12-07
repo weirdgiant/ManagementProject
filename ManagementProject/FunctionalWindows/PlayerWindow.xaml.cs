@@ -1,4 +1,5 @@
 ﻿using ManagementProject.UserControls;
+using ManagementProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,27 @@ namespace ManagementProject.FunctionalWindows
     /// </summary>
     public partial class PlayerWindow : Window
     {
-        public PlayerWindow()
+        private PlayerPanel playerPanel;
+        public PlayerWindowViewModel PlayerWindowViewModel { get; set; }
+        public PlayerWindow(PlayerWindowType type)
         {
+
             InitializeComponent();
+            InitPanel(type);
+            PlayerWindowViewModel = new PlayerWindowViewModel(playerPanel,type);
+            DataContext = PlayerWindowViewModel;
+
             Closing += PlayerWindow_Closing;
-            MouseLeftButtonDown += PlayerWindow_MouseLeftButtonDown;
+           // MouseLeftButtonDown += PlayerWindow_MouseLeftButtonDown;
             
+        }
+
+
+        private void InitPanel(PlayerWindowType type)
+        {
+            playerPanel = new PlayerPanel(type);
+            grid.Children.Add(playerPanel);
+            Grid.SetRow(playerPanel,1);
         }
 
         private void PlayerWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

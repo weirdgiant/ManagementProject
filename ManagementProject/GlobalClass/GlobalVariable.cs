@@ -18,4 +18,9 @@ namespace ManagementProject
 
         //pagestate
     }
+   public enum PlayerWindowType
+    {
+        Playerback,
+        Track
+    }
 }
