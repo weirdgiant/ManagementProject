@@ -25,13 +25,28 @@
         <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
         <Slider x:Name="slider" Margin="53,30,0,0" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Button x:Name="button" ToolTip="播放"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
-            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/暂停 (2).png" />
+        <Button x:Name="startbt" ToolTip="{Binding StartBtToolTip}" Command="{Binding StartCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
+            <Image Source="{Binding StartIcon}" />
         </Button>
-        <Button x:Name="button_Copy"   Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
-            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/结束回放-点击后.png" />
+        <Button x:Name="endbt" IsEnabled="{Binding EndBtEnabled}"  ToolTip="结束" Command="{Binding EndCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
+            <Image Source="{Binding EndIcon}" />
         </Button>
-        <Button x:Name="button_Copy1" Content="倍速"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="193,12,0,13" Width="73" Grid.Column="5" Background="#FF818181"/>
+        <Button x:Name="button_Copy1" Content="倍速" Command="{Binding OpenContextMenuCommand}"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="193,12,0,13" Width="73" Grid.Column="5" Background="#FF818181">
+            <Button.ContextMenu>
+
+                <ContextMenu 
+                               ItemsSource="{Binding SelectionItemCollection}"
+                               IsOpen="{Binding IsOpen,Mode=OneWay}">
+                    <ContextMenu.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Header}"/>
+                            <Setter Property="Command" Value="{Binding ...}"/>
+                            <Setter Property="CommandParameter" Value="{Binding ...}"/>
+                        </Style>
+                    </ContextMenu.ItemContainerStyle>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
 
 
     </Grid>

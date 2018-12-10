@@ -15,7 +15,7 @@
             <Grid>
                 <StackPanel Orientation="Horizontal"  >
                     <Button Name="mapbt" Width="107" Height="50" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel Height="50" >
+                        <StackPanel>
                             <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/在线电子地图.png" Height="20"/>
                             <TextBlock Text="电子地图" Foreground="White" FontSize="10" />
                         </StackPanel>
@@ -31,7 +31,7 @@
                         </Separator.LayoutTransform>
                     </Separator>
                     <Button Name="collagebt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel Height="50" >
+                        <StackPanel  >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/拼控.png" Height="20"/>
                             <TextBlock Text="拼控" Foreground="White" FontSize="10" />
                         </StackPanel>
@@ -47,7 +47,7 @@
                         </Separator.LayoutTransform>
                     </Separator>
                     <Button Name="carbt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel Height="50" >
+                        <StackPanel >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/车辆追踪.png" Height="20"/>
                             <TextBlock Text="车辆追踪" Foreground="White" FontSize="10" />
                         </StackPanel>
@@ -63,7 +63,7 @@
                         </Separator.LayoutTransform>
                     </Separator>
                     <Button Name="historybt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel Height="50" >
+                        <StackPanel  >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/历史事件.png" Height="20"/>
                             <TextBlock Text="历史事件" Foreground="White" FontSize="10" />
                         </StackPanel>

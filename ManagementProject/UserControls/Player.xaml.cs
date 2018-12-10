@@ -33,12 +33,15 @@ namespace ManagementProject.UserControls
             bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
             SizeChanged += Player_SizeChanged;
 
+          
             ///获取控件Handel
             HwndSource hs = (HwndSource)PresentationSource.FromDependencyObject(mediaElement);
 
         }
 
       
+
+
 
         /// <summary>
         /// 根据实际窗口大小改变全屏按钮位置
@@ -117,7 +120,7 @@ namespace ManagementProject.UserControls
         public DelegateCommand MessageCommand { get; set; }
         public DelegateCommand PlaybackCommand { get; set; }
         public DelegateCommand TrackCommand { get; set; }
-        private void Init()
+        private void InitCommand()
         {
             FullScreenCommand = new DelegateCommand();
             FullScreenCommand.ExecuteCommand = new Action<object>(FullScreen);
@@ -144,7 +147,7 @@ namespace ManagementProject.UserControls
         public PlayerViewModel(PlayerWindowType type)
         {
             IsVisbility(type);
-            Init();
+            InitCommand();
 
         }
 
