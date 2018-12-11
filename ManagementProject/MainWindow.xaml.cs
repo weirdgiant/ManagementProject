@@ -42,50 +42,20 @@ namespace ManagementProject
             closebt.MouseEnter += Closebt_MouseEnter;
             closebt.MouseLeave += Closebt_MouseLeave;
 
-            choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
-            choosetb.drapbt.Click += Drapbt_Click;
+           
 
             this.Loaded += MainWindow_Loaded;
         }
 
-        private void Drapbt_Click(object sender, RoutedEventArgs e)
-        {
-            if(GlobalVariable.MainWindowTextBoxIsDraped == false)
-            {
+       
 
-                drappanel.Visibility = Visibility.Collapsed;
-
-               // GlobalVariable.MainWindowTextBoxIsDraped = true;
-
-            }
-            else
-            {
-                drappanel.Visibility = Visibility.Visible;
-
-               // GlobalVariable.MainWindowTextBoxIsDraped = false;
-            }
-            
-
-           
-        }
-
-        private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        { 
-            SchoolMessage scm = new SchoolMessage();
-            scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            scm.ShowDialog();
-        }
+       
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadPage();
 
-            BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
-            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
-            camerastatistics.image.Source = img1;
-            camerastatistics.number.Text = "7";
-            sensorstatistics.image.Source = img2;
-            sensorstatistics.number.Text = "7";
+           
 
         }
 

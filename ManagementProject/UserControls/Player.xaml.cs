@@ -194,15 +194,15 @@ namespace ManagementProject.UserControls
         }
         private void Message(object obj)
         {
-            MessageBox.Show("message");
+            MessageBox.Show("这是信息！");
         }
         private void Playback(object obj)
         {
-            MessageBox.Show("playback");
+            MessageBox.Show("这是回放！");
         }
         private void Track(object obj)
         {
-            MessageBox.Show("track");
+            MessageBox.Show("这是追踪！");
         }
     }
 }

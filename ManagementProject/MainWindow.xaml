@@ -47,25 +47,7 @@
         </Grid>
 
         <Frame x:Name="mainframe"  Margin="0,1,0,0" Grid.Row="1"/>
-        <UserControls:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="50" Margin="23,16,0,0" VerticalAlignment="Top" Width="250" Grid.Row="1"/>
-        <UserControls:MainWindowSearchBox HorizontalAlignment="Left" Height="50" Margin="23,66,0,0" VerticalAlignment="Top" Width="250" Grid.Row="1"/>
         <UserControls:MainWindowMenu Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478" Grid.Row="1"/>
-        <Button x:Name="button" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,0,50,100" VerticalAlignment="Bottom" Height="50" Width="50" Grid.Row="1">
-            <Image Source="ImageSource/Icon/mainwindowicon/客户端异常信息.png" />
-        </Button>
-        <Button x:Name="button1" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,0,50,150" VerticalAlignment="Bottom" Height="50" Width="50" Grid.Row="1">
-            <Image Source="ImageSource/Icon/mainwindowicon/摄像机异常.png" />
-        </Button>
-
-        <Button x:Name="button2" Style="{StaticResource GelButton}"  HorizontalAlignment="Right" Margin="0,16,50,0" VerticalAlignment="Top" Height="50" Width="50" Grid.Row="1">
-            <Image Source="ImageSource/Icon/mainwindowicon/2d.png" />
-        </Button>
-        <Button x:Name="button3" Style="{StaticResource  GelButton}" Click="button3_Click"  HorizontalAlignment="Right" Margin="0,66,50,0" VerticalAlignment="Top" Width="50" Height="50" Grid.Row="1">
-            <Image Source="ImageSource/Icon/mainwindowicon/设备信息.png" />
-        </Button>
-        <UserControls:MainWindowStatistics x:Name="camerastatistics" HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50" Grid.Row="1"/>
-        <UserControls:MainWindowStatistics  x:Name="sensorstatistics" HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50" Grid.Row="1"/>
-        <UserControls:MainWindowTextBoxDrapPanel x:Name="drappanel" Visibility="Collapsed"  HorizontalAlignment="Left" Height="220" Margin="273,32,0,0" VerticalAlignment="Top" Width="205" Grid.Row="1"/>
 
 
     </Grid>

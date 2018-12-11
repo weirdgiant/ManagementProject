@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace ManagementProject.ViewModel
 {
-    public class LoginViewModel:LoginModel 
+    public class MainPageViewModel : MainPageModel
     {
-        public LoginViewModel()
+        public MainPageViewModel()
         {
 
         }
-        
     }
 }

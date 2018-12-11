@@ -10,37 +10,21 @@
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" CornerRadius="5">
             <Grid >
-                <ListBox x:Name="listBox" Margin="0,0,0,0" BorderBrush="{x:Null}" Foreground="White" Background="#FF303030" Opacity="0.9">
-                    <ListBoxItem  HorizontalAlignment="Center"  Height="40">
-                        <StackPanel Orientation="Vertical"   >
-                            <TextBlock Text="国定路校区" HorizontalAlignment="Center"/>
-                            <Separator Width="180" Background="#FF393939" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem  HorizontalAlignment="Center"  Height="40">
-                        <StackPanel Orientation="Vertical"   >
-                            <TextBlock Text="中山北路校区" HorizontalAlignment="Center"/>
-                            <Separator Width="180" Background="#FF393939" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem  HorizontalAlignment="Center"  Height="40">
-                        <StackPanel Orientation="Vertical"   >
-                            <TextBlock Text="武东路校区" HorizontalAlignment="Center"/>
-                            <Separator Width="180" Background="#FF393939" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem  HorizontalAlignment="Center"  Height="40">
-                        <StackPanel Orientation="Vertical"   >
-                            <TextBlock Text="武川路校区" HorizontalAlignment="Center"/>
-                            <Separator Width="180" Background="#FF393939" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem  HorizontalAlignment="Center" Height="40">
-                        <StackPanel Orientation="Vertical"   >
-                            <TextBlock Text="昆山路校区" HorizontalAlignment="Center"/>
-                            <Separator Width="180" Background="#FF393939" />
-                        </StackPanel>
-                    </ListBoxItem>
+                <ListBox x:Name="listBox" Margin="0,0,0,0" ItemsSource="{Binding SchoolList}" SelectionMode="Extended"   BorderBrush="{x:Null}" Foreground="White" Background="#FF303030" Opacity="0.9">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" >
+                                <Grid Height="5"/>
+                                <TextBlock Name="ItemName" Text="{Binding  Path=SchoolName}" HorizontalAlignment="Center" FontSize="13">
+                                <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding ItemSelectedCommand }" CommandParameter="{Binding ElementName=ItemName}" MouseAction="LeftDoubleClick"></MouseBinding>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                                <Separator Width="180" Background="#FF393939" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                   
                 </ListBox>
 
             </Grid>

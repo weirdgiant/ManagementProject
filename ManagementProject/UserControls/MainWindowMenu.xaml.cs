@@ -20,50 +20,97 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class MainWindowMenu : UserControl
     {
+        public MainWindowMenuViewModel MainWindowMenuViewModel;
         public MainWindowMenu()
         {
-            InitializeComponent();
-            Loaded += MainWindowMenu_Loaded;
-            //menubt.MouseEnter += Menubt_MouseEnter;
-            //menubt.MouseLeave += Menubt_MouseLeave;
-            menubt.Click += Menubt_Click;
             
-        }
+            InitializeComponent();
+            MainWindowMenuViewModel = new MainWindowMenuViewModel();
+            DataContext = MainWindowMenuViewModel;
+        }       
+    }
 
-        private void MainWindowMenu_Loaded(object sender, RoutedEventArgs e)
+    public class MainWindowMenuModel:INotifyPropertyChangedClass 
+    {
+        private bool isOpened;
+        public bool IsOpened
         {
-             showpanel.Visibility = Visibility.Collapsed;
-        }
-
-        public bool IsOpened = false;
-        private void Menubt_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsOpened==false)
+            get
             {
-                menubtimage.Source = new BitmapImage(new Uri(@"/ImageSource/Icon/menuicon/menuopen.png", UriKind.Relative));
-                showpanel.Visibility = Visibility.Visible;
-                IsOpened = true;
+                return isOpened;
+            }
+            set
+            {
+                isOpened = value;
+                NotifyPropertyChanged("IsOpened");
+            }
+        }
+
+        private string menubtIcon;
+        public string MenubtIcon
+        {
+            get
+            {
+                return menubtIcon;
+            }
+            set
+            {
+                menubtIcon = value;
+                NotifyPropertyChanged("MenubtIcon");
+            }
+        }
+
+        private Visibility isShowPanel;
+        public Visibility IsShowPanel
+        {
+            get
+            {
+                return isShowPanel;
+            }
+            set
+            {
+                isShowPanel = value;
+                NotifyPropertyChanged("IsShowPanel");
+            }
+        }
+    }
+    public class MainWindowMenuViewModel : MainWindowMenuModel
+    {
+        public DelegateCommand OpenClickCommand { get; set; }
+        public MainWindowMenuViewModel()
+        {
+
+            HiddenPanel();
+
+            OpenClickCommand = new DelegateCommand();
+            OpenClickCommand.ExecuteCommand = new Action<object>(OpenClick);
+        }
+
+        private void OpenClick(object obj)
+        {
+            if (IsOpened == false)
+            {
+
+                ShowPanel();
             }
             else
             {
-                menubtimage.Source = new BitmapImage(new Uri(@"/ImageSource/Icon/menuicon/menuclose.png", UriKind.Relative)); ;
-                showpanel.Visibility = Visibility.Collapsed;
-                IsOpened = false;
+
+                HiddenPanel();
             }
         }
 
-        private void Menubt_MouseLeave(object sender, MouseEventArgs e)
+        private void ShowPanel()
         {
-         
-            menubtimage.Source = new BitmapImage(new Uri(@"/ImageSource/Icon/menuicon/menuclose.png", UriKind.Relative));;
-            showpanel.Visibility = Visibility.Collapsed;
+            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuopen.png";
+            IsShowPanel = Visibility.Visible;
+            IsOpened = true;
         }
-
-        private void Menubt_MouseEnter(object sender, MouseEventArgs e)
+        private void HiddenPanel()
         {
-            
-            menubtimage.Source = new BitmapImage(new Uri(@"/ImageSource/Icon/menuicon/menuopen.png", UriKind.Relative));
-            showpanel.Visibility = Visibility.Visible;
+            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuclose.png";
+            IsShowPanel = Visibility.Collapsed;
+            IsOpened = false;
         }
     }
 }

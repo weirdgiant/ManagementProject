@@ -21,7 +21,7 @@
             <Label x:Name="label1_Copy1" Content="保卫处负责人" Foreground="White" HorizontalAlignment="Left" Margin="133,130,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label1_Copy2" Content="联系电话" Foreground="White" HorizontalAlignment="Left" Margin="380,130,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label1_Copy3" Content="备注说明" Foreground="White" HorizontalAlignment="Left" Margin="133,210,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBlock" HorizontalAlignment="Left" Foreground="White" Margin="133,230,0,0" TextWrapping="Wrap" Text="这就是说明。。。。。" VerticalAlignment="Top" Height="50" Width="305" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBlock" HorizontalAlignment="Left" Foreground="White" Margin="133,235,0,0" TextWrapping="Wrap" Text="这就是说明。。。。。" VerticalAlignment="Top" Height="50" Width="305" Background="{x:Null}" BorderBrush="{x:Null}"/>
             <Label x:Name="label2" Content="1917年"  Foreground="White" HorizontalAlignment="Left" Margin="133,75,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label2_Copy" Content="26"  Foreground="White" HorizontalAlignment="Left" Margin="380,75,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label2_Copy1" Content="李某某"  Foreground="White" HorizontalAlignment="Left" Margin="133,155,0,0" VerticalAlignment="Top"/>
