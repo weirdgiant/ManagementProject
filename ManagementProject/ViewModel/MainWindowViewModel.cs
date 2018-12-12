@@ -25,9 +25,13 @@ namespace ManagementProject.ViewModel
         {
             LoadTitle();
             TimerStart();
+            LoadPage();
         }
 
-
+        private void LoadPage()
+        {
+            PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
+        }
 
         private void LoadTitle()
         {

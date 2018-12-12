@@ -134,7 +134,13 @@
     <Compile Include="PageView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
+      <DependentUpon>AlarmButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CusPopup.cs" />
+    <Compile Include="UserControls\DisposalPlan.xaml.cs">
+      <DependentUpon>DisposalPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MainWindowMenu.xaml.cs">
       <DependentUpon>MainWindowMenu.xaml</DependentUpon>
     </Compile>
@@ -153,13 +159,13 @@
     <Compile Include="UserControls\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Player.xaml.cs">
+    <Compile Include="UserControls\PlayerControls\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PlayerControl.xaml.cs">
+    <Compile Include="UserControls\PlayerControls\PlayerControl.xaml.cs">
       <DependentUpon>PlayerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PlayerPanel.xaml.cs">
+    <Compile Include="UserControls\PlayerControls\PlayerPanel.xaml.cs">
       <DependentUpon>PlayerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SchoolMessage.xaml.cs">
@@ -212,6 +218,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\AlarmControls\AlarmButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DisposalPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MainWindowMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,15 +250,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Player.xaml">
+    <Page Include="UserControls\PlayerControls\Player.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\PlayerControl.xaml">
+    <Page Include="UserControls\PlayerControls\PlayerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\PlayerPanel.xaml">
+    <Page Include="UserControls\PlayerControls\PlayerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +380,9 @@
     <Resource Include="ImageSource\Icon\mainwindowicon\水压设备.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\用户.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\拼控.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\水压报警.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\火灾报警.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\车辆违停.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

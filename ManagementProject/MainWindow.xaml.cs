@@ -47,25 +47,18 @@ namespace ManagementProject
             this.Loaded += MainWindow_Loaded;
         }
 
-       
 
-       
+
+        public void _uri(string uri)
+        {
+            this.mainframe.NavigationService.Navigate(new Uri(uri, UriKind.Relative));
+        }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadPage();
-
-           
+        {   
 
         }
 
-
-        MainPage mp;
-        private void LoadPage()
-        {
-            mp = new MainPage();
-            mainframe.Navigate(mp);
-        }
 
         private void Closebt_MouseLeave(object sender, MouseEventArgs e)
         {

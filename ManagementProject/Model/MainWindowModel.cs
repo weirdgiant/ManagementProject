@@ -9,34 +9,46 @@ namespace ManagementProject.Model
 {
     public class MainWindowModel : INotifyPropertyChangedClass
     {
-        private string nowtime;
+        private string _nowTime;
         public string NowTime
         {
             get
             {
-                return nowtime;
+                return _nowTime;
             }
             set
             {
-                nowtime = value;
+                _nowTime = value;
                 NotifyPropertyChanged("NowTime");
             }
         }
 
-        private string titlename;
+        private string _titleName;
         public string TitleName
         {
             get
             {
-                return titlename;
+                return _titleName;
             }
             set
             {
-                titlename = value;
+                _titleName = value;
                 NotifyPropertyChanged("TitleName");
             }
         }
 
-        
+        private string _pageUrl;
+        public string PageUrl
+        {
+            get
+            {
+                return _pageUrl;
+            }
+            set
+            {
+                _pageUrl = value;
+                NotifyPropertyChanged("PageUrl");
+            }
+        }
     }
 }

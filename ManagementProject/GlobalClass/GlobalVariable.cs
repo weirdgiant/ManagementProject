@@ -11,6 +11,24 @@ namespace ManagementProject
         //ControlStatus
         public static bool MainWindowTextBoxIsDraped { get; set; }
 
+        private static MainMenu _mainMenuSelectedIndex;
+        public static MainMenu MainMenuSelectedIndex
+        {
+            get
+            {
+                return _mainMenuSelectedIndex;
+            }
+            set
+            {
+                _mainMenuSelectedIndex = value;
+                Changed("MainMenuSelectedIndex");
+            }
+        }
+
+        public static void Changed(string AAA)
+        {
+
+        }
 
         //WindowStatus
         public static bool PlayerWindowIsOpened { get; set; }

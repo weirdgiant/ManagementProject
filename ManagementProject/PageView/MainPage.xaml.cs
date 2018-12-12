@@ -38,6 +38,11 @@ namespace ManagementProject.PageView
             camerastatistics.number.Text = "7";
             sensorstatistics.image.Source = img2;
             sensorstatistics.number.Text = "7";
+
+
+            BitmapImage img3 = new BitmapImage(new Uri(@"/ImageSource/Icon/AlarmIcon/车辆违停.png", UriKind.Relative));
+            alarmbt.alarmicon.Source = img3;
+            alarmbt.alarmcount.Text = "2";
         }
 
         private void Drapbt_Click(object sender, RoutedEventArgs e)

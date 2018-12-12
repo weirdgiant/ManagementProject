@@ -20,6 +20,7 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class PlayerPanel : UserControl
     {
+
         private PlayerWindowType playerWindowType;
         public PlayerPanel(PlayerWindowType type)
         {
@@ -122,5 +123,44 @@ namespace ManagementProject.UserControls
             }
         }
 
+    }
+
+    public class PlayerPanelModel:INotifyPropertyChangedClass
+    {
+        private int rowNumber;
+        public int RowNumber
+        {
+            get
+            {
+                return rowNumber;
+            }
+            set
+            {
+                rowNumber = value;
+                NotifyPropertyChanged("RowNumber");
+            }
+        }
+
+        private int columnNumber;
+        public int ColumnNumber
+        {
+            get
+            {
+                return columnNumber;
+            }
+            set
+            {
+                columnNumber = value;
+                NotifyPropertyChanged("ColumnNumber");
+            }
+        }
+    }
+    public class PlayerPanelViewModel:PlayerPanelModel
+    {
+        public PlayerPanelViewModel(int rowCount,int columnCount)
+        {
+            RowNumber = rowCount;
+            ColumnNumber = columnCount;
+        }
     }
 }
