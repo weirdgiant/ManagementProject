@@ -5,20 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="78" d:DesignWidth="78">
+             d:DesignHeight="80" d:DesignWidth="80">
     <Grid>
-        <Button x:Name="button" Style="{StaticResource ImageCountButton}" Width="78" Height="78">
-            <Grid Width="75" Height="75">
-                <Grid Margin="4,4,4,4">
-                    <Image Name="alarmicon" Margin="0,0,0,0" />
-                </Grid>
-                <Border Name="numberbackground" CornerRadius="10" BorderThickness="1" Margin="55,55,0,0" Background="#FFFAE000">
-                    <Grid >
-                        <TextBlock Name="alarmcount"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-                    </Grid>
-                </Border>
-            </Grid>
-        </Button>
+        <Button x:Name="button" Style="{StaticResource ImageCountButton}" Margin="5,5">
 
+            <Image Name="alarmicon" Margin="0,0,0,0" />
+
+        </Button>
+        <Border Name="numberbackground" CornerRadius="15" BorderThickness="1" Background="#FFFAE000" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="30">
+            <Grid >
+                <TextBlock Name="alarmcount"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="Red"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

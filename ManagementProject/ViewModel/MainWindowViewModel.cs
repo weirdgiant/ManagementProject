@@ -15,12 +15,25 @@ namespace ManagementProject.ViewModel
     public class MainWindowViewModel:MainWindowModel 
     {
         public DelegateCommand ShowCommand { get; set; }
-        public MainWindowViewModel()
+        public DelegateCommand ShutDownCommand { get; set; }
+        public DelegateCommand MinSizeCommand { get; set; }
+
+        private void InitCommand()
         {
             ShowCommand = new DelegateCommand();
             ShowCommand.ExecuteCommand = new Action<object>(LoadedCommand);
+            ShutDownCommand = new DelegateCommand ();
+            ShutDownCommand.ExecuteCommand = new Action<object>(ShutDown);
+            MinSizeCommand = new DelegateCommand();
+            MinSizeCommand.ExecuteCommand = new Action<object>(MinSize);
         }
 
+        public MainWindowViewModel()
+        {
+            InitCommand();
+        }
+        
+        #region LoadedCommand
         private void LoadedCommand(object obj)
         {
             LoadTitle();
@@ -50,6 +63,19 @@ namespace ManagementProject.ViewModel
         {
             NowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
+        #endregion
+
+        private void ShutDown(object obj)
+        {
+            MainWindow main = (MainWindow)obj;
+            Application.Current.Shutdown();
+            main.Close();
+        }
+        private void MinSize(object obj)
+        {
+            MainWindow main=(MainWindow)obj;
+            main. WindowState = WindowState.Minimized;
+        }
     }
-   
+
 }

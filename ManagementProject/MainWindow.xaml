@@ -27,11 +27,18 @@
             <Label x:Name="titletime" Content="{Binding NowTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
-                <Button x:Name="minbt" ToolTip="最小化" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" Click="minbt_Click">
+                <Button x:Name="minbt" ToolTip="最小化" 
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Command="{Binding MinSizeCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" >
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
                 </Button>
                 <Button x:Name="recoverbt" Content="Normal" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="75" Click="recoverbt_Click" Visibility="Collapsed"/>
-                <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Click="closebt_Click" Width="45" Background="{x:Null}">
+                <Button x:Name="closebt" ToolTip="关闭" 
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Command="{Binding ShutDownCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White"  Width="45" Background="{x:Null}">
                     <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
                 </Button>
             </StackPanel>
@@ -47,7 +54,7 @@
         </Grid>
 
         <Frame x:Name="mainframe"  Margin="0,1,0,0" Grid.Row="1" Source="{Binding PageUrl}"/>
-        <UserControls:MainWindowMenu Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478" Grid.Row="1"/>
+        <UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478" Grid.Row="1"/>
 
 
     </Grid>

@@ -30,21 +30,23 @@ namespace ManagementProject
     public partial class MainWindow : Window
     {
         private MainWindowViewModel MainWindowViewModel { get; set; }
-        private WindowControlButton  ControlButton;
+        private MainWindowMenuViewModel mainWindowMenuViewModel { get; set; }
         public int windowstate = 0;//0-最大化 ,1正常
         public MainWindow()
         {
             InitializeComponent();
             MainWindowViewModel  = new MainWindowViewModel();
-
             DataContext =MainWindowViewModel;
+            ControlsInit();
+        }
 
-            closebt.MouseEnter += Closebt_MouseEnter;
-            closebt.MouseLeave += Closebt_MouseLeave;
-
-           
-
-            this.Loaded += MainWindow_Loaded;
+        /// <summary>
+        /// 初始化自定义控件
+        /// </summary>
+        private void ControlsInit()
+        {
+            mainWindowMenuViewModel = new MainWindowMenuViewModel(MainWindowViewModel);
+            mainMenu.DataContext = mainWindowMenuViewModel;
         }
 
 
@@ -54,50 +56,13 @@ namespace ManagementProject
             this.mainframe.NavigationService.Navigate(new Uri(uri, UriKind.Relative));
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {   
 
-        }
-
-
-        private void Closebt_MouseLeave(object sender, MouseEventArgs e)
-        {
-            closebt.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
-        private void Closebt_MouseEnter(object sender, MouseEventArgs e)
-        {
-            closebt.Background = new SolidColorBrush(Colors.Red);
-        }
-
-        private void SetEvent()
-        {
-
-            ControlButton = new WindowControlButton();
-            ControlButton.Click += ControlButton_Click;
-        }
-
-        private void ControlButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //this.DragMove();
         }
 
-        private void closebt_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-            Close();
-            
-        }
 
         private void recoverbt_Click(object sender, RoutedEventArgs e)
         {
@@ -115,13 +80,6 @@ namespace ManagementProject
             }
 
         }
-
-        private void minbt_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-
         
         private void button3_Click(object sender, RoutedEventArgs e)
         {

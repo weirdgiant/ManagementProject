@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,9 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class MainWindowMenu : UserControl
     {
-        public MainWindowMenuViewModel MainWindowMenuViewModel;
         public MainWindowMenu()
-        {
-            
-            InitializeComponent();
-            MainWindowMenuViewModel = new MainWindowMenuViewModel();
-            DataContext = MainWindowMenuViewModel;
+        {            
+            InitializeComponent();           
         }       
     }
 
@@ -78,6 +75,7 @@ namespace ManagementProject.UserControls
     }
     public class MainWindowMenuViewModel : MainWindowMenuModel
     {
+        private MainWindowViewModel mainWindowViewModel { get; set; }
         public DelegateCommand OpenClickCommand { get; set; }
         public DelegateCommand MapSelectedCommand { get; set;}
         public DelegateCommand CollageSelectedCommand { get; set; }
@@ -97,9 +95,9 @@ namespace ManagementProject.UserControls
             HistorySelectedCommand = new DelegateCommand();
             HistorySelectedCommand.ExecuteCommand = new Action<object>(HistorySelected);
         }
-        public MainWindowMenuViewModel()
+        public MainWindowMenuViewModel(MainWindowViewModel _mainWindowViewModel)
         {
-
+            mainWindowViewModel = _mainWindowViewModel;
             HiddenPanel();
             CommandInit();
 
@@ -135,7 +133,7 @@ namespace ManagementProject.UserControls
 
         private void MapSelected(object obj)
         {
-
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
         }
         private void CollageSelected(object obj)
         {

@@ -21,9 +21,13 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class MainWindowTextBox : UserControl
     {
+        private MainWindowTextBoxViewModel mainWindowTextBoxViewModel;
         public MainWindowTextBox()
         {
             InitializeComponent();
+            mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
+            DataContext = mainWindowTextBoxViewModel;
+
             GlobalVariable.MainWindowTextBoxIsDraped = false;
         }
         
@@ -48,6 +52,30 @@ namespace ManagementProject.UserControls
                 GlobalVariable.MainWindowTextBoxIsDraped = false;
             }
             
+        }
+    }
+
+    public class MainWindowTextBoxModel:INotifyPropertyChangedClass
+    {
+        private string _schoolName;
+        public string SchoolName
+        {
+            get
+            {
+                return _schoolName;
+            }
+            set
+            {
+                _schoolName = value;
+                NotifyPropertyChanged("SchoolName");
+            }
+        }
+    }
+    public class MainWindowTextBoxViewModel:MainWindowTextBoxModel
+    {
+        public MainWindowTextBoxViewModel()
+        {
+            SchoolName = "国定路校区";
         }
     }
 }

@@ -12,16 +12,16 @@ namespace ManagementProject.Model
         /// <summary>
         /// 用户名
         /// </summary>
-        private string username;
+        private string _username;
         public string UserName
         {
             get
             {
-                return username;
+                return _username;
             }
             set
             {
-                username = value;
+                _username = value;
                 NotifyPropertyChanged("UserName");
             }
         }
@@ -29,17 +29,45 @@ namespace ManagementProject.Model
         /// <summary>
         /// 用户密码
         /// </summary>
-        private string password;
+        private string _password;
         public string PassWord
         {
             get
             {
-                return password;
+                return _password;
             }
             set
             {
-                password = value;
+                _password = value;
                 NotifyPropertyChanged("PassWord");
+            }
+        }
+
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            set
+            {
+                _phoneNumber = value;
+                NotifyPropertyChanged("PhoneNumber");
+            }
+        }
+
+        private string _mailAdress;
+        public string MailAdress
+        {
+            get
+            {
+                return _mailAdress;
+            }
+            set
+            {
+                _mailAdress = value;
+                NotifyPropertyChanged("MailAdress");
             }
         }
     }

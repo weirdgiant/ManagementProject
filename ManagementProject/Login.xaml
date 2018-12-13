@@ -27,9 +27,7 @@
             <ColumnDefinition Width="485*"/>
         </Grid.ColumnDefinitions>
         <Image x:Name="image" Margin="0,0,0,0" Source="ImageSource/background/bg2.png" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3"/>
-        <Grid Margin="0,0,0,0" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3">
-            <Button Visibility="Hidden"  x:Name="close" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" Margin="0,20,20,0" VerticalAlignment="Top" Width="24" Height="24" Click="close_Click"/>
-        </Grid>
+
         <Grid Margin="0,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="33*"/>
@@ -70,8 +68,16 @@
             <TextBlock x:Name="textBlock1" Margin="0,0,0,0" TextWrapping="Wrap" Text="021-65691583" FontSize="9" Foreground="#FF8B8B8B" Grid.Row="8" Grid.Column="7" Grid.ColumnSpan="2"/>
             <TextBlock x:Name="textBlock2" Margin="0,0,0,0" TextWrapping="Wrap" Text="V1.2.3.410 P20180122" FontSize="9" Foreground="#FF8D8D8D" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3"/>
             <TextBlock x:Name="textBlock3" Margin="0,0,0,0" TextWrapping="Wrap" Text="©版权所有 上海芒宇信息科技有限公司" Foreground="#FF8B8B8B" FontSize="9" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="5"/>
-            <Button x:Name="loginbt"  Style="{StaticResource FilletButton}"  Content="登 录" Margin="0,0" Background="#FF00A7F4" FontSize="18" Foreground="White" Click="loginbt_Click" Grid.Row="5" Grid.Column="3"/>
-            <Button x:Name="closebt" Style="{StaticResource FilletButton}" Click="close_Click" Content="取 消" Margin="0,0,0,0" Background="#FF00A7F4" FontSize="18" Foreground="White" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3"/>
+            <Button x:Name="loginbt"  
+                    Style="{StaticResource FilletButton}" 
+                    Command="{Binding LoginOKCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  
+                    Content="登 录" Margin="0,0" Background="#FF00A7F4" FontSize="18" Foreground="White" Grid.Row="5" Grid.Column="3"/>
+            <Button x:Name="closebt" 
+                    Style="{StaticResource FilletButton}" 
+                    Command="{Binding CancelCommand}"  
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                    Content="取 消" Margin="0,0,0,0" Background="#FF00A7F4" FontSize="18" Foreground="White" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3"/>
         </Grid>
         <Label x:Name="label" Content="芒宇智慧平安校园综合管理系统" Margin="0,0,0,0" FontSize="48"  Foreground="White" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>
