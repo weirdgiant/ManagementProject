@@ -134,11 +134,14 @@
     <Compile Include="PageView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmCarInfo.xaml.cs">
+      <DependentUpon>AlarmCarInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
       <DependentUpon>AlarmButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CusPopup.cs" />
-    <Compile Include="UserControls\DisposalPlan.xaml.cs">
+    <Compile Include="UserControls\AlarmControls\DisposalPlan.xaml.cs">
       <DependentUpon>DisposalPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowMenu.xaml.cs">
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="UserControls\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\PageControl.xaml.cs">
+      <DependentUpon>PageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PlayerControls\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
@@ -218,11 +224,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\AlarmControls\AlarmCarInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\AlarmControls\AlarmButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DisposalPlan.xaml">
+    <Page Include="UserControls\AlarmControls\DisposalPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +257,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\MapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\PageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,6 +397,7 @@
     <Resource Include="ImageSource\Icon\AlarmIcon\水压报警.png" />
     <Resource Include="ImageSource\Icon\AlarmIcon\火灾报警.png" />
     <Resource Include="ImageSource\Icon\AlarmIcon\车辆违停.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\folder.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

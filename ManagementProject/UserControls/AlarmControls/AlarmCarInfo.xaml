@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.AlarmCarInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="550">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label  Content="车辆信息" FontSize="24" Margin="5,5,429,5" Foreground="White"/>
+        <Label  Content="车牌:" FontSize="18" HorizontalAlignment="Left" Margin="5,13,0,0" Foreground="White" Grid.Row="1" Height="33" VerticalAlignment="Top"/>
+        <Label  Content="车主:" FontSize="18" HorizontalAlignment="Left" Margin="301,13,0,0" Foreground="White" Grid.Row="1" Height="33" VerticalAlignment="Top"/>
+        <Label  Content="部门:" FontSize="18" HorizontalAlignment="Left" Margin="301,14,0,3" Foreground="White" Grid.Row="2"/>
+        <Label  Content="手机号:" FontSize="18" HorizontalAlignment="Left" Margin="5,14,0,3" Foreground="White" Grid.Row="2"/>
+        <Label  Content="车牌抓拍" FontSize="18" HorizontalAlignment="Left" Margin="5,15,0,2" Foreground="White" RenderTransformOrigin="0.341,0.332" Grid.Row="3"/>
+        <Label  Content="现场抓拍" FontSize="18" HorizontalAlignment="Left" Margin="301,15,0,2" Foreground="White" Grid.Row="3"/>
+        <Image x:Name="carimage" HorizontalAlignment="Left" Margin="5,16,0,0" Width="226" Grid.Row="4" Height="120" VerticalAlignment="Top"/>
+        <Image x:Name="locationimage" HorizontalAlignment="Left" Margin="301,16,0,0" Width="226" Grid.Row="4" Height="120" VerticalAlignment="Top"/>
+        <Label x:Name="carnumber" FontSize="18" Content="1111" Tag="{Binding AlarmCarNumber}" HorizontalAlignment="Left" Margin="55,13,0,0" Foreground="#FF569CD6" Grid.Row="1" Height="33" VerticalAlignment="Top"/>
+        <Label x:Name="carowner" FontSize="18" Content="1111" Tag="{Binding AlarmCarOwner}" HorizontalAlignment="Left" Margin="351,13,0,0" VerticalAlignment="Top" Foreground="#FF569CD6" RenderTransformOrigin="0.971,0.676" Grid.Row="1"/>
+        <Label x:Name="phonenumber" FontSize="18" Content="1111" Tag="{Binding PhoneNumber}" HorizontalAlignment="Left" Margin="73,14,0,3" Foreground="#FF569CD6" Grid.Row="2"/>
+        <Label x:Name="department" FontSize="18" Content="1111" Tag="{Binding Department}" HorizontalAlignment="Left" Margin="351,14,0,3" Foreground="#FF569CD6" Grid.Row="2"/>
+
+    </Grid>
+</UserControl>

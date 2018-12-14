@@ -1,24 +1,39 @@
-﻿<Page x:Class="ManagementProject.PageView.AlarmPage"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ManagementProject.PageView"
+      xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.PageView.AlarmPage"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AlarmPage">
 
-    <Grid Background="#FF252525">
+    <Grid Background="#FF1C1C1C">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0"/>
-        <Grid Grid.Column="1"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <UserControls:AlarmCarInfo Grid.Row="1"/>
+            <UserControls:DisposalPlan Grid.Row="2"/>
+        </Grid>
         <Grid  Grid.Column="2">
-            <Button x:Name="button" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey} }" Margin="0,0,0,0" Height="40" VerticalAlignment="Bottom" BorderBrush="{x:Null}" HorizontalAlignment="Stretch">
-                <TextBlock Text="返回" TextWrapping="Wrap" Width="15" Foreground="White"/>
+            <Button x:Name="button" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" Height="75" VerticalAlignment="Bottom" BorderBrush="{x:Null}" HorizontalAlignment="Stretch">
+                <TextBlock Text="返回" TextWrapping="Wrap" Width="16" Foreground="White" FontSize="16"/>
             </Button>
         </Grid>
 

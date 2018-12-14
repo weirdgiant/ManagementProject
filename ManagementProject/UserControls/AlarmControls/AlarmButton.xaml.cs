@@ -25,4 +25,42 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+
+    public class AlarmButtonModel : INotifyPropertyChangedClass
+    {
+        private string _alarmCount;
+        public string AlarmCount
+        {
+            get
+            {
+                return _alarmCount;
+            }
+            set
+            {
+                _alarmCount = value;
+                NotifyPropertyChanged("AlarmCount");
+            }
+        }
+        private string _alarmIcon;
+        public string AlarmIcon
+        {
+            get
+            {
+                return _alarmIcon;
+            }
+            set
+            {
+                _alarmIcon = value;
+                NotifyPropertyChanged("AlarmIcon");
+            }
+        }
+    }
+    public class AlarmButtonViewModel : AlarmButtonModel
+    {
+        public AlarmButtonViewModel()
+        {
+
+        }
+    }
+
 }
