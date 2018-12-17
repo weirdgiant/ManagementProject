@@ -34,7 +34,7 @@ namespace ManagementProject.UserControls
         private void Drapbt_Click(object sender, RoutedEventArgs e)
         {
             BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/dropdown.png", UriKind.Relative));
-            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/raiseup.png", UriKind.Relative)); ;
+            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/raiseup.png", UriKind.Relative)); 
             img2.Rotation = Rotation.Rotate180;
 
             if (GlobalVariable.MainWindowTextBoxIsDraped == false )

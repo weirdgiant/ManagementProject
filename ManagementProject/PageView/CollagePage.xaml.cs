@@ -1,5 +1,4 @@
-﻿using ManagementProject.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +16,13 @@ using System.Windows.Shapes;
 namespace ManagementProject.PageView
 {
     /// <summary>
-    /// AlarmPage.xaml 的交互逻辑
+    /// CollagePage.xaml 的交互逻辑
     /// </summary>
-    public partial class AlarmPage : Page
+    public partial class CollagePage : Page
     {
-        public MainWindowViewModel MainWindowViewModel { get; set; }
-        public AlarmPage()
-        {          
+        public CollagePage()
+        {
             InitializeComponent();
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            MainWindowViewModel = (MainWindowViewModel)main.DataContext;           
-            DataContext = MainWindowViewModel.alarmPageViewModel;
         }
     }
 }

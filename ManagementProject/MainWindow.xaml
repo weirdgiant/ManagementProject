@@ -53,8 +53,9 @@
 
         </Grid>
 
-        <Frame x:Name="mainframe"  Margin="0,1,0,0" Grid.Row="1" Source="{Binding PageUrl}"/>
+        <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"  Margin="0,0,0,0" Grid.Row="1" Source="{Binding PageUrl}"/>
         <UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="478" Grid.Row="1"/>
+        <ToggleButton x:Name="toggleButton" Style="{StaticResource myToggleButton}" Content="ToggleButton" HorizontalAlignment="Left" Margin="838,247,0,0" Grid.Row="1" VerticalAlignment="Top" Height="57"/>
 
 
     </Grid>

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="478">
     <Grid>
-        <Button x:Name="menubt" Command="{Binding OpenClickCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" Margin="428,0,0,0" VerticalAlignment="Stretch" Width="50">
+        <Button x:Name="menubt" Command="{Binding OpenClickCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="50">
             <Image Name="menubtimage" Source="{Binding MenubtIcon}" />
         </Button>
 

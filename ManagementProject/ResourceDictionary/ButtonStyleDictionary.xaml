@@ -132,4 +132,186 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="ToggleImageButton" TargetType="ToggleButton">
+        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="true" CornerRadius="5,5,5,5">
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border"  Value="#FF002D56"/>
+                            <Setter Property="Opacity"  TargetName="border"  Value="0.9"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border"  Value="#FF8D8D8D"/>
+                            <Setter Property="Opacity"  TargetName="border"  Value="0.9"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <LinearGradientBrush x:Key="ButtonNormalBackgroundFill" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+        <GradientStop Color="#FFF0F0EA" Offset="0.9"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonBorder" Color="#FF003C74"/>
+    <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundFill}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnChecked1">
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path">
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="40,0,0,0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path1">
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="40,0,0,0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path2">
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="40,0,0,0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="displayText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value="OFF"/>
+                            </StringAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnUnchecked1">
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path">
+                                <EasingThicknessKeyFrame KeyTime="0" Value="40,0,0,0"/>
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path1">
+                                <EasingThicknessKeyFrame KeyTime="0" Value="40,0,0,0"/>
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="path2">
+                                <EasingThicknessKeyFrame KeyTime="0" Value="40,0,0,0"/>
+                                <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                            </ThicknessAnimationUsingKeyFrames>
+                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="displayText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value="ON"/>
+                            </StringAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="displayText">
+                                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF63FA00"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border CornerRadius="10" Background="#FF3B3939" Width="60" Height="20">
+                        <Grid>
+                            <TextBlock x:Name="displayText" Text="ON" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <Path x:Name="path2" Fill="Black">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <GeometryGroup.Children>
+                                            <EllipseGeometry Center="10,10" RadiusX="8.5" RadiusY="8.5"></EllipseGeometry>
+                                        </GeometryGroup.Children>
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                            <Path x:Name="path1" Fill="#FF818080">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <GeometryGroup.Children>
+                                            <EllipseGeometry Center="10,10" RadiusX="7" RadiusY="7"></EllipseGeometry>
+                                        </GeometryGroup.Children>
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                            <Path x:Name="path">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF807F7F" Offset="0"/>
+                                        <GradientStop Color="#FF373636" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <GeometryGroup.Children>
+                                            <EllipseGeometry Center="10,10" RadiusX="8" RadiusY="8"></EllipseGeometry>
+                                        </GeometryGroup.Children>
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard Storyboard="{StaticResource OnChecked1}"/>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard x:Name="OnUnchecked1_BeginStoryboard" Storyboard="{StaticResource OnUnchecked1}"/>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="myToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="20"/>
+        <!-- 替换掉默认的模板 -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border CornerRadius="3" BorderThickness="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!-- 更改三态的背景颜色 -->
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Background" Value="#FFA1C3F3"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="false">
+                <Setter Property="Background" Value="#FF14B3FD"/>
+            </Trigger>
+            <!-- 鼠标悬浮时，背景颜色不变 -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                    <Condition Property="IsChecked" Value="true"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#FFA1C3F3"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                    <Condition Property="IsChecked" Value="false"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#FF14B3FD"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+
 </ResourceDictionary>

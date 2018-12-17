@@ -30,14 +30,24 @@ namespace ManagementProject
     public partial class MainWindow : Window
     {
         private MainWindowViewModel MainWindowViewModel { get; set; }
-        private MainWindowMenuViewModel mainWindowMenuViewModel { get; set; }
+       
         public int windowstate = 0;//0-最大化 ,1正常
         public MainWindow()
         {
+          
             InitializeComponent();
+            SetMainWindow();
             MainWindowViewModel  = new MainWindowViewModel();
             DataContext =MainWindowViewModel;
             ControlsInit();
+        }
+
+        /// <summary>
+        /// 将当前窗口设置为主窗口
+        /// </summary>
+        private void SetMainWindow()
+        {
+            Application.Current.MainWindow = this;
         }
 
         /// <summary>
@@ -45,18 +55,9 @@ namespace ManagementProject
         /// </summary>
         private void ControlsInit()
         {
-            mainWindowMenuViewModel = new MainWindowMenuViewModel(MainWindowViewModel);
-            mainMenu.DataContext = mainWindowMenuViewModel;
+            ///初始化菜单控件
+            mainMenu.DataContext = MainWindowViewModel.mainWindowMenuViewModel;
         }
-
-
-
-        public void _uri(string uri)
-        {
-            this.mainframe.NavigationService.Navigate(new Uri(uri, UriKind.Relative));
-        }
-
-
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

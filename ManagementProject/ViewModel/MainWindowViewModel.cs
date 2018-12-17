@@ -1,4 +1,5 @@
 ﻿using ManagementProject.Model;
+using ManagementProject.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,13 @@ namespace ManagementProject.ViewModel
 {
     public class MainWindowViewModel:MainWindowModel 
     {
+        public MainWindowMenuViewModel mainWindowMenuViewModel { get; set; }
+        public AlarmPageViewModel alarmPageViewModel { get; set; }
         public DelegateCommand ShowCommand { get; set; }
         public DelegateCommand ShutDownCommand { get; set; }
         public DelegateCommand MinSizeCommand { get; set; }
 
-        private void InitCommand()
+        private void CommandInit()
         {
             ShowCommand = new DelegateCommand();
             ShowCommand.ExecuteCommand = new Action<object>(LoadedCommand);
@@ -30,7 +33,9 @@ namespace ManagementProject.ViewModel
 
         public MainWindowViewModel()
         {
-            InitCommand();
+            mainWindowMenuViewModel = new MainWindowMenuViewModel(this);
+            alarmPageViewModel = new AlarmPageViewModel(this);
+            CommandInit();
         }
         
         #region LoadedCommand
@@ -38,10 +43,10 @@ namespace ManagementProject.ViewModel
         {
             LoadTitle();
             TimerStart();
-            LoadPage();
+            LoadMainPage();
         }
 
-        private void LoadPage()
+        public void LoadMainPage()
         {
             PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
         }

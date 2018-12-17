@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ManagementProject</RootNamespace>
     <AssemblyName>ManagementProject</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ManagementProject.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -116,6 +119,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BasicClass\DelegateCommand.cs" />
+    <Compile Include="EventHistory.xaml.cs">
+      <DependentUpon>EventHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\EventPlayerWindow.xaml.cs">
+      <DependentUpon>EventPlayerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FunctionalWindows\PlayerWindow.xaml.cs">
       <DependentUpon>PlayerWindow.xaml</DependentUpon>
     </Compile>
@@ -124,12 +133,18 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="BasicClass\INotifyPropertyChangedClass.cs" />
+    <Compile Include="Model\AlarmPageModel.cs" />
+    <Compile Include="Model\CollagePageModel.cs" />
+    <Compile Include="Model\EventHistoryModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\MainPageModel.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\PlayerWindowModel.cs" />
     <Compile Include="PageView\AlarmPage.xaml.cs">
       <DependentUpon>AlarmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageView\CollagePage.xaml.cs">
+      <DependentUpon>CollagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -177,6 +192,9 @@
     <Compile Include="UserControls\SchoolMessage.xaml.cs">
       <DependentUpon>SchoolMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\CollagePageViewModel.cs" />
+    <Compile Include="ViewModel\EventHistoryViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -184,6 +202,14 @@
       <DependentUpon>WindowControlButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\PlayerWindowViewModel.cs" />
+    <Page Include="EventHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\EventPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FunctionalWindows\PlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +231,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PageView\AlarmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\CollagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

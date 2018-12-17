@@ -32,9 +32,14 @@
             <UserControls:DisposalPlan Grid.Row="2"/>
         </Grid>
         <Grid  Grid.Column="2">
-            <Button x:Name="button" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" Height="75" VerticalAlignment="Bottom" BorderBrush="{x:Null}" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="button" Command="{Binding MainPageReturnCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" VerticalAlignment="Stretch" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Grid.Row="1">
                 <TextBlock Text="返回" TextWrapping="Wrap" Width="16" Foreground="White" FontSize="16"/>
             </Button>
+            <StackPanel Margin="0,0,0,0" />
         </Grid>
 
     </Grid>

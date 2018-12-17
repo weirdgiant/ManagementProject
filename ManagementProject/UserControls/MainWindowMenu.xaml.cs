@@ -134,6 +134,7 @@ namespace ManagementProject.UserControls
         private void MapSelected(object obj)
         {
             mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+            HiddenPanel();
         }
         private void CollageSelected(object obj)
         {
