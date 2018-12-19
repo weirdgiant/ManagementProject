@@ -7,6 +7,8 @@
         <Setter Property="Background"  Value="Black" />
 
     </Style>
+    <SolidColorBrush x:Key="LoginGridBackground" Color="#FF0B161C"/>
+    <Color x:Key="Mainbackground">#FF0B161C</Color>
 
     <SolidColorBrush x:Key="myBrush" Color="White"/>
 

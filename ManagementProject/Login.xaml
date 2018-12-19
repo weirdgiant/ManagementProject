@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Login" Height="1080" Width="1920" WindowStyle="None" WindowState="Maximized"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
-    <Grid Background="#FF0B161C">
+    <Grid Background="{StaticResource LoginGridBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="134*"/>
             <RowDefinition Height="79"/>

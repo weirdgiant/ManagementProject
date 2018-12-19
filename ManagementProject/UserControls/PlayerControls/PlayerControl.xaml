@@ -24,14 +24,14 @@
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A" TimeFormat="FullDateTime" TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>
         <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
-        <Slider x:Name="slider" Margin="53,30,0,0" Grid.Column="1" Grid.ColumnSpan="4"/>
+        <Slider x:Name="slider" Margin="53,30,0,0" Style="{StaticResource Slider_CustomStyle}" Grid.Column="1" Grid.ColumnSpan="4"/>
         <Button x:Name="startbt" ToolTip="{Binding StartBtToolTip}" Command="{Binding StartCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
             <Image Source="{Binding StartIcon}" />
         </Button>
         <Button x:Name="endbt" IsEnabled="{Binding EndBtEnabled}"  ToolTip="结束" Command="{Binding EndCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
             <Image Source="{Binding EndIcon}" />
         </Button>
-        <Button x:Name="button_Copy1" Content="倍速" Command="{Binding OpenContextMenuCommand}"  Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Left" Margin="193,12,0,13" Width="73" Grid.Column="5" Background="#FF818181">
+        <Button x:Name="button_Copy1" Content="倍速" Command="{Binding OpenContextMenuCommand}"  Style="{StaticResource FilletButton}"  HorizontalAlignment="Left" Margin="201,16,0,15" Width="43" Grid.Column="5" Background="#FF818181">
             <Button.ContextMenu>
 
                 <ContextMenu 
