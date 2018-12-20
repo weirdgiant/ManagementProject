@@ -28,8 +28,6 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
             DataContext = mainWindowTextBoxViewModel;
-
-            GlobalVariable.MainWindowTextBoxIsDraped = false;
         }
         
         private void Drapbt_Click(object sender, RoutedEventArgs e)
@@ -38,19 +36,14 @@ namespace ManagementProject.UserControls
             BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/raiseup.png", UriKind.Relative)); 
             img2.Rotation = Rotation.Rotate180;
 
-            if (GlobalVariable.MainWindowTextBoxIsDraped == false )
+            if (mainWindowTextBoxViewModel.IsOpened)
             {
 
-                drapimage.Source = img2;
-
-                GlobalVariable.MainWindowTextBoxIsDraped = true;
-                
+                drapimage.Source = img2;               
             }
             else
             {
                 drapimage.Source = img1;
-
-                GlobalVariable.MainWindowTextBoxIsDraped = false;
             }
             
         }

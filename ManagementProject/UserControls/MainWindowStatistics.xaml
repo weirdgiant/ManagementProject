@@ -7,16 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" CornerRadius="5">
-            <Grid>
-                <Image x:Name="image" Margin="0,0,0,0"/>
-                <Border Name="numberbackground" CornerRadius="10" BorderThickness="1" Margin="30,30,0,0" Background="#009FFF">
-                    <Grid >
-                        <TextBlock Name="number"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-                    </Grid>
-                </Border>
-            </Grid>
-        </Border>
+        <ToggleButton  x:Name="drapbt" Style="{StaticResource NoBushToggleButton}"  Margin="0,0" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" CornerRadius="5">
+                <Grid>
+                    <Image x:Name="image" Margin="0,0,0,0"/>
+                    <Border Name="numberbackground" CornerRadius="10" BorderThickness="1" Margin="30,30,0,0" Background="#009FFF">
+                        <Grid >
+                            <TextBlock Name="number"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </ToggleButton>
+       
         
     </Grid>
 </UserControl>

@@ -9,8 +9,6 @@ namespace ManagementProject
     public static class GlobalVariable
     {
         //ControlStatus
-        public static bool MainWindowTextBoxIsDraped { get; set; }
-
         private static MainMenu _mainMenuSelectedIndex;
         public static MainMenu MainMenuSelectedIndex
         {
