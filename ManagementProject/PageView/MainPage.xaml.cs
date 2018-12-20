@@ -25,8 +25,6 @@ namespace ManagementProject.PageView
         {
             InitializeComponent();
             choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
-            choosetb.drapbt.Click += Drapbt_Click;
-
             Loaded += MainPage_Loaded;
         }
 
@@ -43,27 +41,6 @@ namespace ManagementProject.PageView
             BitmapImage img3 = new BitmapImage(new Uri(@"/ImageSource/Icon/AlarmIcon/车辆违停.png", UriKind.Relative));
             alarmbt.alarmicon.Source = img3;
             alarmbt.alarmcount.Text = "2";
-        }
-
-        private void Drapbt_Click(object sender, RoutedEventArgs e)
-        {
-            if (GlobalVariable.MainWindowTextBoxIsDraped == false)
-            {
-
-                drappanel.Visibility = Visibility.Collapsed;
-
-                // GlobalVariable.MainWindowTextBoxIsDraped = true;
-
-            }
-            else
-            {
-                drappanel.Visibility = Visibility.Visible;
-
-                // GlobalVariable.MainWindowTextBoxIsDraped = false;
-            }
-
-
-
         }
 
         private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

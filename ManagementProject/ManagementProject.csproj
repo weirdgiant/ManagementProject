@@ -174,9 +174,6 @@
     <Compile Include="UserControls\MainWindowTextBox.xaml.cs">
       <DependentUpon>MainWindowTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowTextBoxDrapPanel.xaml.cs">
-      <DependentUpon>MainWindowTextBoxDrapPanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
@@ -288,10 +285,6 @@
     <Page Include="UserControls\MainWindowTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\MainWindowTextBoxDrapPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\MapControl.xaml">
       <SubType>Designer</SubType>
