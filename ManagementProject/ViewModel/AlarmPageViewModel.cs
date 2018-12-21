@@ -1,4 +1,5 @@
 ﻿using ManagementProject.Model;
+using ManagementProject.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ManagementProject.ViewModel
 {
     public class AlarmPageViewModel : AlarmPageModel
     {
-        private MainWindowViewModel mainWindowViewModel { get; set; }
+        public MainWindowViewModel mainWindowViewModel { get; set; }
         public DelegateCommand MainPageReturnCommand { get; set; }
         public AlarmPageViewModel(MainWindowViewModel _mainWindowViewModel )
         {

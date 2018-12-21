@@ -1,4 +1,5 @@
 ﻿using ManagementProject.UserControls;
+using ManagementProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,26 +22,36 @@ namespace ManagementProject.PageView
     /// </summary>
     public partial class MainPage : Page
     {
+        public MainWindowViewModel MainWindowViewModel { get; set; }
+        public MainPageViewModel mainPageViewModel { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
             choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
             Loaded += MainPage_Loaded;
+            MainPageInit();
+            ControlInit();
+        }
+
+        private void MainPageInit()
+        {
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            MainWindowViewModel = (MainWindowViewModel)main.DataContext;
+            mainPageViewModel = MainWindowViewModel.mainPageViewModel;
+            DataContext = mainPageViewModel;         
+        }
+
+        private void ControlInit()
+        {
+            camerastatistics.DataContext = mainPageViewModel.CameraStatisticsViewModel;
+            waterstatistics.DataContext = mainPageViewModel.WaterStatisticsViewModel;
+            alarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
-            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
-            camerastatistics.image.Source = img1;
-            camerastatistics.number.Text = "7";
-            sensorstatistics.image.Source = img2;
-            sensorstatistics.number.Text = "7";
 
-
-            BitmapImage img3 = new BitmapImage(new Uri(@"/ImageSource/Icon/AlarmIcon/车辆违停.png", UriKind.Relative));
-            alarmbt.alarmicon.Source = img3;
-            alarmbt.alarmcount.Text = "2";
         }
 
         private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

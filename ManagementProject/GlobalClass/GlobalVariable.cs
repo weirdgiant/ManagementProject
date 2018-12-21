@@ -90,4 +90,20 @@ namespace ManagementProject
         /// </summary>
         History
     }
+
+    public enum AlarmType
+    {
+        /// <summary>
+        /// 火灾警报
+        /// </summary>
+        FireAlarm,
+        /// <summary>
+        /// 水压警报
+        /// </summary>
+        WaterAlarm,
+        /// <summary>
+        /// 车辆警报
+        /// </summary>
+        CarAlarm
+    }
 }

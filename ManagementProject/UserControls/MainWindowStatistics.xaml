@@ -7,18 +7,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-        <ToggleButton  x:Name="drapbt" Style="{StaticResource NoBushToggleButton}"  Margin="0,0" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+        <ToggleButton  x:Name="drapbt" Style="{StaticResource NoBushToggleButton}" IsChecked="{Binding IsOpened}"  Margin="0,0" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" CornerRadius="5">
                 <Grid>
-                    <Image x:Name="image" Margin="0,0,0,0"/>
+                    <Image x:Name="image" Margin="0,0,0,0" Source="{Binding Icon}" />
                     <Border Name="numberbackground" CornerRadius="10" BorderThickness="1" Margin="30,30,0,0" Background="#009FFF">
                         <Grid >
-                            <TextBlock Name="number"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Name="number" Text="{Binding Number}"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Grid>
                     </Border>
                 </Grid>
             </Border>
         </ToggleButton>
+        <Popup Placement="Top"
+               StaysOpen="{Binding IsOpened}"
+               IsOpen="{Binding IsOpened}" >
+            <Border BorderBrush="Black" BorderThickness="1" Width="150" Height="100" CornerRadius="20"  Background="White" >
+                <Grid Margin="3" >
+                    <ListBox x:Name="listBox" Margin="0,0,0,0" ItemsSource="{Binding SchoolList}" SelectionMode="Extended"   BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"  Opacity="0.9">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" >
+                                    <Grid Height="5"/>
+                                    <TextBlock Name="ItemName" Text="{Binding  Path=SchoolName}" HorizontalAlignment="Center" FontSize="13">
+                                        <TextBlock.InputBindings>
+                                            <MouseBinding Command="{Binding ItemSelectedCommand }" CommandParameter="{Binding ElementName=ItemName}" MouseAction="LeftDoubleClick"></MouseBinding>
+                                        </TextBlock.InputBindings>
+                                    </TextBlock>
+                                    <Separator Width="180" Background="#FF393939" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                </Grid>
+            </Border>
+        </Popup>
        
         
     </Grid>

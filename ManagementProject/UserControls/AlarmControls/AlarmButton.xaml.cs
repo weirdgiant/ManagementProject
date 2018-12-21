@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,12 +55,52 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("AlarmIcon");
             }
         }
+
+        private AlarmType _alarmType;
+        public  AlarmType AlarmType
+        {
+            get
+            {
+                return _alarmType;
+            }
+            set
+            {
+                _alarmType = value;
+                NotifyPropertyChanged("AlarmType");
+            }
+        }
     }
     public class AlarmButtonViewModel : AlarmButtonModel
     {
-        public AlarmButtonViewModel()
+        public MainWindowViewModel mainWindowViewModel { get; set; }
+        public DelegateCommand AlarmPageInitCommand { get; set; }
+        public AlarmButtonViewModel(MainWindowViewModel _mainWindowViewModel)
         {
+            mainWindowViewModel = _mainWindowViewModel;
+            AlarmPageInitCommand = new DelegateCommand();
+            AlarmPageInitCommand.ExecuteCommand = new Action<object>(AlarmPageInit);
+            AlarmTypeInit();
+        }
 
+        private void AlarmPageInit(object obj)
+        {
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+        }
+
+        private void AlarmTypeInit()
+        {
+            switch (AlarmType)
+            {
+                case AlarmType.CarAlarm:
+                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/车辆违停.png";
+                    break;
+                case AlarmType.FireAlarm:
+                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/火灾报警.png";
+                    break;
+                case AlarmType.WaterAlarm:
+                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/水压报警.png";
+                    break;
+            }
         }
     }
 

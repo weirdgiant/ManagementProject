@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.ClientInfoButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50">
+    <Grid>
+        <ToggleButton >
+            <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/客户端异常信息.png" />
+        </ToggleButton>
+        <Popup Placement="Left" Grid.IsSharedSizeScope="True" >
+            <Border >
+                <StackPanel Width="200"  >
+                    <Button Height="100"/>
+                    <Button />
+                    <Button />
+                    <Button />
+                </StackPanel>
+            </Border> 
+        </Popup>
+    </Grid>
+</UserControl>

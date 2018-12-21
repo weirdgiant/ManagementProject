@@ -155,6 +155,12 @@
     <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
       <DependentUpon>AlarmButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CameraInfoButton.xaml.cs">
+      <DependentUpon>CameraInfoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ClientInfoButton.xaml.cs">
+      <DependentUpon>ClientInfoButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CusPopup.cs" />
     <Compile Include="UserControls\AlarmControls\DisposalPlan.xaml.cs">
       <DependentUpon>DisposalPlan.xaml</DependentUpon>
@@ -198,9 +204,6 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="UserControls\WindowControlButton.xaml.cs">
-      <DependentUpon>WindowControlButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\PlayerWindowViewModel.cs" />
     <Page Include="EventHistory.xaml">
       <SubType>Designer</SubType>
@@ -266,6 +269,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\CameraInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ClientInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\EventHistoryControls\EventPlayerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -307,10 +318,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SchoolMessage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\WindowControlButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

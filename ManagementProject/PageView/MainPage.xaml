@@ -30,7 +30,7 @@
             <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/设备信息.png" />
         </Button>
         <UserControls:MainWindowStatistics x:Name="camerastatistics" HorizontalAlignment="Left" Height="50" Margin="23,0,0,50" VerticalAlignment="Bottom" Width="50" Grid.Row="1"/>
-        <UserControls:MainWindowStatistics  x:Name="sensorstatistics" HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50" Grid.Row="1"/>
+        <UserControls:MainWindowStatistics  x:Name="waterstatistics" HorizontalAlignment="Left" Height="50" Margin="93,0,0,50" VerticalAlignment="Bottom" Width="50" Grid.Row="1"/>
 
 
     </Grid>

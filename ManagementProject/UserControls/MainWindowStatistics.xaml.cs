@@ -25,4 +25,55 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+    public class MainWindowStatisticsModel:INotifyPropertyChangedClass
+    {
+        private bool _isOpened;
+        public bool IsOpened
+        {
+            get
+            {
+                return _isOpened;
+            }
+            set
+            {
+                _isOpened = value;
+                NotifyPropertyChanged("IsOpened");
+            }
+        }
+
+        private string _icon;
+        public string Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                _icon = value;
+                NotifyPropertyChanged("Icon");
+            }
+        }
+
+        private string _number;
+        public  string Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                _number = value;
+                NotifyPropertyChanged("Number");
+            }
+        }
+    }
+    public class MainWindowStatisticsViewModel:MainWindowStatisticsModel
+    {
+        public MainWindowStatisticsViewModel()
+        {
+
+        }
+    }
 }

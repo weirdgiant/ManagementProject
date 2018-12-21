@@ -17,6 +17,7 @@ namespace ManagementProject.ViewModel
     {
         public MainWindowMenuViewModel mainWindowMenuViewModel { get; set; }
         public AlarmPageViewModel alarmPageViewModel { get; set; }
+        public MainPageViewModel mainPageViewModel { get; set; }
         public DelegateCommand ShowCommand { get; set; }
         public DelegateCommand ShutDownCommand { get; set; }
         public DelegateCommand MinSizeCommand { get; set; }
@@ -35,6 +36,7 @@ namespace ManagementProject.ViewModel
         {
             mainWindowMenuViewModel = new MainWindowMenuViewModel(this);
             alarmPageViewModel = new AlarmPageViewModel(this);
+            mainPageViewModel = new MainPageViewModel(this);
             CommandInit();
         }
         

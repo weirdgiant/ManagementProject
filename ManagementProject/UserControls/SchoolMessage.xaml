@@ -4,17 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          mc:Ignorable="d" 
-             Height="500" Width="600" MouseDown="UserControl_MouseDown"  WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" >
-    <Grid Background="#FF2F2F2F" Opacity="0.8"  >
+             Height="500" Width="600" MouseDown="UserControl_MouseDown" WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" >
+    <Grid  >
         <Grid.RowDefinitions>
-            <RowDefinition Height="350*"/>
-            <RowDefinition Height="200*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="144*"/>
+            <RowDefinition Height="91*"/>
         </Grid.RowDefinitions>
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" x:Name="closebt" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Click="closebt_Click">
-            <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
-        </Button>
+        <Grid Grid.Row="0" Background="#FF2F2F2F" >
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" x:Name="closebt" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Click="closebt_Click" >
+                <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
+            </Button>
+        </Grid>
+      
 
-        <Grid Margin="0,30,0,0">
+        <Grid Margin="0,0.333,0,0" Background="#FF2F2F2F" Grid.Row="1">
             <Label x:Name="label" Content="上海财经大学国定路校区"  VerticalAlignment="Top" Foreground="White"  FontSize="16" Margin="213,0,188,0" />
             <Label x:Name="label1" Content="创办时间" Foreground="White" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label1_Copy" Content="建筑数量" Foreground="White" HorizontalAlignment="Left" Margin="380,50,0,0" VerticalAlignment="Top"/>
@@ -28,7 +32,7 @@
             <Label x:Name="label2_Copy2" Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid Margin="0,0,0,0" Grid.Row="1" Background="White" />
+        <Grid Margin="0,0,0,0" Grid.Row="2" Background="White"  />
 
     </Grid>
 </Window>
