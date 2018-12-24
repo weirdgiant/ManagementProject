@@ -25,4 +25,16 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+
+    public class PageControlModel:INotifyPropertyChangedClass
+    {
+
+    }
+    public class PageControlViewModel:PageControlModel
+    {
+        public PageControlViewModel()
+        {
+
+        }
+    }
 }

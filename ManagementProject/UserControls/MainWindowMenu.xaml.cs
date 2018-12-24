@@ -133,7 +133,7 @@ namespace ManagementProject.UserControls
 
         private void MapSelected(object obj)
         {
-            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
             HiddenPanel();
         }
         private void CollageSelected(object obj)

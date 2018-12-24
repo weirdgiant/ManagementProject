@@ -10,7 +10,13 @@
 
     <Grid>
         <Grid Name="MapGrid" >
-            <UserControls:AlarmButton x:Name="alarmbt" HorizontalAlignment="Left" Height="100" Margin="310,32,0,0" VerticalAlignment="Top" Width="100"/>
+            <StackPanel HorizontalAlignment="Left" Height="100" Margin="295,32,0,0" VerticalAlignment="Top" Width="400" Orientation="Horizontal">
+                <UserControls:AlarmButton x:Name="fireAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <Grid Width="20"/>
+                <UserControls:AlarmButton x:Name="waterAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <Grid Width="20"/>
+                <UserControls:AlarmButton x:Name="carAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+            </StackPanel>
             <!--<UserControls:MapControl/>-->
         </Grid>
         <UserControls:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="34" Margin="23,32,0,0" VerticalAlignment="Top" Width="250"/>

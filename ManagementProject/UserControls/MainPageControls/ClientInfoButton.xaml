@@ -13,10 +13,10 @@
         <Popup Placement="Left" Grid.IsSharedSizeScope="True" >
             <Border >
                 <StackPanel Width="200"  >
-                    <Button Height="100"/>
-                    <Button />
-                    <Button />
-                    <Button />
+                    <Button Height="50"/>
+                    <Button Height="50" />
+                    <Button Height="50" />
+                    <Button Height="50" />
                 </StackPanel>
             </Border> 
         </Popup>

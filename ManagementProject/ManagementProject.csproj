@@ -155,10 +155,10 @@
     <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
       <DependentUpon>AlarmButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CameraInfoButton.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\CameraInfoButton.xaml.cs">
       <DependentUpon>CameraInfoButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ClientInfoButton.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\ClientInfoButton.xaml.cs">
       <DependentUpon>ClientInfoButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CusPopup.cs" />
@@ -171,16 +171,16 @@
     <Compile Include="UserControls\MainWindowMenu.xaml.cs">
       <DependentUpon>MainWindowMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowSearchBox.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\MainWindowSearchBox.xaml.cs">
       <DependentUpon>MainWindowSearchBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowStatistics.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\MainWindowStatistics.xaml.cs">
       <DependentUpon>MainWindowStatistics.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowTextBox.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\MainWindowTextBox.xaml.cs">
       <DependentUpon>MainWindowTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MapControl.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EventHistoryControls\PageControl.xaml.cs">
@@ -195,7 +195,7 @@
     <Compile Include="UserControls\PlayerControls\PlayerPanel.xaml.cs">
       <DependentUpon>PlayerPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SchoolMessage.xaml.cs">
+    <Compile Include="UserControls\MainPageControls\SchoolMessage.xaml.cs">
       <DependentUpon>SchoolMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AlarmPageViewModel.cs" />
@@ -269,11 +269,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\CameraInfoButton.xaml">
+    <Page Include="UserControls\MainPageControls\CameraInfoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ClientInfoButton.xaml">
+    <Page Include="UserControls\MainPageControls\ClientInfoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,19 +285,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowSearchBox.xaml">
+    <Page Include="UserControls\MainPageControls\MainWindowSearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowStatistics.xaml">
+    <Page Include="UserControls\MainPageControls\MainWindowStatistics.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\MainWindowTextBox.xaml">
+    <Page Include="UserControls\MainPageControls\MainWindowTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MapControl.xaml">
+    <Page Include="UserControls\MainPageControls\MapControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,7 +317,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SchoolMessage.xaml">
+    <Page Include="UserControls\MainPageControls\SchoolMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

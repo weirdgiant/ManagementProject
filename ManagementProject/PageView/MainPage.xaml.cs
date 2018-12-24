@@ -29,7 +29,6 @@ namespace ManagementProject.PageView
         {
             InitializeComponent();
             choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
-            Loaded += MainPage_Loaded;
             MainPageInit();
             ControlInit();
         }
@@ -46,12 +45,9 @@ namespace ManagementProject.PageView
         {
             camerastatistics.DataContext = mainPageViewModel.CameraStatisticsViewModel;
             waterstatistics.DataContext = mainPageViewModel.WaterStatisticsViewModel;
-            alarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
-        }
-
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            carAlarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
+            fireAlarmbt .DataContext = mainPageViewModel.fireAlarmViewModel ;
+            waterAlarmbt .DataContext = mainPageViewModel.waterAlarmViewModel ; 
         }
 
         private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

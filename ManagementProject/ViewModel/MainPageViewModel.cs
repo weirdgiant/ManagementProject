@@ -14,6 +14,8 @@ namespace ManagementProject.ViewModel
         public MainWindowStatisticsViewModel CameraStatisticsViewModel { get; set; }
         public MainWindowStatisticsViewModel WaterStatisticsViewModel { get; set; }
         public AlarmButtonViewModel carAlarmViewModel { get; set; }
+        public AlarmButtonViewModel waterAlarmViewModel { get; set;}
+        public AlarmButtonViewModel fireAlarmViewModel { get; set; }
         public MainPageViewModel( MainWindowViewModel _mainWindowViewModel)
         {
             MainWindowViewModel = _mainWindowViewModel;
@@ -25,7 +27,17 @@ namespace ManagementProject.ViewModel
             CameraStatisticsViewModel = new MainWindowStatisticsViewModel();
             WaterStatisticsViewModel = new MainWindowStatisticsViewModel();
             carAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);
+            waterAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);
+            fireAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);
+            ///初始化车辆报警
             carAlarmViewModel.AlarmType = AlarmType.CarAlarm;
+            carAlarmViewModel.AlarmCount = "5";
+            ///初始化水压报警
+            waterAlarmViewModel.AlarmType = AlarmType.WaterAlarm;
+            waterAlarmViewModel.AlarmCount = "6";
+            ///初始化火灾报警
+            fireAlarmViewModel.AlarmType = AlarmType.FireAlarm;
+            fireAlarmViewModel.AlarmCount = "7";
 
             CameraStatisticsViewModel.Icon = "/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机.png";
             CameraStatisticsViewModel.Number = "8";

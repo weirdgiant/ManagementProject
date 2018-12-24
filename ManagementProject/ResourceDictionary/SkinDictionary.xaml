@@ -10,6 +10,7 @@
     <SolidColorBrush x:Key="LoginGridBackground" Color="#FF0B161C"/>
     <Color x:Key="Mainbackground">#FF0B161C</Color>
 
+
     <SolidColorBrush x:Key="myBrush" Color="White"/>
 
     <LinearGradientBrush x:Key="mybrush" StartPoint="0,0.5" EndPoint="1,0.5" Opacity="0.5">

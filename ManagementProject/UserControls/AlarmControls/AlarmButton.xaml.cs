@@ -29,6 +29,20 @@ namespace ManagementProject.UserControls
 
     public class AlarmButtonModel : INotifyPropertyChangedClass
     {
+        private Visibility _isVisbility;
+        public Visibility IsVisbility
+        {
+            get
+            {
+                return _isVisbility;
+            }
+            set
+            {
+                _isVisbility = value;
+                NotifyPropertyChanged("IsVisbility");
+            }
+        }
+
         private string _alarmCount;
         public string AlarmCount
         {
@@ -67,24 +81,8 @@ namespace ManagementProject.UserControls
             {
                 _alarmType = value;
                 NotifyPropertyChanged("AlarmType");
+                AlarmTypeInit();
             }
-        }
-    }
-    public class AlarmButtonViewModel : AlarmButtonModel
-    {
-        public MainWindowViewModel mainWindowViewModel { get; set; }
-        public DelegateCommand AlarmPageInitCommand { get; set; }
-        public AlarmButtonViewModel(MainWindowViewModel _mainWindowViewModel)
-        {
-            mainWindowViewModel = _mainWindowViewModel;
-            AlarmPageInitCommand = new DelegateCommand();
-            AlarmPageInitCommand.ExecuteCommand = new Action<object>(AlarmPageInit);
-            AlarmTypeInit();
-        }
-
-        private void AlarmPageInit(object obj)
-        {
-            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
         }
 
         private void AlarmTypeInit()
@@ -102,6 +100,24 @@ namespace ManagementProject.UserControls
                     break;
             }
         }
+    }
+    public class AlarmButtonViewModel : AlarmButtonModel
+    {
+        public MainWindowViewModel mainWindowViewModel { get; set; }
+        public DelegateCommand AlarmPageInitCommand { get; set; }
+        public AlarmButtonViewModel(MainWindowViewModel _mainWindowViewModel)
+        {
+            mainWindowViewModel = _mainWindowViewModel;
+            AlarmPageInitCommand = new DelegateCommand();
+            AlarmPageInitCommand.ExecuteCommand = new Action<object>(AlarmPageInit);
+        }
+
+        private void AlarmPageInit(object obj)
+        {
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+        }
+
+        
     }
 
 }

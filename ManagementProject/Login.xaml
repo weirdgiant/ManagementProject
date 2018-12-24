@@ -26,7 +26,7 @@
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="485*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" Margin="0,0,0,0" Source="ImageSource/background/bg2.png" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3"/>
+        <Image x:Name="image" Margin="0,0,0,0"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Source="ImageSource/background/bg2.png"/>
 
         <Grid Margin="0,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.ColumnDefinitions>
