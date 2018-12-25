@@ -148,7 +148,12 @@ namespace ManagementProject.UserControls
 
         private void HistorySelected(object obj)
         {
-
+            EventHistory  newwindow = new EventHistory();
+            newwindow.Topmost = true;
+            newwindow.WindowStartupLocation = WindowStartupLocation.Manual;
+            newwindow.Left = 23;
+            newwindow.Top = 165;
+            newwindow.Show();
         }
 
 

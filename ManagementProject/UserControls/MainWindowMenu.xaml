@@ -62,7 +62,7 @@
                             </TransformGroup>
                         </Separator.LayoutTransform>
                     </Separator>
-                    <Button Name="historybt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
+                    <Button Name="historybt" Width="107" Command="{Binding HistorySelectedCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
                         <StackPanel  >
                             <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/历史事件.png" Height="20"/>
                             <TextBlock Text="历史事件" Foreground="White" FontSize="10" />

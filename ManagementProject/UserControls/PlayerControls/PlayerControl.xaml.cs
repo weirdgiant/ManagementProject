@@ -135,6 +135,34 @@ namespace ManagementProject.UserControls
             }
         }
 
+        private string _selectedRate;
+        public string SelectedRate
+        {
+            get
+            {
+                return _selectedRate;
+            }
+            set
+            {
+                _selectedRate = value;
+                NotifyPropertyChanged("SelectedRate");
+            }
+        }
+
+        private string _rateColor;
+        public string RateColor
+        {
+            get
+            {
+                return _rateColor;
+            }
+            set
+            {
+                _rateColor = value;
+                NotifyPropertyChanged("SelectedRate");
+            }
+        }
+
         private ObservableCollection<SelectionItem> selectionItemCollection;
         public ObservableCollection<SelectionItem> SelectionItemCollection
         {
@@ -161,6 +189,7 @@ namespace ManagementProject.UserControls
         public DelegateCommand StartCommand { get; set; }
         public DelegateCommand EndCommand { get; set; }
         public DelegateCommand OpenContextMenuCommand { get; set; }
+        public DelegateCommand RateSelectedCommand { get; set; }
         public PlayerControlViewModel()
         {
             InitSelectionItem();
@@ -170,6 +199,8 @@ namespace ManagementProject.UserControls
 
         private void InitSelectionItem()
         {
+            RateColor = "#FF818181";
+            SelectedRate = "1.0X";
             SelectionItemCollection = new ObservableCollection<SelectionItem>();
             string[] NameList = { "4.0X" , "2.0X", "1.0X", "-2.0X", "-4.0X" };
             foreach (var item in NameList)
@@ -199,11 +230,31 @@ namespace ManagementProject.UserControls
             OpenContextMenuCommand = new DelegateCommand();
             OpenContextMenuCommand.ExecuteCommand = new Action<object>(OpenContextMenu);
 
+            RateSelectedCommand = new DelegateCommand();
+            RateSelectedCommand.ExecuteCommand = new Action<object>(RateSelected);
+
         }
 
         private void OpenContextMenu(object obj)
         {
-            IsOpen = true;
+            if (IsOpen)
+            {
+                IsOpen = false ;
+                RateColor = "#FF818181";
+            }
+            else
+            {
+                IsOpen = true;
+                RateColor = "#FF1A8BDA";
+            }
+           
+        }
+
+        private void RateSelected(object obj)
+        {
+            SelectionItem item = (SelectionItem)obj;
+            SelectedRate = item.Header;
+            IsOpen = false;
         }
 
         private void Start(object obj)

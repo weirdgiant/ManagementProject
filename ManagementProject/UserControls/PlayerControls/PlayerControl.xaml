@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="1000">
     <Grid Margin="0,0,0,0" Background="#FF2A2A2A">
@@ -24,29 +25,45 @@
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A" TimeFormat="FullDateTime" TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>
         <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
         <xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
-        <Slider x:Name="slider" Margin="53,30,0,0" Style="{StaticResource Slider_CustomStyle}" Grid.Column="1" Grid.ColumnSpan="4"/>
+        <Slider x:Name="slider" Margin="53,35,0,5" Style="{StaticResource Slider1}" Grid.Column="1" Grid.ColumnSpan="4"/>
         <Button x:Name="startbt" ToolTip="{Binding StartBtToolTip}" Command="{Binding StartCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
             <Image Source="{Binding StartIcon}" />
         </Button>
         <Button x:Name="endbt" IsEnabled="{Binding EndBtEnabled}"  ToolTip="结束" Command="{Binding EndCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
             <Image Source="{Binding EndIcon}" />
         </Button>
-        <Button x:Name="button_Copy1" Content="倍速" Command="{Binding OpenContextMenuCommand}"  Style="{StaticResource FilletButton}"  HorizontalAlignment="Left" Margin="201,16,0,15" Width="43" Grid.Column="5" Background="#FF818181">
-            <Button.ContextMenu>
-
-                <ContextMenu 
-                               ItemsSource="{Binding SelectionItemCollection}"
-                               IsOpen="{Binding IsOpen,Mode=OneWay}">
-                    <ContextMenu.ItemContainerStyle>
-                        <Style TargetType="MenuItem">
-                            <Setter Property="Header" Value="{Binding Header}"/>
-                            <Setter Property="Command" Value="{Binding ...}"/>
-                            <Setter Property="CommandParameter" Value="{Binding ...}"/>
-                        </Style>
-                    </ContextMenu.ItemContainerStyle>
-                </ContextMenu>
-            </Button.ContextMenu>
-        </Button>
+        <ToggleButton x:Name="ratebt" 
+                      Style="{StaticResource ToggleButtonStyle2}"
+                      Content="{Binding SelectedRate}" 
+                      Background="{Binding RateColor}"  
+                      BorderBrush="{Binding RateColor}" 
+                      IsChecked="{Binding IsOpen,Mode=OneWay}" 
+                      Command="{Binding OpenContextMenuCommand}"    HorizontalAlignment="Left" Margin="202,14,0,14" Width="42" Grid.Column="5"  Height="Auto" Foreground="White"/>
+        <Popup PlacementTarget="{Binding ElementName=ratebt}"   
+               IsOpen="{Binding IsOpen,Mode=OneWay}" 
+               StaysOpen="{Binding IsOpen,Mode=OneWay}" 
+               Placement="Top" >
+            <Grid >
+                <ListBox Name="listBox" ItemsSource="{Binding SelectionItemCollection}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding RateSelectedCommand,Mode=TwoWay}"
+                                      CommandParameter="{Binding SelectedItem, ElementName=listBox}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" >
+                                <Grid Height="5"/>
+                                <TextBlock Name="ItemName" Text="{Binding  Path=Header}" HorizontalAlignment="Center" FontSize="13"/>
+                                <Separator Width="42" Background="#FF393939" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Popup>
 
 
     </Grid>

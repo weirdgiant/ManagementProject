@@ -34,6 +34,7 @@ namespace ManagementProject
 
         //PageStatus
     }
+    
 
     /// <summary>
     /// 播放窗口类型

@@ -23,5 +23,10 @@ namespace ManagementProject
         {
             InitializeComponent();
         }
+
+        private void closebt_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

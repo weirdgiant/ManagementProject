@@ -32,20 +32,7 @@ namespace ManagementProject.UserControls
         
         private void Drapbt_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage img1 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/dropdown.png", UriKind.Relative));
-            BitmapImage img2 = new BitmapImage(new Uri(@"/ImageSource/Icon/mainwindowicon/raiseup.png", UriKind.Relative)); 
-            img2.Rotation = Rotation.Rotate180;
-
-            if (mainWindowTextBoxViewModel.IsOpened)
-            {
-
-                drapimage.Source = img2;               
-            }
-            else
-            {
-                drapimage.Source = img1;
-            }
-            
+           
         }
     }
 
@@ -62,8 +49,33 @@ namespace ManagementProject.UserControls
             {
                 _isOpened = value;
                 NotifyPropertyChanged("IsOpened");
+                if (IsOpened)
+                {
+
+                    Icon = "/ImageSource/Icon/mainwindowicon/raiseup.png";
+                }
+                else
+                {
+                    Icon = "/ImageSource/Icon/mainwindowicon/dropdown.png";
+                }
             }
         }
+
+        private string _icon;
+        public string Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                _icon =value;
+                NotifyPropertyChanged("Icon");
+            }
+        }
+
+
         private string _schoolName;
         public string SchoolName
         {
@@ -75,6 +87,20 @@ namespace ManagementProject.UserControls
             {
                 _schoolName = value;
                 NotifyPropertyChanged("SchoolName");
+            }
+        }
+
+        private int _selectedIndex;
+        public int SelectionIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+            set
+            {
+                _selectedIndex = value;
+                NotifyPropertyChanged("SelectionIndex");
             }
         }
 
@@ -100,12 +126,16 @@ namespace ManagementProject.UserControls
     }
     public class MainWindowTextBoxViewModel:MainWindowTextBoxModel
     {
+        public DelegateCommand DrapClickCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
         public MainWindowTextBoxViewModel()
         {
             SchoolName = "国定路校区";
+            Icon = "/ImageSource/Icon/mainwindowicon/dropdown.png";
             ItemSelectedCommand = new DelegateCommand();
             ItemSelectedCommand.ExecuteCommand = new Action<object>(ItemSelected);
+            DrapClickCommand = new DelegateCommand();
+            DrapClickCommand.ExecuteCommand = new Action<object>(DrapClick);
             AddList();
         }
 
@@ -124,10 +154,15 @@ namespace ManagementProject.UserControls
 
         public void ItemSelected(object obj)
         {
+            School tb =(School)obj;
+            SchoolName = tb.SchoolName;
+            IsOpened = false;
+            SelectionIndex = -1;
+        }
 
-            string aa = obj.ToString();
-
-
+        private void DrapClick(object obj)
+        {
+            
 
         }
     }

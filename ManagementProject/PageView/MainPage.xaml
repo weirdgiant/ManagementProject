@@ -11,11 +11,11 @@
     <Grid>
         <Grid Name="MapGrid" >
             <StackPanel HorizontalAlignment="Left" Height="100" Margin="295,32,0,0" VerticalAlignment="Top" Width="400" Orientation="Horizontal">
-                <UserControls:AlarmButton x:Name="fireAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <UserControls:AlarmButton x:Name="fireAlarmbt" HorizontalAlignment="Left" Height="85" VerticalAlignment="Top" Width="85"/>
                 <Grid Width="20"/>
-                <UserControls:AlarmButton x:Name="waterAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <UserControls:AlarmButton x:Name="waterAlarmbt" HorizontalAlignment="Left" Height="85" VerticalAlignment="Top" Width="85"/>
                 <Grid Width="20"/>
-                <UserControls:AlarmButton x:Name="carAlarmbt" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <UserControls:AlarmButton x:Name="carAlarmbt" HorizontalAlignment="Left" Height="85" VerticalAlignment="Top" Width="85"/>
             </StackPanel>
             <!--<UserControls:MapControl/>-->
         </Grid>

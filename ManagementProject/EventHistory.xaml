@@ -5,8 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagementProject"
         mc:Ignorable="d"
-        Title="EventHistory" Height="450" Width="800">
-    <Grid>
-        
+        Title="事件历史" Height="800" Width="1000" ResizeMode="NoResize" WindowStartupLocation="Manual" WindowStyle="None">
+    <Grid  Background="#FF2A2A2A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition  Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0 " Background="#FF252525">
+            <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Margin="0,0,0,0" Click="closebt_Click">
+                <Image Width="15" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
+            </Button>
+
+            <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" Width="240" Orientation="Horizontal">
+                <Grid Width="15"/>
+                <Label Content="事件历史" FontSize="12" HorizontalAlignment="Left"  Foreground="White" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+        <Grid  Grid.Row="1" >
+            <ListView  x:Name="listView" Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  Header="列1" Width="50" />
+                        <GridViewColumn Header="列2" Width="50" />
+                        <GridViewColumn Header="列3" Width="50" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Background="#FF252525" Height="135" Margin="20,20,755,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="92*"/>
+                </Grid.RowDefinitions>
+                <Label Content="事件发生时间" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
+                <DatePicker Margin="40,10,10,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <DatePicker Margin="40,48,10,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="label" Content="到" Foreground="White" HorizontalAlignment="Left" Margin="10,31,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            </Grid>
+            <Grid Background="#FF252525" Height="135" Margin="265,20,510,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="19*"/>
+                </Grid.RowDefinitions>
+                <Label Content="报警类型" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="50,45,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+            <Grid Background="#FF252525" Height="135" Margin="510,20,265,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Label Content="报警级别" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
+                <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="60,42,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+            <Grid Background="#FF252525" Height="135" Margin="755,20,20,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="19*"/>
+                </Grid.RowDefinitions>
+                <Label Content="处理状态" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
+                <ComboBox x:Name="comboBox_Copy1" HorizontalAlignment="Left" Margin="55,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+            <Button x:Name="button" Content="查 询" FontSize="16" Foreground="White" Background="#FF00A7F4" Style="{StaticResource FilletButton}"  Margin="442,180,436,0" VerticalAlignment="Top" Height="40"/>
+
+        </Grid>
     </Grid>
 </Window>

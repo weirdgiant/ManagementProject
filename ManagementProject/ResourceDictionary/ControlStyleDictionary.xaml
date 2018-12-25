@@ -157,4 +157,50 @@
         </Setter>
     </Style>
 
+
+    <Style TargetType="{x:Type Thumb}" x:Key="SliderThumbStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse Width="10" Height="10" Fill="#FF1A8BDA"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="RepeatButton" x:Key="Slider_DecreaseRepeatBtnStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border SnapsToDevicePixels="True" Background="#FF1A8BDA" BorderThickness="1" 
+                                CornerRadius="2" BorderBrush="#FF1A8BDA" Height="5"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Slider1" TargetType="{x:Type Slider}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid>
+                        <Border Name="PART_Border" BorderBrush="Black" BorderThickness="1" CornerRadius="2"
+                                    Padding="1" Width="{TemplateBinding Width}" Height="5" Background="Black" 
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        </Border>
+                        <Track Name="PART_Track">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource Slider_DecreaseRepeatBtnStyle}">
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource SliderThumbStyle}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

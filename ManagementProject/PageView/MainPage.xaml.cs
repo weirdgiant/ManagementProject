@@ -1,4 +1,5 @@
-﻿using ManagementProject.UserControls;
+﻿using ManagementProject.FunctionalWindows;
+using ManagementProject.UserControls;
 using ManagementProject.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,21 @@ namespace ManagementProject.PageView
             choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
             MainPageInit();
             ControlInit();
+            button2.Click += Button2_Click;
+        }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            if (GlobalVariable.PlayerWindowIsOpened == false)
+            {
+                PlayerWindow newwindow = new PlayerWindow(PlayerWindowType.Track);
+                newwindow.Topmost = true;
+                newwindow.WindowStartupLocation = WindowStartupLocation.Manual;
+                newwindow.Left = 23;
+                newwindow.Top = 165;
+                newwindow.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
         }
 
         private void MainPageInit()
