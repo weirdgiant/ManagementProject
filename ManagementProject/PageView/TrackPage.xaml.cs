@@ -13,28 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementProject.UserControls
+namespace ManagementProject.PageView
 {
     /// <summary>
-    /// EventPlayerControl.xaml 的交互逻辑
+    /// TrackPage.xaml 的交互逻辑
     /// </summary>
-    public partial class EventPlayerControl : UserControl
+    public partial class TrackPage : Page
     {
-        public EventPlayerControl()
+        public TrackPage()
         {
             InitializeComponent();
-        }
-    }
-
-    public class EventPlayerModel:INotifyPropertyChangedClass
-    {
-
-    }
-    public class EventPlayerViewModel:EventPlayerModel
-    {
-        public EventPlayerViewModel()
-        {
-
         }
     }
 }

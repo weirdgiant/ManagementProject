@@ -25,4 +25,15 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+    public class CameraInfoModel:INotifyPropertyChangedClass
+    {
+
+    }
+    public class CameraInfoViewModel:CameraInfoModel
+    {
+        public CameraInfoViewModel()
+        {
+
+        }
+    }
 }

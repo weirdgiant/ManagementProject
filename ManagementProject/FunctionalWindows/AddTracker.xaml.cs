@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementProject.UserControls
+namespace ManagementProject.FunctionalWindows
 {
     /// <summary>
-    /// EventPlayerControl.xaml 的交互逻辑
+    /// AddTracker.xaml 的交互逻辑
     /// </summary>
-    public partial class EventPlayerControl : UserControl
+    public partial class AddTracker : Window
     {
-        public EventPlayerControl()
+        public AddTracker()
         {
             InitializeComponent();
-        }
-    }
-
-    public class EventPlayerModel:INotifyPropertyChangedClass
-    {
-
-    }
-    public class EventPlayerViewModel:EventPlayerModel
-    {
-        public EventPlayerViewModel()
-        {
-
         }
     }
 }

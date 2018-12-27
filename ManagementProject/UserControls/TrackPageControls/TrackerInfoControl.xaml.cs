@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace ManagementProject.UserControls
 {
     /// <summary>
-    /// EventPlayerControl.xaml 的交互逻辑
+    /// TrackerInfoControl.xaml 的交互逻辑
     /// </summary>
-    public partial class EventPlayerControl : UserControl
+    public partial class TrackerInfoControl : UserControl
     {
-        public EventPlayerControl()
+        public TrackerInfoControl()
         {
             InitializeComponent();
-        }
-    }
-
-    public class EventPlayerModel:INotifyPropertyChangedClass
-    {
-
-    }
-    public class EventPlayerViewModel:EventPlayerModel
-    {
-        public EventPlayerViewModel()
-        {
-
         }
     }
 }

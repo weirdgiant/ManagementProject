@@ -122,11 +122,17 @@
     <Compile Include="EventHistory.xaml.cs">
       <DependentUpon>EventHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FunctionalWindows\AddTracker.xaml.cs">
+      <DependentUpon>AddTracker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FunctionalWindows\EventPlayerWindow.xaml.cs">
       <DependentUpon>EventPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="FunctionalWindows\PlayerWindow.xaml.cs">
       <DependentUpon>PlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\TrackManagement.xaml.cs">
+      <DependentUpon>TrackManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalClass\GlobalVariable.cs" />
     <Compile Include="Login.xaml.cs">
@@ -148,6 +154,9 @@
     </Compile>
     <Compile Include="PageView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageView\TrackPage.xaml.cs">
+      <DependentUpon>TrackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\AlarmControls\AlarmCarInfo.xaml.cs">
       <DependentUpon>AlarmCarInfo.xaml</DependentUpon>
@@ -180,7 +189,7 @@
     <Compile Include="UserControls\MainPageControls\MainWindowTextBox.xaml.cs">
       <DependentUpon>MainWindowTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainPageControls\MapControl.xaml.cs">
+    <Compile Include="UserControls\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EventHistoryControls\PageControl.xaml.cs">
@@ -198,6 +207,9 @@
     <Compile Include="UserControls\MainPageControls\SchoolMessage.xaml.cs">
       <DependentUpon>SchoolMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackerInfoControl.xaml.cs">
+      <DependentUpon>TrackerInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AlarmPageViewModel.cs" />
     <Compile Include="ViewModel\CollagePageViewModel.cs" />
     <Compile Include="ViewModel\EventHistoryViewModel.cs" />
@@ -209,11 +221,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FunctionalWindows\AddTracker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FunctionalWindows\EventPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FunctionalWindows\PlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\TrackManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageView\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\TrackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -297,7 +321,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainPageControls\MapControl.xaml">
+    <Page Include="UserControls\MapControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainPageControls\SchoolMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackerInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
