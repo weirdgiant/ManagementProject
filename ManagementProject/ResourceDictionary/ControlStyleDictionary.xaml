@@ -203,4 +203,30 @@
         </Setter>
     </Style>
 
+
+    <Style TargetType="DataGridColumnHeader"  x:Key="DataGridHeaderStyleSample" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Grid Name="Root">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle x:Name="BackgroundRectangle" Stretch="Fill"  Fill="#FF212122" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
+                        <Label  FontSize="13"  Content="{TemplateBinding Content}"   Width="{TemplateBinding Width}" Foreground="White"  HorizontalAlignment="Center"    HorizontalContentAlignment="Center"/>
+                        <Rectangle Name="VerticalSeparator" Grid.RowSpan="2"  Grid.Column="2" Width="1" VerticalAlignment="Stretch" Fill="#FF212122" Visibility="Visible" />
+                        <!--这里的Fill就可以设置分隔线的颜色-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

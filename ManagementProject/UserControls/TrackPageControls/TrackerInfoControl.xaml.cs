@@ -25,4 +25,16 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+
+    public class TrackerInfoModel:INotifyPropertyChangedClass
+    {
+
+    }
+    public class TrackerInfoViewModel:TrackerInfoModel
+    {
+        public TrackerInfoViewModel()
+        {
+
+        }
+    }
 }

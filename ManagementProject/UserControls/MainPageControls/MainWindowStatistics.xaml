@@ -20,9 +20,11 @@
             </Border>
         </ToggleButton>
         <Popup Placement="Top"
-               StaysOpen="{Binding IsOpened}"
-               IsOpen="{Binding IsOpened}" >
-            <Border BorderBrush="Black" BorderThickness="1" Width="150" Height="100" CornerRadius="20"  Background="White" >
+               AllowsTransparency="True"
+               PlacementTarget="{Binding ElementName=drapbt}"  
+               IsOpen="{Binding IsOpened}"
+               StaysOpen="False">
+            <Border BorderBrush="Black" BorderThickness="1" Width="150" Height="100" CornerRadius="5"  Background="#FF2F2F2F" Opacity="0.9" >
                 <Grid Margin="3" >
                     <ListBox x:Name="listBox" Margin="0,0,0,0" ItemsSource="{Binding SchoolList}" SelectionMode="Extended"   BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"  Opacity="0.9">
                         <ListBox.ItemTemplate>

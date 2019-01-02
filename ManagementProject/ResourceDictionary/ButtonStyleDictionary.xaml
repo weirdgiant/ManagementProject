@@ -271,8 +271,6 @@
     </Style>
 
     <Style x:Key="myToggleButton" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Width" Value="60"/>
-        <Setter Property="Height" Value="20"/>
         <!-- 替换掉默认的模板 -->
         <Setter Property="Template">
             <Setter.Value>
@@ -286,10 +284,10 @@
         <Style.Triggers>
             <!-- 更改三态的背景颜色 -->
             <Trigger Property="IsChecked" Value="true">
-                <Setter Property="Background" Value="#FF1A8BDA"/>
+                <Setter Property="Background" Value="#FF009FFF"/>
             </Trigger>
             <Trigger Property="IsChecked" Value="false">
-                <Setter Property="Background" Value="#FF14B3FD"/>
+                <Setter Property="Background" Value="{x:Null}"/>
             </Trigger>
             <!-- 鼠标悬浮时，背景颜色不变 -->
             <MultiTrigger>
@@ -298,7 +296,7 @@
                     <Condition Property="IsChecked" Value="true"/>
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="#FFA1C3F3"/>
+                    <Setter Property="Background" Value="#FF1A8BDA"/>
                 </MultiTrigger.Setters>
             </MultiTrigger>
             <MultiTrigger>

@@ -5,8 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-            
+        <ToggleButton Name="bt" Background="{x:Null}" BorderBrush="{x:Null}" IsChecked="{Binding IsOpened}">
+            <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机异常.png" />
+        </ToggleButton>
+        <Popup  PlacementTarget="{Binding ElementName=bt}" 
+                IsOpen="{Binding IsOpened}"
+                StaysOpen="False"
+                PopupAnimation="Scroll"
+                Placement="Left" Grid.IsSharedSizeScope="True" AllowsTransparency="True" VerticalOffset="-662" >
+            <Border Height="712" Width="332" Opacity="0.9" Background="#FF2F2F2F" CornerRadius="5" >
+                <StackPanel>
+                    <Grid Height="100" >
+                        <Label Content="摄像机检测信息" Foreground="White" FontSize="16" Margin="73,15,126,51"/>
+                        <StackPanel   Margin="73,49,101,18" Orientation="Horizontal" >
+                            <Ellipse Height="10" Width="10" Fill="#FFC24444" />
+                            <Label Content="异常摄像机列表" FontSize="14"  Foreground="Gray" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                    </Grid>
+                    <Border Background="#FF1C1C1C" Height="2"/>
+                    <ListBox Height="610" Background="{x:Null}" BorderBrush="{x:Null}"></ListBox>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

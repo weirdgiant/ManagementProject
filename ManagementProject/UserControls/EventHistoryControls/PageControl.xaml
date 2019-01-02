@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" d:DesignWidth="800" Height="100">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="57" Margin="10,10,0,0" VerticalAlignment="Top" Width="281" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Margin="10,10,0,43" Width="281" Orientation="Horizontal">
             <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="label" Content="共" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
             <Label  x:Name="textBlock" HorizontalAlignment="Left"  Content="100" VerticalAlignment="Top" Foreground="White"/>
             <Label x:Name="label1" Content="条" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
-        <StackPanel Height="57" Margin="0,10,10,0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right" Width="430">
+        <StackPanel Margin="0,10,10,43" Orientation="Horizontal" HorizontalAlignment="Right" Width="430">
             <Button x:Name="button" Content="首页" Height="47" VerticalAlignment="Top"/>
             <Button x:Name="button_Copy" Content="上一页" Height="47" VerticalAlignment="Top"/>
             <Button x:Name="button_Copy1" Content="下一页" Height="47" VerticalAlignment="Top"/>

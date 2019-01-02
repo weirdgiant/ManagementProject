@@ -5,72 +5,76 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="478">
+             d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-        <Button x:Name="menubt" Command="{Binding OpenClickCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="50">
+        <ToggleButton  x:Name="menubt" IsChecked="{Binding IsOpened}" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="{Binding IsVisbility}" VerticalAlignment="Stretch">
             <Image Name="menubtimage" Source="{Binding MenubtIcon}" />
-        </Button>
-
-        <Border Name="showpanel" Background="#FF2F2F2F" Visibility="{Binding IsShowPanel}"  CornerRadius="5" BorderBrush="Black" BorderThickness="1" Margin="0,0,50,0" Opacity="0.9">
-            <Grid>
-                <StackPanel Orientation="Horizontal"  >
-                    <Button Name="mapbt" Command="{Binding MapSelectedCommand}" Width="107" Height="50" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel>
-                            <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/在线电子地图.png" Height="20"/>
-                            <TextBlock Text="电子地图" Foreground="White" FontSize="10" />
-                        </StackPanel>
-                    </Button>
-                    <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                        <Separator.LayoutTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Separator.LayoutTransform>
-                    </Separator>
-                    <Button Name="collagebt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel  >
-                            <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/拼控.png" Height="20"/>
-                            <TextBlock Text="拼控" Foreground="White" FontSize="10" />
-                        </StackPanel>
-                    </Button>
-                    <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                        <Separator.LayoutTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Separator.LayoutTransform>
-                    </Separator>
-                    <Button Name="carbt" Width="107" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel >
-                            <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/车辆追踪.png" Height="20"/>
-                            <TextBlock Text="车辆追踪" Foreground="White" FontSize="10" />
-                        </StackPanel>
-                    </Button>
-                    <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                        <Separator.LayoutTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Separator.LayoutTransform>
-                    </Separator>
-                    <Button Name="historybt" Width="107" Command="{Binding HistorySelectedCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                        <StackPanel  >
-                            <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/历史事件.png" Height="20"/>
-                            <TextBlock Text="历史事件" Foreground="White" FontSize="10" />
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-
+        </ToggleButton>
+        <Popup PlacementTarget="{Binding ElementName=menubt}" 
+                IsOpen="{Binding IsOpened}"
+                StaysOpen="False"
+                PopupAnimation="Fade"  
+                Placement="Left"  AllowsTransparency="True">
+            <Border Name="showpanel" Background="#FF2F2F2F" Height="50"  CornerRadius="5" BorderBrush="Black" BorderThickness="1"  Opacity="0.9">
+                <Grid>
+                    <StackPanel Orientation="Horizontal"  >
+                        <Button Name="mapbt" Command="{Binding MapSelectedCommand}" Width="107" Height="50" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
+                            <StackPanel>
+                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/在线电子地图.png" Height="20"/>
+                                <TextBlock Text="电子地图" Foreground="White" FontSize="10" />
+                            </StackPanel>
+                        </Button>
+                        <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
+                            <Separator.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <Button Name="collagebt" Width="107" Command="{Binding CollageSelectedCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
+                            <StackPanel  >
+                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/拼控.png" Height="20"/>
+                                <TextBlock Text="拼控" Foreground="White" FontSize="10" />
+                            </StackPanel>
+                        </Button>
+                        <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
+                            <Separator.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <Button Name="carbt" Width="107" Command="{Binding TrackSelectedCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
+                            <StackPanel >
+                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/车辆追踪.png" Height="20"/>
+                                <TextBlock Text="车辆追踪" Foreground="White" FontSize="10" />
+                            </StackPanel>
+                        </Button>
+                        <Separator HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
+                            <Separator.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.LayoutTransform>
+                        </Separator>
+                        <Button Name="historybt" Width="107" Command="{Binding HistorySelectedCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
+                            <StackPanel  >
+                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/历史事件.png" Height="20"/>
+                                <TextBlock Text="历史事件" Foreground="White" FontSize="10" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

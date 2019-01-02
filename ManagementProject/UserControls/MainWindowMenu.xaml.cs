@@ -40,7 +40,25 @@ namespace ManagementProject.UserControls
             {
                 _isOpened = value;
                 NotifyPropertyChanged("IsOpened");
+                if (IsOpened == true)
+                {
+
+                    ShowPanel();
+                }
+                else
+                {
+
+                    HiddenPanel();
+                }
             }
+        }
+        public void ShowPanel()
+        {
+            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuopen.png";
+        }
+        public void HiddenPanel()
+        {
+            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuclose.png";
         }
 
         private string _menubtIcon;
@@ -57,21 +75,19 @@ namespace ManagementProject.UserControls
             }
         }
 
-        private Visibility _isShowPanel;
-        public Visibility IsShowPanel
+        private Visibility _isVisbility;
+        public Visibility IsVisbility
         {
             get
             {
-                return _isShowPanel;
+                return _isVisbility;
             }
             set
             {
-                _isShowPanel = value;
-                NotifyPropertyChanged("IsShowPanel");
+                _isVisbility = value;
+                NotifyPropertyChanged("IsVisbility");
             }
         }
-
-        
     }
     public class MainWindowMenuViewModel : MainWindowMenuModel
     {
@@ -100,52 +116,55 @@ namespace ManagementProject.UserControls
             mainWindowViewModel = _mainWindowViewModel;
             HiddenPanel();
             CommandInit();
-
+            ShowMenu();
         }
-        #region OpenClick
+        #region IsShowing
         private void OpenClick(object obj)
         {
-            if (IsOpened == false)
-            {
-
-                ShowPanel();
-            }
-            else
-            {
-
-                HiddenPanel();
-            }
+            
         }
-
-        private void ShowPanel()
+        public void ShowMenu()
         {
-            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuopen.png";
-            IsShowPanel = Visibility.Visible;
-            IsOpened = true;
+            IsVisbility = Visibility.Visible;
         }
-        private void HiddenPanel()
+        public void HiddenMenu()
         {
-            MenubtIcon = "/ManagementProject;component/ImageSource/Icon/menuicon/menuclose.png";
-            IsShowPanel = Visibility.Collapsed;
-            IsOpened = false;
+            IsVisbility = Visibility.Collapsed;
         }
+
         #endregion
 
+        /// <summary>
+        /// 打开电子地图
+        /// </summary>
+        /// <param name="obj"></param>
         private void MapSelected(object obj)
         {
             mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
-            HiddenPanel();
+            ShowMenu();
         }
+        /// <summary>
+        /// 打开拼控
+        /// </summary>
+        /// <param name="obj"></param>
         private void CollageSelected(object obj)
         {
-
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/CollagePage.xaml";
+            ShowMenu();
         }
-
+        /// <summary>
+        /// 打开车辆追踪
+        /// </summary>
+        /// <param name="obj"></param>
         private void TrackSelected(object obj)
         {
-
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/TrackPage.xaml";
+            ShowMenu();
         }
-
+        /// <summary>
+        /// 打开历史事件
+        /// </summary>
+        /// <param name="obj"></param>
         private void HistorySelected(object obj)
         {
             EventHistory  newwindow = new EventHistory();

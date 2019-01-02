@@ -24,16 +24,17 @@
         </Grid>
         <Grid  Grid.Row="1" >
             <!--更换Datagrid(备注)-->
-            <ListView  x:Name="listView" Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn  Header="列1" Width="50" />
-                        <GridViewColumn Header="列2" Width="50" />
-                        <GridViewColumn Header="列3" Width="50" />
-                    </GridView>
-                </ListView.View>
-                
-            </ListView>
+            <DataGrid  x:Name="listView" ColumnHeaderStyle="{StaticResource DataGridHeaderStyleSample}" Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="报警时间" Width="100"/>
+                    <DataGridTextColumn Header="报警类型" Width="100"/>
+                    <DataGridTextColumn Header="报警地点" Width="100"/>
+                    <DataGridTextColumn Header="报警源名称" Width="100"/>
+                    <DataGridTextColumn Header="报警级别" Width="100"/>
+                    <DataGridTextColumn Header="处理状态" Width="100"/>
+                    <DataGridTextColumn Header="下载" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
             <Grid Background="#FF252525" Height="135" Margin="20,20,755,0" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>

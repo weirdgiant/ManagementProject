@@ -13,6 +13,8 @@ namespace ManagementProject.ViewModel
         public MainWindowViewModel MainWindowViewModel { get; set; }
         public MainWindowStatisticsViewModel CameraStatisticsViewModel { get; set; }
         public MainWindowStatisticsViewModel WaterStatisticsViewModel { get; set; }
+        public CameraInfoViewModel CameraInfoViewModel { get; set; }
+        public ClientInfoViewModel ClientInfoViewModel { get; set; }
         public AlarmButtonViewModel carAlarmViewModel { get; set; }
         public AlarmButtonViewModel waterAlarmViewModel { get; set;}
         public AlarmButtonViewModel fireAlarmViewModel { get; set; }
@@ -26,6 +28,8 @@ namespace ManagementProject.ViewModel
         {
             CameraStatisticsViewModel = new MainWindowStatisticsViewModel();
             WaterStatisticsViewModel = new MainWindowStatisticsViewModel();
+            CameraInfoViewModel = new CameraInfoViewModel();
+            ClientInfoViewModel = new ClientInfoViewModel();
             carAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);
             waterAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);
             fireAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel);

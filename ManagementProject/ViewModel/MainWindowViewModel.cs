@@ -16,6 +16,7 @@ namespace ManagementProject.ViewModel
     public class MainWindowViewModel:MainWindowModel 
     {
         public MainWindowMenuViewModel mainWindowMenuViewModel { get; set; }
+        public CollagePageViewModel collagePageViewModel { get; set; }
         public AlarmPageViewModel alarmPageViewModel { get; set; }
         public MainPageViewModel mainPageViewModel { get; set; }
         public DelegateCommand ShowCommand { get; set; }
@@ -34,9 +35,14 @@ namespace ManagementProject.ViewModel
 
         public MainWindowViewModel()
         {
+            ///初始化菜单VM
             mainWindowMenuViewModel = new MainWindowMenuViewModel(this);
+            ///初始化报警VM
             alarmPageViewModel = new AlarmPageViewModel(this);
+            ///初始化电子地图VM
             mainPageViewModel = new MainPageViewModel(this);
+            ///初始化拼控VM
+            collagePageViewModel = new CollagePageViewModel(this);
             CommandInit();
         }
         
@@ -48,6 +54,9 @@ namespace ManagementProject.ViewModel
             LoadMainPage();
         }
 
+        /// <summary>
+        /// 加载电子地图
+        /// </summary>
         public void LoadMainPage()
         {
             PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
@@ -81,7 +90,7 @@ namespace ManagementProject.ViewModel
         private void MinSize(object obj)
         {
             MainWindow main=(MainWindow)obj;
-            main. WindowState = WindowState.Minimized;
+            main.WindowState = WindowState.Minimized;
         }
     }
 

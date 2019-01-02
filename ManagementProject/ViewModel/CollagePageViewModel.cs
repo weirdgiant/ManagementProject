@@ -9,9 +9,10 @@ namespace ManagementProject.ViewModel
 {
     public class CollagePageViewModel : CollagePageModel
     {
-        public CollagePageViewModel()
+        public MainWindowViewModel MainWindowViewModel { get; set; }
+        public CollagePageViewModel(MainWindowViewModel _mainWindowViewModel)
         {
-
+            MainWindowViewModel = _mainWindowViewModel;
         }
     }
 }

@@ -60,6 +60,8 @@ namespace ManagementProject.PageView
         private void ControlInit()
         {
             camerastatistics.DataContext = mainPageViewModel.CameraStatisticsViewModel;
+            camerainfobt.DataContext = mainPageViewModel.CameraInfoViewModel;
+            clientinfobt.DataContext = mainPageViewModel.ClientInfoViewModel;
             waterstatistics.DataContext = mainPageViewModel.WaterStatisticsViewModel;
             carAlarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
             fireAlarmbt .DataContext = mainPageViewModel.fireAlarmViewModel ;

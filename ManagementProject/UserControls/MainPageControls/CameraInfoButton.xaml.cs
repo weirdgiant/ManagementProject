@@ -27,7 +27,19 @@ namespace ManagementProject.UserControls
     }
     public class CameraInfoModel:INotifyPropertyChangedClass
     {
-
+        private bool _isOpened;
+        public bool IsOpened
+        {
+            get
+            {
+                return _isOpened;
+            }
+            set
+            {
+                _isOpened = value;
+                NotifyPropertyChanged("IsOpened");
+            }
+        }
     }
     public class CameraInfoViewModel:CameraInfoModel
     {

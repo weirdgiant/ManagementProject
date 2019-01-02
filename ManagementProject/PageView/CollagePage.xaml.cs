@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace ManagementProject.PageView
     /// </summary>
     public partial class CollagePage : Page
     {
+        public MainWindowViewModel MainWindowViewModel { get; set; }
         public CollagePage()
         {
             InitializeComponent();
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            MainWindowViewModel = (MainWindowViewModel)main.DataContext;
+            DataContext = MainWindowViewModel.collagePageViewModel;
         }
     }
 }

@@ -42,7 +42,8 @@
         <Popup PlacementTarget="{Binding ElementName=ratebt}"   
                IsOpen="{Binding IsOpen,Mode=OneWay}" 
                StaysOpen="{Binding IsOpen,Mode=OneWay}" 
-               Placement="Top" >
+               Placement="Top" 
+               AllowsTransparency="True">
             <Grid >
                 <ListBox Name="listBox" ItemsSource="{Binding SelectionItemCollection}">
                     <i:Interaction.Triggers>

@@ -21,7 +21,9 @@
             </StackPanel>
         </Border>
         <Popup Placement="Right"  
-               StaysOpen="{Binding IsOpened}"
+               AllowsTransparency="True"
+               PopupAnimation="Scroll"  
+               StaysOpen="False"
                IsOpen="{Binding IsOpened}">
             <Border BorderBrush="Black" BorderThickness="1" Width="205" Height="220" CornerRadius="5">
                 <Grid >
