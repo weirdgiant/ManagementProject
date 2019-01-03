@@ -19,12 +19,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Name="maingrid" Height="45"  VerticalAlignment="Top" Background="#FF252525" >
+        <Grid Name="maingrid" Background="#FF252525" >
             <StackPanel Orientation="Horizontal" Margin="10" >
-            <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
-            
-            <Label x:Name="title" Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
-            <Label x:Name="titletime" Content="{Binding NowTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
+                <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
+
+                <Label x:Name="title" Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+                <Label x:Name="titletime" Content="{Binding NowTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
                 <Button x:Name="minbt" ToolTip="最小化" 
@@ -52,10 +52,16 @@
             </Button>
 
         </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.ColumnSpan="1"/>
+            <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"  Margin="0,0,0,0" Source="{Binding PageUrl}" Grid.ColumnSpan="2"/>
+            <UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50"/>
+        </Grid>
 
-        <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"  Margin="0,0,0,0" Grid.Row="1" Source="{Binding PageUrl}"/>
-        <UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Grid.Row="1"/>
-        <ToggleButton x:Name="toggleButton" Style="{StaticResource myToggleButton}" Content="ToggleButton" HorizontalAlignment="Left" Margin="838,247,0,0" Grid.Row="1" VerticalAlignment="Top" Height="57"/>
 
 
     </Grid>

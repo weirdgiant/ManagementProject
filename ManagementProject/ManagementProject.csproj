@@ -119,6 +119,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\TrackManagementModel.cs" />
+    <Compile Include="Model\TrackPageModel.cs" />
+    <Compile Include="TCP\AsyncTcpClient.cs" />
     <Compile Include="BasicClass\DelegateCommand.cs" />
     <Compile Include="EventHistory.xaml.cs">
       <DependentUpon>EventHistory.xaml</DependentUpon>
@@ -218,6 +221,8 @@
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PlayerWindowViewModel.cs" />
+    <Compile Include="ViewModel\TrackManagementViewModel.cs" />
+    <Compile Include="ViewModel\TrackPageViewModel.cs" />
     <Page Include="EventHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -434,6 +439,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ImageSource\Icon\TrackerIcon\活动添加.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-12.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-6.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-9.png" />

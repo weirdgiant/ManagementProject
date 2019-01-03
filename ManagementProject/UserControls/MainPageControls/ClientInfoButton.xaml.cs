@@ -44,9 +44,15 @@ namespace ManagementProject.UserControls
     }
     public class ClientInfoViewModel:ClientInfoModel
     {
+        public DelegateCommand ShowClientInfoCommand { get; set; }
         public ClientInfoViewModel()
         {
-
+            ShowClientInfoCommand = new DelegateCommand();
+            ShowClientInfoCommand.ExecuteCommand = new Action<object>(ShowClientInfo);
+        }
+        private void ShowClientInfo(object obj)
+        {
+            MessageBox.Show(""+IsOpened);
         }
     }
 }

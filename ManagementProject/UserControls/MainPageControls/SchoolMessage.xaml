@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          mc:Ignorable="d" 
-             Height="500" Width="600" MouseDown="UserControl_MouseDown" WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" >
-    <Grid  >
+             Height="500" Width="600" MouseDown="UserControl_MouseDown" WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" >
+    <Grid  Background="Transparent" Opacity="0.9">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="144*"/>
@@ -18,18 +18,18 @@
         </Grid>
       
 
-        <Grid Margin="0,0.333,0,0" Background="#FF2F2F2F" Grid.Row="1">
-            <Label x:Name="label" Content="上海财经大学国定路校区"  VerticalAlignment="Top" Foreground="White"  FontSize="16" Margin="213,0,188,0" />
-            <Label x:Name="label1" Content="创办时间" Foreground="White" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1_Copy" Content="建筑数量" Foreground="White" HorizontalAlignment="Left" Margin="380,50,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1_Copy1" Content="保卫处负责人" Foreground="White" HorizontalAlignment="Left" Margin="133,130,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1_Copy2" Content="联系电话" Foreground="White" HorizontalAlignment="Left" Margin="380,130,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label1_Copy3" Content="备注说明" Foreground="White" HorizontalAlignment="Left" Margin="133,210,0,0" VerticalAlignment="Top"/>
+        <Grid  Background="#FF2F2F2F" Grid.Row="1">
+            <Label  Content="上海财经大学国定路校区"  VerticalAlignment="Top" Foreground="White"  FontSize="16" Margin="213,0,188,0" />
+            <Label  Content="创办时间" Foreground="White" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top"/>
+            <Label  Content="建筑数量" Foreground="White" HorizontalAlignment="Left" Margin="380,50,0,0" VerticalAlignment="Top"/>
+            <Label  Content="保卫处负责人" Foreground="White" HorizontalAlignment="Left" Margin="133,130,0,0" VerticalAlignment="Top"/>
+            <Label  Content="联系电话" Foreground="White" HorizontalAlignment="Left" Margin="380,130,0,0" VerticalAlignment="Top"/>
+            <Label  Content="备注说明" Foreground="White" HorizontalAlignment="Left" Margin="133,210,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="textBlock" HorizontalAlignment="Left" Foreground="White" Margin="133,235,0,0" TextWrapping="Wrap" Text="这就是说明。。。。。" VerticalAlignment="Top" Height="50" Width="305" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Label x:Name="label2" Content="1917年"  Foreground="White" HorizontalAlignment="Left" Margin="133,75,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label2_Copy" Content="26"  Foreground="White" HorizontalAlignment="Left" Margin="380,75,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label2_Copy1" Content="李某某"  Foreground="White" HorizontalAlignment="Left" Margin="133,155,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label2_Copy2" Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
+            <Label  Content="1917年"  Foreground="White" HorizontalAlignment="Left" Margin="133,75,0,0" VerticalAlignment="Top"/>
+            <Label  Content="26"  Foreground="White" HorizontalAlignment="Left" Margin="380,75,0,0" VerticalAlignment="Top"/>
+            <Label  Content="李某某"  Foreground="White" HorizontalAlignment="Left" Margin="133,155,0,0" VerticalAlignment="Top"/>
+            <Label  Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Margin="0,0,0,0" Grid.Row="2" Background="White"  />

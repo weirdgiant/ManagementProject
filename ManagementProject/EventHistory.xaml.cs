@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,13 @@ namespace ManagementProject
     /// </summary>
     public partial class EventHistory : Window
     {
+        public EventHistoryViewModel EventHistoryViewModel { get; set; }
         public EventHistory()
         {
             InitializeComponent();
+            EventHistoryViewModel = new EventHistoryViewModel();
+            DataContext = EventHistoryViewModel;
         }
 
-        private void closebt_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

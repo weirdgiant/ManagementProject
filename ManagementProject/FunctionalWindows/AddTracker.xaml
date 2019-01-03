@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagementProject.FunctionalWindows"
         mc:Ignorable="d"
-        Title="AddTracker" Height="450" Width="800">
-    <Grid>
-        
+        Title="AddTracker" Height="500" Width="500" WindowStyle="None" Background="Transparent" OpacityMask="White" AllowsTransparency="True">
+    <Grid Background="Transparent">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="429*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="#FF00A7F4" CornerRadius="10,10,0,0">
+                <Grid >
+                    <Label Content="添加活动" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,390,0"/>
+                    <Button x:Name="button"  Style="{StaticResource GelButton}" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="25" Height="25">
+                        <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
+                    </Button>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="1" Background="White"  CornerRadius="0,0,10,10">
+                <Grid >
+                    <Button Content="确认" Background="#FF00A7F4" Style="{StaticResource GelButton }" Width="150" Height="30" FontSize="15" Margin="175,0,175,20" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

@@ -60,6 +60,7 @@ namespace ManagementProject.ViewModel
         public void LoadMainPage()
         {
             PageUrl = "/ManagementProject;component/PageView/MainPage.xaml";
+            mainWindowMenuViewModel.ShowMenu();
         }
 
         private void LoadTitle()

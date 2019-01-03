@@ -13,7 +13,11 @@
             <RowDefinition  Height="80"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0 " Background="#FF252525">
-            <Button x:Name="closebt" ToolTip="关闭" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Margin="0,0,0,0" Click="closebt_Click">
+            <Button x:Name="closebt" ToolTip="关闭" 
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Command="{Binding CloseCommand}"  
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                    HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Margin="0,0,0,0">
                 <Image Width="15" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
             </Button>
 
@@ -23,16 +27,20 @@
             </StackPanel>
         </Grid>
         <Grid  Grid.Row="1" >
-            <!--更换Datagrid(备注)-->
-            <DataGrid  x:Name="listView" ColumnHeaderStyle="{StaticResource DataGridHeaderStyleSample}" Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
+            <DataGrid  x:Name="listView" 
+                       ColumnHeaderStyle="{StaticResource DataGridHeaderStyleSample}" 
+                       CanUserReorderColumns="False" 
+                       CanUserResizeColumns="True" 
+                       ItemsSource="{Binding}"
+                       Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="报警时间" Width="100"/>
-                    <DataGridTextColumn Header="报警类型" Width="100"/>
-                    <DataGridTextColumn Header="报警地点" Width="100"/>
-                    <DataGridTextColumn Header="报警源名称" Width="100"/>
-                    <DataGridTextColumn Header="报警级别" Width="100"/>
-                    <DataGridTextColumn Header="处理状态" Width="100"/>
-                    <DataGridTextColumn Header="下载" Width="100"/>
+                    <DataGridTextColumn Header="报警时间" Width="*"/>
+                    <DataGridTextColumn Header="报警类型" Width="*"/>
+                    <DataGridTextColumn Header="报警地点" Width="*"/>
+                    <DataGridTextColumn Header="报警源名称" Width="*"/>
+                    <DataGridTextColumn Header="报警级别" Width="*"/>
+                    <DataGridTextColumn Header="处理状态" Width="*"/>
+                    <DataGridTextColumn Header="下载" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Background="#FF252525" Height="135" Margin="20,20,755,0" VerticalAlignment="Top">
