@@ -9,7 +9,10 @@
       Title="TrackPage">
 
     <Grid>
-        <Button HorizontalAlignment="Left" Style="{StaticResource GelButton}" Margin="50,0,0,50" VerticalAlignment="Bottom" Width="50" Height="50">
+        <Button HorizontalAlignment="Left" 
+                Style="{StaticResource GelButton}" Margin="50,0,0,50" 
+                Command="{Binding OpenTrackerCommand}"
+                VerticalAlignment="Bottom" Width="50" Height="50">
             <Image Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/活动添加.png" />
         </Button>
 

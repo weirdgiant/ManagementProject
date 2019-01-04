@@ -46,11 +46,11 @@ namespace ManagementProject.UserControls
         {
             get
             {
-                return _alarmCarNumber;
+                return _alarmCarOwner;
             }
             set
             {
-                _alarmCarNumber = value;
+                _alarmCarOwner = value;
                 NotifyPropertyChanged("AlarmCarOwner");
             }
         }
@@ -82,6 +82,8 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("Department");
             }
         }
+
+        
     }
 
     public class AlarmCarInfoViewModel:AlarmCarInfoModel
@@ -89,6 +91,14 @@ namespace ManagementProject.UserControls
         public AlarmCarInfoViewModel()
         {
 
+        }
+
+        public void SetAlarmCarInfo()
+        {
+            AlarmCarNumber = "京A02019";
+            AlarmCarOwner = "MySelf";
+            PhoneNumber = "88888888";
+            Department = "58";
         }
     }
 }

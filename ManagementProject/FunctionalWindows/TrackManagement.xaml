@@ -17,10 +17,15 @@
                     <Label HorizontalAlignment="Left" FontSize="18" Margin="16,0,0,0" Foreground="White" VerticalContentAlignment="Center" Content="活动管理"/>
                     <Button  Content="添加活动" 
                              Style="{StaticResource GelButton}" 
+                             Command="{Binding OpenAddTrackerCommand}"
                              Background="#FF009FFF"
                              Width="75" Height="30"
                              HorizontalAlignment="Left" Margin="132,0,0,0" VerticalAlignment="Center" />
-                    <Button   Margin="0,0,10,0" HorizontalAlignment="Right" Width="35" Height="35" Style="{StaticResource GelButton}" VerticalAlignment="Center">
+                    <Button   Margin="0,0,10,0" HorizontalAlignment="Right" Width="35" Height="35" 
+                              Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                              Command="{Binding CloseCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                              VerticalAlignment="Center">
                         <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
                     </Button>
                 </Grid>

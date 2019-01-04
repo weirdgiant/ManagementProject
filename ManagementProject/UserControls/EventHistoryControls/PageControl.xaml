@@ -4,23 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
-             mc:Ignorable="d" d:DesignWidth="800" Height="100">
-    <Grid>
-        <StackPanel HorizontalAlignment="Left" Margin="10,10,0,43" Width="281" Orientation="Horizontal">
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
-            <Label x:Name="label" Content="共" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
-            <Label  x:Name="textBlock" HorizontalAlignment="Left"  Content="100" VerticalAlignment="Top" Foreground="White"/>
-            <Label x:Name="label1" Content="条" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
+             mc:Ignorable="d" d:DesignWidth="800" Height="33.5">
+    <Grid >
+        <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0" Width="281" Orientation="Horizontal">
+            <ComboBox HorizontalAlignment="Left" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ComboBoxItem Content="50条/页" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <ComboBoxItem Content="100条/页" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </ComboBox>
+            <Label  Content="共" HorizontalAlignment="Left" Foreground="White" VerticalContentAlignment="Center"/>
+            <Label  HorizontalAlignment="Left"  Content="100" Foreground="White" VerticalContentAlignment="Center"/>
+            <Label  Content="条" HorizontalAlignment="Left" Foreground="White" VerticalContentAlignment="Center"/>
         </StackPanel>
-        <StackPanel Margin="0,10,10,43" Orientation="Horizontal" HorizontalAlignment="Right" Width="430">
-            <Button x:Name="button" Content="首页" Height="47" VerticalAlignment="Top"/>
-            <Button x:Name="button_Copy" Content="上一页" Height="47" VerticalAlignment="Top"/>
-            <Button x:Name="button_Copy1" Content="下一页" Height="47" VerticalAlignment="Top"/>
-            <Button x:Name="button_Copy2" Content="尾页" Height="47" VerticalAlignment="Top"/>
-            <Label x:Name="label2" Content="到" Height="47" VerticalAlignment="Top" Foreground="White" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap"  Width="54" VerticalContentAlignment="Center" Height="47" VerticalAlignment="Top"/>
-            <Label x:Name="label3" Content="页" Foreground="White" VerticalContentAlignment="Center" Height="47" VerticalAlignment="Top" />
-            <Button x:Name="button_Copy3" Content="跳转" Height="47" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="504">
+            <Button Content="首页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
+            <Button Content="上一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch" />
+            <Grid ></Grid>
+            <Button Content="下一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
+            <Button Content="尾页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
+            <Label  Content="到" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+            <TextBox TextWrapping="Wrap"  Width="54" VerticalContentAlignment="Center" Margin="0,0,0,0" HorizontalContentAlignment="Center" />
+            <Label  Content="页" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,0,0" />
+            <Button Content="跳转" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White"/>
         </StackPanel>
     </Grid>
 </UserControl>

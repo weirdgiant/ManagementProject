@@ -8,6 +8,19 @@ namespace ManagementProject.Model
 {
     public class AlarmPageModel : INotifyPropertyChangedClass
     {
+        private AlarmType _pageType;
+        public AlarmType PageType
+        {
+            get
+            {
+                return _pageType;
+            }
+            set
+            {
+                _pageType = value;
+                NotifyPropertyChanged("PageType");
+            }
+        }
 
 
     }

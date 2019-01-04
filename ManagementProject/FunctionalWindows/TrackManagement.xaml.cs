@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace ManagementProject.FunctionalWindows
     /// </summary>
     public partial class TrackManagement : Window
     {
+        TrackManagementViewModel trackManagementViewModel{ get; set; }
         public TrackManagement()
         {
             InitializeComponent();
+            trackManagementViewModel = new TrackManagementViewModel();
+            DataContext = trackManagementViewModel;
         }
     }
 }

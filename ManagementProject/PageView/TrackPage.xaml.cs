@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace ManagementProject.PageView
     /// </summary>
     public partial class TrackPage : Page
     {
+        TrackPageViewModel trackPageViewModel { get; set; }
         public TrackPage()
         {
             InitializeComponent();
+            trackPageViewModel = new TrackPageViewModel();
+            DataContext = trackPageViewModel;
         }
     }
 }
