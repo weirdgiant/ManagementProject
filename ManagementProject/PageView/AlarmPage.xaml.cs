@@ -28,6 +28,7 @@ namespace ManagementProject.PageView
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             MainWindowViewModel = (MainWindowViewModel)main.DataContext;           
             DataContext = MainWindowViewModel.alarmPageViewModel;
+
         }
     }
 }

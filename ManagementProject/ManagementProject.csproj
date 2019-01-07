@@ -168,6 +168,9 @@
     <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
       <DependentUpon>AlarmButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTabControl.xaml.cs">
+      <DependentUpon>AlarmTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MainPageControls\CameraInfoButton.xaml.cs">
       <DependentUpon>CameraInfoButton.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AlarmControls\DisposalPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,7 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="ImageSource/Icon/mainwindowicon/logo.png">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ShowCommand}"/>

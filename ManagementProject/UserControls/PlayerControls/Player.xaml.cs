@@ -144,13 +144,14 @@ namespace ManagementProject.UserControls
             TrackCommand.ExecuteCommand = new Action<object>(Track);
         }
 
+        PlayerWindowType Ptype;
         public PlayerViewModel(PlayerWindowType type)
         {
+            Ptype = type;
             IsVisbility(type);
             InitCommand();
 
         }
-
 
         private void IsVisbility(PlayerWindowType type)
         {
@@ -175,31 +176,65 @@ namespace ManagementProject.UserControls
 
 
        
-
+        /// <summary>
+        /// 全屏
+        /// </summary>
+        /// <param name="obj"></param>
         private void FullScreen(object obj)
         {
-            MessageBox.Show("这是全屏按键！");
+           // MessageBox.Show("这是全屏按键！");
+            Window w = new Window();
+            w.WindowState = WindowState.Maximized;
+            w.WindowStyle = WindowStyle.None;
+            Player p = new Player (Ptype);
+            p.DataContext = this;
+            w.Content = p;
+            w.Show();
         }
+        /// <summary>
+        /// 拍照
+        /// </summary>
+        /// <param name="obj"></param>
         private void Photograph(object obj)
         {
             MessageBox.Show("这是拍照！");
         }
+        /// <summary>
+        /// 数字放大
+        /// </summary>
+        /// <param name="obj"></param>
         private void Zoom(object obj)
         {
             MessageBox.Show("这是数字放大！");
         }
+        /// <summary>
+        /// 操作
+        /// </summary>
+        /// <param name="obj"></param>
         private void Operation(object obj)
         {
             MessageBox.Show("这是操作！");
         }
+        /// <summary>
+        /// 信息
+        /// </summary>
+        /// <param name="obj"></param>
         private void Message(object obj)
         {
             MessageBox.Show("这是信息！");
         }
+        /// <summary>
+        /// 回放
+        /// </summary>
+        /// <param name="obj"></param>
         private void Playback(object obj)
         {
             MessageBox.Show("这是回放！");
         }
+        /// <summary>
+        /// 追踪
+        /// </summary>
+        /// <param name="obj"></param>
         private void Track(object obj)
         {
             MessageBox.Show("这是追踪！");

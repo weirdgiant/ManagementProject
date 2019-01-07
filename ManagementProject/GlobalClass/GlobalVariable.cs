@@ -91,7 +91,9 @@ namespace ManagementProject
         /// </summary>
         History
     }
-
+    /// <summary>
+    /// 报警类型
+    /// </summary>
     public enum AlarmType
     {
         /// <summary>
