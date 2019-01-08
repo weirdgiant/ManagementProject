@@ -12,6 +12,9 @@ namespace ManagementProject.ViewModel
     public class AlarmPageViewModel : AlarmPageModel
     {
         public MainWindowViewModel mainWindowViewModel { get; set; }
+        public AlarmCarInfoViewModel alarmCarInfoViewModel { get; set; }
+        public DisposalPlanViewModel disposalPlanViewModel { get; set; }
+        public WaterMessageViewModel waterMessageViewModel { get; set; }
         public DelegateCommand MainPageReturnCommand { get; set; }
         public AlarmPageViewModel(MainWindowViewModel _mainWindowViewModel )
         {

@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ManagementProject.PageView"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="CollagePage">
 
     <Grid Background="#FF2E2E2E">
+        <Grid.Resources>
+            <ResourceDictionary Source="/ManagementProject;component/ResourceDictionary/CustomAccordion.xaml" />
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition/>
@@ -23,29 +27,111 @@
             <Button  Content="场景"
                      Foreground="White" 
                      Background="#FF009FFF" 
-                     Style="{StaticResource GelButton }" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
                      Margin="30,0,0,0" Width="75" Height="35" 
                      HorizontalAlignment="Left"  VerticalAlignment="Center"/>
             <Button  Content="轮巡" 
                      Foreground="White" 
                      Background="#FF009FFF" 
-                     Style="{StaticResource GelButton }"  
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }"  
                      Margin="130,0,0,0" Width="75"  Height="35"
                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button  Content="生成窗口" 
                      Foreground="White" 
                      Background="#FF009FFF" 
-                     Style="{StaticResource GelButton }" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
                      Margin="230,0,0,0" Width="75"  Height="35"
                      HorizontalAlignment="Left"  VerticalAlignment="Center"/>
             <Button  Content="关闭平台窗口"
                      Foreground="White" 
                      Background="#FF009FFF" 
-                     Style="{StaticResource GelButton }" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
                      Margin="0,0,30,0" Width="100"  Height="35"
                      HorizontalAlignment="Right"  VerticalAlignment="Center"/>
         </Grid>
         <Grid  Grid.Row="1">
+            <controls:Accordion  HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
+                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Text="摄像机列表" Foreground="White"  Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer  VerticalScrollBarVisibility="Auto">
+                            <Grid >
+                                
+                            </Grid>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                    Text="场景列表" Foreground="White"
+                                    Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock 
+                                   TextWrapping="Wrap"
+                                   Width="600"/>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="轮巡" Foreground="White"
+                                    Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock 
+                                   TextWrapping="Wrap"
+                                   Width="600"/>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+                <controls:AccordionItem Background="#FF393939" BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="计划轮巡" Foreground="White"
+                                    Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock 
+                                   TextWrapping="Wrap"
+                                   Width="600" />
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+            </controls:Accordion>
         </Grid>
 
     </Grid>

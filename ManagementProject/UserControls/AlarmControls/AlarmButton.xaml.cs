@@ -114,7 +114,8 @@ namespace ManagementProject.UserControls
 
         private void AlarmPageInit(object obj)
         {
-            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+            GlobalVariable.AlarmPageType = AlarmType;
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";           
             mainWindowViewModel.mainWindowMenuViewModel.HiddenMenu();
         }
 

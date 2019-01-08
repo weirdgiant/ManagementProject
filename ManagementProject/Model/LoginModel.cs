@@ -9,10 +9,11 @@ namespace ManagementProject.Model
 {
     public class LoginModel : INotifyPropertyChangedClass
     {
+       
+        private string _username;
         /// <summary>
         /// 用户名
         /// </summary>
-        private string _username;
         public string UserName
         {
             get
@@ -25,11 +26,11 @@ namespace ManagementProject.Model
                 NotifyPropertyChanged("UserName");
             }
         }
-
+    
+        private string _password;
         /// <summary>
         /// 用户密码
         /// </summary>
-        private string _password;
         public string PassWord
         {
             get
@@ -44,6 +45,9 @@ namespace ManagementProject.Model
         }
 
         private string _phoneNumber;
+        /// <summary>
+        /// 电话
+        /// </summary>
         public string PhoneNumber
         {
             get
@@ -58,6 +62,9 @@ namespace ManagementProject.Model
         }
 
         private string _mailAdress;
+        /// <summary>
+        /// 邮箱
+        /// </summary>
         public string MailAdress
         {
             get
@@ -68,6 +75,56 @@ namespace ManagementProject.Model
             {
                 _mailAdress = value;
                 NotifyPropertyChanged("MailAdress");
+            }
+        }
+
+        private string _company;
+        /// <summary>
+        /// 公司
+        /// </summary>
+        public string Company
+        {
+            get
+            {
+                return _company;
+            }
+            set
+            {
+                _company = value;
+                NotifyPropertyChanged("Company");
+            }
+        }
+        private string _copyright;
+        /// <summary>
+        /// 版权
+        /// </summary>
+        public string Copyright
+        {
+            get
+            {
+                return _copyright;
+            }
+            set
+            {
+                _copyright = value;
+                NotifyPropertyChanged("Copyright");
+            }
+        }
+
+        private string _version;
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                _version = value;
+                NotifyPropertyChanged("Version");
             }
         }
     }

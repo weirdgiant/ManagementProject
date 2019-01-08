@@ -13,6 +13,8 @@ namespace ManagementProject.ViewModel
         public DelegateCommand OpenAddTrackerCommand { get; set; }
         public DelegateCommand AddWinCloseCommand { get; set; }
         public DelegateCommand CloseCommand { get; set; }
+        public DelegateCommand SelectCameraCommand { get; set; }
+        public DelegateCommand CreatNewTrackerCommand { get; set; }
         public TrackManagementViewModel()
         {
             OpenAddTrackerCommand = new DelegateCommand();
@@ -21,7 +23,10 @@ namespace ManagementProject.ViewModel
             AddWinCloseCommand.ExecuteCommand = new Action<object>(AddWinClose);
             CloseCommand = new DelegateCommand();
             CloseCommand.ExecuteCommand = new Action<object>(Close);
-
+            SelectCameraCommand = new DelegateCommand();
+            SelectCameraCommand.ExecuteCommand = new Action<object>(SelectCamera);
+            CreatNewTrackerCommand = new DelegateCommand();
+            CreatNewTrackerCommand.ExecuteCommand = new Action<object>(CreatNewTracker);
         }
         /// <summary>
         /// 打开AddTracker
@@ -51,15 +56,23 @@ namespace ManagementProject.ViewModel
             AddTracker win = (AddTracker)obj;
             win.Close();
         }
-
+        /// <summary>
+        /// Addtracker选择摄像机
+        /// </summary>
+        /// <param name="obj"></param>
         private void SelectCamera(object obj)
         {
 
         }
 
-        private void NewTracker(object obj)
+        /// <summary>
+        /// Addtracker确定
+        /// </summary>
+        /// <param name="obj"></param>
+        private void CreatNewTracker(object obj)
         {
-
+            AddTracker win = (AddTracker)obj;
+            win.Close();
         }
     }
 }

@@ -24,6 +24,7 @@ namespace ManagementProject.ViewModel
         {
             PhoneNumber = "021-65691583";
             MailAdress = "inquir@mangocosmos.com";
+            Version= System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
         private void LoginOK(object obj)
         {

@@ -33,6 +33,8 @@ namespace ManagementProject
 
 
         //PageStatus
+
+        public static AlarmType AlarmPageType;
     }
     
 

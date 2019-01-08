@@ -25,4 +25,15 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+    public class DisposalPlanModel:INotifyPropertyChangedClass
+    {
+
+    }
+    public class DisposalPlanViewModel:DisposalPlanModel
+    {
+        public DisposalPlanViewModel()
+        {
+
+        }
+    }
 }

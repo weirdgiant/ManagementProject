@@ -28,7 +28,8 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <UserControls:AlarmCarInfo Grid.Row="1"/>
+            <Grid Name="panel1"  Grid.Row="0"/>
+            <Grid Name="panel2" Grid.Row="1"/>
             <UserControls:DisposalPlan Grid.Row="2"/>
         </Grid>
         <Grid  Grid.Column="2">

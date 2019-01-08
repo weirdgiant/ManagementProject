@@ -1,5 +1,4 @@
-﻿using ManagementProject.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,18 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementProject.FunctionalWindows
+namespace ManagementProject.UserControls
 {
     /// <summary>
-    /// TrackManagement.xaml 的交互逻辑
+    /// WaterMessage.xaml 的交互逻辑
     /// </summary>
-    public partial class TrackManagement : Window
+    public partial class WaterMessage : UserControl
     {
-        public TrackManagement()
+        public WaterMessage()
         {
             InitializeComponent();
+        }
+    }
+    public class WaterMessageModel:INotifyPropertyChangedClass
+    {
+
+    }
+    public class WaterMessageViewModel:WaterMessageModel
+    {
+        public WaterMessageViewModel()
+        {
+
         }
     }
 }

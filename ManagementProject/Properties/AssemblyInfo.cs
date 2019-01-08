@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("ManagementProject")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("上海芒宇信息科技有限公司")]
 [assembly: AssemblyProduct("ManagementProject")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("© 版权所有")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
