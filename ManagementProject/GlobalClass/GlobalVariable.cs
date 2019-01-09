@@ -33,7 +33,9 @@ namespace ManagementProject
 
 
         //PageStatus
-
+        /// <summary>
+        /// 报警页面类型
+        /// </summary>
         public static AlarmType AlarmPageType;
     }
     
@@ -110,5 +112,20 @@ namespace ManagementProject
         /// 车辆警报
         /// </summary>
         CarAlarm
+    }
+
+    /// <summary>
+    /// 播放器大小状态
+    /// </summary>
+    public enum PlayerState
+    {
+        /// <summary>
+        /// 正常状态
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// 最大化状态
+        /// </summary>
+        Max
     }
 }

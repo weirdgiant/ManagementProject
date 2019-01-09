@@ -40,7 +40,9 @@
             <Button x:Name="button" Command="{Binding MainPageReturnCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" VerticalAlignment="Stretch" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Grid.Row="1">
                 <TextBlock Text="返回" TextWrapping="Wrap" Width="16" Foreground="White" FontSize="16"/>
             </Button>
-            <StackPanel Margin="0,0,0,0" />
+            <StackPanel Name="btpanel" Margin="0,0,0,0" >
+ 
+            </StackPanel>
         </Grid>
 
     </Grid>

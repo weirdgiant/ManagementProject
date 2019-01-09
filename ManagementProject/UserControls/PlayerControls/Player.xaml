@@ -22,6 +22,7 @@
             VerticalOffset="-40">
             <Grid Margin="0,0,0,0" >
                 <StackPanel  Orientation="Horizontal">
+                    <Grid Width="10"/>
                     <Grid >
                         <Button Width="30" 
                                 Height="30" 

@@ -23,6 +23,17 @@ namespace ManagementProject.ViewModel
             MainPageReturnCommand.ExecuteCommand = new Action<object>(MainPageReturn);
         }
 
+        private void InitControl()
+        {
+            alarmCarInfoViewModel = new AlarmCarInfoViewModel();
+            disposalPlanViewModel = new DisposalPlanViewModel();
+            waterMessageViewModel = new WaterMessageViewModel();
+        }
+
+        /// <summary>
+        /// 返回主页
+        /// </summary>
+        /// <param name="obj"></param>
         private void MainPageReturn(object obj)
         {
             mainWindowViewModel.LoadMainPage();

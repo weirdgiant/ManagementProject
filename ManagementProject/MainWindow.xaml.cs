@@ -81,23 +81,6 @@ namespace ManagementProject
             }
 
         }
-        
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-           
-            if (GlobalVariable.PlayerWindowIsOpened==false)
-            {
-                PlayerWindow newwindow = new PlayerWindow(PlayerWindowType.Track );
-                newwindow.Topmost = true;
-                newwindow.Owner = this;
-                newwindow.WindowStartupLocation = WindowStartupLocation.Manual;
-                newwindow.Left = 23;
-                newwindow.Top = 165;
-                newwindow.Show();
-                GlobalVariable.PlayerWindowIsOpened = true;
-            }
-           
-        }
 
     }
 }

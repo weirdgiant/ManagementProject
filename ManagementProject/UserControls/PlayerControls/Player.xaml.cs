@@ -109,6 +109,20 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("IsPlayback");
             }
         }
+
+        private PlayerState _state;
+        public PlayerState State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+                NotifyPropertyChanged("State");
+            }
+        }
     }
 
     public class PlayerViewModel:PlayerModel
@@ -182,14 +196,27 @@ namespace ManagementProject.UserControls
         /// <param name="obj"></param>
         private void FullScreen(object obj)
         {
-           // MessageBox.Show("这是全屏按键！");
-            Window w = new Window();
-            w.WindowState = WindowState.Maximized;
-            w.WindowStyle = WindowStyle.None;
-            Player p = new Player (Ptype);
-            p.DataContext = this;
-            w.Content = p;
-            w.Show();
+            if (State == PlayerState.Max )
+            {
+                State = PlayerState.Normal;
+            }
+            else
+            {
+                Window w = new Window();
+                w.WindowState = WindowState.Maximized;
+                w.WindowStyle = WindowStyle.None;
+                //w.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD2D2D2"));
+                Player p = new Player(Ptype);
+                p.DataContext = this;
+                Grid grid = new Grid();
+                grid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD2D2D2"));
+                grid.Children.Add(p);
+                p.Margin = new Thickness(0);
+                w.Content = grid;
+                w.Show();
+                State = PlayerState.Max;
+            }
+           
         }
         /// <summary>
         /// 拍照
