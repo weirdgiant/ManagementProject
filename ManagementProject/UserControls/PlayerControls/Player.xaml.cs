@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.FunctionalWindows;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -199,22 +200,24 @@ namespace ManagementProject.UserControls
             if (State == PlayerState.Max )
             {
                 State = PlayerState.Normal;
+                Window w = (Window)obj;
+                w.Close();
             }
             else
             {
+                State = PlayerState.Max;
                 Window w = new Window();
                 w.WindowState = WindowState.Maximized;
                 w.WindowStyle = WindowStyle.None;
-                //w.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD2D2D2"));
                 Player p = new Player(Ptype);
+                
                 p.DataContext = this;
                 Grid grid = new Grid();
-                grid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD2D2D2"));
+                grid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C5C5C"));
                 grid.Children.Add(p);
                 p.Margin = new Thickness(0);
                 w.Content = grid;
                 w.Show();
-                State = PlayerState.Max;
             }
            
         }
@@ -256,7 +259,28 @@ namespace ManagementProject.UserControls
         /// <param name="obj"></param>
         private void Playback(object obj)
         {
-            MessageBox.Show("这是回放！");
+            if (GlobalVariable.PlayerWindowIsOpened == false)
+            {
+                PlayerWindow newWin = new PlayerWindow(PlayerWindowType.Playerback);
+                newWin.Topmost = true;
+                newWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                newWin.Left = 23;
+                newWin.Top = 165;
+                newWin.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
+            else
+            {
+                PlayerWindow w = (PlayerWindow)obj;
+                w.Close();
+                PlayerWindow newWin = new PlayerWindow(PlayerWindowType.Playerback);
+                newWin.Topmost = true;
+                newWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                newWin.Left = 23;
+                newWin.Top = 165;
+                newWin.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
         }
         /// <summary>
         /// 追踪
@@ -264,7 +288,28 @@ namespace ManagementProject.UserControls
         /// <param name="obj"></param>
         private void Track(object obj)
         {
-            MessageBox.Show("这是追踪！");
+            if (GlobalVariable.PlayerWindowIsOpened == false)
+            {
+                PlayerWindow newWin = new PlayerWindow(PlayerWindowType.Track);
+                newWin.Topmost = true;
+                newWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                newWin.Left = 23;
+                newWin.Top = 165;
+                newWin.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
+            else
+            {
+                PlayerWindow w = (PlayerWindow)obj;
+                w.Close();
+                PlayerWindow newWin = new PlayerWindow(PlayerWindowType.Track);
+                newWin.Topmost = true;
+                newWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                newWin.Left = 23;
+                newWin.Top = 165;
+                newWin.Show();
+                GlobalVariable.PlayerWindowIsOpened = true;
+            }
         }
     }
 }

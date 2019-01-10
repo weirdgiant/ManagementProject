@@ -183,6 +183,12 @@
     <Compile Include="UserControls\AlarmControls\AlarmTabControl.xaml.cs">
       <DependentUpon>AlarmTabControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmMainPage.xaml.cs">
+      <DependentUpon>AlarmMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTrackPage.xaml.cs">
+      <DependentUpon>AlarmTrackPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MainPageControls\CameraInfoButton.xaml.cs">
       <DependentUpon>CameraInfoButton.xaml</DependentUpon>
     </Compile>
@@ -322,6 +328,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AlarmControls\AlarmTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTrackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

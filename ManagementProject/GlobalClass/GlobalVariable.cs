@@ -38,12 +38,12 @@ namespace ManagementProject
         /// </summary>
         public static AlarmType AlarmPageType;
     }
-    
+    #region 枚举类
 
     /// <summary>
     /// 播放窗口类型
     /// </summary>
-   public enum PlayerWindowType
+    public enum PlayerWindowType
     {
         /// <summary>
         /// 回放
@@ -128,4 +128,5 @@ namespace ManagementProject
         /// </summary>
         Max
     }
+    #endregion
 }

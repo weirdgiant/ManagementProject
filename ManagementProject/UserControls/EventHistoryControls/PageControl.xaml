@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" Height="33.5">
     <Grid >
         <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0" Width="281" Orientation="Horizontal">
-            <ComboBox HorizontalAlignment="Left" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <ComboBox HorizontalAlignment="Left" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">
                 <ComboBoxItem Content="50条/页" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <ComboBoxItem Content="100条/页" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </ComboBox>
@@ -16,13 +16,13 @@
             <Label  Content="条" HorizontalAlignment="Left" Foreground="White" VerticalContentAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="504">
-            <Button Content="首页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
-            <Button Content="上一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch" />
+            <Button Content="首页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Center"/>
+            <Button Content="上一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Center" />
             <Grid ></Grid>
-            <Button Content="下一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
-            <Button Content="尾页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Stretch"/>
+            <Button Content="下一页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Center"/>
+            <Button Content="尾页" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White" VerticalAlignment="Center"/>
             <Label  Content="到" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
-            <TextBox TextWrapping="Wrap"  Width="54" VerticalContentAlignment="Center" Margin="0,0,0,0" HorizontalContentAlignment="Center" />
+            <TextBox TextWrapping="Wrap"  Width="54" VerticalContentAlignment="Center" Margin="0,0,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
             <Label  Content="页" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,0,0" />
             <Button Content="跳转" Margin="0,0,0,0" Style="{StaticResource  {x:Static ToolBar.ButtonStyleKey}}" Foreground="White"/>
         </StackPanel>

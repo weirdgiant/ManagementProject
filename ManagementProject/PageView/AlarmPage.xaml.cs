@@ -59,25 +59,34 @@ namespace ManagementProject.PageView
         /// </summary>
         private void InitFireAlarmControls()
         {
-
+            AlarmMainPage alarmMainPage = new AlarmMainPage();
+            alarmMainPage.DataContext = AlarmPageViewModel;
+            mianGrid.Children.Add(alarmMainPage);
         }
         /// <summary>
         /// 初始化水压报警控件
         /// </summary>
         private void InitWaterAlarmControls()
         {
+            AlarmMainPage alarmMainPage = new AlarmMainPage();
+            alarmMainPage.DataContext = AlarmPageViewModel;
             WaterMessage waterMessage = new WaterMessage();
             waterMessage.DataContext = AlarmPageViewModel.waterMessageViewModel;
-            panel2.Children.Add(waterMessage);
+            alarmMainPage.panel2.Children.Add(waterMessage);
+            mianGrid.Children.Add(alarmMainPage);
         }
         /// <summary>
         /// 初始化车辆报警控件
         /// </summary>
         private void InitCarAlarmControls()
         {
+            AlarmMainPage alarmMainPage = new AlarmMainPage();
+            alarmMainPage.DataContext = AlarmPageViewModel;
+
             AlarmCarInfo alarmCarInfo = new AlarmCarInfo();
             alarmCarInfo.DataContext = AlarmPageViewModel.alarmCarInfoViewModel;
-            panel2.Children.Add(alarmCarInfo);
+            alarmMainPage.panel2.Children.Add(alarmCarInfo);
+            mianGrid.Children.Add(alarmMainPage);
         }
     }
 }

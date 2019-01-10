@@ -43,6 +43,7 @@
                      Background="#FF009FFF" 
                      BorderBrush="{x:Null}"
                      Style="{StaticResource FilletButton }" 
+                     Command="{Binding CreatNewWinCommand}"
                      Margin="230,0,0,0" Width="75"  Height="35"
                      HorizontalAlignment="Left"  VerticalAlignment="Center"/>
             <Button  Content="关闭平台窗口"
@@ -50,6 +51,7 @@
                      Background="#FF009FFF" 
                      BorderBrush="{x:Null}"
                      Style="{StaticResource FilletButton }" 
+                     Command="{Binding CloseAllWinCommand}"
                      Margin="0,0,30,0" Width="100"  Height="35"
                      HorizontalAlignment="Right"  VerticalAlignment="Center"/>
         </Grid>

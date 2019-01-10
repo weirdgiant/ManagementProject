@@ -30,10 +30,8 @@ namespace ManagementProject.FunctionalWindows
             InitPanel(type);
             PlayerWindowViewModel = new PlayerWindowViewModel(playerPanel,type);
             DataContext = PlayerWindowViewModel;
-
             Closing += PlayerWindow_Closing;
-           // MouseLeftButtonDown += PlayerWindow_MouseLeftButtonDown;
-            
+           // MouseLeftButtonDown += PlayerWindow_MouseLeftButtonDown;          
         }
 
 
@@ -52,21 +50,6 @@ namespace ManagementProject.FunctionalWindows
         private void PlayerWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             GlobalVariable.PlayerWindowIsOpened = false;
-        }
-
-        private void closebt_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void minbt_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void recoverbt_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Maximized;
         }
     }
 }

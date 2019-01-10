@@ -4,35 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ManagementProject.PageView"
-      xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.PageView.AlarmPage"
+      xmlns:UserControls="clr-namespace:ManagementProject.UserControls" 
+      x:Class="ManagementProject.PageView.AlarmPage"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AlarmPage">
 
-    <Grid Background="#FF1C1C1C">
+    <Grid  Background="#FF1C1C1C">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
-            <Grid Name="panel1"  Grid.Row="0"/>
-            <Grid Name="panel2" Grid.Row="1"/>
-            <UserControls:DisposalPlan Grid.Row="2"/>
-        </Grid>
-        <Grid  Grid.Column="2">
+        <Grid Name="mianGrid" Grid.Column="0"/>
+        <Grid  Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="75"/>
@@ -40,9 +24,14 @@
             <Button x:Name="button" Command="{Binding MainPageReturnCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" VerticalAlignment="Stretch" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Grid.Row="1">
                 <TextBlock Text="返回" TextWrapping="Wrap" Width="16" Foreground="White" FontSize="16"/>
             </Button>
-            <StackPanel Name="btpanel" Margin="0,0,0,0" >
- 
-            </StackPanel>
+            <RadioButton  Style="{StaticResource RadioStyle }"
+                          Foreground="White"  VerticalAlignment="Top" Height="75">
+                <Label  Content="主&#x000A;场&#x000A;景" Foreground="White" VerticalContentAlignment="Center"/>
+            </RadioButton>
+            <RadioButton  Style="{StaticResource RadioStyle }"
+                          Foreground="White" VerticalAlignment="Top" Height="75" Margin="0,75,0,0">
+                <Label  Content="追&#x000A;踪" Foreground="White" VerticalContentAlignment="Center"/>
+            </RadioButton>
         </Grid>
 
     </Grid>
