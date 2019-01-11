@@ -264,7 +264,7 @@ __pycache__/
 
 # User-specific files
 
-!*.dll
+*.dll
 
 # Re-instate the build folder that is excluded in the default .gitignore
 

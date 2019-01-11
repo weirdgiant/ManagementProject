@@ -26,11 +26,11 @@
             </Button>
             <RadioButton  Style="{StaticResource RadioStyle }"
                           Foreground="White"  VerticalAlignment="Top" Height="75">
-                <Label  Content="主&#x000A;场&#x000A;景" Foreground="White" VerticalContentAlignment="Center"/>
+                <Label  Content="主&#x000A;场&#x000A;景" Foreground="White" VerticalContentAlignment="Center" Width="40" HorizontalContentAlignment="Center"/>
             </RadioButton>
             <RadioButton  Style="{StaticResource RadioStyle }"
                           Foreground="White" VerticalAlignment="Top" Height="75" Margin="0,75,0,0">
-                <Label  Content="追&#x000A;踪" Foreground="White" VerticalContentAlignment="Center"/>
+                <Label  Content="追&#x000A;踪" Foreground="White" VerticalContentAlignment="Center" Width="40" HorizontalContentAlignment="Center"/>
             </RadioButton>
         </Grid>
 
