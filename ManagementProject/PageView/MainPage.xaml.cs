@@ -29,7 +29,6 @@ namespace ManagementProject.PageView
         public MainPage()
         {
             InitializeComponent();
-            choosetb.message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
             MainPageInit();
             ControlInit();
             button2.Click += Button2_Click;
@@ -68,11 +67,5 @@ namespace ManagementProject.PageView
             waterAlarmbt .DataContext = mainPageViewModel.waterAlarmViewModel ; 
         }
 
-        private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            SchoolMessage scm = new SchoolMessage();
-            scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            scm.ShowDialog();
-        }
     }
 }

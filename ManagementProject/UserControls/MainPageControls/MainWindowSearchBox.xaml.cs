@@ -25,4 +25,28 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+
+    public class MainWindowSearchModel:INotifyPropertyChangedClass
+    {
+        private bool _isOpened;
+        public bool IsOpened
+        {
+            get
+            {
+                return _isOpened;
+            }
+            set
+            {
+                _isOpened = value;
+                NotifyPropertyChanged("IsOpened");
+            }
+        }
+    }
+    public class MainWindowSearchViewModel:MainWindowSearchModel
+    {
+        public MainWindowSearchViewModel()
+        {
+
+        }
+    }
 }

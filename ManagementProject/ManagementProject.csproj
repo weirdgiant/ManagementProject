@@ -232,6 +232,9 @@
     <Compile Include="UserControls\MainPageControls\SchoolMessage.xaml.cs">
       <DependentUpon>SchoolMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackerInfoItem.xaml.cs">
+      <DependentUpon>TrackerInfoItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TrackPageControls\TrackerInfoControl.xaml.cs">
       <DependentUpon>TrackerInfoControl.xaml</DependentUpon>
     </Compile>
@@ -391,6 +394,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TrackPageControls\TrackerInfoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TrackPageControls\TrackerInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -483,6 +490,8 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ImageSource\Icon\TrackerIcon\有效时间.png" />
+    <Resource Include="ImageSource\Icon\TrackerIcon\车辆进入历史.png" />
     <Resource Include="ImageSource\Icon\TrackerIcon\活动添加.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-12.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-6.png" />

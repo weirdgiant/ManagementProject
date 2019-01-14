@@ -5,8 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF0072B7">
+            <Label Content="学科研讨会" FontSize="14" Foreground="White"  VerticalContentAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1" Background="#FF282828">
+            <Image HorizontalAlignment="Left" Width="30" Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/有效时间.png" Margin="10,10,0,8" VerticalAlignment="Center" />
+            <Label Margin="50,0,0,0" Content="有效时间：" FontSize="14" Foreground="White"  VerticalContentAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Border CornerRadius="5" Background="#FF009FFF" Margin="20,30,20,30" >
+                <Grid >
+                    <TextBlock Margin="30,30,0,45" Text="2018-07-10" FontSize="10"  Foreground="White"  HorizontalAlignment="Left" Width="70" />
+                    <TextBlock Margin="30,45,0,30" Text="06:30:00" FontSize="14"  Foreground="White"  HorizontalAlignment="Left" Width="70" />
+                    <TextBlock Margin="0,30,30,45" Text="2018-07-11" FontSize="10"  Foreground="White"  HorizontalAlignment="Right" Width="70" />
+                    <TextBlock Margin="0,45,30,30" Text="22:30:00" FontSize="14"  Foreground="White"  HorizontalAlignment="Right" Width="70" />
+                    <Border Height="1" Margin="114,44,126,45" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" />
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="3"  Background="#FF282828">
+            <Label Content="车辆进入历史" FontSize="14" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,50,0"/>
+            <Image HorizontalAlignment="Right" Width="30" Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/车辆进入历史.png" VerticalAlignment="Center" Margin="0,0,10,0" />
+        </Grid>
+        <ListView Grid.Row="4" Background="{x:Null}" BorderBrush="{x:Null}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <local:TrackerInfoItem />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

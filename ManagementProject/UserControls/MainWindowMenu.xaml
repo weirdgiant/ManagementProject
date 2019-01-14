@@ -7,7 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-        <ToggleButton  x:Name="menubt" IsChecked="{Binding IsOpened}" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="{Binding IsVisbility}" VerticalAlignment="Stretch">
+        <ToggleButton  x:Name="menubt" 
+                       IsChecked="{Binding IsOpened}" 
+                       Style="{StaticResource myToggleButton}"
+                       Background="{x:Null}" 
+                       BorderBrush="{x:Null}"
+                       Visibility="{Binding IsVisbility}" VerticalAlignment="Stretch">
             <Image Name="menubtimage" Source="{Binding MenubtIcon}" />
         </ToggleButton>
         <Popup PlacementTarget="{Binding ElementName=menubt}" 

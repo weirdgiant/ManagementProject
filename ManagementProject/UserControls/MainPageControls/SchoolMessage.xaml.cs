@@ -35,4 +35,30 @@ namespace ManagementProject.UserControls
             DragMove();
         }
     }
+
+    public class SchoolMesModel:INotifyPropertyChangedClass
+    {
+
+    }
+
+    public class SchoolMesViewModel:SchoolMesModel
+    {
+        public DelegateCommand CloseWinCommand { get; set; }
+        public DelegateCommand MoveWinCommand { get; set; }
+        public SchoolMesViewModel()
+        {
+            CloseWinCommand = new DelegateCommand();
+            CloseWinCommand.ExecuteCommand = new Action<object>(CloseWin);
+            MoveWinCommand = new DelegateCommand();
+            MoveWinCommand.ExecuteCommand = new Action<object>(MoveWin);
+        }
+        private void CloseWin (object obj)
+        {
+
+        }
+        private void MoveWin(object obj)
+        {
+
+        }
+    }
 }

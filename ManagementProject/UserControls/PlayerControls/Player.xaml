@@ -5,9 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:managementproject="clr-namespace:ManagementProject"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Name="player"
              d:DesignHeight="500" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonUp">
+            <i:InvokeCommandAction Command="{Binding ShowPopupCommand,Mode=TwoWay}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Name="bottomgrid" Background="#FF5C5C5C" Margin="5,5,5,5">
         <Grid.RowDefinitions>
             <RowDefinition/>

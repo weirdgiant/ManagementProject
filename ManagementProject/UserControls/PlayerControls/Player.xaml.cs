@@ -29,9 +29,7 @@ namespace ManagementProject.UserControls
         {
             InitializeComponent();
             PlayerViewModel = new PlayerViewModel(type);
-            DataContext = PlayerViewModel;
-            
-            bottomgrid.MouseLeftButtonDown += Player_MouseLeftButtonDown;
+            DataContext = PlayerViewModel;            
             SizeChanged += Player_SizeChanged;
 
           
@@ -56,19 +54,7 @@ namespace ManagementProject.UserControls
             PlayerViewModel.IsOpened = false;
         }
 
-        private void Player_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (PlayerViewModel.IsOpened== true)
-            {
-                PlayerViewModel.IsOpened = false;
-            }else
-            {
-                PlayerViewModel.IsOpened = false;
-                PlayerViewModel.IsOpened = true;
-            }
-            
-           
-        }
+
      
     }
     public class PlayerModel : INotifyPropertyChangedClass
@@ -128,6 +114,7 @@ namespace ManagementProject.UserControls
 
     public class PlayerViewModel:PlayerModel
     {
+        public DelegateCommand ShowPopupCommand { get; set; }
         public DelegateCommand FullScreenCommand { get; set; }
         public DelegateCommand PhotographCommand { get; set; }
         public DelegateCommand ZoomCommand { get; set; }
@@ -137,6 +124,8 @@ namespace ManagementProject.UserControls
         public DelegateCommand TrackCommand { get; set; }
         private void InitCommand()
         {
+            ShowPopupCommand = new DelegateCommand();
+            ShowPopupCommand.ExecuteCommand = new Action<object>(ShowPopup);
             FullScreenCommand = new DelegateCommand();
             FullScreenCommand.ExecuteCommand = new Action<object>(FullScreen);
 
@@ -187,10 +176,20 @@ namespace ManagementProject.UserControls
             }
         }
 
-        
+
+        private void ShowPopup(object obj)
+        {
+            if (IsOpened == true)
+            {
+                IsOpened = false;
+            }
+            else
+            {
+                IsOpened = true;
+            }
+        }
 
 
-       
         /// <summary>
         /// 全屏
         /// </summary>

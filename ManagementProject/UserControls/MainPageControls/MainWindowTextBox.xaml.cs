@@ -128,6 +128,7 @@ namespace ManagementProject.UserControls
     {
         public DelegateCommand DrapClickCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
+        public DelegateCommand ShowMesCommand { get; set; }
         public MainWindowTextBoxViewModel()
         {
             SchoolName = "国定路校区";
@@ -136,6 +137,8 @@ namespace ManagementProject.UserControls
             ItemSelectedCommand.ExecuteCommand = new Action<object>(ItemSelected);
             DrapClickCommand = new DelegateCommand();
             DrapClickCommand.ExecuteCommand = new Action<object>(DrapClick);
+            ShowMesCommand = new DelegateCommand();
+            ShowMesCommand.ExecuteCommand = new Action<object>(ShowMes);
             AddList();
         }
 
@@ -158,6 +161,13 @@ namespace ManagementProject.UserControls
             SchoolName = tb.SchoolName;
             IsOpened = false;
             SelectionIndex = -1;
+        }
+
+        private void ShowMes(object obj)
+        {
+            SchoolMessage scm = new SchoolMessage();
+            scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            scm.ShowDialog();
         }
 
         private void DrapClick(object obj)

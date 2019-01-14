@@ -52,7 +52,7 @@ namespace ManagementProject.UserControls
         }
         private void ShowClientInfo(object obj)
         {
-            MessageBox.Show(""+IsOpened);
+            //MessageBox.Show(""+IsOpened);
         }
     }
 }

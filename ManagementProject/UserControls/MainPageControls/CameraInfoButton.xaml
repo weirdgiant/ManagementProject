@@ -7,7 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <Grid>
-        <ToggleButton Name="bt" Background="{x:Null}" BorderBrush="{x:Null}" IsChecked="{Binding IsOpened}">
+        <ToggleButton Name="bt" 
+                      Background="{x:Null}" 
+                      BorderBrush="{x:Null}" 
+                      Style="{StaticResource myToggleButton}"
+                      IsChecked="{Binding IsOpened}">
             <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机异常.png" />
         </ToggleButton>
         <Popup  PlacementTarget="{Binding ElementName=bt}" 
