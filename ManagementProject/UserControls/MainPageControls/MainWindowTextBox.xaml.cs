@@ -28,12 +28,7 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
             DataContext = mainWindowTextBoxViewModel;
-        }
-        
-        private void Drapbt_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
+        }       
     }
 
     public class MainWindowTextBoxModel:INotifyPropertyChangedClass
@@ -166,6 +161,8 @@ namespace ManagementProject.UserControls
         private void ShowMes(object obj)
         {
             SchoolMessage scm = new SchoolMessage();
+            SchoolMesViewModel schoolMesViewModel = new SchoolMesViewModel();
+            scm.DataContext = schoolMesViewModel;
             scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             scm.ShowDialog();
         }

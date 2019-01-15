@@ -1,20 +1,27 @@
-﻿<Page x:Class="ManagementProject.PageView.TrackPage"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ManagementProject.PageView"
+      xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.PageView.TrackPage"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="TrackPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
         <Button HorizontalAlignment="Left" 
                 Style="{StaticResource GelButton}" Margin="50,0,0,50" 
                 Command="{Binding OpenTrackerCommand}"
                 VerticalAlignment="Bottom" Width="50" Height="50">
             <Image Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/活动添加.png" />
         </Button>
+
+        <UserControls:TrackerInfoControl Grid.Column="1" Margin="0,0,0,0"/>
 
     </Grid>
 </Page>

@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
          mc:Ignorable="d" 
-             Height="500" Width="600" MouseDown="UserControl_MouseDown" WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" >
+             Height="500" Width="600"  WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction Command="{Binding MoveWinCommand,Mode=TwoWay}" 
+                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid  Background="Transparent" Opacity="0.9">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -12,11 +20,15 @@
             <RowDefinition Height="91*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#FF2F2F2F" >
-            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" x:Name="closebt" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Click="closebt_Click" >
+            <Button 
+                Command="{Binding CloseWinCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30">
                 <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
             </Button>
         </Grid>
-      
+
 
         <Grid  Background="#FF2F2F2F" Grid.Row="1">
             <Label  Content="上海财经大学国定路校区"  VerticalAlignment="Top" Foreground="White"  FontSize="16" Margin="213,0,188,0" />
@@ -32,7 +44,30 @@
             <Label  Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid Margin="0,0,0,0" Grid.Row="2" Background="White"  />
+        <Grid Margin="0,0,0,0" Grid.Row="2" Background="White"  >
+           
+            <Image  HorizontalAlignment="Left" Height="27" Margin="94,27,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+            <Image  HorizontalAlignment="Left" Height="27" Margin="94,75,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+            <Image  HorizontalAlignment="Left" Height="27" Margin="94,128,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+            <Image  HorizontalAlignment="Left" Height="27" Margin="353,27,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+            <Image  HorizontalAlignment="Left" Height="27" Margin="353,75,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+            <Label  Content="普通摄像机" HorizontalAlignment="Left" Margin="131,29,0,0" VerticalAlignment="Top" />
+            <Label  Content="球机" HorizontalAlignment="Left" Margin="131,75,0,0" VerticalAlignment="Top" />
+            <Label  Content="感烟探测器" HorizontalAlignment="Left" Margin="131,128,0,0" VerticalAlignment="Top" />
+            <Label  Content="感温探测器" HorizontalAlignment="Left" Margin="390,29,0,0" VerticalAlignment="Top"/>
+            <Label  Content="手动报警按钮" HorizontalAlignment="Left" Margin="390,77,0,0" VerticalAlignment="Top" />
+            <Label  Content="88" HorizontalAlignment="Left" Margin="239,29,0,0" VerticalAlignment="Top"/>
+            <Label  Content="12" HorizontalAlignment="Left" Margin="239,75,0,0" VerticalAlignment="Top"/>
+            <Label  Content="23" HorizontalAlignment="Left" Margin="239,128,0,0" VerticalAlignment="Top"/>
+            <Label  Content="33" HorizontalAlignment="Left" Margin="505,29,0,0" VerticalAlignment="Top"/>
+            <Label  Content="34" HorizontalAlignment="Left" Margin="505,77,0,0" VerticalAlignment="Top"/>
+            <Label  Content="个" HorizontalAlignment="Left" Margin="268,29,0,0" VerticalAlignment="Top"/>
+            <Label  Content="个" HorizontalAlignment="Left" Margin="268,75,0,0" VerticalAlignment="Top"/>
+            <Label  Content="个" HorizontalAlignment="Left" Margin="268,128,0,0" VerticalAlignment="Top"/>
+            <Label  Content="个" HorizontalAlignment="Left" Margin="534,29,0,0" VerticalAlignment="Top"/>
+            <Label  Content="个" HorizontalAlignment="Left" Margin="534,77,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
 
     </Grid>
 </Window>

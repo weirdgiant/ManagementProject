@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="300">
-    <Grid>
+    <Grid Background="#FF3C3C3C" Opacity="0.9">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -36,11 +36,18 @@
             <Label Content="车辆进入历史" FontSize="14" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,50,0"/>
             <Image HorizontalAlignment="Right" Width="30" Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/车辆进入历史.png" VerticalAlignment="Center" Margin="0,0,10,0" />
         </Grid>
-        <ListView Grid.Row="4" Background="{x:Null}" BorderBrush="{x:Null}" >
+        <ListView Grid.Row="4" ItemsSource="{Binding Items}" Background="{x:Null}" BorderBrush="{x:Null}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <local:TrackerInfoItem />
+                        <Border CornerRadius="5" Width="275" Background="#FF282828" Margin="5">
+                            <Grid  >
+                                <Label Content="{Binding Name}" FontSize="14" Foreground="#FF0072B7" Margin="0,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
+                                <Label Content="{Binding Time}" FontSize="12" Foreground="White"  Margin="0,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="139"/>
+                                <Label Content="车牌号" Foreground="White"  HorizontalAlignment="Right" Height="23" Margin="0,12,10,0" VerticalAlignment="Top"/>
+                                <Label Content="进入时间"  Foreground="White" Margin="0,36,10,10" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </Border>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -29,6 +29,9 @@ namespace ManagementProject.UserControls
     public class AlarmCarInfoModel:INotifyPropertyChangedClass
     {
         private string _alarmCarNumber;
+        /// <summary>
+        /// 车牌号
+        /// </summary>
         public string AlarmCarNumber
         {
             get
@@ -42,6 +45,9 @@ namespace ManagementProject.UserControls
             }
         }
         private string _alarmCarOwner;
+        /// <summary>
+        /// 车主
+        /// </summary>
         public string AlarmCarOwner
         {
             get
@@ -56,6 +62,9 @@ namespace ManagementProject.UserControls
         }
 
         private string _phoneNymber;
+        /// <summary>
+        /// 电话
+        /// </summary>
         public string PhoneNumber
         {
             get
@@ -70,6 +79,9 @@ namespace ManagementProject.UserControls
         }
 
         private string _department;
+        /// <summary>
+        /// 部门
+        /// </summary>
         public string Department
         {
             get
