@@ -523,6 +523,7 @@
     <Resource Include="ImageSource\Icon\AlarmIcon\火灾报警.png" />
     <Resource Include="ImageSource\Icon\AlarmIcon\车辆违停.png" />
     <Resource Include="ImageSource\Icon\AlarmIcon\folder.png" />
+    <Resource Include="ImageSource\Icon\History\下载.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -57,7 +57,7 @@ namespace ManagementProject
     /// <summary>
     /// 播放器状态
     /// </summary>
-    public enum PlayerControlTape
+    public enum PlayerControlType
     {
         /// <summary>
         /// 播放

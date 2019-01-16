@@ -31,7 +31,57 @@ namespace ManagementProject.UserControls
     }
     public class DisposalPlanViewModel:DisposalPlanModel
     {
+        public DelegateCommand OpenDisposalPlanCommand { get; set; }
+        public DelegateCommand HandleAlarmCommand { get; set; }
+        public DelegateCommand PressHandlingCommand { get; set; }
+        public DelegateCommand ShowMessageCommand { get; set; }
         public DisposalPlanViewModel()
+        {
+            InitCommand();
+        }
+
+        private void InitCommand()
+        {
+            OpenDisposalPlanCommand = new DelegateCommand();
+            OpenDisposalPlanCommand.ExecuteCommand = new Action<object>(OpenDisposalPlan);
+            HandleAlarmCommand = new DelegateCommand();
+            HandleAlarmCommand.ExecuteCommand = new Action<object>(HandleAlarm);
+            PressHandlingCommand = new DelegateCommand();
+            PressHandlingCommand.ExecuteCommand = new Action<object>(PressHandling);
+            ShowMessageCommand = new DelegateCommand();
+            ShowMessageCommand.ExecuteCommand = new Action<object>(ShowMessage);
+
+        }
+
+        /// <summary>
+        /// 打开预案文件
+        /// </summary>
+        /// <param name="obj"></param>
+        private void OpenDisposalPlan(object obj)
+        {
+
+        }
+        /// <summary>
+        /// 处理
+        /// </summary>
+        /// <param name="obj"></param>
+        private void HandleAlarm(object obj)
+        {
+
+        }
+        /// <summary>
+        /// 跟催
+        /// </summary>
+        /// <param name="obj"></param>
+        private void PressHandling(object obj)
+        {
+
+        }
+        /// <summary>
+        /// 消息
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ShowMessage(object obj)
         {
 
         }

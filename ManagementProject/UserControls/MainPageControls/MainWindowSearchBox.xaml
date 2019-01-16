@@ -18,7 +18,7 @@
             </StackPanel>
         </Border>
         <Popup IsOpen="true" 
-               StaysOpen="True" 
+               StaysOpen="False" 
                Placement="Bottom"  
                PlacementTarget="{Binding ElementName=bt}"  
                PopupAnimation="Scroll"

@@ -29,7 +29,7 @@
         <Button x:Name="startbt" ToolTip="{Binding StartBtToolTip}" Command="{Binding StartCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
             <Image Source="{Binding StartIcon}" />
         </Button>
-        <Button x:Name="endbt" IsEnabled="{Binding EndBtEnabled}"  ToolTip="结束" Command="{Binding EndCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" RenderTransformOrigin="0.225,0.508" Grid.Column="5">
+        <Button x:Name="endbt" IsEnabled="{Binding EndBtEnabled}"  ToolTip="结束" Command="{Binding EndCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="120,5,0,5" Width="40" Grid.Column="5">
             <Image Source="{Binding EndIcon}" />
         </Button>
         <ToggleButton x:Name="ratebt" 
@@ -41,11 +41,11 @@
                       Command="{Binding OpenContextMenuCommand}"    HorizontalAlignment="Left" Margin="202,14,0,14" Width="42" Grid.Column="5"  Height="Auto" Foreground="White"/>
         <Popup PlacementTarget="{Binding ElementName=ratebt}"   
                IsOpen="{Binding IsOpen,Mode=OneWay}" 
-               StaysOpen="{Binding IsOpen,Mode=OneWay}" 
+               StaysOpen="{Binding IsOpen,Mode=OneWay}"               
                Placement="Top" 
                AllowsTransparency="True">
-            <Grid >
-                <ListBox Name="listBox" ItemsSource="{Binding SelectionItemCollection}">
+            <Grid Background="#FF2A2A2A" Opacity="0.9">
+                <ListBox Name="listBox" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding SelectionItemCollection}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding RateSelectedCommand,Mode=TwoWay}"
@@ -57,7 +57,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical" >
                                 <Grid Height="5"/>
-                                <TextBlock Name="ItemName" Text="{Binding  Path=Header}" HorizontalAlignment="Center" FontSize="13"/>
+                                <TextBlock Name="ItemName" Text="{Binding  Path=Header}" Foreground="White" HorizontalAlignment="Center" FontSize="13"/>
                                 <Separator Width="42" Background="#FF393939" />
                             </StackPanel>
                         </DataTemplate>

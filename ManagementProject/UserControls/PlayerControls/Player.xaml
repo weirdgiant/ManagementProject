@@ -24,7 +24,7 @@
         <managementproject:CusPopup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
             AllowsTransparency="True"
             Placement="Bottom"
-            StaysOpen="{Binding IsOpened}"
+            StaysOpen="False"
             IsOpen="{Binding IsOpened}"
             VerticalOffset="-40">
             <Grid Margin="0,0,0,0" >

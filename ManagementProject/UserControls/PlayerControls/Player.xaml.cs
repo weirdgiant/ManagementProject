@@ -209,7 +209,6 @@ namespace ManagementProject.UserControls
                 w.WindowState = WindowState.Maximized;
                 w.WindowStyle = WindowStyle.None;
                 Player p = new Player(Ptype);
-                
                 p.DataContext = this;
                 Grid grid = new Grid();
                 grid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C5C5C"));

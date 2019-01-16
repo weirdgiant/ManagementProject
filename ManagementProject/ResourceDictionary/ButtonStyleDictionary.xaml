@@ -364,8 +364,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+    <SolidColorBrush x:Key="Button.Static.Background" Color="#FF818181"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF818181"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF1A8BDA"/>
     <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF1A8BDA"/>
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF1A8BDA"/>

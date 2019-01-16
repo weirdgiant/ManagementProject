@@ -35,10 +35,11 @@ namespace ManagementProject.UserControls
     public class PlayerControlModel : INotifyPropertyChangedClass
     {
         #region 变量定义
+
+        private string playbacktime;
         /// <summary>
         /// 播放时间
         /// </summary>
-        private string playbacktime;
         public string PlaybackTime
         {
             get
@@ -52,8 +53,8 @@ namespace ManagementProject.UserControls
             }
         }
 
-        private PlayerControlTape playerControlStatus;
-        public PlayerControlTape PlayerControlStatus
+        private PlayerControlType playerControlStatus;
+        public PlayerControlType PlayerControlStatus
         {
             get
             {
@@ -216,7 +217,7 @@ namespace ManagementProject.UserControls
         {
             EndType();
             StartBtToolTip = "播放";
-            PlayerControlStatus = PlayerControlTape.End;
+            PlayerControlStatus = PlayerControlType.End;
         }
 
         private void DelegateCommandInit()
@@ -235,6 +236,10 @@ namespace ManagementProject.UserControls
 
         }
 
+        /// <summary>
+        /// 打开倍率选择
+        /// </summary>
+        /// <param name="obj"></param>
         private void OpenContextMenu(object obj)
         {
             if (IsOpen)
@@ -250,6 +255,10 @@ namespace ManagementProject.UserControls
            
         }
 
+        /// <summary>
+        /// 选择倍率
+        /// </summary>
+        /// <param name="obj"></param>
         private void RateSelected(object obj)
         {
             SelectionItem item = (SelectionItem)obj;
@@ -257,32 +266,39 @@ namespace ManagementProject.UserControls
             IsOpen = false;
         }
 
+        /// <summary>
+        /// 开始&暂停
+        /// </summary>
+        /// <param name="obj"></param>
         private void Start(object obj)
         {
-            if (PlayerControlStatus == PlayerControlTape.End)
+            if (PlayerControlStatus == PlayerControlType.End)
             {
-                PlayerControlStatus = PlayerControlTape.Playback;
+                PlayerControlStatus = PlayerControlType.Playback;
                 StartBtToolTip = "暂停";
                 PauseType();
             }
-            else if (PlayerControlStatus == PlayerControlTape.Playback )
+            else if (PlayerControlStatus == PlayerControlType.Playback )
             {
-                PlayerControlStatus = PlayerControlTape.Pause;
+                PlayerControlStatus = PlayerControlType.Pause;
                 StartBtToolTip = "播放";
                 PlayBackType();
             }
-            else if (PlayerControlStatus == PlayerControlTape.Pause)
+            else if (PlayerControlStatus == PlayerControlType.Pause)
             {
-                PlayerControlStatus = PlayerControlTape.Playback;
+                PlayerControlStatus = PlayerControlType.Playback;
                 StartBtToolTip = "暂停";
                 PauseType();
             }
         }
-
+        /// <summary>
+        /// 停止
+        /// </summary>
+        /// <param name="obj"></param>
         private void End(object obj)
         {
             EndType();
-            PlayerControlStatus = PlayerControlTape.End;
+            PlayerControlStatus = PlayerControlType.End;
             StartBtToolTip = "播放";
         }
 
