@@ -3,9 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ManagementProject"
         mc:Ignorable="d"
-        Title="Login" Height="1080" Width="1920" WindowStyle="None" WindowState="Maximized"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="Login" Height="1080" Width="1920" WindowStyle="None" WindowState="Maximized" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MoveWinCommand,Mode=TwoWay}" 
+                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" >
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid Background="{StaticResource LoginGridBackground}">
         <Grid.RowDefinitions>

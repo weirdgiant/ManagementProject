@@ -27,13 +27,5 @@ namespace ManagementProject
             loginViewModel = new LoginViewModel();
             DataContext = loginViewModel;
         }
-
-
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //窗口拖拽
-            this.DragMove();
-        }
     }
 }

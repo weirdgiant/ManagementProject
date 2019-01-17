@@ -23,7 +23,7 @@ namespace ManagementProject.ViewModel
         public DelegateCommand ShutDownCommand { get; set; }
         public DelegateCommand MinSizeCommand { get; set; }
 
-        private void CommandInit()
+        private void InitCommand()
         {
             ShowCommand = new DelegateCommand();
             ShowCommand.ExecuteCommand = new Action<object>(LoadedCommand);
@@ -33,7 +33,7 @@ namespace ManagementProject.ViewModel
             MinSizeCommand.ExecuteCommand = new Action<object>(MinSize);
         }
 
-        public MainWindowViewModel()
+        private void InitViewModel()
         {
             ///初始化菜单VM
             mainWindowMenuViewModel = new MainWindowMenuViewModel(this);
@@ -43,7 +43,12 @@ namespace ManagementProject.ViewModel
             mainPageViewModel = new MainPageViewModel(this);
             ///初始化拼控VM
             collagePageViewModel = new CollagePageViewModel(this);
-            CommandInit();
+        }
+
+        public MainWindowViewModel()
+        {
+            InitViewModel();
+            InitCommand();
         }
         
         #region LoadedCommand
@@ -63,12 +68,17 @@ namespace ManagementProject.ViewModel
             mainWindowMenuViewModel.ShowMenu();
         }
 
+        /// <summary>
+        /// 加载标题栏名称
+        /// </summary>
         private void LoadTitle()
         {
             string titletext = ConfigurationManager.AppSettings["TitleText"];
             TitleName= titletext;            
         }
-
+        /// <summary>
+        /// 开启标题栏定时器
+        /// </summary>
         public void TimerStart()
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -81,13 +91,20 @@ namespace ManagementProject.ViewModel
             NowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
         #endregion
-
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="obj"></param>
         private void ShutDown(object obj)
         {
             MainWindow main = (MainWindow)obj;
             Application.Current.Shutdown();
             main.Close();
         }
+        /// <summary>
+        /// 最小化
+        /// </summary>
+        /// <param name="obj"></param>
         private void MinSize(object obj)
         {
             MainWindow main=(MainWindow)obj;

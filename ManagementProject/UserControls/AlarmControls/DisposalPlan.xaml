@@ -14,7 +14,11 @@
         </Grid.RowDefinitions>
         <Label Content="报警处置预案" FontSize="18"  HorizontalAlignment="Left" Margin="5,5,0,0" Foreground="White"  VerticalAlignment="Top"/>
         <ListBox x:Name="listBox" Margin="5,5,5,5" Grid.Row="1" Background="#FF1C1C1C" BorderBrush="{x:Null}">
-            <ListBoxItem Content="ListBoxItem"/>
+            <ListBoxItem Height="63" >
+                <Grid >
+                    <Label Content="1、选择短信或者电话通知报告相关领导，确保通知到位。" FontSize="14" Foreground="White" />
+                </Grid>
+            </ListBoxItem>
         </ListBox>
         <Button  Margin="0,5,5,0" 
                  Style="{StaticResource GelButton}" 

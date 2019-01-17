@@ -524,6 +524,19 @@
     <Resource Include="ImageSource\Icon\AlarmIcon\车辆违停.png" />
     <Resource Include="ImageSource\Icon\AlarmIcon\folder.png" />
     <Resource Include="ImageSource\Icon\History\下载.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\喷淋泵.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\建筑物.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\感温火灾探测器.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\感烟火灾探测器.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\报警按钮.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\摄像机白.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\普通摄像机.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\校区.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\泵房水压.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\球形摄像机.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\球机白.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\道路交通.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\齿轮.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

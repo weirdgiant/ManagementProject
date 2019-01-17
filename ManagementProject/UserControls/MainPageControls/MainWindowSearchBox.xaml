@@ -29,7 +29,7 @@
                     <Grid.Resources>
                         <ResourceDictionary Source="/ManagementProject;component/ResourceDictionary/CustomAccordion.xaml" />
                     </Grid.Resources>
-                    <controls:Accordion  HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
+                    <controls:Accordion   HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
                         <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
                             <controls:AccordionItem.Header>
                                 <Grid HorizontalAlignment="Stretch" Margin="0 0 0 4">

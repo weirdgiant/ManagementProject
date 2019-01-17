@@ -12,6 +12,7 @@ namespace ManagementProject.ViewModel
     {
         public DelegateCommand LoginOKCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
+        public DelegateCommand MoveWinCommand { get; set; }
         public LoginViewModel()
         {
             Init();
@@ -20,6 +21,8 @@ namespace ManagementProject.ViewModel
 
             CancelCommand = new DelegateCommand();
             CancelCommand.ExecuteCommand = new Action<object>(Cancel);
+            MoveWinCommand = new DelegateCommand();
+            MoveWinCommand.ExecuteCommand = new Action<object>(MoveWin);
         }
         private void Init()
         {
@@ -46,6 +49,15 @@ namespace ManagementProject.ViewModel
             {
                 Login login = (Login)obj;
                 login.Close();
+            }
+        }
+
+        private void MoveWin(object obj)
+        {
+            if (obj != null)
+            {
+                Login login = (Login)obj;
+                login.DragMove();
             }
         }
 

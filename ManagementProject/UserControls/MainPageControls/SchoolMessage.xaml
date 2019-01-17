@@ -42,15 +42,16 @@
             <Label  Content="26"  Foreground="White" HorizontalAlignment="Left" Margin="380,75,0,0" VerticalAlignment="Top"/>
             <Label  Content="李某某"  Foreground="White" HorizontalAlignment="Left" Margin="133,155,0,0" VerticalAlignment="Top"/>
             <Label  Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
+            <Image HorizontalAlignment="Left" Margin="188,5,0,0" VerticalAlignment="Top" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/校区.png" Height="20" Width="20"/>
         </Grid>
 
         <Grid Margin="0,0,0,0" Grid.Row="2" Background="White"  >
-           
-            <Image  HorizontalAlignment="Left" Height="27" Margin="94,27,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
-            <Image  HorizontalAlignment="Left" Height="27" Margin="94,75,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
-            <Image  HorizontalAlignment="Left" Height="27" Margin="94,128,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
-            <Image  HorizontalAlignment="Left" Height="27" Margin="353,27,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
-            <Image  HorizontalAlignment="Left" Height="27" Margin="353,75,0,0" VerticalAlignment="Top" Width="32" Source="/ManagementProject;component/ImageSource/Icon/admin.png"/>
+
+            <Image  HorizontalAlignment="Left" Height="23" Margin="100,27,0,0" VerticalAlignment="Top" Width="23" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/普通摄像机.png"/>
+            <Image  HorizontalAlignment="Left" Height="23" Margin="100,75,0,0" VerticalAlignment="Top" Width="23" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/球形摄像机.png"/>
+            <Image  HorizontalAlignment="Left" Height="23" Margin="100,128,0,0" VerticalAlignment="Top" Width="23" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/感烟火灾探测器.png"/>
+            <Image  HorizontalAlignment="Left" Height="23" Margin="360,27,0,0" VerticalAlignment="Top" Width="23" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/感温火灾探测器.png"/>
+            <Image  HorizontalAlignment="Left" Height="23" Margin="360,75,0,0" VerticalAlignment="Top" Width="23" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/报警按钮.png"/>
             <Label  Content="普通摄像机" HorizontalAlignment="Left" Margin="131,29,0,0" VerticalAlignment="Top" />
             <Label  Content="球机" HorizontalAlignment="Left" Margin="131,75,0,0" VerticalAlignment="Top" />
             <Label  Content="感烟探测器" HorizontalAlignment="Left" Margin="131,128,0,0" VerticalAlignment="Top" />

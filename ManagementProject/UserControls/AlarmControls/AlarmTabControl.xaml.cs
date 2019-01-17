@@ -25,4 +25,30 @@ namespace ManagementProject.UserControls
             InitializeComponent();
         }
     }
+    public class AlarmTabModel:INotifyPropertyChangedClass
+    {
+        private int _alarmCount;
+        /// <summary>
+        /// 报警数量
+        /// </summary>
+        public int AlarmCount
+        {
+            get
+            {
+                return _alarmCount;
+            }
+            set
+            {
+                _alarmCount = value;
+                NotifyPropertyChanged("AlarmCount");
+            }
+        }
+    }
+    public class AlarmTabViewModel:AlarmTabModel
+    {
+        public AlarmTabViewModel()
+        {
+
+        }
+    }
 }

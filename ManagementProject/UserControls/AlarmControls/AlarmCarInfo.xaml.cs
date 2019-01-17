@@ -28,6 +28,7 @@ namespace ManagementProject.UserControls
 
     public class AlarmCarInfoModel:INotifyPropertyChangedClass
     {
+        #region 报警车辆信息
         private string _alarmCarNumber;
         /// <summary>
         /// 车牌号
@@ -94,17 +95,21 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("Department");
             }
         }
+        #endregion
 
-        
+
     }
 
     public class AlarmCarInfoViewModel:AlarmCarInfoModel
     {
         public AlarmCarInfoViewModel()
         {
-
+            SetAlarmCarInfo();
         }
 
+        /// <summary>
+        /// 初始化报警车辆信息
+        /// </summary>
         public void SetAlarmCarInfo()
         {
             AlarmCarNumber = "京A02019";

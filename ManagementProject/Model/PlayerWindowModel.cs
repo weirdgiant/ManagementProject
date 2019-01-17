@@ -9,30 +9,30 @@ namespace ManagementProject.Model
 {
     public class PlayerWindowModel : INotifyPropertyChangedClass
     {
-        private Visibility windowType;
+        private Visibility _windowType;
         public Visibility WindowType
         {
             get
             {
-                return windowType;
+                return _windowType;
             }
             set
             {
-                windowType = value;
+                _windowType = value;
                 NotifyPropertyChanged("WindowType");
             }
         }
 
-        private string windowLogo;
+        private string _windowLogo;
         public string WindowLogo
         {
             get
             {
-                return windowLogo;
+                return _windowLogo;
             }
             set
             {
-                windowLogo = value;
+                _windowLogo = value;
                 NotifyPropertyChanged("WindowLogo");
             }
         }
