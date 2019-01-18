@@ -16,11 +16,24 @@ namespace ManagementProject.ViewModel
         public DisposalPlanViewModel disposalPlanViewModel { get; set; }
         public WaterMessageViewModel waterMessageViewModel { get; set; }
         public DelegateCommand MainPageReturnCommand { get; set; }
+        public DelegateCommand AlarmMainCommand { get; set; }
+        public DelegateCommand AlarmTrackerCommand { get; set; }
         public AlarmPageViewModel(MainWindowViewModel _mainWindowViewModel )
         {
             mainWindowViewModel = _mainWindowViewModel;
+            InitCommand();
+            InitControl();
+            LoadAlarmMain();
+        }
+
+        private void InitCommand()
+        {
             MainPageReturnCommand = new DelegateCommand();
             MainPageReturnCommand.ExecuteCommand = new Action<object>(MainPageReturn);
+            AlarmMainCommand = new DelegateCommand();
+            AlarmMainCommand.ExecuteCommand = new Action<object>(AlarmMain);
+            AlarmTrackerCommand = new DelegateCommand();
+            AlarmTrackerCommand.ExecuteCommand = new Action<object>(AlarmTracker);
         }
 
         private void InitControl()
@@ -28,6 +41,27 @@ namespace ManagementProject.ViewModel
             alarmCarInfoViewModel = new AlarmCarInfoViewModel();
             disposalPlanViewModel = new DisposalPlanViewModel();
             waterMessageViewModel = new WaterMessageViewModel();
+        }
+
+        /// <summary>
+        /// 主场景
+        /// </summary>
+        /// <param name="obj"></param>
+        private void AlarmMain(object obj)
+        {
+            LoadAlarmMain();
+        }
+        private void LoadAlarmMain()
+        {
+            PageUrl = "/ManagementProject;component/UserControls/AlarmControls/AlarmMainPage.xaml";
+        }
+        /// <summary>
+        /// 追踪
+        /// </summary>
+        /// <param name="obj"></param>
+        private void AlarmTracker(object obj)
+        {
+            PageUrl = "/ManagementProject;component/UserControls/AlarmControls/AlarmTrackPage.xaml";
         }
 
         /// <summary>

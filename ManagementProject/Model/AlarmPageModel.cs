@@ -22,5 +22,19 @@ namespace ManagementProject.Model
             }
         }
 
+        private string _pageUrl;
+        public string PageUrl
+        {
+            get
+            {
+                return _pageUrl;
+            }
+            set
+            {
+                _pageUrl = value;
+                NotifyPropertyChanged("PageUrl");
+            }
+        }
+
     }
 }

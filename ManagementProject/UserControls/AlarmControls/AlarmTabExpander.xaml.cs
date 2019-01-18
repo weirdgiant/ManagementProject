@@ -1,5 +1,4 @@
-﻿using ManagementProject.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace ManagementProject.UserControls
 {
     /// <summary>
-    /// AlarmMainPage.xaml 的交互逻辑
+    /// AlarmTabExpander.xaml 的交互逻辑
     /// </summary>
-    public partial class AlarmMainPage : UserControl
+    public partial class AlarmTabExpander : UserControl
     {
-        public AlarmPageViewModel alarmPageViewModel { get; set; }
-        public AlarmMainPage()
+        public AlarmTabExpander()
         {
             InitializeComponent();
-            DataContext = alarmPageViewModel;
         }
     }
 }

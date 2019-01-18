@@ -33,7 +33,7 @@ namespace ManagementProject.UserControls
 
 
         }
-
+        GMapControl map = new GMapControl();
         void mapControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition(map);
@@ -44,7 +44,7 @@ namespace ManagementProject.UserControls
 
         private void MapControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            myGrid.Children.Add(map);
             Thread thread = new Thread(run);
             thread.Start();
         }

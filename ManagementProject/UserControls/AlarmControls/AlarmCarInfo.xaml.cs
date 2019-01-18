@@ -95,6 +95,40 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("Department");
             }
         }
+
+        private string _carLicenseImage;
+        /// <summary>
+        /// 车牌抓拍
+        /// </summary>
+        public string CarLicenseImage
+        {
+            get
+            {
+                return _carLicenseImage;
+            }
+            set
+            {
+                _carLicenseImage = value;
+                NotifyPropertyChanged("CarLicenseImage");
+            }
+        }
+
+        private string _sceneImage;
+        /// <summary>
+        /// 现场抓拍
+        /// </summary>
+        public string SceneImage
+        {
+            get
+            {
+                return _sceneImage;
+            }
+            set
+            {
+                _sceneImage = value;
+                NotifyPropertyChanged("SceneImage");
+            }
+        }
         #endregion
 
 

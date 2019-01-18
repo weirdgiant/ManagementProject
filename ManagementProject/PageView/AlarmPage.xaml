@@ -15,7 +15,9 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <Grid Name="mianGrid" Grid.Column="0"/>
+        <Grid Name="mianGrid" Grid.Column="0">
+            <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"   Margin="0,0,0,0" Source="{Binding PageUrl}" />
+        </Grid>
         <Grid  Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

@@ -32,7 +32,7 @@ namespace ManagementProject.PageView
             MainWindowViewModel.alarmPageViewModel.PageType = GlobalVariable.AlarmPageType;
             AlarmPageViewModel= MainWindowViewModel.alarmPageViewModel;
             DataContext = AlarmPageViewModel;
-            InitControl(AlarmPageViewModel.PageType);
+            //InitControl(AlarmPageViewModel.PageType);
         }
 
         /// <summary>
@@ -59,8 +59,10 @@ namespace ManagementProject.PageView
         /// </summary>
         private void InitFireAlarmControls()
         {
-            AlarmMainPage alarmMainPage = new AlarmMainPage();
-            alarmMainPage.DataContext = AlarmPageViewModel;
+            AlarmMainPage alarmMainPage = new AlarmMainPage
+            {
+                DataContext = AlarmPageViewModel
+            };
             mianGrid.Children.Add(alarmMainPage);
         }
         /// <summary>
