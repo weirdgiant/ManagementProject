@@ -36,11 +36,11 @@ namespace ManagementProject
         /// </summary>
         public bool AutoReconnect { get; set; }
         /// <summary>
-        /// 连接主机名称
+        /// 连接服务器名称
         /// </summary>
         public string HostName { get; set; }
         /// <summary>
-        /// 主机IP地址
+        /// 服务器IP地址
         /// 当<see cref="HostName"/> 为空时考虑.
         /// </summary>
         public IPAddress IPAddress { get; set; }
@@ -127,7 +127,7 @@ namespace ManagementProject
                         }
                         catch (IOException ex) when ((ex.InnerException as SocketException)?.ErrorCode == (int)SocketError.OperationAborted)
                         {
-                            // 详细错误查阅 https://docs.microsoft.com/en-us/windows/desktop/winsock/windows-sockets-error-codes-2
+                            // 详细错误代码查阅 https://docs.microsoft.com/en-us/windows/desktop/winsock/windows-sockets-error-codes-2
                             Message?.Invoke(this, new AsyncTcpEventArgs("本地连接已关闭", ex));
                             readLength = -1;
                         }
@@ -232,7 +232,7 @@ namespace ManagementProject
         #region Protected virtual methods
 
         /// <summary>
-        /// Called when the client has connected to the remote host. This method can implement the
+        /// 当客户端连接到拂去其发生. This method can implement the
         /// communication logic to execute when the connection was established. The connection will
         /// not be closed before this method completes.
         /// </summary>

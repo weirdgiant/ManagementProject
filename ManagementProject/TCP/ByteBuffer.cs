@@ -50,7 +50,7 @@ namespace ManagementProject
 
         #endregion Private data
 
-        #region Constructors
+        #region 构造函数
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ByteBuffer"/> class that is empty and has the default initial capacity.
@@ -60,7 +60,8 @@ namespace ManagementProject
         }
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="ByteBuffer"/> class that contains bytes copied from the specified collection and has sufficient capacity to accommodate the number of bytes copied.
+        /// Initialises a new instance of the <see cref="ByteBuffer"/> class that contains bytes copied from the specified collection 
+        /// and has sufficient capacity to accommodate the number of bytes copied.
         /// </summary>
         /// <param name="bytes">The collection whose bytes are copied to the new <see cref="ByteBuffer"/>.</param>
         public ByteBuffer(byte[] bytes)
@@ -77,7 +78,7 @@ namespace ManagementProject
             SetCapacity(capacity);
         }
 
-        #endregion Constructors
+        #endregion 构造函数
 
         #region Properties
 
@@ -176,8 +177,7 @@ namespace ManagementProject
         }
 
         /// <summary>
-        /// Sets the capacity to the actual number of bytes in the buffer, if that number is less
-        /// than 90 percent of current capacity.
+        /// 设置buffer实际大小（如果buffer实际大小小于当前容量的90%）
         /// </summary>
         public void TrimExcess()
         {
@@ -191,9 +191,9 @@ namespace ManagementProject
         }
 
         /// <summary>
-        /// Adds bytes to the end of the buffer.
+        /// 将byte[]添加到buffer队尾
         /// </summary>
-        /// <param name="bytes">The bytes to add to the buffer.</param>
+        /// <param name="bytes">需要添加byte[]</param>
         public void Enqueue(byte[] bytes)
         {
             if (bytes == null)
@@ -203,20 +203,20 @@ namespace ManagementProject
         }
 
         /// <summary>
-        /// Adds bytes to the end of the buffer.
+        /// 将byte[]添加到buffer队尾
         /// </summary>
-        /// <param name="segment">The bytes to add to the buffer.</param>
+        /// <param name="segment">需要添加bytr[]</param>
         public void Enqueue(ArraySegment<byte> segment)
         {
             Enqueue(segment.Array, segment.Offset, segment.Count);
         }
 
         /// <summary>
-        /// Adds bytes to the end of the buffer.
+        /// 将byte[]添加到buffer队尾
         /// </summary>
-        /// <param name="bytes">The bytes to add to the buffer.</param>
-        /// <param name="offset">The index in <paramref name="bytes"/> of the first byte to add.</param>
-        /// <param name="count">The number of bytes to add.</param>
+        /// <param name="bytes">需要添加bytr[]</param>
+        /// <param name="offset"><paramref name="bytes"/>起始位置</param>
+        /// <param name="count">bytes长度</param>
         public void Enqueue(byte[] bytes, int offset, int count)
         {
             if (bytes == null)
