@@ -8,6 +8,7 @@ namespace ManagementProject
 {
     public class ServerTcpInterface
     {
+        private int _tcpTry = 0;
 
     }
 }

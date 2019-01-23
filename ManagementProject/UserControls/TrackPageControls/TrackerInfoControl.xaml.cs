@@ -21,11 +21,11 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class TrackerInfoControl : UserControl
     {
-        TrackerInfoViewModel t = new TrackerInfoViewModel();
+        TrackerInfoViewModel trackInfoViewModel = new TrackerInfoViewModel();
         public TrackerInfoControl()
         {
             InitializeComponent();
-            DataContext = t;
+            DataContext = trackInfoViewModel;
         }
     }
 
@@ -58,10 +58,10 @@ namespace ManagementProject.UserControls
             Items = new ObservableCollection<TrackerInfo>();
             for (int i=0;i<4;i++)
             {
-                TrackerInfo ti = new TrackerInfo();
-                ti.Name = i + "";
-                ti.Time = i + 1 + "";
-                Items.Add(ti);
+                TrackerInfo trackInfo = new TrackerInfo();
+                trackInfo.Name = i + "";
+                trackInfo.Time = i + 1 + "";
+                Items.Add(trackInfo);
             }
         }
     }
