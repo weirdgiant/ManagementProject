@@ -23,14 +23,19 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <Button x:Name="button" Command="{Binding MainPageReturnCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,0" VerticalAlignment="Stretch" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Grid.Row="1">
+            <Button  Command="{Binding MainPageReturnCommand}" 
+                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                     Margin="0,0,0,0" VerticalAlignment="Stretch" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Grid.Row="1">
                 <TextBlock Text="返回" TextWrapping="Wrap" Width="16" Foreground="White" FontSize="16"/>
             </Button>
             <RadioButton  Style="{StaticResource RadioStyle }"
+                          Command="{Binding AlarmMainCommand}"
+                          IsChecked="True" 
                           Foreground="White"  VerticalAlignment="Top" Height="75">
                 <Label  Content="主&#x000A;场&#x000A;景" Foreground="White" VerticalContentAlignment="Center" Width="40" HorizontalContentAlignment="Center"/>
             </RadioButton>
             <RadioButton  Style="{StaticResource RadioStyle }"
+                          Command="{Binding AlarmTrackerCommand}"
                           Foreground="White" VerticalAlignment="Top" Height="75" Margin="0,75,0,0">
                 <Label  Content="追&#x000A;踪" Foreground="White" VerticalContentAlignment="Center" Width="40" HorizontalContentAlignment="Center"/>
             </RadioButton>

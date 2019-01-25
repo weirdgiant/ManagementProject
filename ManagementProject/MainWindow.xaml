@@ -22,12 +22,11 @@
         <Grid Name="maingrid" Background="#FF252525" >
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
-
-                <Label x:Name="title" Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
-                <Label x:Name="titletime" Content="{Binding NowTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
+                <Label  Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+                <Label  Content="{Binding CurrentTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
-                <Button x:Name="minbt" ToolTip="最小化" 
+                <Button ToolTip="最小化" 
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
                         Command="{Binding MinSizeCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
@@ -35,19 +34,23 @@
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
                 </Button>
                 <Button x:Name="recoverbt" Content="Normal" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="75" Click="recoverbt_Click" Visibility="Collapsed"/>
-                <Button x:Name="closebt" ToolTip="关闭" 
+                <Button ToolTip="关闭" 
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
                         Command="{Binding ShutDownCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White"  Width="45" Background="{x:Null}">
                     <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
                 </Button>
             </StackPanel>
-            <Button x:Name="button4" ToolTip="登录用户" Style="{StaticResource RoundedGelButton}"  HorizontalAlignment="Right" Margin="0,0,180,0" VerticalAlignment="Center"  Height="30" Width="30">
+            <Button ToolTip="登录用户"
+                    Style="{StaticResource RoundedGelButton}" 
+                    HorizontalAlignment="Right" Margin="0,0,180,0" VerticalAlignment="Center"  Height="30" Width="30">
 
                 <Image Source="ImageSource/Icon/mainwindowicon/用户.png" />
 
             </Button>
-            <Button x:Name="button5" ToolTip="拼控" Style="{StaticResource GelButton}" HorizontalAlignment="Right"  Margin="0,0,120,0" VerticalAlignment="Center"  Height="30" Width="30">
+            <Button ToolTip="拼控" 
+                    Style="{StaticResource GelButton}" 
+                    HorizontalAlignment="Right"  Margin="0,0,120,0" VerticalAlignment="Center"  Height="30" Width="30">
                 <Image Source="ImageSource/Icon/mainwindowicon/拼控.png" />
             </Button>
 

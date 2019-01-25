@@ -131,6 +131,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MultiView.cs" />
     <Compile Include="TCP\ServerTcpInterface.cs" />
     <Compile Include="TCP\ByteBuffer.cs" />
     <Compile Include="Model\TrackManagementModel.cs" />

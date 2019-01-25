@@ -19,6 +19,7 @@ namespace ManagementProject.ViewModel
         public CollagePageViewModel collagePageViewModel { get; set; }
         public AlarmPageViewModel alarmPageViewModel { get; set; }
         public MainPageViewModel mainPageViewModel { get; set; }
+
         public DelegateCommand ShowCommand { get; set; }
         public DelegateCommand ShutDownCommand { get; set; }
         public DelegateCommand MinSizeCommand { get; set; }
@@ -55,7 +56,7 @@ namespace ManagementProject.ViewModel
         private void LoadedCommand(object obj)
         {
             LoadTitle();
-            TimerStart();
+            RefreshDateTimeAsync();
             LoadMainPage();
         }
 
@@ -77,20 +78,33 @@ namespace ManagementProject.ViewModel
             TitleName= titletext;            
         }
         /// <summary>
-        /// 开启标题栏定时器
+        /// 异步刷新当前时间
         /// </summary>
-        public void TimerStart()
+        private async void RefreshDateTimeAsync()
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            NowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            while (true)
+            {              
+                CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss tt");
+                await Task.Delay(1000);
+            }
         }
         #endregion
+        /// <summary>
+        /// 用户按键事件
+        /// </summary>
+        /// <param name="obj"></param>
+        private void UserInfo(object obj)
+        {
+
+        }
+        /// <summary>
+        /// 拼控按钮事件
+        /// </summary>
+        /// <param name="obj"></param>
+        private void CollageControl(object obj)
+        {
+
+        }
         /// <summary>
         /// 关闭
         /// </summary>

@@ -9,17 +9,17 @@ namespace ManagementProject.Model
 {
     public class MainWindowModel : INotifyPropertyChangedClass
     {
-        private string _nowTime;
-        public string NowTime
+        private string _currentTime;
+        public string CurrentTime
         {
             get
             {
-                return _nowTime;
+                return _currentTime;
             }
             set
             {
-                _nowTime = value;
-                NotifyPropertyChanged("NowTime");
+                _currentTime = value;
+                NotifyPropertyChanged("CurrentTime");
             }
         }
 
