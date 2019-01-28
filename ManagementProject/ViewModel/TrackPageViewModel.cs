@@ -24,11 +24,11 @@ namespace ManagementProject.ViewModel
         /// <param name="obj"></param>
         private void OpenTracker(object obj)
         {
-            TrackManagement tr = new TrackManagement();
-            tr.DataContext = TrackManagementViewModel;
-            tr.Left = 23;
-            tr.Top = 165;
-            tr.ShowDialog();
+            TrackManagement trWin = new TrackManagement();
+            trWin.DataContext = TrackManagementViewModel;
+            trWin.Left = 23;
+            trWin.Top = 165;
+            trWin.ShowDialog();
         }
     }
 }

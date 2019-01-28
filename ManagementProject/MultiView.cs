@@ -336,6 +336,11 @@ namespace ManagementProject
         private bool isFull = false;
         private object panel;
 
+        private void InitAll()
+        {
+            string mess = "";
+            string Mymess = mess;
+        }
         public CellPanel()
         {
 
