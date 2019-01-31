@@ -24,6 +24,9 @@ namespace ManagementProject.ViewModel
             MoveWinCommand = new DelegateCommand();
             MoveWinCommand.ExecuteCommand = new Action<object>(MoveWin);
         }
+        /// <summary>
+        /// 初始化登录界面信息
+        /// </summary>
         private void Init()
         {
             PhoneNumber = "021-65691583";
@@ -32,7 +35,10 @@ namespace ManagementProject.ViewModel
             Copyright = AssemblyCopyright +" "+ AssemblyCompany;
         }
 
-
+        /// <summary>
+        /// 登录确定
+        /// </summary>
+        /// <param name="obj"></param>
         private void LoginOK(object obj)
         {
             if (obj != null)
@@ -43,6 +49,10 @@ namespace ManagementProject.ViewModel
                 login.Close();
             }
         }
+        /// <summary>
+        /// 取消退出
+        /// </summary>
+        /// <param name="obj"></param>
         private void Cancel(object obj)
         {
             if (obj != null)
@@ -52,6 +62,10 @@ namespace ManagementProject.ViewModel
             }
         }
 
+        /// <summary>
+        /// 移动窗口
+        /// </summary>
+        /// <param name="obj"></param>
         private void MoveWin(object obj)
         {
             if (obj != null)

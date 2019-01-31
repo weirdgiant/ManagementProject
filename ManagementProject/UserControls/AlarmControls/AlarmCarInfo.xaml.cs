@@ -26,6 +26,7 @@ namespace ManagementProject.UserControls
         }
     }
 
+    #region Model
     public class AlarmCarInfoModel:INotifyPropertyChangedClass
     {
         #region 报警车辆信息
@@ -130,10 +131,10 @@ namespace ManagementProject.UserControls
             }
         }
         #endregion
-
-
     }
+    #endregion
 
+    #region ViewModel
     public class AlarmCarInfoViewModel:AlarmCarInfoModel
     {
         public AlarmCarInfoViewModel()
@@ -152,4 +153,5 @@ namespace ManagementProject.UserControls
             Department = "58";
         }
     }
+    #endregion
 }
