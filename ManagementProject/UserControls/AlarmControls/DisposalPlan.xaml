@@ -32,13 +32,16 @@
         </Button>
         <Button Style="{StaticResource GelButton}" 
                 Command="{Binding HandleAlarmCommand}"
-                Content="处  理" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="170" Height="40" FontSize="16"/>
+                Content="处  理" 
+                HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="170" Height="40" FontSize="16"/>
         <Button Style="{StaticResource GelButton}" 
                  Command="{Binding PressHandlingCommand}"
-                Content="跟  催" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
+                Content="跟  催" 
+                HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
         <Button Style="{StaticResource GelButton}"  
                  Command="{Binding ShowMessageCommand}"
-                Content="消  息"  HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
+                Content="消  息"  
+                HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
         <Border BorderBrush="#FF009FFF" BorderThickness="1" Margin="5,0,5,0" Height="1" VerticalAlignment="Bottom"/>
 
     </Grid>

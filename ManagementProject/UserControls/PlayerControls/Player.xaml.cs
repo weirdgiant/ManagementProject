@@ -25,6 +25,13 @@ namespace ManagementProject.UserControls
     {
 
         public PlayerViewModel PlayerViewModel;
+
+        public int Index;
+        public bool Selected;
+
+        private bool isFull = false;
+
+
         public Player(PlayerWindowType type)
         {
             InitializeComponent();

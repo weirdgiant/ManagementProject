@@ -25,12 +25,18 @@
             </Border>
             <Border  Grid.Row="1" Background="White"  CornerRadius="0,0,10,10">
                 <Grid >
+                    <Label Content="所属校区" FontSize="14" Foreground="#FF00A7F4" Margin="101,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="活动名称" FontSize="14" Foreground="#FF00A7F4" Margin="101,69,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="开始时间" FontSize="14" Foreground="#FF00A7F4" Margin="101,111,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="结束时间" FontSize="14" Foreground="#FF00A7F4" Margin="101,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <Button Content="确认" 
                             Background="#FF00A7F4" 
                             Command="{Binding CreatNewTrackerCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                             Style="{StaticResource GelButton }" 
                             Width="150" Height="30" FontSize="15" Margin="175,0,175,20" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
+                    
+                   
                 </Grid>
             </Border>
         </Grid>

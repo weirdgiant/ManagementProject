@@ -19,7 +19,8 @@
                       Background="{Binding RateColor}"  
                       BorderBrush="{Binding RateColor}" 
                       IsChecked="{Binding IsOpen,Mode=OneWay}" 
-                      Command="{Binding OpenContextMenuCommand}"    HorizontalAlignment="Right" Margin="0,14,38,14" Width="42"  Height="22" Foreground="White" VerticalAlignment="Center" Grid.Column="1"/>
+                      Command="{Binding OpenContextMenuCommand}"   
+                      HorizontalAlignment="Right" Margin="0,14,38,14" Width="42"  Height="22" Foreground="White" VerticalAlignment="Center" Grid.Column="1"/>
         <Popup PlacementTarget="{Binding ElementName=ratebt}"   
                IsOpen="{Binding IsOpen,Mode=OneWay}" 
                StaysOpen="{Binding IsOpen,Mode=OneWay}" 

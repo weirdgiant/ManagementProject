@@ -84,7 +84,6 @@ namespace ManagementProject.PageView
         {
             AlarmMainPage alarmMainPage = new AlarmMainPage();
             alarmMainPage.DataContext = AlarmPageViewModel;
-
             AlarmCarInfo alarmCarInfo = new AlarmCarInfo();
             alarmCarInfo.DataContext = AlarmPageViewModel.alarmCarInfoViewModel;
             alarmMainPage.panel2.Children.Add(alarmCarInfo);

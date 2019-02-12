@@ -90,7 +90,7 @@ namespace ManagementProject.ViewModel
         }
         #endregion
         /// <summary>
-        /// 用户按键事件
+        /// 标题栏用户按键
         /// </summary>
         /// <param name="obj"></param>
         private void UserInfo(object obj)
