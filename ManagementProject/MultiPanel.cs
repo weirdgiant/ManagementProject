@@ -41,6 +41,10 @@ namespace ManagementProject
         {
             switch (model)
             {
+                case 6:
+                    SetModel6();
+                    break;
+               // case 9:
 
             }
         }
@@ -90,7 +94,15 @@ namespace ManagementProject
 
         }
 
+        public static void SetModel9()
+        {
 
+        }
+
+        public static void SetModel12()
+        {
+
+        }
 
         private static void Clear()
         {

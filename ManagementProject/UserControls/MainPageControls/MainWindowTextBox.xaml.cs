@@ -99,16 +99,16 @@ namespace ManagementProject.UserControls
             }
         }
 
-        private ObservableCollection<School> schoolList;
+        private ObservableCollection<School> _schoolList;
         public ObservableCollection<School> SchoolList
         {
             get
             {
-                return schoolList;
+                return _schoolList;
             }
             set
             {
-                schoolList = value;
+                _schoolList = value;
                 NotifyPropertyChanged("SchoolList");
             }
         }
