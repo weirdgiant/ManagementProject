@@ -17,8 +17,9 @@
                 <Grid Width="20"/>
                 <UserControls:AlarmButton x:Name="carAlarmbt" HorizontalAlignment="Left" Height="85" VerticalAlignment="Top" Width="85"/>
             </StackPanel>
-            <!--<UserControls:MapControl/>-->
+            <UserControls:MapControl/>
         </Grid>
+        
         <UserControls:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="34" Margin="23,32,0,0" VerticalAlignment="Top" Width="250"/>
         <UserControls:MainWindowSearchBox HorizontalAlignment="Left" Height="50" Margin="23,66,0,0" VerticalAlignment="Top" Width="250" Grid.Row="1"/>
 
@@ -36,4 +37,6 @@
 
 
     </Grid>
+            
+                
 </Page>

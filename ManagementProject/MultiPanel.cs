@@ -45,7 +45,6 @@ namespace ManagementProject
                     SetModel6();
                     break;
                // case 9:
-
             }
         }
 
