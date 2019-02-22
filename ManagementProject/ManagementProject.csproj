@@ -231,6 +231,9 @@
     <Compile Include="UserControls\EventHistoryControls\PageControl.xaml.cs">
       <DependentUpon>PageControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PlayerControls\CameraInfo.xaml.cs">
+      <DependentUpon>CameraInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PlayerControls\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
     </Compile>
@@ -394,6 +397,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\EventHistoryControls\PageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\CameraInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

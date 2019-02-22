@@ -8,6 +8,9 @@ using System.Windows.Controls;
 
 namespace ManagementProject
 {
+    /// <summary>
+    /// 初始化Grid布局方式
+    /// </summary>
     public static class MultiPanel
     {
         public static int CurrentModel = 0;
@@ -22,12 +25,12 @@ namespace ManagementProject
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="playerNums">player数量</param>
-        public static void InitGrid(Grid grid ,int playerNums)
+        public static void InitGrid(Grid grid, int playerNums)
         {
             OriginalGrid = grid;
             MaxPlayerNums = playerNums;
             DictPanel = new Dictionary<int, Player>();
-            for (int index=1;index<MaxPlayerNums;index ++)
+            for (int index = 1; index < MaxPlayerNums; index++)
             {
                 Player playerPanel = new Player(PlayerWindowType.Playerback);
                 playerPanel.Index = index;
@@ -44,7 +47,12 @@ namespace ManagementProject
                 case 6:
                     SetModel6();
                     break;
-               // case 9:
+                case 9:
+                    SetModel9();
+                    break;
+                case 12:
+                    SetModel12();
+                    break;
             }
         }
 
@@ -87,18 +95,86 @@ namespace ManagementProject
                 }
             }
         }
-
+        
+        /// <summary>
+        /// 将Grid分为6格
+        /// </summary>
         public static void SetModel6()
         {
 
         }
-
+        /// <summary>
+        /// 将Grid分为9格
+        /// </summary>
         public static void SetModel9()
         {
 
         }
-
+        /// <summary>
+        /// 将Grid分为12格
+        /// </summary>
         public static void SetModel12()
+        {
+
+        }
+        /// <summary>
+        /// AlarmMain布局
+        /// //////
+        /// --------- 
+        /// |   1   |
+        /// ---------
+        /// </summary>
+        public static void SetLayout1()
+        {
+
+        }
+        /// <summary>
+        /// AlarmMain布局
+        /// --------- --------
+        /// |   1   |   2    |
+        /// --------- --------    
+        /// |   3   |   4    |
+        /// ------------------
+        /// </summary>
+        public static void SetLayout2()
+        {
+
+        }
+        /// <summary>
+        /// AlarmMain布局
+        /// --------- --------
+        /// |        1       |
+        /// --------- --------    
+        /// |   2   |   3    |
+        /// ------------------
+        /// </summary>
+        public static void SetLayout3()
+        {
+
+        }
+        /// <summary>
+        /// AlarmMain布局
+        /// --------- --------
+        /// |        |   2   |
+        /// |         --------    
+        /// |   1    |   3   |
+        /// |         --------
+        /// |        |   4   |
+        /// ------------------
+        /// </summary>
+        public static void SetLayout4()
+        {
+
+        }
+        /// <summary>
+        /// AlarmMain布局
+        ///  -------- --------
+        /// |        |   2   |
+        /// |    1    --------    
+        /// |        |   3   |
+        ///  -----------------
+        /// </summary>
+        public static void SetLayout5()
         {
 
         }

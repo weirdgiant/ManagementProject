@@ -8,57 +8,60 @@
              xmlns:managementproject="clr-namespace:ManagementProject"
              mc:Ignorable="d" 
              d:DesignHeight="35" Width="250">
-    <Grid>
-        <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1" Height="35" Margin="0,0,0,0" VerticalAlignment="Bottom" Background="#FF2F2F2F" Opacity="0.9">
-            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
-                <Label  x:Name="message"  Width="50" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
-                    <Image Width="25" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/mess.png" />
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonUp">
-                            <i:InvokeCommandAction Command="{Binding ShowMesCommand,Mode=TwoWay}">
-                            </i:InvokeCommandAction>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Label>
-                <TextBlock x:Name="textBox"  Text="{Binding SchoolName}" Width="150"  Grid.IsSharedSizeScope="True" Margin="0,8" Foreground="White" FontSize="12" />
-                <ToggleButton  x:Name="drapbt" 
+    <WindowsFormsHost >
+        <ElementHost >
+            <Grid>
+                <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1" Height="35" Margin="0,0,0,0" VerticalAlignment="Bottom" Background="#FF2F2F2F" Opacity="0.9">
+                    <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                        <Label  x:Name="message"  Width="50" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <Image Width="25" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/mess.png" />
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding ShowMesCommand,Mode=TwoWay}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Label>
+                        <TextBlock x:Name="textBox"  Text="{Binding SchoolName}" Width="150"  Grid.IsSharedSizeScope="True" Margin="0,8" Foreground="White" FontSize="12" />
+                        <ToggleButton  x:Name="drapbt" 
                                Style="{StaticResource NoBushToggleButton}" 
                                Command="{Binding DrapClickCommand}" 
-                               IsChecked="{Binding IsOpened}" HorizontalAlignment="Left" Width="50" Margin="0,0" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Image Name="drapimage" Width="25" Source="{Binding Icon}" />
-                </ToggleButton>
-            </StackPanel>
-        </Border>
-        <Popup Placement="Right"  
+                               IsChecked="{Binding IsOpened}" HorizontalAlignment="Left" Width="48" Margin="0,0" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <Image Name="drapimage" Width="25" Source="{Binding Icon}" />
+                        </ToggleButton>
+                    </StackPanel>
+                </Border>
+                <Popup Placement="Right"  
                AllowsTransparency="True"
                PopupAnimation="Scroll"  
                StaysOpen="False"
                IsOpen="{Binding IsOpened}">
-            <Border BorderBrush="Black" BorderThickness="1" Width="205" Height="220" CornerRadius="5">
-                <Grid >
-                    <ListBox x:Name="listBox" Margin="0,0,0,0"  ItemsSource="{Binding SchoolList}"   SelectionMode="Extended"   BorderBrush="{x:Null}" Foreground="White" Background="#FF303030" Opacity="0.9">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ItemSelectedCommand,Mode=TwoWay}"
+                    <Border BorderBrush="Black" BorderThickness="1" Width="205" Height="220" CornerRadius="5">
+                        <Grid >
+                            <ListBox x:Name="listBox" Margin="0,0,0,0"  ItemsSource="{Binding SchoolList}"   SelectionMode="Extended"   BorderBrush="{x:Null}" Foreground="White" Background="#FF303030" Opacity="0.9">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding ItemSelectedCommand,Mode=TwoWay}"
                                       CommandParameter="{Binding SelectedItem, ElementName=listBox}">
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical" >
-                                    <Grid Height="5"/>
-                                    <TextBlock Name="ItemName" Text="{Binding  Path=SchoolName}" HorizontalAlignment="Center" FontSize="13"/>
-                                    <Separator Width="180" Background="#FF393939" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical" >
+                                            <Grid Height="5"/>
+                                            <TextBlock Name="ItemName" Text="{Binding  Path=SchoolName}" HorizontalAlignment="Center" FontSize="13"/>
+                                            <Separator Width="180" Background="#FF393939" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
 
-                    </ListBox>
+                            </ListBox>
 
-                </Grid>
-            </Border>
-        </Popup>
-
-    </Grid>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </ElementHost>
+    </WindowsFormsHost>
 </UserControl>

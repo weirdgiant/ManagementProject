@@ -9,8 +9,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Name="myGrid">
-        <WindowsFormsHost >
-            <!--<forms:PictureBox  />-->
+        <WindowsFormsHost>
+            <forms:PictureBox  />
         </WindowsFormsHost>
     </Grid>
 </UserControl>

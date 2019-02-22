@@ -212,13 +212,19 @@ namespace ManagementProject.UserControls
             else
             {
                 State = PlayerState.Max;
-                Window w = new Window();
-                w.WindowState = WindowState.Maximized;
-                w.WindowStyle = WindowStyle.None;
-                Player p = new Player(Ptype);
-                p.DataContext = this;
-                Grid grid = new Grid();
-                grid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C5C5C"));
+                Window w = new Window
+                {
+                    WindowState = WindowState.Maximized,
+                    WindowStyle = WindowStyle.None
+                };
+                Player p = new Player(Ptype)
+                {
+                    DataContext = this
+                };
+                Grid grid = new Grid
+                {
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5C5C5C"))
+                };
                 grid.Children.Add(p);
                 p.Margin = new Thickness(0);
                 w.Content = grid;

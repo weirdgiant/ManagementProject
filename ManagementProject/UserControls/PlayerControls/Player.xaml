@@ -115,6 +115,14 @@
                 </Grid>
             </Grid>
         </managementproject:CusPopup>
+        <Popup Placement="AbsolutePoint"              
+               PlacementTarget="{Binding ElementName= bottomgrid}" FlowDirection="RightToLeft"      
+               >
+            
+            <Grid >
+                <Label Content="摄像机信息" Foreground="White" FontSize="16" />
+            </Grid>
+        </Popup>
 
     </Grid>
 </UserControl>

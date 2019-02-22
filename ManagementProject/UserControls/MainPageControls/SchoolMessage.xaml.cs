@@ -121,6 +121,19 @@ namespace ManagementProject.UserControls
             }
         }
 
+        private string _camera;
+        public string Camera
+        {
+            get
+            {
+                return _camera;
+            }
+            set
+            {
+                _camera = value;
+                NotifyPropertyChanged("Camera");
+            }
+        }
 
     }
 
@@ -140,7 +153,11 @@ namespace ManagementProject.UserControls
 
         private void InitMes()
         {
-
+            CreationDate = "";
+            BuildingNumber = "";
+            Head = "";
+            Phone = "";
+            Remarks = "";
         }
 
         private void CloseWin (object obj)
