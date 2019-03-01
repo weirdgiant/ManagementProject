@@ -10,5 +10,7 @@ namespace ManagementProject
     {
         private int _tcpTry = 0;
 
+        
+
     }
 }

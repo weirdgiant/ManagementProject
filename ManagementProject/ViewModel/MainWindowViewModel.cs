@@ -36,13 +36,13 @@ namespace ManagementProject.ViewModel
 
         private void InitViewModel()
         {
-            ///初始化菜单VM
+            ///初始化菜单ViewModel
             mainWindowMenuViewModel = new MainWindowMenuViewModel(this);
-            ///初始化报警VM
+            ///初始化报警ViewModel
             alarmPageViewModel = new AlarmPageViewModel(this);
-            ///初始化电子地图VM
+            ///初始化电子地图ViewModel
             mainPageViewModel = new MainPageViewModel(this);
-            ///初始化拼控VM
+            ///初始化拼控ViewModel
             collagePageViewModel = new CollagePageViewModel(this);
         }
 

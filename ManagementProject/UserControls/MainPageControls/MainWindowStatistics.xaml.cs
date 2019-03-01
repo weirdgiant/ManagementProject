@@ -20,9 +20,16 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class MainWindowStatistics : UserControl
     {
+
         public MainWindowStatistics()
         {
             InitializeComponent();
+            drapbt.Click += Drapbt_Click;
+        }
+
+        private void Drapbt_Click(object sender, RoutedEventArgs e)
+        {
+            pop.IsOpen = true;
         }
     }
     public class MainWindowStatisticsModel:INotifyPropertyChangedClass

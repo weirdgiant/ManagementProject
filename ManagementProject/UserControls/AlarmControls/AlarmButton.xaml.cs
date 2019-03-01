@@ -21,9 +21,61 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class AlarmButton : UserControl
     {
+        public MainWindowViewModel mainWindowViewModel { get; set; }
+        private AlarmType _alarmType;
+        public  AlarmType AlarmType
+        {
+            get
+            {
+                return _alarmType;
+            }
+            set
+            {
+
+                _alarmType=value;
+                AlarmTypeInit();
+            }
+        }
         public AlarmButton()
         {
             InitializeComponent();
+            Loaded += AlarmButton_Loaded;
+            alarmbt.Click += Alarmbt_Click;
+            
+        }
+
+        private void AlarmButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            mainWindowViewModel = (MainWindowViewModel)main.DataContext;
+        }
+
+        private void Alarmbt_Click(object sender, RoutedEventArgs e)
+        {
+            AlarmPageInit();
+        }
+        private void AlarmPageInit()
+        {
+            GlobalVariable.AlarmPageType = AlarmType;
+            mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";
+            mainWindowViewModel.mainWindowMenuViewModel.HiddenMenu();
+        }
+
+        private void AlarmTypeInit()
+        {
+            //_alarmType = AlarmType;
+            switch (_alarmType)
+            {
+                case AlarmType.CarAlarm:
+                    alarmicon.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/AlarmIcon/车辆违停.png", UriKind.Relative));
+                    break;
+                case AlarmType.FireAlarm:
+                    alarmicon.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/AlarmIcon/火灾报警.png", UriKind.Relative));
+                    break;
+                case AlarmType.WaterAlarm:
+                    alarmicon.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/AlarmIcon/水压报警.png", UriKind.Relative));
+                    break;
+            }
         }
     }
 

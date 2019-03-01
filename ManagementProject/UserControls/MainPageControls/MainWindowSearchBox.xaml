@@ -19,13 +19,14 @@
                         </Button>
                     </StackPanel>
                 </Border>
-                <Popup IsOpen="false" 
-               StaysOpen="False" 
-               Placement="Bottom"  
-               PlacementTarget="{Binding ElementName=bt}"  
-               PopupAnimation="Scroll"
-               Grid.IsSharedSizeScope="True" 
-               AllowsTransparency="True">
+                <Popup Name="pop" 
+                       IsOpen="false" 
+                       StaysOpen="False" 
+                       Placement="Bottom"  
+                       PlacementTarget="{Binding ElementName=bt}"  
+                       PopupAnimation="Scroll"
+                       Grid.IsSharedSizeScope="True" 
+                       AllowsTransparency="True">
                     <Border Height="250" Width="200" Background="#FF2F2F2F" Opacity="0.9" CornerRadius="5">
                         <Grid >
                             <Grid.Resources>

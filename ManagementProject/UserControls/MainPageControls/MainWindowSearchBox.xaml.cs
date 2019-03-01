@@ -23,7 +23,23 @@ namespace ManagementProject.UserControls
         public MainWindowSearchBox()
         {
             InitializeComponent();
+            searchcontent.TextChanged += Searchcontent_TextChanged;
+            searchcontent.LostFocus += Searchcontent_LostFocus;
         }
+
+        private void Searchcontent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pop.IsOpen = true;
+            pop.StaysOpen = true;
+        }
+
+
+        private void Searchcontent_LostFocus(object sender, RoutedEventArgs e)
+        {
+            pop.IsOpen = false;
+            pop.StaysOpen = false;
+        }
+
     }
 
     public class MainWindowSearchModel:INotifyPropertyChangedClass

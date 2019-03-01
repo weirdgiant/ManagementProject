@@ -34,6 +34,8 @@ namespace ManagementProject.PageView
             button2.Click += Button2_Click;
         }
 
+
+
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             if (GlobalVariable.PlayerWindowIsOpened == false)
@@ -58,13 +60,24 @@ namespace ManagementProject.PageView
 
         private void ControlInit()
         {
-            camerastatistics.DataContext = mainPageViewModel.CameraStatisticsViewModel;
-            camerainfobt.DataContext = mainPageViewModel.CameraInfoViewModel;
-            clientinfobt.DataContext = mainPageViewModel.ClientInfoViewModel;
-            waterstatistics.DataContext = mainPageViewModel.WaterStatisticsViewModel;
-            carAlarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
-            fireAlarmbt .DataContext = mainPageViewModel.fireAlarmViewModel ;
-            waterAlarmbt .DataContext = mainPageViewModel.waterAlarmViewModel ; 
+            camerastatistics.image.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机.png", UriKind.Relative));
+            camerastatistics.number.Text = "7";
+            waterstatistics.image.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/mainwindowicon/水压设备.png", UriKind.Relative));
+            waterstatistics.number.Text = "8";
+            ///报警按钮初始化
+            carAlarmbt.AlarmType = AlarmType.CarAlarm;
+            fireAlarmbt.AlarmType = AlarmType.FireAlarm;
+            waterAlarmbt.AlarmType = AlarmType.WaterAlarm;
+
+
+            ///由于使用WindowsFormsHost+ElementHost双重封装无法使用绑定方法，以下控件绑定方法暂停使用，之后若有方案修改可以考虑
+            //camerastatistics.DataContext = mainPageViewModel.CameraStatisticsViewModel;
+            //camerainfobt.DataContext = mainPageViewModel.CameraInfoViewModel;
+            //clientinfobt.DataContext = mainPageViewModel.ClientInfoViewModel;
+            //waterstatistics.DataContext = mainPageViewModel.WaterStatisticsViewModel;
+            //carAlarmbt.DataContext = mainPageViewModel.carAlarmViewModel;
+            //fireAlarmbt .DataContext = mainPageViewModel.fireAlarmViewModel ;
+            //waterAlarmbt .DataContext = mainPageViewModel.waterAlarmViewModel ; 
         }
 
     }

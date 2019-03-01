@@ -23,6 +23,12 @@ namespace ManagementProject.UserControls
         public CameraInfoButton()
         {
             InitializeComponent();
+            bt.Click += Bt_Click;
+        }
+
+        private void Bt_Click(object sender, RoutedEventArgs e)
+        {
+            pop.IsOpen = true;
         }
     }
     public class CameraInfoModel:INotifyPropertyChangedClass

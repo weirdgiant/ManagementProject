@@ -8,7 +8,7 @@
              d:DesignHeight="80" d:DesignWidth="80" Visibility="{Binding IsVisbility}">
     <Grid>
         <Grid>
-            <Button  Margin="5,5" Command="{Binding AlarmPageInitCommand}" Style="{StaticResource ImageCountButton}">
+            <Button Name="alarmbt"  Margin="5,5" Command="{Binding AlarmPageInitCommand}" Style="{StaticResource ImageCountButton}">
 
                 <Image Name="alarmicon" Source="{Binding AlarmIcon}" Margin="0,0,0,0" />
 

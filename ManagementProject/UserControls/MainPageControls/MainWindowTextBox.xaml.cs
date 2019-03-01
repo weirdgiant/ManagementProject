@@ -28,7 +28,37 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
             DataContext = mainWindowTextBoxViewModel;
-        }       
+            drapbt.Click += Drapbt_Click;
+            message.MouseLeftButtonDown += Message_MouseLeftButtonDown;
+            drapimage.Source =new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/mainwindowicon/dropdown.png", UriKind.Relative));
+        }
+
+        private void Message_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            SchoolMessage scm = new SchoolMessage();
+            SchoolMesViewModel schoolMesViewModel = new SchoolMesViewModel();
+            scm.DataContext = schoolMesViewModel;
+            scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            scm.ShowDialog();
+        }
+
+        private void Drapbt_Click(object sender, RoutedEventArgs e)
+        {
+          
+            if (pop.IsOpen)
+            {
+                pop.IsOpen = false;
+                pop.StaysOpen = false;
+                drapimage.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/mainwindowicon/dropdown.png", UriKind.Relative));
+               
+            }
+            else
+            {
+                pop.IsOpen = true;
+                pop.StaysOpen = true;
+                drapimage.Source = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/mainwindowicon/raiseup.png", UriKind.Relative));
+            }
+        }
     }
 
     public class MainWindowTextBoxModel:INotifyPropertyChangedClass

@@ -11,7 +11,7 @@ namespace ManagementProject
     /// <summary>
     /// 初始化Grid布局方式
     /// </summary>
-    public static class MultiPanel
+    public  class MultiPanel
     {
         public static int CurrentModel = 0;
         public static Dictionary<int, Player> DictPanel = null;
@@ -44,14 +44,45 @@ namespace ManagementProject
         {
             switch (model)
             {
+                case 4:
+                    SetModel4();
+                    break;
                 case 6:
                     SetModel6();
+                    break;
+                case 8:
+                    SetModel8();
                     break;
                 case 9:
                     SetModel9();
                     break;
                 case 12:
                     SetModel12();
+                    break;
+                case 16:
+                    SetModel8();
+                    break;
+            }
+        }
+
+        public static void SetCurrentLayout(int model)
+        {
+            switch (model)
+            {
+                case 1:
+                    SetLayout1();
+                    break;
+                case 2:
+                    SetLayout2();
+                    break;
+                case 3:
+                    SetLayout3();
+                    break;
+                case 4:
+                    SetLayout4();
+                    break;
+                case 5:
+                    SetLayout5();
                     break;
             }
         }
@@ -95,11 +126,25 @@ namespace ManagementProject
                 }
             }
         }
-        
+        #region PlayerPanel布局
+        /// <summary>
+        /// 将Grid分为4格
+        /// </summary>
+        public static void SetModel4()
+        {
+
+        }
         /// <summary>
         /// 将Grid分为6格
         /// </summary>
         public static void SetModel6()
+        {
+
+        }
+        /// <summary>
+        /// 将Grid分为8格
+        /// </summary>
+        public static void SetModel8()
         {
 
         }
@@ -117,6 +162,16 @@ namespace ManagementProject
         {
 
         }
+        /// <summary>
+        /// 将Grid分为16格
+        /// </summary>
+        public static void SetModel16()
+        {
+
+        }
+        #endregion
+
+        #region AlarmPage 布局
         /// <summary>
         /// AlarmMain布局
         /// //////
@@ -178,7 +233,7 @@ namespace ManagementProject
         {
 
         }
-
+        #endregion
         private static void Clear()
         {
             OriginalGrid.RowDefinitions.Clear();

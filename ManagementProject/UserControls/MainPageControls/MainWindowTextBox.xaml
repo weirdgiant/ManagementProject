@@ -31,7 +31,8 @@
                         </ToggleButton>
                     </StackPanel>
                 </Border>
-                <Popup Placement="Right"  
+                <Popup Name="pop"
+                    Placement="Right"  
                AllowsTransparency="True"
                PopupAnimation="Scroll"  
                StaysOpen="False"

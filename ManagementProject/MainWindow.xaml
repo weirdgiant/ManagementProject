@@ -63,6 +63,7 @@
             <Grid Grid.ColumnSpan="1"/>
             <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"  Margin="0,0,0,0" Source="{Binding PageUrl}" Grid.ColumnSpan="2"/>
             <UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50"/>
+           
         </Grid>
 
 

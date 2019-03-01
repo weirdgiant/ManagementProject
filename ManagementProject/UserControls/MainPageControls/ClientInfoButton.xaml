@@ -16,9 +16,9 @@
                       Command="{Binding ShowClientInfoCommand}">
                     <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/客户端异常信息.png" />
                 </ToggleButton>
-                <Popup  PlacementTarget="{Binding ElementName=bt}" 
+                <Popup Name="pop" PlacementTarget="{Binding ElementName=bt}" 
                 IsOpen="{Binding IsOpened}"
-                StaysOpen="False"
+                StaysOpen="false"
                 PopupAnimation="Scroll"
                 Placement="Left" Grid.IsSharedSizeScope="True" AllowsTransparency="True" VerticalOffset="-662" >
                     <Border Height="712" Width="332" Opacity="0.9" Background="#FF2F2F2F" CornerRadius="5" >

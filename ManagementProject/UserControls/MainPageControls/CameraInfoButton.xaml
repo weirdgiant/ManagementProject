@@ -16,7 +16,7 @@
                       IsChecked="{Binding IsOpened}">
                     <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机异常.png" />
                 </ToggleButton>
-                <Popup  PlacementTarget="{Binding ElementName=bt}" 
+                <Popup Name="pop" PlacementTarget="{Binding ElementName=bt}" 
                 IsOpen="{Binding IsOpened}"
                 StaysOpen="False"
                 PopupAnimation="Scroll"
@@ -29,7 +29,6 @@
                                     <Ellipse Height="10" Width="10" Fill="#FFC24444" />
                                     <Label Content="异常摄像机列表" FontSize="14"  Foreground="Gray" VerticalAlignment="Center"/>
                                 </StackPanel>
-
                             </Grid>
                             <Border Background="#FF1C1C1C" Height="2"/>
                             <ListBox Height="610" Background="{x:Null}" BorderBrush="{x:Null}"></ListBox>
