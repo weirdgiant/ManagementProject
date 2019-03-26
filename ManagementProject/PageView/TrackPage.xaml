@@ -1,0 +1,37 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ManagementProject.PageView"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.PageView.TrackPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="TrackPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnLoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Button HorizontalAlignment="Left" 
+                Style="{StaticResource GelButton}" Margin="50,0,0,50" 
+                Command="{Binding OpenTrackerCommand}"
+                VerticalAlignment="Bottom" Width="50" Height="50">
+            <Image Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/活动添加.png" />
+        </Button>
+        <UserControls:MapControl SelectedSchoolId="{Binding Sid}"/>
+        <!--<UserControls:WindowsFormsHostButton x:Name="trackmanagebt" Margin="50,0,0,50" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="50" Height="50"/>-->
+        <!--<UserControls:TrackerInfoControl Grid.Column="1" Width="300" Margin="0,0,0,0" HorizontalAlignment="Right"/>-->
+
+    </Grid>
+</Page>

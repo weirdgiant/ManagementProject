@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDCA0032-7869-4524-82EC-E36B0A80AD45}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ManagementProject</RootNamespace>
+    <AssemblyName>ManagementProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ManagementProject.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MahApps.Metro.IconPacks.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks.Modern, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MahApps.Metro.IconPacks.Modern.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="microsoft.expression.prototyping.runtime, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPF.Themes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPF.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Converters\HeaderToImageConverter.cs" />
+    <Compile Include="Converters\StringToDateTimeConvert.cs" />
+    <Compile Include="Converters\StringToDoubleConverter.cs" />
+    <Compile Include="Converters\WaterPreToImageConverter.cs" />
+    <Compile Include="GlobalClass\AppConfig.cs" />
+    <Compile Include="HTTP\HttpApi.cs" />
+    <Compile Include="GlobalClass\MangoApp.cs" />
+    <Compile Include="GlobalClass\MangoInfo.cs" />
+    <Compile Include="Model\PlanRotation.cs" />
+    <Compile Include="Model\PlanRotationWinModel.cs" />
+    <Compile Include="Model\PlayControlModel.cs" />
+    <Compile Include="Model\WaterPreMonitorModel.cs" />
+    <Compile Include="Model\WaterPressInfo.cs" />
+    <Compile Include="PasswordBoxBindingHelper.cs" />
+    <Compile Include="ResourceDictionary\BulletCheckBox.cs" />
+    <Compile Include="ResourceDictionary\Pagination.cs" />
+    <Compile Include="UserControls\AlarmControls\AlarmButtonControl.xaml.cs">
+      <DependentUpon>AlarmButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\ErrorCameraInfoItem.xaml.cs">
+      <DependentUpon>ErrorCameraInfoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\ClientInfoItem.xaml.cs">
+      <DependentUpon>ClientInfoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\ErrorDeviceControl.xaml.cs">
+      <DependentUpon>ErrorDeviceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\CamResource\DirectoryItem.cs" />
+    <Compile Include="UserControls\FightControl\CamResource\DirectoryItemType.cs" />
+    <Compile Include="UserControls\FightControl\CamResource\DirectoryStructure.cs" />
+    <Compile Include="UserControls\FightControl\ModifyRotationWin.xaml.cs">
+      <DependentUpon>ModifyRotationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\PlanRotationControl.xaml.cs">
+      <DependentUpon>PlanRotationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\PlanRotationWin.xaml.cs">
+      <DependentUpon>PlanRotationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\PlayControl.xaml.cs">
+      <DependentUpon>PlayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\SaveScenesWin.xaml.cs">
+      <DependentUpon>SaveScenesWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\SceneList.xaml.cs">
+      <DependentUpon>SceneList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\DeviceControlItem.xaml.cs">
+      <DependentUpon>DeviceControlItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\DeviceControl.xaml.cs">
+      <DependentUpon>DeviceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\SchoolMesItem.xaml.cs">
+      <DependentUpon>SchoolMesItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pagination\Pagination.xaml.cs">
+      <DependentUpon>Pagination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\SearchBoxControl.xaml.cs">
+      <DependentUpon>SearchBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TimeControl\DateTimePicker.xaml.cs">
+      <DependentUpon>DateTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TimeControl\IconButton.xaml.cs">
+      <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TimeControl\TDateTimeView.xaml.cs">
+      <DependentUpon>TDateTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackCameraList.xaml.cs">
+      <DependentUpon>TrackCameraList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackCameraListItem.xaml.cs">
+      <DependentUpon>TrackCameraListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackInfo.xaml.cs">
+      <DependentUpon>TrackInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiPanel.cs" />
+    <Compile Include="MultiView.cs" />
+    <Compile Include="TCP\ServerTcpInterface.cs" />
+    <Compile Include="TCP\ByteBuffer.cs" />
+    <Compile Include="Model\TrackManagementModel.cs" />
+    <Compile Include="Model\TrackPageModel.cs" />
+    <Compile Include="TCP\AsyncTcpClient.cs" />
+    <Compile Include="BasicClass\DelegateCommand.cs" />
+    <Compile Include="EventHistory.xaml.cs">
+      <DependentUpon>EventHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\AddTracker.xaml.cs">
+      <DependentUpon>AddTracker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\EventPlayerWindow.xaml.cs">
+      <DependentUpon>EventPlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\PlayerWindow.xaml.cs">
+      <DependentUpon>PlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\TrackManagement.xaml.cs">
+      <DependentUpon>TrackManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalClass\GlobalVariable.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BasicClass\INotifyPropertyChangedClass.cs" />
+    <Compile Include="Model\AlarmPageModel.cs" />
+    <Compile Include="Model\CollagePageModel.cs" />
+    <Compile Include="Model\EventHistoryModel.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\MainPageModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
+    <Compile Include="Model\PlayerWindowModel.cs" />
+    <Compile Include="PageView\AlarmPage.xaml.cs">
+      <DependentUpon>AlarmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageView\CollagePage.xaml.cs">
+      <DependentUpon>CollagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageView\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageView\TrackPage.xaml.cs">
+      <DependentUpon>TrackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmCarInfo.xaml.cs">
+      <DependentUpon>AlarmCarInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmButton.xaml.cs">
+      <DependentUpon>AlarmButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTabControl.xaml.cs">
+      <DependentUpon>AlarmTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmMainPage.xaml.cs">
+      <DependentUpon>AlarmMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTrackPage.xaml.cs">
+      <DependentUpon>AlarmTrackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTabButton.xaml.cs">
+      <DependentUpon>AlarmTabButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmTabExpander.xaml.cs">
+      <DependentUpon>AlarmTabExpander.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CollageButton.xaml.cs">
+      <DependentUpon>CollageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\CameraInfoButton.xaml.cs">
+      <DependentUpon>CameraInfoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\ClientInfoButton.xaml.cs">
+      <DependentUpon>ClientInfoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CusPopup.cs" />
+    <Compile Include="UserControls\AlarmControls\DisposalPlan.xaml.cs">
+      <DependentUpon>DisposalPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\EventPlayerControl.xaml.cs">
+      <DependentUpon>EventPlayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainWindowMenu.xaml.cs">
+      <DependentUpon>MainWindowMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\MainWindowSearchBox.xaml.cs">
+      <DependentUpon>MainWindowSearchBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\MainWindowStatistics.xaml.cs">
+      <DependentUpon>MainWindowStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\MainWindowTextBox.xaml.cs">
+      <DependentUpon>MainWindowTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MapControl.xaml.cs">
+      <DependentUpon>MapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\PageControl.xaml.cs">
+      <DependentUpon>PageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\CameraInfo.xaml.cs">
+      <DependentUpon>CameraInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\Player.xaml.cs">
+      <DependentUpon>Player.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\PlayerControl.xaml.cs">
+      <DependentUpon>PlayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\PlayerPanel.xaml.cs">
+      <DependentUpon>PlayerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\SchoolMessage.xaml.cs">
+      <DependentUpon>SchoolMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackManageButton.xaml.cs">
+      <DependentUpon>TrackManageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackerInfoItem.xaml.cs">
+      <DependentUpon>TrackerInfoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackerInfoControl.xaml.cs">
+      <DependentUpon>TrackerInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\WaterMessage.xaml.cs">
+      <DependentUpon>WaterMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WindowsFormsHostButton.xaml.cs">
+      <DependentUpon>WindowsFormsHostButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\CollagePageViewModel.cs" />
+    <Compile Include="ViewModel\DirectoryItemViewModel.cs" />
+    <Compile Include="ViewModel\EventHistoryViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PlanRotationWinViewModel.cs" />
+    <Compile Include="ViewModel\PlayControlViewModel.cs" />
+    <Compile Include="ViewModel\PlayerWindowViewModel.cs" />
+    <Compile Include="ViewModel\TrackManagementViewModel.cs" />
+    <Compile Include="ViewModel\TrackPageViewModel.cs" />
+    <Page Include="EventHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\AddTracker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\EventPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\PlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\BulletCheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Pagination.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\TreeViewDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\ValueConverters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\ErrorCameraInfoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\ClientInfoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\ErrorDeviceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FightControl\ModifyRotationWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\PlanRotationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\PlanRotationWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\PlayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\SaveScenesWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\SceneList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\DeviceControlItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\DeviceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\SchoolMesItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pagination\Pagination.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\SearchBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TimeControl\DateTimePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TimeControl\IconButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TimeControl\TDateTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TrackCameraList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackCameraListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\TrackManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PageView\AlarmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\CollagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\TrackPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\ButtonStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\ControlStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\CustomAccordion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\SkinDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmCarInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\DisposalPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTrackPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTabButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmTabExpander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CollageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\CameraInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\ClientInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\EventPlayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\MainWindowSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\MainWindowStatistics.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\MainWindowTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\PageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\CameraInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\PlayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\PlayerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainPageControls\SchoolMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackManageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackerInfoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackerInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\WaterMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WindowsFormsHostButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\background\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\background\bg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\closeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\mainwindowicon\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ImageSource\Icon\mainwindowicon\max.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\min.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\recover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\menuicon\历史事件.png" />
+    <Resource Include="ImageSource\Icon\menuicon\在线电子地图.png" />
+    <Resource Include="ImageSource\Icon\menuicon\拼控.png" />
+    <Resource Include="ImageSource\Icon\menuicon\车辆追踪.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\mainwindowicon\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\mainwindowicon\mess.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\mainwindowicon\dropdown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\mainwindowicon\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageSource\Icon\不查看.png" />
+    <Resource Include="ImageSource\Icon\查看.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-1%28白%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-1.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-12%28白%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-4%28白%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-4.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-6%28白%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-7%28白%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-7.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-9%28白%29.png" />
+    <Resource Include="ImageSource\Icon\日历.png" />
+    <Resource Include="ImageSource\Icon\TrackerIcon\有效时间.png" />
+    <Resource Include="ImageSource\Icon\TrackerIcon\车辆进入历史.png" />
+    <Resource Include="ImageSource\Icon\TrackerIcon\活动添加.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-12.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-6.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-9.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\回放按钮.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\追踪按钮.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\信息.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\全屏.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\回放.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\拍照.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\操作.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\数字放大.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\暂停 %281%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\暂停 %282%29.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\结束回放-点击后.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\结束回放.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\追踪.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\客户端异常信息.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\摄像机异常.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\2d.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\3d.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\设备信息.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\raiseup.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\摄像机.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\水压设备.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\用户.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\拼控.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\水压报警.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\火灾报警.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\车辆违停.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\folder.png" />
+    <Resource Include="ImageSource\Icon\History\下载.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\喷淋泵.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\建筑物.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\感温火灾探测器.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\感烟火灾探测器.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\报警按钮.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\摄像机白.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\普通摄像机.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\校区.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\泵房水压.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\球形摄像机.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\球机白.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\道路交通.png" />
+    <Resource Include="ImageSource\Icon\MainWinControlIcon\齿轮.png" />
+    <Resource Include="ImageSource\Icon\date.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\camera_white.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\delete_black.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\drive.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\file.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\folder-closed.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\folder-open.png" />
+    <Resource Include="ImageSource\Icon\FightIcon\删 除 .png" />
+    <Resource Include="ImageSource\Icon\FightIcon\删除.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\围栏.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\气体.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\水压.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\消防设备.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\电力.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\电子地桩.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\窗磁.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\红外幕帘.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\门磁.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\门禁.png" />
+    <Content Include="ImageSource\Icon\menuicon\menuclose.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImageSource\Icon\menuicon\menuopen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MangoApi\MangoApi.csproj">
+      <Project>{d5101340-fa9d-406d-ac22-a15b6850f2b2}</Project>
+      <Name>MangoApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MangoMapLibrary\MangoMapLibrary.csproj">
+      <Project>{7f2cf0f4-4745-4700-b513-b69608ff152a}</Project>
+      <Name>MangoMapLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MangoProtocol\MangoProtocol.csproj">
+      <Project>{c50a920b-9ad0-4e74-b2f5-c04cbbd8c166}</Project>
+      <Name>MangoProtocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

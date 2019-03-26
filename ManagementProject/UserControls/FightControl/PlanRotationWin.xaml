@@ -1,0 +1,139 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementProject.UserControls.FightControl"
+        xmlns:TimeControl="clr-namespace:ManagementProject.UserControls.TimeControl" 
+        x:Class="ManagementProject.UserControls.FightControl.PlanRotationWin"
+        mc:Ignorable="d"
+        x:Name="myWin"
+        xmlns:mv="clr-namespace:ManagementProject.ViewModel"
+        xmlns:cvt="clr-namespace:ManagementProject.Converters"
+        Height="300" Width="500"
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+
+        <DataTemplate x:Key="RotationTemplate">
+            <StackPanel Margin="20 0 0 0" Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Center" Text="时间：" VerticalAlignment="Center" FontWeight="Bold" />
+                <TimeControl:DateTimePicker  
+                                                     HorizontalAlignment="Center"
+                                                     Height="28"
+                                                     VerticalAlignment="Center"
+                                                     Width="152"    
+                                                     Foreground="White"
+                                                     BorderThickness="1"
+                                                     BorderBrush="#FFABADB3" 
+                                                     Background="Black" 
+                                                     Grid.Column="1"/>
+
+                <TextBlock HorizontalAlignment="Center" Margin="20 5 0 5" Text="场景：" VerticalAlignment="Center" FontWeight="Bold"/>
+
+                <ComboBox Text="{Binding ElementName=myWin,Path=DataContext.Scenes,Mode=OneWayToSource}"
+                                  HorizontalAlignment="Center" 
+                                  x:Name="cbo"
+                                  VerticalAlignment="Center" 
+                                  Width="80" 
+                                  Height="21">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                </ComboBox>
+                <!--CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}}"-->
+                <!--CommandParameter="{Binding RelativeSource={RelativeSource Self}}"-->
+                <Button Command="{Binding ElementName=myWin, Path=DataContext.DeleteCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource GelButton}" 
+                        Visibility="{Binding CanDelete,Converter={StaticResource BoolToVisibilityConverter}}"
+                        Margin="10 0 10 0">
+                    <Image Height="20" Width="20" Source="/ManagementProject;component/ImageSource/Icon/FightIcon/delete_black.png" />
+                </Button>
+                <!--CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}, Mode=FindAncestor}}"-->
+                <Button Content="下一个" 
+                        Background="#FF009FFF" 
+                        Visibility="{Binding IsShowNext,Converter={StaticResource BoolToVisibilityConverter}}"
+                        Style="{StaticResource FilletButton}"
+                        Command="{Binding ElementName=myWin, Path=DataContext.NextCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Width="55"
+                        Height="30" 
+                        Margin="10 0 0 0"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="164*"/>
+            <RowDefinition Height="51*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="Black">
+            <TextBlock HorizontalAlignment="Left" Margin="10 0 0 0" Text="新建计划轮询" VerticalAlignment="Center" FontWeight="Bold"  Foreground="White"/>
+
+            <Button Content="&#xEF2C;"
+                    FontFamily="Segoe MDL2 Assets" 
+                    Command="{Binding CloseWinCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                    Style="{StaticResource CalendarCloseButtonStyle}" 
+                    VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30"/>
+        </Grid>
+
+        <TextBlock HorizontalAlignment="Left" Margin="26,16,0,0" Grid.Row="1" Text="名称：" VerticalAlignment="Top" FontWeight="Bold" Height="15" Width="36" />
+        <TextBox x:Name="TxtRotationName"
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 Width="152"
+                 Height="23" 
+                 Margin="62,14,0,0" 
+                 Grid.Row="1"
+                 TextWrapping="Wrap"
+                 Text="{Binding RotationName,Mode=OneWayToSource}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,16,0,0" Grid.Row="1" Text="持续时间(秒)：" VerticalAlignment="Top" FontWeight="Bold" Height="15" Width="82" />
+        <TextBox x:Name="TxtDuration"
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 Width="108"
+                 Height="23" 
+                 Margin="337,14,0,0" 
+                 Grid.Row="1"
+                 TextWrapping="Wrap"
+                 Text="{Binding Duration,Converter={StaticResource StringToDoubleConverter}}"/>
+
+        <ListView Grid.Row="2" 
+                  x:Name="listBox"
+                  ItemsSource="{Binding PlanRotation}"
+                  ItemTemplate="{StaticResource RotationTemplate}"
+                  BorderBrush="{x:Null}"
+                  Background="{x:Null}">
+        </ListView>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button  x:Name="BtnScenes"
+                     Content="保存"
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton}" 
+                     Command="{Binding SaveRotationCommand}"
+                     CommandParameter="{Binding ElementName=listBox}"
+                     Width="75" Height="34" />
+
+            <Button  x:Name="BtnCancel"
+                     Content="取消"
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton}"
+                     Command="{Binding CancelCommand}"
+                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                     Margin="10,0"
+                     Width="75" Height="34" />
+        </StackPanel>
+    </Grid>
+</Window>

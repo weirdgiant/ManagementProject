@@ -1,0 +1,69 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  Icon="ImageSource/Icon/mainwindowicon/logo.png">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ShowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="maingrid" Background="#FF252525" >
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
+                <Label  Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
+                <Label  Content="{Binding CurrentTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
+                <Button ToolTip="最小化" 
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Command="{Binding MinSizeCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" >
+                    <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
+                </Button>
+                <Button ToolTip="关闭" 
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Command="{Binding ShutDownCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White"  Width="45" Background="{x:Null}">
+                    <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
+                </Button>
+            </StackPanel>
+            <Border  ToolTip="登录用户"
+                    HorizontalAlignment="Right" Margin="0,8,170,7" VerticalAlignment="Center"  Height="30" Width="115">
+                <StackPanel  Orientation="Horizontal" >
+                    <Image Source="ImageSource/Icon/mainwindowicon/用户.png" Width="28"/>
+                    <Label Content="{Binding UserName}" Foreground="White" VerticalContentAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <UserControls:CollageButton  HorizontalAlignment="Right"  Margin="0,0,120,0" VerticalAlignment="Center"  Height="30" Width="30"/>
+
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.ColumnSpan="1"/>
+            <Frame x:Name="mainframe" NavigationUIVisibility="Hidden"  Margin="0,0,0,0" Source="{Binding PageUrl}" Grid.ColumnSpan="2"/>
+            <Grid Name="mainMenuGrid"  Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50"/>
+            <!--<UserControls:MainWindowMenu x:Name="mainMenu" Margin="0,0,50,50" Height="50" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50"/>-->
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>

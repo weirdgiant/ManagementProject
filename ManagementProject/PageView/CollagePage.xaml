@@ -1,0 +1,272 @@
+﻿<Page x:Class="ManagementProject.PageView.CollagePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ManagementProject.PageView"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+      xmlns:fightcontrol="clr-namespace:ManagementProject.UserControls.FightControl"
+      mc:Ignorable="d" 
+      xmlns:cvt="clr-namespace:ManagementProject.Converters"
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="CollagePage">
+
+    <Grid Background="#FF5B5B5B">
+        <Grid.Resources>
+            <ResourceDictionary Source="/ManagementProject;component/ResourceDictionary/CustomAccordion.xaml" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="589*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="芒宇拼控" Margin="0,0,0,0" Foreground="White" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF009FFF"/>
+
+        <!--<Grid Grid.Row="1" Grid.Column="1" Width="400" Height="200">
+            
+        </Grid>-->
+
+        <Grid x:Name="FightControlGrid"  Grid.Column="1" Margin="0 0 0 120" Grid.Row="1" Background="#FF5B5B5B" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" 
+                      Grid.RowSpan="5"
+                      Width="5" 
+                      VerticalAlignment="Stretch"
+                      Background="#FF5B5B5B"
+                      HorizontalAlignment="Center"
+                      ShowsPreview="True"/>
+            
+            <GridSplitter Grid.Row="0"
+                      Grid.Column="3" 
+                      Grid.RowSpan="5"
+                      Width="5" 
+                      Background="#FF5B5B5B"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Center"
+                      ShowsPreview="True"/>
+
+            <GridSplitter Grid.Row="1"
+                      Grid.ColumnSpan="5"
+                      Height="5" 
+                      Background="#FF5B5B5B"
+                      HorizontalAlignment="Stretch"
+                      ShowsPreview="True"/>
+
+            <GridSplitter Grid.Row="3"
+                      Grid.Column="0" 
+                      Grid.ColumnSpan="5"
+                      Height="5" 
+                      Background="#FF5B5B5B"
+                      HorizontalAlignment="Stretch"
+                      ShowsPreview="True"/>-->
+        </Grid>
+        <Grid Grid.Column="1" Background="#FF2D2D2D" >
+            <Button  Content="场景"
+                     x:Name="BtnScenes"
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     MouseEnter="BtnScenes_MouseEnter"
+                     Style="{StaticResource FilletButton }" 
+                     Margin="30,0,0,0" Width="75" Height="35" 
+                     HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+
+            <Popup  x:Name="PopScenes"
+                    Width="75"
+                    IsOpen="False"
+                    Margin="30,58,0,-80" 
+                    HorizontalAlignment="Left"
+                    PlacementTarget="{Binding ElementName=BtnScenes}">
+
+                <StackPanel MouseLeave="PopScenes_MouseLeave">
+                    <Button  x:Name="BtnNewScenes"
+                             Content="新建场景"
+                             Foreground="White" 
+                             Background="#FF009FFF" 
+                             BorderBrush="{x:Null}"
+                             Command="{Binding NewScenesCommand}"
+                             CommandParameter="{Binding ElementName=FightControlGrid}"
+                             Style="{StaticResource FilletButton }" 
+                             Width="75" Height="35" 
+                             HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                    <Button  x:Name="BtnSaveScenes"
+                             Content="保存场景"
+                             Foreground="White" 
+                             Background="#FF009FFF" 
+                             BorderBrush="{x:Null}"
+                             Command="{Binding SaveScenesCommand}"
+                             CommandParameter="{Binding ElementName=FightControlGrid}"
+                             Style="{StaticResource FilletButton }" 
+                             Width="75" Height="35" 
+                             HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                </StackPanel>
+            </Popup>
+
+            <Button  Content="新建计划轮巡" 
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Command="{Binding NewPlanRotationCommand}"
+                     Style="{StaticResource FilletButton }"  
+                     Margin="130,0,0,0" Width="90"  Height="35"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button  Content="生成窗口" 
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
+                     Command="{Binding CreatNewWinCommand}"
+                     CommandParameter="{Binding ElementName=FightControlGrid}"
+                     Margin="245,0,0,0" Width="75"  Height="35"
+                     HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+
+            <Button  Content="复位窗口" 
+                     Foreground="White" 
+                     Visibility="Collapsed"
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
+                     Command="{Binding ResetWinCommand}"
+                     CommandParameter="{Binding ElementName=FightControlGrid}"
+                     Margin="345,0,0,0" Width="75"  Height="35"
+                     HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+
+            <Button  Content="关闭平台窗口"
+                     Foreground="White" 
+                     Background="#FF009FFF" 
+                     BorderBrush="{x:Null}"
+                     Style="{StaticResource FilletButton }" 
+                     Command="{Binding CloseAllWinCommand}"
+                     CommandParameter="{Binding ElementName=FightControlGrid}"
+                     Margin="0,0,30,0" Width="100"  Height="35"
+                     HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid  Grid.Row="1" Background="#FFDA8DEC">
+            <controls:Accordion  HorizontalAlignment="Stretch"  Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
+                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Text="摄像机列表" Foreground="White"  Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer  VerticalScrollBarVisibility="Auto">
+                            <StackPanel >
+
+                                <StackPanel Orientation="Horizontal" Width="180" Margin="20" HorizontalAlignment="Center">
+                                    <TextBox Text="输入搜索" Style="{StaticResource WarkTextBoxStyle}"  Width="140" Height="25"/>
+                                    <Button Content="&#xE71E;" 
+                                            Width="30" 
+                                            Style="{StaticResource FilletButton }"
+                                            Margin="10 0 0 0"
+                                            FontFamily="Segoe MDL2 Assets" 
+                                            Background="#FF009FFF" 
+                                            BorderBrush="{x:Null}"/>
+                                </StackPanel>
+
+                                <TreeView ItemsSource="{Binding CameraItems}"  FontSize="18"  Margin="10" Background="{x:Null}" BorderBrush="{x:Null}">
+
+                                    <TreeView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type TreeViewItem}">
+                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                            <Setter Property="Background" Value="{x:Null}" />
+                                            <Setter Property="Foreground" Value="White" />
+                                        </Style>
+                                    </TreeView.ItemContainerStyle>
+
+                                    <TreeView.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Width="20" Margin="3" 
+                                                      Source="{Binding ImageName,Converter={x:Static cvt:HeaderToImageConverter.Instance}}" />
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                            </StackPanel>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.ItemTemplate>
+
+                                </TreeView>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                    Text="场景列表" Foreground="White"
+                                    Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <fightcontrol:SceneList/>
+                                <fightcontrol:SceneList/>
+                                <fightcontrol:SceneList/>
+                                <fightcontrol:SceneList/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+                <controls:AccordionItem Background="#FF393939" BorderBrush="#FF2E2E2E">
+                    <controls:AccordionItem.Header>
+                        <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="计划轮巡" Foreground="White"
+                                    Grid.Column="0" VerticalAlignment="Center" />
+                        </Grid>
+                    </controls:AccordionItem.Header>
+                    <controls:AccordionItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <fightcontrol:PlanRotationControl/>
+                                <fightcontrol:PlanRotationControl/>
+                                <fightcontrol:PlanRotationControl/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </controls:AccordionItem.Content>
+                </controls:AccordionItem>
+            </controls:Accordion>
+        </Grid>
+
+    </Grid>
+</Page>

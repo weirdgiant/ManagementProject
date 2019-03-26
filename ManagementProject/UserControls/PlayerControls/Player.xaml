@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.Player"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:managementproject="clr-namespace:ManagementProject"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             Name="player"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonUp">
+            <i:InvokeCommandAction Command="{Binding ShowPopupCommand,Mode=TwoWay}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Name="bottomgrid" Background="#FF5C5C5C" Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <MediaElement x:Name="mediaElement" Margin="0,0,0,0" Grid.RowSpan="2"/>
+        <managementproject:CusPopup Grid.Row="1" Margin="0,0,0,0" x:Name="Popup"
+            AllowsTransparency="True"
+            Placement="Bottom"
+            StaysOpen="False"
+            IsOpen="{Binding IsOpened}"
+            VerticalOffset="-40">
+            <Grid Margin="0,0,0,0" >
+                <StackPanel  Orientation="Horizontal">
+                    <Grid Width="10"/>
+                    <Grid >
+                        <Button Width="30" 
+                                Height="30" 
+                                Command="{Binding PhotographCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
+                            ToolTip="拍照" >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/拍照.png" />
+                        </Button>
+                    </Grid>
+                    <Grid  >
+                        <Button Width="30" 
+                                Height="30" 
+                                Command="{Binding ZoomCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
+                            ToolTip="数字放大"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/数字放大.png" />
+                        </Button>
+                    </Grid>
+                    <Grid >
+                        <Button Width="30"
+                                Height="30" 
+                                 Command="{Binding OperationCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
+                            ToolTip="操作"
+                           >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/操作.png" />
+                        </Button>
+                    </Grid>
+                    <Grid  >
+                        <Button Width="30" 
+                                Height="30" 
+                                 Command="{Binding MessageCommand}"
+                                Style="{StaticResource RoundedGelButton}" 
+                                BorderBrush="{x:Null}"
+                            ToolTip="信息"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/信息.png" />
+                        </Button>
+                    </Grid>
+                    <Grid >
+                        <Button Width="30"
+                                Height="30" 
+                                Command="{Binding PlaybackCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                                Style="{StaticResource RoundedGelButton}"
+                                BorderBrush="{x:Null}"
+                                Visibility="{Binding IsPlayback}"
+                            ToolTip="回放"
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/回放按钮.png" />
+                        </Button>
+                    </Grid>
+                    <Grid>
+                        <Button Width="30" 
+                                Height="30" 
+                                Command="{Binding TrackCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                                Style="{StaticResource RoundedGelButton}"
+                                BorderBrush="{x:Null}"
+                                Visibility="{Binding IsTrack}"
+                            ToolTip="追踪"                         
+                            >
+                            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/追踪按钮.png" />
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+                <Grid Width="50" Margin="750,0,0,0" Name="fullgrid" >
+                    <Button Width="30" 
+                            Height="30" 
+                            Command="{Binding FullScreenCommand}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                            Style="{StaticResource RoundedGelButton}" 
+                            BorderBrush="{x:Null}"
+                            ToolTip="全屏"
+                            >
+                        <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/全屏.png" />
+                    </Button>
+                </Grid>
+            </Grid>
+        </managementproject:CusPopup>
+        <Popup Placement="AbsolutePoint"              
+               PlacementTarget="{Binding ElementName= bottomgrid}" FlowDirection="RightToLeft"      
+               >
+            
+            <Grid >
+                <Label Content="摄像机信息" Foreground="White" FontSize="16" />
+            </Grid>
+        </Popup>
+
+    </Grid>
+</UserControl>

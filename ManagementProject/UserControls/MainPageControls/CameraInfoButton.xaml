@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.CameraInfoButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50">
+    <Grid>
+        <ToggleButton Name="bt" 
+                      Background="{x:Null}" 
+                      BorderBrush="{x:Null}" 
+                      Command="{Binding ShowInfoCommand}"
+                      Style="{StaticResource myToggleButton}"
+                      IsChecked="{Binding IsOpened}">
+            <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机异常.png" />
+        </ToggleButton>
+        <Popup Name="pop" PlacementTarget="{Binding ElementName=bt}" 
+                IsOpen="{Binding IsOpened}"
+                StaysOpen="False"
+                PopupAnimation="Scroll"
+                Placement="Left" Grid.IsSharedSizeScope="True" AllowsTransparency="True" VerticalOffset="-662" >
+            <Border Height="712" Width="332" Opacity="0.9" Background="#FF2F2F2F" CornerRadius="5" >
+                <StackPanel>
+                    <Grid Height="100" >
+                        <Label Content="摄像机检测信息" Foreground="White" FontSize="16" Margin="73,15,126,51"/>
+                        <StackPanel   Margin="73,49,101,18" Orientation="Horizontal" >
+                            <Ellipse Height="10" Width="10" Fill="#FFC24444" />
+                            <Label Content="异常摄像机列表" FontSize="14"  Foreground="Gray" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Border Background="#FF1C1C1C" Height="2"/>
+                    <ListBox Name="listBox" Height="610" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding ErrorCameraList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="330" Height="80">
+                                    <Border CornerRadius="5" Background="#FF282828" Margin="2">
+                                        <Grid  >
+                                            <Label Content="{Binding errorDeviceName}" FontSize="14" Foreground="White" Margin="15,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
+                                            <Label Content="识别号:" FontSize="12" Foreground="#FF7A7A7A"  Margin="15,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"  />
+                                            <Label Content="{Binding code}" FontSize="12" Foreground="#FF7A7A7A"  Margin="64,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                            <ToggleButton Background="{x:Null}" 
+                                                          BorderBrush="{x:Null}" 
+                                                          Command="{Binding ShowErrorCameraInfoCommand}"
+                                                          CommandParameter="{Binding SelectedItem, ElementName=listBox}"
+                                                          Style="{StaticResource myToggleButton}"
+                                                          IsChecked="{Binding IsOpened}"
+                                                          Margin="0,0,10,0" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                                <Image Source="/ManagementProject;component/ImageSource/Icon/不查看.png" />
+                                            </ToggleButton>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

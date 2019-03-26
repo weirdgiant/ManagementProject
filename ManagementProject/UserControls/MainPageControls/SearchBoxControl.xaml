@@ -1,0 +1,13 @@
+﻿<Window x:Class="ManagementProject.UserControls.SearchBoxControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementProject.UserControls"
+        mc:Ignorable="d"
+        Title="SearchBoxControl" SizeToContent="WidthAndHeight" ShowInTaskbar="False"  ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+    <Grid>
+        <local:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="35" Margin="0,0,0,0" VerticalAlignment="Top" Width="250"/>
+        <local:MainWindowSearchBox HorizontalAlignment="Left" Height="35" Margin="0,40,0,0" VerticalAlignment="Top" Width="250"/>
+    </Grid>
+</Window>

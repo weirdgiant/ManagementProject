@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.AlarmTabButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="85" d:DesignWidth="150">
+    <Grid>
+        <RadioButton  Style="{StaticResource RadioStyle }"
+                          Foreground="White" Margin="0" >
+            <Grid Height="85" Width="150" >
+                <Label  Content="主场景" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+            
+        </RadioButton>
+    </Grid>
+</UserControl>

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.ErrorCameraInfoItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="300">
+    <Grid>
+        <Border CornerRadius="5" Background="#FF282828" Margin="5">
+            <Grid  >
+                <Label Content="化学楼客户端离线" FontSize="14" Foreground="White" Margin="15,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
+                <Label Content="识别号:" FontSize="12" Foreground="#FF7A7A7A"  Margin="15,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"  />
+                <Label Content="HK198765" FontSize="12" Foreground="#FF7A7A7A"  Margin="64,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ToggleButton Background="{x:Null}" 
+                              BorderBrush="{x:Null}" 
+                              Command="{Binding ShowInfoCommand}"
+                              Style="{StaticResource myToggleButton}"
+                              IsChecked="{Binding IsOpened}"
+                              Margin="0,0,10,0" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Image Source="/ManagementProject;component/ImageSource/Icon/不查看.png" />
+                </ToggleButton>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

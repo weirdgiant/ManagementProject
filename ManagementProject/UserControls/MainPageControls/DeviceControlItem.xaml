@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.DeviceControlItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="180">
+    <Grid>
+        <Image  HorizontalAlignment="Left" Width="30" />
+        <StackPanel Margin="30,0" Orientation="Horizontal" >
+            <Label  Content="Label" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Foreground="White"/>
+            <Border CornerRadius="2" BorderThickness="1" Background="#FF00C58B" HorizontalAlignment="Right" Width="15" Margin="0,0,0,0" Height="12" VerticalAlignment="Top">
+                <Grid >
+                    <TextBlock Name="alarmcount" Text="150"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="5" Foreground="White"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <RadioButton IsChecked="True" HorizontalAlignment="Right" Width="15" Margin="0,8,8,8"/>
+    </Grid>
+</UserControl>
