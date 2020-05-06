@@ -1,4 +1,5 @@
 ﻿using ManagementProject.Model;
+using ManagementProject.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,18 +22,21 @@ namespace ManagementProject.ViewModel
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand DeleteCommand { get; set; }
         public DelegateCommand NextCommand { get; set; }
+        public DelegateCommand SelectionChangedCommand { get; set; }
 
         public PlanRotationWinViewModel()
         {
             //Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
+            LoadScenesList();
+
             PlanRotation = new ObservableCollection<PlanRotation>();
 
             PlanRotation.Add(new PlanRotation
             {
+                PRName ="新建轮询1",
                 PRDuration = 10,
-                PRName = "先材楼及周边",
-                PRScenesName = "先材楼1",
+                PRScenesName = "场景1",
                 IsShowNext = true,
                 CanDelete = false
                 //PRTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
@@ -43,6 +47,34 @@ namespace ManagementProject.ViewModel
             CancelCommand = new DelegateCommand { ExecuteCommand = new Action<object>(Cancel) };
             DeleteCommand = new DelegateCommand { ExecuteCommand = new Action<object>(Delete) };
             NextCommand = new DelegateCommand { ExecuteCommand = new Action<object>(Next) };
+            SelectionChangedCommand = new DelegateCommand { ExecuteCommand = new Action<object>(SelectionChanged) };
+        }
+
+        /// <summary>
+        /// 加载场景列表
+        /// </summary>
+        private void LoadScenesList()
+        {
+            IDataServices<Scenes> scenesService = new ScenesService();
+            var scenes = scenesService.GetAllDatas();
+            ScenesList = new List<Scenes>();
+            foreach (var list in scenes)
+            {
+                ScenesList.Add(new Model.Scenes
+                {
+                    Id=list.Id,
+                    Name=list.Name,
+                });
+            }
+        }
+
+        private void SelectionChanged(object obj)
+        {
+            if (obj == null)
+                return;
+
+            //ComboBoxItem item = (ComboBoxItem)obj;
+            //Scenes = item.Content.ToString();
         }
 
         private void Delete(object obj)
@@ -62,10 +94,6 @@ namespace ManagementProject.ViewModel
             var dataContext = button.DataContext;
             var rotation = (PlanRotation)dataContext;
 
-            //MessageBox.Show(rotation.PRTime);
-
-            button.IsEnabled = !rotation.IsShowNext;
-
             PlanRotation.Remove(rotation);
         }
 
@@ -75,31 +103,21 @@ namespace ManagementProject.ViewModel
             var dataContext = button.DataContext;
             var rotation = (PlanRotation)dataContext;
 
-            var duration = Duration;
-            var time = rotation.PRTime;
+            var time = rotation.TimeText;
+            var scenes = rotation.PRScenesName;
 
-            //rotation.PRTime
-            //var count = PlanRotation.Count;
-
-            if (string.IsNullOrEmpty(Time.ToString()) ||
-                string.IsNullOrEmpty(Scenes))
+            if (string.IsNullOrEmpty(Time.ToString()))
             {
                 MessageBox.Show("请先将信息填写完整", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            //foreach (var item in PlanRotation)
-            //{
-            //    Console.WriteLine($"{item.PRDuration} ,{item.PRName} ,{item.PRScenesName} ,{item.PRTime}");
-
-            //    Console.WriteLine("------------------");
-            //}
-
-            PlanRotation.Insert(0, new PlanRotation
+            PlanRotation.Insert(PlanRotation.Count-1, new PlanRotation
             {
-                PRDuration = Duration,
                 PRName = RotationName,
-                PRScenesName = Scenes,
+                PRDuration = Duration,
+                TimeText = time,
+                PRScenesName = scenes,
             });
         }
 
@@ -199,27 +217,24 @@ namespace ManagementProject.ViewModel
         /// <param name="obj"></param>
         private void SaveRotation(object obj)
         {
-            if (string.IsNullOrEmpty(Duration.ToString())||Duration<=0)
+            if (string.IsNullOrEmpty(Duration.ToString()) || Duration <= 0)
             {
                 MessageBox.Show("请检查轮询时间是否合法！");
                 return;
             }
 
-            //var lv = (ListView)obj;
-            int i = 0;
-
-            Console.WriteLine("---------开始---------");
-            foreach (var item in PlanRotation)
+            if (PlanRotation.Count<=1)
             {
-                i++;
-                Console.WriteLine($"{item.PRDuration} ,{item.PRName} ,{item.PRScenesName} ,{item.PRTime}");
+                MessageBox.Show("请添加至少一个轮训计划");
+                return;
             }
 
-            Console.WriteLine(i);
 
-            Console.WriteLine("--------结束----------");
+            foreach (var item in PlanRotation)
+            {
+                Console.WriteLine($"{item.PRScenesName} ,{item.TimeText}");
+            }
 
-            //AddList(lv);
             //if (string.IsNullOrEmpty())
             //{
             //    MessageBox.Show($"请先输入计划轮训名称", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -228,10 +243,7 @@ namespace ManagementProject.ViewModel
             //MessageBox.Show($"ScenesName:{RotationName}");
         }
 
-        private void Cancel(object obj)
-        {
-            CloseWin(obj);
-        }
+        private void Cancel(object obj) => CloseWin(obj);
 
         private void CloseWin(object obj)
         {

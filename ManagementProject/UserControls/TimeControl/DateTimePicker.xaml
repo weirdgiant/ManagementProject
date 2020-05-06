@@ -3,64 +3,105 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ManagementProject.UserControls.TimeControl"
-             xmlns:myTime="clr-namespace:ManagementProject.UserControls.TimeControl"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="25" 
+             d:DesignHeight="32" 
              d:DesignWidth="150" 
-             x:Name="dtpName"
-             Loaded="UserControl_Loaded">
+             MaxHeight="40"
+             MaxWidth="300"
+             Height="25"
+             x:Name="dtpName">
 
-    <Grid Height="25" Width="150">
-
-        <Border BorderBrush="Silver" 
-                BorderThickness="0" HorizontalAlignment="Left" 
-                Margin="0,0,0,0" 
-                Name="border1" 
-                Width="150" 
-                Height="25" 
-                VerticalAlignment="Top">
-
-            <local:IconButton 
-                x:Name="iconButton1" 
-                Height="20" 
-                Width="20" 
-                HorizontalAlignment="Right"
-                Margin="0 0 3 0"
-                Icon="/ManagementProject;component/ImageSource/Icon/date.png"
-                Click="IconButton_Click"
-                Foreground="{x:Null}"/>
-            <!--<Button 
-                Height="20" 
-                Width="20" 
-                HorizontalAlignment="Right"
-                Margin="0 0 3 0"
-                Click="IconButton_Click"
-                BorderBrush="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#xED28;" Background="{x:Null}" Foreground="White">
-            </Button>-->
-
-        </Border>
-        <!--Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=yyyy-MM-dd hh:mm:ss,Mode=OneTime}"-->
-        <!--Text="{Binding ElementName=dtpName,Path=Tag,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"-->
-        <!--Text="{Binding Path=TimeText,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=1}}"-->
-        <!--Text="{Binding Path=TimeText,ElementName=dtpName,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"-->
-        <!--Binding Path=PRTime,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged-->
-        <TextBox 
-                Text="{Binding Path=PRTime,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
-                Height="23" 
-                HorizontalAlignment="Left" 
-                Margin="4,3,0,0" 
+    <DockPanel Width="Auto" Height="Auto">
+        <TextBox                 
+                MaxHeight="35"
                 Name="textBlock1"  
-                VerticalAlignment="Top" 
-                Width="123" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Style="{StaticResource TextBoxStyle1}" />
+                Padding="0 0 5 0"
+                DockPanel.Dock="Left"
+                VerticalContentAlignment="Center"
+                Text="{Binding TimeText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                
+                Foreground="{Binding ElementName=dtpName,Path=Foreground}"
+                Background="{Binding TextBackground}" 
+                Style="{StaticResource TextBoxStyle1}"/>
+
+        <!--<materialDesign:DialogHost x:Name="DialogHost" DockPanel.Dock="Right">
+
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Margin="-1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="115*"/>
+                        <ColumnDefinition Width="163*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2">
+                        <Calendar x:Name="CombinedCalendar" 
+                                  Language="zh-CN"
+                                  Margin="-1 -4 -1 0"/>
+
+                        <materialDesign:Clock x:Name="CombinedClock"
+                                  DisplayAutomation="CycleWithSeconds"
+                                  Is24Hours="True"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="0,8,8,8" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                        <Button Click="Button_Click" 
+                                CommandParameter="0" 
+                                Cursor="Hand"
+                                Margin="10 0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                >取消</Button>
+                        <Button Click="Button_Click" 
+                                CommandParameter="1"
+                                Cursor="Hand"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                >确定</Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+
+
+        <Button x:Name="ButtonPicker"
+                Margin="0 0 2 0"
+                Click="IconButton_Click"
+                Cursor="Hand"
+                Content="&#xED28;"
+                FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                Foreground="{Binding ButtonForeground}"
+                BorderBrush="{x:Null}"
+                Background="{x:Null}" 
+                FontSize="{Binding ButtonFontSize}"
+                Style="{StaticResource CalendarButtonStyle}">
+                
+            </Button>
+
+
+        </materialDesign:DialogHost>-->
+            <Button x:Name="ButtonPicker"
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Right"
+                    Margin="0 0 2 0"
+                    Click="IconButton_Click"
+                    Cursor="Hand"
+                    Content="&#xED28;"
+                    FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                    Foreground="{Binding ButtonForeground}"
+                    BorderBrush="{x:Null}"
+                    Background="{x:Null}" 
+                    FontSize="{Binding ButtonFontSize}"
+                    Style="{StaticResource CalendarButtonStyle}">
+            <!--<Path x:Name="ButtonPath" Fill="{Binding ButtonForeground}" Data="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/>-->
+        </Button>
 
         <Grid x:Name="girdChioce" 
               Background="Transparent"
+              Visibility="Visible"
               VerticalAlignment="Top"
               Margin="0,258,0,40">
             <Popup x:Name="popChioce" 
-                   PopupAnimation="Fade" 
+                   PopupAnimation="Slide" 
                    PlacementTarget="{Binding ElementName=girdChioce}" 
                    Placement="Top"
                    AllowsTransparency="True" 
@@ -69,5 +110,5 @@
             </Popup>
         </Grid>
 
-    </Grid>
+    </DockPanel>
 </UserControl>

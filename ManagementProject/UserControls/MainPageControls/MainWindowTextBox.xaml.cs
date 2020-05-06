@@ -1,4 +1,5 @@
 ﻿
+using ManagementProject.ViewModel;
 using MangoApi;
 using System;
 using System.Collections.Generic;
@@ -23,17 +24,57 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class MainWindowTextBox : UserControl
     {
-        private MainWindowTextBoxViewModel mainWindowTextBoxViewModel;
         public MainWindowTextBox()
         {
             InitializeComponent();
-            mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
-            DataContext = mainWindowTextBoxViewModel;
         }
     }
 
     public class MainWindowTextBoxModel:INotifyPropertyChangedClass
     {
+        private Visibility _isDrapbt=Visibility.Visible;
+        public Visibility IsDrapbt
+        {
+            get
+            {
+                return _isDrapbt;
+            }
+            set
+            {
+                _isDrapbt = value;
+                NotifyPropertyChanged("IsDrapbt");
+            }
+        }
+
+        private Visibility _isHomebt = Visibility.Collapsed;
+        public Visibility IsHomebt
+        {
+            get
+            {
+                return _isHomebt;
+            }
+            set
+            {
+                _isHomebt = value;
+                NotifyPropertyChanged("IsHomebt");
+            }
+        }
+
+
+        private Visibility _isInfobt = Visibility.Visible;
+        public Visibility IsInfobt
+        {
+            get
+            {
+                return _isInfobt;
+            }
+            set
+            {
+                _isInfobt = value;
+                NotifyPropertyChanged("IsInfobt");
+            }
+        }
+
         private bool _isOpened;
         public bool IsOpened
         {
@@ -45,19 +86,12 @@ namespace ManagementProject.UserControls
             {
                 _isOpened = value;
                 NotifyPropertyChanged("IsOpened");
-                if (IsOpened)
-                {
 
-                    Icon = "/ImageSource/Icon/mainwindowicon/raiseup.png";
-                }
-                else
-                {
-                    Icon = "/ImageSource/Icon/mainwindowicon/dropdown.png";
-                }
+                Icon = (IsOpened == true) ? "\xe673" : "\xe653";//chevron-up:chevron-down
             }
         }
 
-        private string _icon;
+        private string _icon = "\xe653";//chevron-down
         public string Icon
         {
             get
@@ -85,6 +119,8 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("SchoolName");
             }
         }
+
+        public string HomeMapName { get; set; }
 
         private int _selectedIndex;
         public int SelectionIndex
@@ -114,64 +150,149 @@ namespace ManagementProject.UserControls
             }
         }
 
-        public class School
-        {
-            public int SchoolId { get; set; }
-            public string SchoolName { get; set; }
-        }
+
     }
     public class MainWindowTextBoxViewModel:MainWindowTextBoxModel
     {
         public DelegateCommand DrapClickCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
         public DelegateCommand ShowMesCommand { get; set; }
+        public DelegateCommand LoadedCommand { get; set; }
+        public DelegateCommand ReturnHomeCommand { get; set; }
         public MainWindowTextBoxViewModel()
         {
-            Icon = "/ImageSource/Icon/mainwindowicon/dropdown.png";
             ItemSelectedCommand = new DelegateCommand();
             ItemSelectedCommand.ExecuteCommand = new Action<object>(ItemSelected);
             DrapClickCommand = new DelegateCommand();
             DrapClickCommand.ExecuteCommand = new Action<object>(DrapClick);
             ShowMesCommand = new DelegateCommand();
             ShowMesCommand.ExecuteCommand = new Action<object>(ShowMes);
-            AddList();
+            LoadedCommand = new DelegateCommand();
+            LoadedCommand.ExecuteCommand = new Action<object>(Loaded);
+            ReturnHomeCommand = new DelegateCommand();
+            ReturnHomeCommand.ExecuteCommand = new Action<object>(ReturnHome);
         }
 
-        private void AddList()
+        private void ReturnHome(object obj)
         {
-            SchoolList = new ObservableCollection<School>();
-            string url = AppConfig.ServerBaseUri + AppConfig.GetMap;
-            MangoMap[] map = HttpAPi.GetMapList(url);
-            MangoMap[] results = map.Where(x => x.pid == 0).ToArray();
-            foreach (var item in results)
+            GlobalVariable.SelectedSchoolId = GlobalVariable.CurrentSid;
+            InHomeMap();
+            SchoolName = HomeMapName;
+        }
+
+        public void InHomeMap()
+        {
+            if (SchoolList.Count == 1)
             {
-                School school = new School();
-                school.SchoolName = item.name;
-                school.SchoolId = item.id;
-                SchoolList.Add(school);
+                IsDrapbt = Visibility.Hidden;
+            }else
+            {
+                IsDrapbt = Visibility.Visible;
             }
-            SchoolName = SchoolList[0].SchoolName;
-            GlobalVariable.SelectedSchoolId = SchoolList[0].SchoolId;
-            GlobalVariable.CurrentMapId = SchoolList[0].SchoolId;
+            
+            IsInfobt = Visibility.Visible;
+            IsHomebt = Visibility.Collapsed;
+        }
+
+        public void InBuildingMap()
+        {
+            IsDrapbt = Visibility.Collapsed;
+            IsInfobt = Visibility.Hidden;
+            IsHomebt = Visibility.Visible;
+        }
+
+        private void Loaded(object obj)
+        {
+
+        }
+
+        public void AddList()
+        {
+            try
+            {
+
+                SchoolList = new ObservableCollection<School>();
+                string url = AppConfig.ServerBaseUri + AppConfig.GetMap;
+                MangoMap[] map = HttpAPi.GetMapList(url);
+                MangoMap[] results = map.Where(x => x.pid == 0).ToArray();
+                string[] sidlist = GlobalVariable.SidList;
+                if (sidlist == null) return;
+                foreach (var item in sidlist)
+                {
+                    MangoMap[] ret = results.Where(x => x.id == int.Parse(item)).ToArray();
+                    if (ret.Length > 0)
+                    {
+                        School school = new School();
+                        school.SchoolName = ret[0].name;
+                        school.SchoolId = ret[0].id;
+                        school.Contact = ret[0].securityPerson;
+                        school.Phone = ret[0].securityPhone;
+                        school.Discription = ret[0].description;
+                        SchoolList.Add(school);
+                    }
+                }
+                if (SchoolList.Count ==1)
+                {
+                    IsDrapbt = Visibility.Hidden;
+                }
+                School[] result = SchoolList.Where(x => x.SchoolId == GlobalVariable.CurrentMapId).ToArray();
+                if (result.Length > 0)
+                {
+                    SchoolName = result[0].SchoolName;
+                    HomeMapName = SchoolName;
+                    GlobalVariable.SelectedSchoolId = GlobalVariable.CurrentMapId;
+                }
+                else
+                {
+                    // MessageBox.Show("地图加载失败，未配置地图！");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Error("AddList:" + ex.Message);
+            }
         }
 
         public void ItemSelected(object obj)
         {
-            School tb =(School)obj;
-            SchoolName = tb.SchoolName;
-            IsOpened = false;
-            SelectionIndex = -1;
-            GlobalVariable.SelectedSchoolId = tb.SchoolId;
+            try
+            {
+                School tb = (School)obj;
+                SchoolName = tb.SchoolName;
+                IsOpened = false;
+                SelectionIndex = -1;
+                HomeMapName = SchoolName;
+                GlobalVariable.SelectedSchoolId = tb.SchoolId;
+                GlobalVariable.CurrentMapId = tb.SchoolId;
+                GlobalVariable .CurrentSid= tb.SchoolId;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
         }
 
         private void ShowMes(object obj)
         {
+            try
+            {
+                School[] result = SchoolList.Where(x => x.SchoolId == GlobalVariable.CurrentMapId).ToArray();
+            if (result.Length == 0) return;
             SchoolMessage scm = new SchoolMessage();
             SchoolMesViewModel schoolMesViewModel = new SchoolMesViewModel();
+            schoolMesViewModel.SchoolMes = result[0];
+            schoolMesViewModel.InitMes();
             scm.DataContext = schoolMesViewModel;
             scm.Topmost = true;
             scm.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             scm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
         }
 
         private void DrapClick(object obj)
@@ -179,5 +300,14 @@ namespace ManagementProject.UserControls
             
 
         }
+    }
+
+    public class School
+    {
+        public int SchoolId { get; set; }
+        public string SchoolName { get; set; }
+        public string Phone { get; set; }
+        public string Contact{ get; set; }
+        public string Discription { get; set; }
     }
 }

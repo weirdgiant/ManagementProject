@@ -5,15 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:ManagementProject.UserControls"
+             xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="1000">
-    <Grid Background="#FF2A2A2A">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="240"/>
-        </Grid.ColumnDefinitions>
-        <Slider x:Name="slider" Margin="30,30,82,10" Style="{StaticResource Slider1}"/>
-        <ToggleButton x:Name="ratebt" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnLoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Name="panel" Grid.Row="0" Margin="5,120,5,120"/>
+        <Grid Name="maxPanel" Grid.Row="0" Margin="5"/>
+        <!--<WindowsFormsHost Grid.Row="0" Margin="5" Background="Gray">
+            <forms:PictureBox x:Name="playWindow"></forms:PictureBox>
+        </WindowsFormsHost>-->
+        <Grid Background="#FF2A2A2A" Height="50"  Grid.Row="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="240"/>
+            </Grid.ColumnDefinitions>
+            <Slider x:Name="slider" 
+                    SmallChange="{Binding SmallChange}"
+                    LargeChange="{Binding LargeChange}"
+                    Delay="{Binding Delay}"
+                    Value="{Binding Value}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    IsMoveToPointEnabled="True" 
+                    Margin="30,30,115,10" Style="{StaticResource Slider1}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.SliderLeftButtonUpCommand}">
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.SliderLeftButtonDownCommand}">
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Slider>
+            <ToggleButton x:Name="ratebt" 
                       Style="{StaticResource ToggleButtonStyle2}"
                       Content="{Binding SelectedRate}" 
                       Background="{Binding RateColor}"  
@@ -21,42 +59,51 @@
                       IsChecked="{Binding IsOpen,Mode=OneWay}" 
                       Command="{Binding OpenContextMenuCommand}"   
                       HorizontalAlignment="Right" Margin="0,14,38,14" Width="42"  Height="22" Foreground="White" VerticalAlignment="Center" Grid.Column="1"/>
-        <Popup PlacementTarget="{Binding ElementName=ratebt}"   
+            <Popup PlacementTarget="{Binding ElementName=ratebt}"   
                IsOpen="{Binding IsOpen,Mode=OneWay}" 
                StaysOpen="{Binding IsOpen,Mode=OneWay}" 
                Placement="Top" 
                AllowsTransparency="True" Grid.ColumnSpan="2">
-            <Grid >
-                <ListBox Name="listBox" ItemsSource="{Binding SelectionItemCollection}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding RateSelectedCommand,Mode=TwoWay}"
+                <Grid >
+                    <ListBox Name="listBox" ItemsSource="{Binding SelectionItemCollection}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding RateSelectedCommand,Mode=TwoWay}"
                                       CommandParameter="{Binding SelectedItem, ElementName=listBox}">
-                            </i:InvokeCommandAction>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical" >
-                                <Grid Height="5"/>
-                                <TextBlock Name="ItemName" Text="{Binding  Path=Header}" HorizontalAlignment="Center" FontSize="13"/>
-                                <Separator Width="42" Background="#FF393939" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </Popup>
-        <Button  Style="{StaticResource RoundedGelButton }" HorizontalAlignment="Left" Margin="20,5,0,5" Width="40"  Grid.Column="1">
-            <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/暂停 (2).png" />
-        </Button>
-        <Button Style="{StaticResource RoundedGelButton }"   HorizontalAlignment="Left" Margin="78,5,0,5" BorderBrush="{x:Null}" Width="40" Grid.Column="1">
-            <Image Source="/ManagementProject;component/ImageSource/Icon/History/下载.png" />
-        </Button>
-        <Label  Content="00:00/00:00" Foreground="White" Margin="0,23,0,2" HorizontalAlignment="Right" Width="77"/>
-        <Label  Content="报警时间" HorizontalAlignment="Left" Foreground="White" Margin="30,0,0,0" VerticalAlignment="Top"/>
-        <Label  Content="处理时间" HorizontalAlignment="Right" Foreground="White" Margin="0,0,207.5,0" VerticalAlignment="Top"/>
-        <Label  Content="2018.06.05 00:00:00" HorizontalAlignment="Left" Foreground="White" Margin="93,0,0,0" VerticalAlignment="Top"/>
-        <Label  Content="2018.06.05 23:59:59" HorizontalAlignment="Right" Foreground="White" Margin="0,0,83.5,0" VerticalAlignment="Top"/>
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" >
+                                    <Grid Height="5"/>
+                                    <TextBlock Name="ItemName" Text="{Binding  Path=Header}" HorizontalAlignment="Center" FontSize="13"/>
+                                    <Separator Width="42" Background="#FF393939" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Popup>
+            <Button  Style="{StaticResource RoundedGelButton }" Command="{Binding StartPlayCommand}" HorizontalAlignment="Left" Margin="20,5,0,5" Width="40"  Grid.Column="1">
+                <Image Source="{Binding StartIcon}" />
+            </Button>
+            <Button Style="{StaticResource RoundedGelButton }"
+                    FontFamily="/ManagementProject;component/Assets/Fonts/#iconfont"
+                    HorizontalAlignment="Left" 
+                    Visibility="Collapsed" 
+                    Margin="78,5,0,5"
+                    BorderBrush="{x:Null}"
+                    Width="40"
+                    FontSize="30"
+                    Grid.Column="1">
+                <Image Source="/ManagementProject;component/ImageSource/Icon/History/下载.png" />
+            </Button>
+            <Label  Content="{Binding CurrentPlayTime}" Foreground="White" Margin="0,25,0,0" HorizontalAlignment="Right" />
+            <Label  Content="报警时间" HorizontalAlignment="Left" Foreground="White" Margin="30,0,0,0" VerticalAlignment="Top"/>
+            <Label  Content="处理时间" HorizontalAlignment="Right" Foreground="White" Margin="0,0,207.5,0" VerticalAlignment="Top"/>
+            <Label  Content="{Binding AlarmTime}" HorizontalAlignment="Left" Foreground="White" Margin="93,0,0,0" VerticalAlignment="Top"/>
+            <Label  Content="{Binding ConfirmTime}" HorizontalAlignment="Right" Foreground="White" Margin="0,0,83.5,0" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </UserControl>

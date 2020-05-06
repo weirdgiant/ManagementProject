@@ -1,0 +1,108 @@
+﻿<Window x:Class="ManagementProject.TrafficWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="交通违规记录"
+        Height="790"
+        Width="1180"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="Manual"
+        WindowStyle="None" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        Opacity="0.95">
+
+    <Window.Resources>
+        <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/Styles/ActiveVehicleDataGrid.xaml"/>
+    </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Border CornerRadius="6"  Background="#FF2A2A2A">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="6 6 0 0" Background="#FF252525" Margin="0,0,0,0" >
+                <Grid Grid.Row="0 ">
+                    <Button x:Name="closebt" 
+                            ToolTip="关闭" 
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding CloseWinCommand}"  
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center"
+                            Foreground="White" 
+                            Margin="0,0,10,0"
+                            Content="&#xE106;"
+                            FontWeight="Bold"
+                            FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                            FontSize="16">
+                    </Button>
+                    <TextBlock Text="交通违规记录"
+                               Margin="15 0 0 0" 
+                               FontSize="22" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center" 
+                               Foreground="White" />
+                    <Button x:Name="maxbt" 
+                            ToolTip="最大化" 
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding MaxWinCommand}"  
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center"
+                            Foreground="White" 
+                            Margin="0,13,45,13"
+                            Content="&#xE922;"
+                            FontWeight="Bold"
+                            FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                            FontSize="16" RenderTransformOrigin="1.125,0.562"/>
+                </Grid>
+            </Border>
+            <RadioButton  Style="{StaticResource TrackeTabRadioButtonStyle}"
+                          IsChecked="True" 
+                          Content="违规记录列表"
+                          Command="{Binding TrafficListCommand}"
+                          Width="120" 
+                          Height="25"
+                          HorizontalAlignment="Left"
+                          Margin="20,23,0,0"
+                          Grid.Row="1"
+                          VerticalAlignment="Top"/>
+            <RadioButton  Style="{StaticResource TrackeTabRadioButtonStyle}" 
+                          Content="超速TOP10"
+                          Command="{Binding OverSpeedListCommand}"
+                          Width="120" 
+                          Height="25" 
+                          HorizontalAlignment="Left" 
+                          Margin="160,23,0,0" 
+                          Grid.Row="1"
+                          VerticalAlignment="Top"/>
+
+            <RadioButton  Style="{StaticResource TrackeTabRadioButtonStyle}"
+                          Content="违停TOP10" 
+                          Command="{Binding ParkingListCommand}"
+                          Width="120" 
+                          Height="25" 
+                          HorizontalAlignment="Left" 
+                          Margin="300,23,0,0" 
+                          Grid.Row="1" 
+                          VerticalAlignment="Top"/>
+            
+            <Grid Grid.Row="2" Name="panel"></Grid>
+        </Grid>
+
+    </Border>
+</Window>

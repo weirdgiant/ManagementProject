@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,20 @@ namespace ManagementProject.FunctionalWindows
         public AddTracker()
         {
             InitializeComponent();
+            MouseDown += AddTracker_MouseDown;
+        }
+
+        private void AddTracker_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

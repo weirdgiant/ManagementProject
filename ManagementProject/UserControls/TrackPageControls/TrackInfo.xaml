@@ -6,8 +6,21 @@
         xmlns:local="clr-namespace:ManagementProject.FunctionalWindows"
         xmlns:UserControls="clr-namespace:ManagementProject.UserControls"
         mc:Ignorable="d"
-        Title="TrackInfo" Height="1035" Width="300" ShowInTaskbar="False"  ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" WindowStyle="None">
-    <Grid>
-        <UserControls:TrackerInfoControl  Width="300" Margin="0,0,0,0" />
-    </Grid>
+        Title="TrackInfo" 
+        Height="1030"
+        Width="323"
+        ShowInTaskbar="False" 
+        ResizeMode="NoResize" 
+        Opacity="0.95" 
+        OpacityMask="White"  
+        AllowsTransparency="True"
+        Background="Transparent" 
+        WindowStyle="None">
+      <Border>
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="1" Opacity="0.9" BlurRadius="20" Color="Black"/>
+        </Border.Effect>
+        
+        <UserControls:TrackerInfoControl x:Name="tracker"  Margin="0,0,0,0" />
+    </Border>
 </Window>

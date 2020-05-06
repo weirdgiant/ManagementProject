@@ -13,15 +13,15 @@ namespace ManagementProject.ViewModel
     public class MainPageViewModel : MainPageModel
     {
         private MainWindow _mainWin = (MainWindow)Application.Current.MainWindow;
-        private AlarmButtonControl alarmControl;
+
+        public DeviceControl deviceControl;
+        public ErrorDeviceControl errorDeviceControl;
+
+        public AlarmButtonControl alarmControl;
         public MainWindowViewModel MainWindowViewModel { get; set; }
-        public MainWindowStatisticsViewModel CameraStatisticsViewModel { get; set; }
-        public MainWindowStatisticsViewModel WaterStatisticsViewModel { get; set; }
+        public MainWindowTextBoxViewModel mainWindowTextBoxViewModel { get; set; }
         public CameraInfoViewModel CameraInfoViewModel { get; set; }
         public ClientInfoViewModel ClientInfoViewModel { get; set; }
-        public AlarmButtonViewModel carAlarmViewModel { get; set; }
-        public AlarmButtonViewModel waterAlarmViewModel { get; set;}
-        public AlarmButtonViewModel fireAlarmViewModel { get; set; }
         public DelegateCommand LoadCommand { get; set; }
         public DelegateCommand UnLoadCommand { get; set; }
         public MainPageViewModel( MainWindowViewModel _mainWindowViewModel)
@@ -29,7 +29,41 @@ namespace ManagementProject.ViewModel
             MainWindowViewModel = _mainWindowViewModel;
             ControlViewModelInit();
             CommandInit();
+          
         }
+
+        public void TrackStart()
+        {
+            if (deviceControl!=null)
+            {
+                deviceControl.Visibility = Visibility.Collapsed;
+            }
+            if (errorDeviceControl != null)
+            {
+                errorDeviceControl.Visibility = Visibility.Collapsed;
+            }
+        }
+        public void TrackeEnd()
+        {
+            try
+            {
+                if (deviceControl != null)
+                {
+                    deviceControl.Visibility = Visibility.Visible;
+                }
+                if (errorDeviceControl != null)
+                {
+                    errorDeviceControl.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Error(ex);
+            }
+            
+        }
+
 
         private void CommandInit()
         {
@@ -66,32 +100,8 @@ namespace ManagementProject.ViewModel
         private void ControlViewModelInit()
         {
             CameraInfoViewModel = new CameraInfoViewModel();
-            ClientInfoViewModel = new ClientInfoViewModel();          
-        }
-
-        private void InitAlarmButton()
-        {
-            string url = AppConfig.ServerBaseUri + AppConfig.GetAlarmCount;
-            Alarm[] UnDealedAlarm = HttpAPi.GetAlarm(url);
-            ///初始化车辆报警
-            carAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel)
-            {
-                AlarmType = AlarmType.CarAlarm,
-                AlarmCount = "5"
-            };
-            ///初始化水压报警
-            waterAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel)
-            {
-                AlarmType = AlarmType.WaterAlarm,
-                AlarmCount = "6"
-            };
-            ///初始化火灾报警
-            fireAlarmViewModel = new AlarmButtonViewModel(MainWindowViewModel)
-            {
-                AlarmType = AlarmType.FireAlarm,
-                AlarmCount = "7"
-            };
-        }
-        
+            ClientInfoViewModel = new ClientInfoViewModel();
+            mainWindowTextBoxViewModel = new MainWindowTextBoxViewModel();
+    }    
     }
 }

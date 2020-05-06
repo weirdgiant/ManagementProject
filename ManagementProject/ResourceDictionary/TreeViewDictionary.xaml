@@ -36,7 +36,7 @@
                                         </ControlTemplate>
                                     </ToggleButton.Template>
                                     <ToggleButton.Content>
-                                        <TextBlock x:Name="ExpanderIcon"  Foreground="{TemplateBinding Foreground}" Text="&#xe62c;" Style="{StaticResource FIcon}"
+                                        <TextBlock x:Name="ExpanderIcon"  Foreground="{TemplateBinding Foreground}" Text="&#xe62c;" Style="{StaticResource IconFontStyle}"
                                                    />
 
                                         <!--<TextBlock x:Name="ExpanderIcon"  Foreground="{TemplateBinding Foreground}" Text="&#xe62c;" Style="{StaticResource FIcon}"

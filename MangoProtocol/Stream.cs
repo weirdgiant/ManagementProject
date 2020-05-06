@@ -73,6 +73,13 @@ namespace com.mango.protocol
             return buffer;
         }
 
+        public byte[] GetrelBuffer()
+        {
+            byte[] tmp = new byte[writeIndex];
+            System.Array.Copy(buffer, tmp, writeIndex);
+            return tmp;
+        }
+
 
 
         public void Reset()
@@ -277,7 +284,7 @@ namespace com.mango.protocol
                 if(time >= 12000)
                 {
                     CS_KeepAlive alive = new CS_KeepAlive();
-                    alive.datetime = DateTime.UtcNow.ToFileTimeUtc();
+                    alive.datetime = ConvertDateTimeToTimeStamp(DateTime.Now);
                     this.Write(alive,(short)alive.protocol);
                     time = 0;
                 }
@@ -288,7 +295,15 @@ namespace com.mango.protocol
             Console.WriteLine("KeepAlive Exit");
         }
 
-       
+        public long ConvertDateTimeToTimeStamp(DateTime time)
+        {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+            long t = (time.Ticks - startTime.Ticks) / 10000;   //除10000调整为13位     
+            return t;
+
+        }
+
+
 
         private void Read()
         {
@@ -340,11 +355,8 @@ namespace com.mango.protocol
             stream.WriteShort(protocol);
             byte[] buffer = Package.Serizlize(message);
             stream.WriteBytes(buffer, buffer.Length);
-            //message.write(stream);
             stream.WriteInt(0, stream.GetSize());
-            byte[] data = stream.GetBuffer();
-           // CS_LOGIN mm = (CS_LOGIN)Package.DeSerizlize<CS_LOGIN>(buffer);
-
+            byte[] data = stream.GetrelBuffer();
             Write(data);
         
         }
@@ -482,36 +494,6 @@ namespace com.mango.protocol
 
     public static class Package
     {            
-        /// <summary>
-        /// 数组转结构体
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="strcutType"></param>
-        /// <param name="nSize"></param>
-        /// <returns></returns>
-        public static object BytesToStruct(byte[] bytes, Type strcutType, int nSize)
-        {
-            if (bytes == null)
-            {
-               // LogManager.GetLogger("MangoSocketClient").Error("Buffer is Null");
-            }
-            int size = Marshal.SizeOf(strcutType);
-            IntPtr buffer = Marshal.AllocHGlobal(nSize);
-            try
-            {
-                Marshal.Copy(bytes, 0, buffer, nSize);
-                return Marshal.PtrToStructure(buffer, strcutType);
-            }
-            catch (Exception ex)
-            {
-               // LogManager.GetLogger("MangoSocketClient").Error("Type: " + strcutType.ToString() + "---TypeSize:" + size + "----packetSize:" + nSize);
-                return null;
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(buffer);
-            }
-        }
 
         public static object SCStruct<T>(OutStream buffer)
         {
@@ -543,7 +525,7 @@ namespace com.mango.protocol
                     return result;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -569,7 +551,7 @@ namespace com.mango.protocol
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -596,6 +578,7 @@ namespace com.mango.protocol
                 while (counter > 0)
                 {
                     Monitor.Wait(lockObj, 15000); // 等待15秒，如果没有返回值则超时
+                    CountDown();
                 }
             }
         }
@@ -647,6 +630,18 @@ namespace com.mango.protocol
         {
             //throw new NotImplementedException();
         }
+        public virtual void onSC_GetUnConfirmedAlarm(Object session, SC_GetUnConfirmedAlarm message)
+        {
+            //throw new NotImplementedException();
+        }
+        public virtual void onSC_GetAlarmList(Object session, SC_GetAlarmList message)
+        {
+            //throw new NotImplementedException();
+        }
+        public virtual void onSC_ConfirmAlarm(Object session, SC_ConfirmAlarm message)
+        {
+            //throw new NotImplementedException();
+        }
         //public virtual void onSC_PushClient(Object session, SC_PushClient message)
         //{
         //    //throw new NotImplementedException();
@@ -659,7 +654,15 @@ namespace com.mango.protocol
         //{
         //    //throw new NotImplementedException();
         //}
+        public virtual void onSC_HastenHandle(Object session, SC_HastenHandle message)
+        {
+            //throw new NotImplementedException();
+        }
 
+        public virtual void onSC_ACCESSCONTROL(Object session, SC_ACCESSCONTROL message)
+        {
+            //throw new NotImplementedException();
+        }
         private Hashtable seqMap = new Hashtable();
 
         public OutStream Await(MangoSocketClient client, object message,short protocol)
@@ -688,7 +691,6 @@ namespace com.mango.protocol
                 return;
             }
 
-            Package.BytesToStruct(buffer.GetBuffer(), typeof(SC_KeepAlive), buffer.GetBuffer().Length);
             switch (protocol)
             {
                 case Protocol.SC_KEEPALIVE:
@@ -706,10 +708,24 @@ namespace com.mango.protocol
                 case Protocol.SC_ALARM:
                     onSC_Alarm(session, (SC_Alarm)SCStruct<SC_Alarm>(buffer) );
                     break;
+                case Protocol.SC_GETUNCONFIRMEDALARM:
+                    onSC_GetUnConfirmedAlarm(session, (SC_GetUnConfirmedAlarm)SCStruct<SC_GetUnConfirmedAlarm>(buffer));
                     break;
-                //case Protocol.SC_SENDSMS:
-                //    onSC_SendSMS(session, (SC_SendSMS)SCStruct<SC_SendSMS>(buffer));
-                //    break;
+                case Protocol.SC_GETALARMLIST:
+                    onSC_GetAlarmList(session, (SC_GetAlarmList)SCStruct<SC_GetAlarmList>(buffer));
+                    break;
+                case Protocol.SC_CONFIRMALARM:
+                    onSC_ConfirmAlarm(session, (SC_ConfirmAlarm)SCStruct<SC_ConfirmAlarm>(buffer));
+                    break;
+                case Protocol.SC_HASTENHANDLE:
+                    onSC_HastenHandle(session, (SC_HastenHandle)SCStruct<SC_HastenHandle>(buffer));
+                    break;
+                case Protocol.SC_ACCESSCONTROL:
+                    onSC_ACCESSCONTROL(session, (SC_ACCESSCONTROL)SCStruct<SC_ACCESSCONTROL>(buffer));
+                    break;
+                    //case Protocol.SC_SENDSMS:
+                    //    onSC_SendSMS(session, (SC_SendSMS)SCStruct<SC_SendSMS>(buffer));
+                    //    break;
             }
         }
     }

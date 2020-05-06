@@ -21,7 +21,7 @@ namespace ManagementProject.FunctionalWindows
     public partial class TrackManagement : Window
     {
         public TrackManagement()
-        {
+        {           
             InitializeComponent();
         }
     }

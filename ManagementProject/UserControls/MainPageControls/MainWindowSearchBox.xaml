@@ -9,85 +9,180 @@
               d:DesignHeight="35" Width="250" >
 
     <Grid>
-        <Border Name="bt" CornerRadius="5" BorderBrush="Black" BorderThickness="1" Height="35" Margin="0,0,0,0" VerticalAlignment="Bottom" Background="#FF2F2F2F" Opacity="0.9">
+        <Border Name="bt" CornerRadius="5" 
+                BorderThickness="1" 
+                Height="35" 
+                Margin="0,0,0,0" 
+                VerticalAlignment="Bottom"
+                Background="#252525">
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
-                <Label Width="10"/>
-                <TextBox x:Name="searchcontent"  Style="{StaticResource WarkTextBoxStyle}"  CaretBrush="White"    Tag="请输入搜索内容" Width="190"  Grid.IsSharedSizeScope="True" Margin="0,0" Foreground="White" FontSize="12" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center" />
-                <Button x:Name="searchbt" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Width="48" Margin="0,0" VerticalAlignment="Stretch">
-                    <Image Width="25" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/search.png" />
-                </Button>
+                <TextBox x:Name="searchcontent" 
+                         Style="{StaticResource WarkTextBoxStyle}"  
+                         CaretBrush="White" 
+                         Tag="请输入搜索内容" 
+                         Width="162"  
+                         Grid.IsSharedSizeScope="True"
+                         Margin="10 0 0 0" 
+                         Foreground="White" 
+                         FontSize="12"
+                         Background="{x:Null}" 
+                         BorderBrush="{x:Null}"
+                         VerticalContentAlignment="Center" />
+
+                <Path Data="M228,38.333333 L228,71.006802" Fill="#FF8B8B8B" Height="20" Stretch="Fill" Stroke="#FF5A5A5A" Width="1"/>
+
+                <Button Name="clearbt" Style="{StaticResource TransparentButton}"
+                        Content="&#xE10A;" 
+                        FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets" 
+                        FontSize="14" 
+                        Margin="8 0"/>
+
+                <Border CornerRadius="0 5 5 0" Background="#FF363636"  Width="41">
+                    <Button x:Name="searchbt" 
+                            Style="{StaticResource TransparentButton}" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Stretch" >
+                        <Path Stretch="Fill" Height="18" Width="18" Fill="White" Margin="8 0" StrokeThickness="1" Stroke="White" Data="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></Path>
+                    </Button>
+
+                </Border>
             </StackPanel>
         </Border>
+        
         <Popup Name="pop" 
-                       IsOpen="false" 
-                       StaysOpen="False" 
-                       Placement="Bottom"  
-                       PlacementTarget="{Binding ElementName=bt}"  
-                       PopupAnimation="Scroll"
-                       Grid.IsSharedSizeScope="True" 
-                       AllowsTransparency="True">
-            <Border Height="250" Width="200" Background="#FF2F2F2F" Opacity="0.9" CornerRadius="5">
-                <Grid >
-                    <Grid.Resources>
-                        <ResourceDictionary Source="/ManagementProject;component/ResourceDictionary/CustomAccordion.xaml" />
-                    </Grid.Resources>
-                    <controls:Accordion   HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
-                        <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
-                            <controls:AccordionItem.Header>
-                                <Grid HorizontalAlignment="Stretch" Margin="0 0 0 4">
+               IsOpen="false" 
+               StaysOpen="False" 
+               Placement="Bottom"  
+               VerticalOffset="5"
+               PlacementTarget="{Binding ElementName=bt}"  
+               PopupAnimation="Scroll"
+               Grid.IsSharedSizeScope="True" 
+               AllowsTransparency="True">
+
+            <Border Height="Auto" MaxHeight="250" Width="200" Background="#252525" CornerRadius="5" Opacity="0.95">
+
+                <StackPanel Margin="0 20" >
+                    
+                    <StackPanel.Resources>
+                        <local:BuildingNameConverter x:Key="BuildingNameConverter"/>
+                    </StackPanel.Resources>
+
+                    <Expander 
+                              Name="build" 
+                              ExpandDirection="Down"
+                              VerticalAlignment="Top"
+                              Width="192"
+                              Visibility="Collapsed"
+                              Style="{StaticResource ExpanderStyle1}">
+                        <Expander.Header>
+                            <Border Background="#009FFF"  
+                                    Width="185"
+                                    Height="35"
+                                    CornerRadius="3" >
+                                <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock  Text="建筑" Foreground="White"  Grid.Column="0" VerticalAlignment="Center" />
+                                    <Image Width="20" Height="20" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/建筑物.png" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                                    <TextBlock  Grid.Column="1" Margin="5" Text="建筑" Foreground="White"  VerticalAlignment="Center"/>
+                                    <TextBlock  Grid.Column="2" Text="{Binding ElementName=buildlist,Path=ItemsSource.Count}" Margin="10" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                 </Grid>
-                            </controls:AccordionItem.Header>
-                            <controls:AccordionItem.Content>
-                                <ScrollViewer  VerticalScrollBarVisibility="Auto">
-                                    <Grid >
+                            </Border>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <ListBox Name="buildlist" 
+                                     ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"                                     
+                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     Background="{x:Null}"
+                                     Height="130"
+                                     HorizontalAlignment="Center"
+                                     BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
 
-                                    </Grid>
-                                </ScrollViewer>
-                            </controls:AccordionItem.Content>
-                        </controls:AccordionItem>
-                        <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
-                            <controls:AccordionItem.Header>
-                                <Grid HorizontalAlignment="Stretch" Margin="0 0 0 4">
+                                            <RadioButton x:Name="buildItemName"
+                                                         Click="buildItemName_Click"
+                                                         Tag="{Binding code}"
+                                                         TabIndex="{Binding mapId}"
+                                                         Opacity="0.95"
+                                                         Margin="5" 
+                                                         Width="150"
+                                                         Height="24"
+                                                         Style="{StaticResource MapDeviceRadioButtonStyle}" 
+                                                         Foreground="White"
+                                                         GroupName="0"
+                                                         Content="{Binding Path=name,Converter={StaticResource BuildingNameConverter}}"
+                                                         HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Expander.Content>
+                    </Expander>
+
+                    <Expander 
+                              Name="device" 
+                              Visibility="Collapsed"
+                              ExpandDirection="Down"
+                              VerticalAlignment="Top"
+                              Width="192"
+                              Style="{StaticResource ExpanderStyle1}">
+                        <Expander.Header>
+                            <Border Background="#009FFF"  
+                                    Width="185"
+                                    Height="35"
+                                    CornerRadius="3" >
+                                <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock  Text="道路" Foreground="White"  Grid.Column="0" VerticalAlignment="Center" />
+                                    <Image Width="20" Height="20" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/齿轮.png" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                                    <TextBlock  Grid.Column="1" Margin="5" Text="设备" Foreground="White"  VerticalAlignment="Center"/>
+                                    <TextBlock  Grid.Column="2" Text="{Binding ElementName=devicelist,Path=ItemsSource.Count}" Margin="10" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                 </Grid>
-                            </controls:AccordionItem.Header>
-                            <controls:AccordionItem.Content>
-                                <ScrollViewer  VerticalScrollBarVisibility="Auto">
-                                    <Grid >
+                            </Border>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <ListBox Name="devicelist" 
+                                         ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Background="{x:Null}"
+                                         Height="130"
+                                         HorizontalAlignment="Center"
+                                         BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
 
-                                    </Grid>
-                                </ScrollViewer>
-                            </controls:AccordionItem.Content>
-                        </controls:AccordionItem>
-                        <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
-                            <controls:AccordionItem.Header>
-                                <Grid HorizontalAlignment="Stretch" Margin="0 0 0 4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock  Text="设备" Foreground="White"  Grid.Column="0" VerticalAlignment="Center" />
-                                </Grid>
-                            </controls:AccordionItem.Header>
-                            <controls:AccordionItem.Content>
-                                <ScrollViewer  VerticalScrollBarVisibility="Auto">
-                                    <Grid >
+                                            <RadioButton x:Name="deviceItemName"
+                                                         Click="deviceItemName_Click"
+                                                         Tag="{Binding code}"
+                                                         TabIndex="{Binding mapId}"
+                                                         Opacity="0.95"
+                                                         Margin="5" 
+                                                         Width="150"
+                                                         Height="24"
+                                                         Style="{StaticResource MapDeviceRadioButtonStyle}" 
+                                                         Foreground="White"
+                                                         GroupName="0"
+                                                         Content="{Binding Path=name,Converter={StaticResource BuildingNameConverter}}"
+                                                         HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Expander.Content>
+                    </Expander>
 
-                                    </Grid>
-                                </ScrollViewer>
-                            </controls:AccordionItem.Content>
-                        </controls:AccordionItem>
-                    </controls:Accordion>
-                </Grid>
+                  
+                </StackPanel>
             </Border>
         </Popup>
     </Grid>

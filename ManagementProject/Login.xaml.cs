@@ -27,5 +27,10 @@ namespace ManagementProject
             loginViewModel = new LoginViewModel();
             DataContext = loginViewModel;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
+        }
     }
 }

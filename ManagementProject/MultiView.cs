@@ -334,7 +334,7 @@ namespace ManagementProject
         public bool Selected;
 
         private bool isFull = false;
-        private object panel;
+        //private object panel;
 
         private void InitAll()
         {

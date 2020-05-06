@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ManagementProject.UserControls.FightControl"
         mc:Ignorable="d"
         Title="SaveScenes" Height="200" Width="500" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
@@ -16,9 +15,9 @@
         <Grid Background="Black">
             <TextBlock HorizontalAlignment="Left" Margin="10 0 0 0" Text="保存场景" VerticalAlignment="Center" FontWeight="Bold"  Foreground="White"/>
 
-            <Button Content="&#xEF2C;"
-                    FontFamily="Segoe MDL2 Assets" 
-                    Command="{Binding CloseWinCommand}"
+            <Button Content="X"
+                    FontSize="20"
+                    Command="{Binding CloseSceneWinCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                     Style="{StaticResource CalendarCloseButtonStyle}" 
                     VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30"/>
@@ -32,7 +31,8 @@
                  Background="#FF009FFF" 
                  BorderBrush="{x:Null}"
                  Style="{StaticResource FilletButton }" 
-                 Command="{Binding SaveScenesCommand}"
+                 Command="{Binding SaveSceneWinCommand}"
+                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                  Width="75" Height="34" 
                  HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="149,27,0,30"/>
 
@@ -43,7 +43,7 @@
                  Background="#FF009FFF" 
                  BorderBrush="{x:Null}"
                  Style="{StaticResource FilletButton }"
-                 Command="{Binding CancelCommand}"
+                 Command="{Binding CancelSceneWinCommand}"
                  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                  Width="75" Height="34" 
                  HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="275,27,0,30"/>
@@ -55,7 +55,8 @@
                  Height="23" 
                  Margin="187,36,0,0" 
                  Grid.Row="1"
+                 Style="{x:Null}"
                  TextWrapping="Wrap"
-                 Text="{Binding ScenesName}"/>
+                 Text="{Binding ScenesName,Mode=TwoWay}"/>
     </Grid>
 </Window>

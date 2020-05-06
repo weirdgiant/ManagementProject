@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ManagementProject.UserControls.TimeControl
 {
@@ -51,7 +41,7 @@ namespace ManagementProject.UserControls.TimeControl
 
         #region 事件
 
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e) => btnOK_Click(this, null);
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e) => BtnOK_Click();
 
         /// <summary>
         /// TDateTimeView 窗体登录事件
@@ -60,21 +50,38 @@ namespace ManagementProject.UserControls.TimeControl
         /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(formerDateTimeStr))
+            {
+                formerDateTimeStr = DateTime.Now.ToString();
+            }
             #region 时间控件赋值
             for (int i = 0; i <= 59; i++)
             {
                 if (i < 24)
-                    CboHour.Items.Add(i);
+                {
+                    if (i<10)
+                        CboHour.Items.Add($"0{i}");
+                    else
+                        CboHour.Items.Add(i);
+                }
 
-                CboMin.Items.Add(i);
-                CboSec.Items.Add(i);
+                if (i<10)
+                {
+                    CboMin.Items.Add($"0{i}");
+                    CboSec.Items.Add($"0{i}");
+                }
+                else
+                {
+                    CboMin.Items.Add(i);
+                    CboSec.Items.Add(i);
+                }
             }
 
-            var now = DateTime.Now;
+            CboHour.Text = DateTime.Parse(formerDateTimeStr).ToString("HH");
+            CboMin.Text = DateTime.Parse(formerDateTimeStr).ToString("mm");
+            CboSec.Text = DateTime.Parse(formerDateTimeStr).ToString("ss");
+            calDate.SelectedDate = DateTime.Parse(formerDateTimeStr).Date;
 
-            CboHour.Text = now.Hour.ToString();
-            CboMin.Text = now.Minute.ToString();
-            CboSec.Text = now.Second.ToString();
             #endregion
         }
 
@@ -88,25 +95,16 @@ namespace ManagementProject.UserControls.TimeControl
             OnDateTimeContent(formerDateTimeStr);
         }
 
-        /// <summary>
-        /// 确定按钮事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOK_Click(object sender, RoutedEventArgs e)
+        private void BtnOK_Click()
         {
             DateTime? dt = new DateTime?();
 
             if (calDate.SelectedDate == null)
-            {
                 dt = DateTime.Now.Date;
-            }
             else
-            {
                 dt = calDate.SelectedDate;
-            }
 
-            DateTime dtCal = Convert.ToDateTime(dt);
+            var dtCal = Convert.ToDateTime(dt);
 
             string timeStr = "00:00:00";
             
@@ -120,7 +118,7 @@ namespace ManagementProject.UserControls.TimeControl
 
             string str1 = string.Empty;
             str1 = dateTimeStr;
-            OnDateTimeContent(str1);
+            OnDateTimeContent(str1);//2019-07-01 00:00:00
         }
 
         /// <summary>

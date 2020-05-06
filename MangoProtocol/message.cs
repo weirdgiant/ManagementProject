@@ -308,6 +308,90 @@ namespace com.mango.protocol.msg
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_Pinkong")]
+  public partial class SC_Pinkong : global::ProtoBuf.IExtensible
+  {
+    public SC_Pinkong() {}
+    
+    private Protocol _protocol = Protocol.SC_PINKONG;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_PINKONG)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _pinkongid = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"pinkongid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int pinkongid
+    {
+      get { return _pinkongid; }
+      set { _pinkongid = value; }
+    }
+    private Pinkongtype _type = Pinkongtype.GetWindows;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Pinkongtype.GetWindows)]
+    public Pinkongtype type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private string _retdata = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"retdata", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string retdata
+    {
+      get { return _retdata; }
+      set { _retdata = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_Pinkong")]
+  public partial class CS_Pinkong : global::ProtoBuf.IExtensible
+  {
+    public CS_Pinkong() {}
+    
+    private Protocol _protocol = Protocol.CS_PINKONG;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_PINKONG)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _pinkongid = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"pinkongid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int pinkongid
+    {
+      get { return _pinkongid; }
+      set { _pinkongid = value; }
+    }
+    private Pinkongtype _type = Pinkongtype.GetWindows;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Pinkongtype.GetWindows)]
+    public Pinkongtype type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private string _params = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"params", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string @params
+    {
+      get { return _params; }
+      set { _params = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"Alarm")]
   public partial class Alarm : global::ProtoBuf.IExtensible
   {
@@ -464,6 +548,642 @@ namespace com.mango.protocol.msg
     {
       get { return _sersorname; }
       set { _sersorname = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_GetUnConfirmedAlarm")]
+  public partial class CS_GetUnConfirmedAlarm : global::ProtoBuf.IExtensible
+  {
+    public CS_GetUnConfirmedAlarm() {}
+    
+    private Protocol _protocol = Protocol.CS_GETUNCONFIRMEDALARM;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_GETUNCONFIRMEDALARM)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _sid = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"sid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int sid
+    {
+      get { return _sid; }
+      set { _sid = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_GetUnConfirmedAlarm")]
+  public partial class SC_GetUnConfirmedAlarm : global::ProtoBuf.IExtensible
+  {
+    public SC_GetUnConfirmedAlarm() {}
+    
+    private Protocol _protocol = Protocol.SC_GETUNCONFIRMEDALARM;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_GETUNCONFIRMEDALARM)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _ret = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private readonly global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm> _list = new global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm>();
+    [global::ProtoBuf.ProtoMember(2, Name=@"list", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm> list
+    {
+      get { return _list; }
+    }
+  
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_GetAlarmList")]
+  public partial class SC_GetAlarmList : global::ProtoBuf.IExtensible
+  {
+    public SC_GetAlarmList() {}
+    
+    private Protocol _protocol = Protocol.SC_GETALARMLIST;
+    [global::ProtoBuf.ProtoMember(9, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_GETALARMLIST)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _flag = "";
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"flag", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string flag
+    {
+      get { return _flag; }
+      set { _flag = value; }
+    }
+    private int _type = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private int _level = default(int);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int level
+    {
+      get { return _level; }
+      set { _level = value; }
+    }
+    private ALARM_STATE _state = ALARM_STATE.TEST;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"state", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(ALARM_STATE.TEST)]
+    public ALARM_STATE state
+    {
+      get { return _state; }
+      set { _state = value; }
+    }
+    private string _beginDate = "";
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"beginDate", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string beginDate
+    {
+      get { return _beginDate; }
+      set { _beginDate = value; }
+    }
+    private string _endDate = "";
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"endDate", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string endDate
+    {
+      get { return _endDate; }
+      set { _endDate = value; }
+    }
+    private readonly global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm> _list = new global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm>();
+    [global::ProtoBuf.ProtoMember(7, Name=@"list", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<com.mango.protocol.msg.Alarm> list
+    {
+      get { return _list; }
+    }
+  
+    private com.mango.protocol.msg.Page _page = null;
+    [global::ProtoBuf.ProtoMember(8, IsRequired = false, Name=@"page", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue(null)]
+    public com.mango.protocol.msg.Page page
+    {
+      get { return _page; }
+      set { _page = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_ConfirmAlarmByCode")]
+  public partial class CS_ConfirmAlarmByCode : global::ProtoBuf.IExtensible
+  {
+    public CS_ConfirmAlarmByCode() {}
+    
+    private Protocol _protocol = Protocol.CS_CONFIRMALARMBYCODE;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_CONFIRMALARMBYCODE)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _code = "";
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"code", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string code
+    {
+      get { return _code; }
+      set { _code = value; }
+    }
+    private string _note = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"note", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string note
+    {
+      get { return _note; }
+      set { _note = value; }
+    }
+    private ALARM_STATE _state = ALARM_STATE.TEST;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"state", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(ALARM_STATE.TEST)]
+    public ALARM_STATE state
+    {
+      get { return _state; }
+      set { _state = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_ConfirmAlarm")]
+  public partial class CS_ConfirmAlarm : global::ProtoBuf.IExtensible
+  {
+    public CS_ConfirmAlarm() {}
+    
+    private Protocol _protocol = Protocol.CS_CONFIRMALARM;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_CONFIRMALARM)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _alarmId = "";
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"alarmId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string alarmId
+    {
+      get { return _alarmId; }
+      set { _alarmId = value; }
+    }
+    private string _note = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"note", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string note
+    {
+      get { return _note; }
+      set { _note = value; }
+    }
+    private ALARM_STATE _state = ALARM_STATE.TEST;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"state", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(ALARM_STATE.TEST)]
+    public ALARM_STATE state
+    {
+      get { return _state; }
+      set { _state = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_ConfirmAlarm")]
+  public partial class SC_ConfirmAlarm : global::ProtoBuf.IExtensible
+  {
+    public SC_ConfirmAlarm() {}
+    
+    private Protocol _protocol = Protocol.SC_CONFIRMALARM;
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_CONFIRMALARM)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _ret = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private string _alarmId = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"alarmId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string alarmId
+    {
+      get { return _alarmId; }
+      set { _alarmId = value; }
+    }
+    private string _note = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"note", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string note
+    {
+      get { return _note; }
+      set { _note = value; }
+    }
+    private ALARM_STATE _state = ALARM_STATE.TEST;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"state", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(ALARM_STATE.TEST)]
+    public ALARM_STATE state
+    {
+      get { return _state; }
+      set { _state = value; }
+    }
+    private string _user = "";
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"user", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string user
+    {
+      get { return _user; }
+      set { _user = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_HastenHandle")]
+  public partial class CS_HastenHandle : global::ProtoBuf.IExtensible
+  {
+    public CS_HastenHandle() {}
+    
+    private Protocol _protocol = Protocol.CS_HASTENHANDLE;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_HASTENHANDLE)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _alarmId = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"alarmId", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int alarmId
+    {
+      get { return _alarmId; }
+      set { _alarmId = value; }
+    }
+    private int _userId = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"userId", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int userId
+    {
+      get { return _userId; }
+      set { _userId = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_HastenHandle")]
+  public partial class SC_HastenHandle : global::ProtoBuf.IExtensible
+  {
+    public SC_HastenHandle() {}
+    
+    private Protocol _protocol = Protocol.CS_HASTENHANDLE;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_HASTENHANDLE)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _alarmId = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"alarmId", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int alarmId
+    {
+      get { return _alarmId; }
+      set { _alarmId = value; }
+    }
+    private int _userId = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"userId", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int userId
+    {
+      get { return _userId; }
+      set { _userId = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"Page")]
+  public partial class Page : global::ProtoBuf.IExtensible
+  {
+    public Page() {}
+    
+    private int _page = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"page", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int page
+    {
+      get { return _page; }
+      set { _page = value; }
+    }
+    private int _pageSize = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"pageSize", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int pageSize
+    {
+      get { return _pageSize; }
+      set { _pageSize = value; }
+    }
+    private int _total = default(int);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"total", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int total
+    {
+      get { return _total; }
+      set { _total = value; }
+    }
+    private int _totalPages = default(int);
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"totalPages", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int totalPages
+    {
+      get { return _totalPages; }
+      set { _totalPages = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_SendSMS")]
+  public partial class CS_SendSMS : global::ProtoBuf.IExtensible
+  {
+    public CS_SendSMS() {}
+    
+    private Protocol _protocol = Protocol.CS_SENDSMS;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_SENDSMS)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _content = "";
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"content", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string content
+    {
+      get { return _content; }
+      set { _content = value; }
+    }
+    private string _phone = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"phone", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string phone
+    {
+      get { return _phone; }
+      set { _phone = value; }
+    }
+    private string _push = "";
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"push", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string push
+    {
+      get { return _push; }
+      set { _push = value; }
+    }
+    private string _alarmtype = "";
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"alarmtype", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string alarmtype
+    {
+      get { return _alarmtype; }
+      set { _alarmtype = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_SendSMS")]
+  public partial class SC_SendSMS : global::ProtoBuf.IExtensible
+  {
+    public SC_SendSMS() {}
+    
+    private Protocol _protocol = Protocol.SC_SENDSMS;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_SENDSMS)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _ret = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private string _content = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"content", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string content
+    {
+      get { return _content; }
+      set { _content = value; }
+    }
+    private string _phone = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"phone", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string phone
+    {
+      get { return _phone; }
+      set { _phone = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_LUNXUN")]
+  public partial class CS_LUNXUN : global::ProtoBuf.IExtensible
+  {
+    public CS_LUNXUN() {}
+    
+    private Protocol _protocol = Protocol.CS_LUNXUN;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_LUNXUN)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private long _datetime = default(long);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"datetime", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(long))]
+    public long datetime
+    {
+      get { return _datetime; }
+      set { _datetime = value; }
+    }
+    private int _type = default(int);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private int _status = default(int);
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"status", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int status
+    {
+      get { return _status; }
+      set { _status = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_LUNXUN")]
+  public partial class SC_LUNXUN : global::ProtoBuf.IExtensible
+  {
+    public SC_LUNXUN() {}
+    
+    private Protocol _protocol = Protocol.SC_LUNXUN;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_LUNXUN)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private int _ret = default(int);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private long _datetime = default(long);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"datetime", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(long))]
+    public long datetime
+    {
+      get { return _datetime; }
+      set { _datetime = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"CS_ACCESSCONTROl")]
+  public partial class CS_ACCESSCONTROl : global::ProtoBuf.IExtensible
+  {
+    public CS_ACCESSCONTROl() {}
+    
+    private Protocol _protocol = Protocol.CS_ACCESSCONTROl;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.CS_ACCESSCONTROl)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _code = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"code", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string code
+    {
+      get { return _code; }
+      set { _code = value; }
+    }
+    private int _type = default(int);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SC_ACCESSCONTROL")]
+  public partial class SC_ACCESSCONTROL : global::ProtoBuf.IExtensible
+  {
+    public SC_ACCESSCONTROL() {}
+    
+    private Protocol _protocol = Protocol.SC_ACCESSCONTROL;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"protocol", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Protocol.SC_ACCESSCONTROL)]
+    public Protocol protocol
+    {
+      get { return _protocol; }
+      set { _protocol = value; }
+    }
+    private string _name = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string name
+    {
+      get { return _name; }
+      set { _name = value; }
+    }
+    private string _code = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"code", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string code
+    {
+      get { return _code; }
+      set { _code = value; }
+    }
+    private bool _status = default(bool);
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"status", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue(default(bool))]
+    public bool status
+    {
+      get { return _status; }
+      set { _status = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)

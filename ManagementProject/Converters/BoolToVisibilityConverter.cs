@@ -12,15 +12,12 @@ namespace ManagementProject.Converters
             if (!bool.TryParse(value.ToString(), out bool isTrue))
                 return Visibility.Collapsed;
 
-            if (isTrue)
-                return Visibility.Visible;
-            else
-                return Visibility.Collapsed;
+            return isTrue? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return (Visibility)value == Visibility.Visible;
         }
     }
 }

@@ -2,8 +2,13 @@
 
 namespace ManagementProject.Model
 {
-    public class PlanRotation
+    public class PlanRotation:INotifyPropertyChangedClass
     {
+        /// <summary>
+        /// 轮序编号
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// 轮询名称
         /// </summary>
@@ -14,10 +19,34 @@ namespace ManagementProject.Model
         /// </summary>
         public double PRDuration { get; set; }
 
+        private string timeText;
+
         /// <summary>
         /// 时间
         /// </summary>
-        public string PRTime { get; set; }
+        public string TimeText
+        {
+            get { return timeText; }
+            set
+            {
+                timeText = value;
+                NotifyPropertyChanged("TimeText");
+            }
+        }
+        //private string pRTime;
+
+        ///// <summary>
+        ///// 时间
+        ///// </summary>
+        //public string PRTime
+        //{
+        //    get { return pRTime; }
+        //    set
+        //    {
+        //        pRTime = value;
+        //        NotifyPropertyChanged("PRTime");
+        //    }
+        //}
 
         /// <summary>
         /// 场景名称            

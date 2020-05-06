@@ -36,52 +36,40 @@ namespace MangoMapLibrary
     {
         public MangoLayer Layer { get; }
 
-        public MangoGDILayer(MangoLayer layer, string name) : base(name)
-        {
-            this.Layer = layer;
-        }
+        public MangoGDILayer(MangoLayer layer, string name) : base(name) => Layer = layer;
 
-        public MangoLayer MangoLayer()
-        {
-            return Layer;
-        }
+        public MangoLayer MangoLayer() => Layer;
 
-        public void RenderPrepare()
-        {
-        }
+        public void RenderPrepare() { }
     }
 
     public class MangoLabelLayer : LabelLayer, AbstractMangoLayer
     {
         public MangoLayer Layer { get; }
-        public MangoLabelLayer(MangoLayer layer,string name) : base(name)
-        {
-            this.Layer = layer;
-        }
-                
+
+        public MangoLabelLayer(MangoLayer layer, string name) : base(name) => Layer = layer;
+
         public void RenderPrepare()
         {
-            this.Style.ForeColor = ParseUtil.ParseColor(Layer.labelColor);
-            this.Style.Font = ParseUtil.ParseFont(Layer.labelFont, Layer.labelFontSize);
+            Style.ForeColor = ParseUtil.ParseColor(Layer.labelColor);
+            Style.Font = ParseUtil.ParseFont(Layer.labelFont, Layer.labelFontSize);
         }
 
-        public MangoLayer MangoLayer()
-        {
-            return Layer;
-        }
+        public MangoLayer MangoLayer() => Layer;
     }
 
     public class MangoVectorLayer : VectorLayer, AbstractMangoLayer
     {
         public MangoLayer Layer { get; }
+        
         public MangoVectorLayer(MangoLayer layer) : base(layer.name)
         {
-            this.Layer = layer;
+            Layer = layer;
         }
 
         public MangoVectorLayer(MangoLayer layer, IBaseProvider dataSource) : base(layer.name,dataSource)
         {
-            this.Layer = layer;
+            Layer = layer;
         }
 
         public void RenderPrepare()
@@ -98,7 +86,7 @@ namespace MangoMapLibrary
             else
             {
                 Brush brush = new SolidBrush(ParseUtil.ParseColor(Layer.color));
-                this.Style.Fill = brush;
+                Style.Fill = brush;
             }
         }
 
@@ -110,6 +98,9 @@ namespace MangoMapLibrary
 
     public class DeviceLayer : ILayer
     {
+        private List<string> RenderType;
+        private List<string> CodeList;
+
         /// <summary>
         /// 是否渲染
         /// </summary>
@@ -158,6 +149,16 @@ namespace MangoMapLibrary
             elements = new List<AbstractLayerElement>();
         }
 
+        public void SetRenderType(List<string> RenderType)
+        {
+            this.RenderType = RenderType;
+        }
+
+        public void SetCodeList(List<string> CodeList)
+        {
+            this.CodeList = CodeList;
+        }
+
         public List<AbstractLayerElement> GetAllElements()
         {
             return new List<AbstractLayerElement>(elements);
@@ -168,12 +169,40 @@ namespace MangoMapLibrary
 
         public void Render(Graphics g, MapViewport map)
         {
-            //g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            
-            foreach (var pt in elements)
+            if (RenderType == null)                        //如果没有过滤条件直接渲染全部，避免无意义的判断
             {
-                pt.Render(g, map);                
+                foreach (var pt in elements)
+                {
+                    if (CodeList != null)
+                    {
+                        if (pt is LayerDeviceElement && this.CodeList.Contains(pt.Code))
+                            continue;
+                    }
+                    pt.Render(g, map);
+                }
+                return;
             }
+            else
+            {
+                //CodeList = new List<string>();
+                //CodeList.Add("221");
+                foreach (var pt in elements)
+                {
+                    if (CodeList != null)
+                    {
+                        if (pt is LayerDeviceElement && this.CodeList.Contains(pt.Code))
+                            continue;
+                    }                   
+                    if (pt is LayerDeviceElement && !this.RenderType.Contains(pt.Type))
+                        continue;
+                    if (pt is LayerElementFence && !this.RenderType.Contains(((LayerElementFence)pt).GetFenceType()))
+                        continue;
+
+                    //地图建筑始终渲染
+                    pt.Render(g, map);
+                }
+            }
+            
         }
 
         public void Remove(AbstractLayerElement device)
@@ -219,7 +248,6 @@ namespace MangoMapLibrary
             }
         }
 
-        
         public void RenderAlarm(Graphics g,MapViewport map,bool flag)
         {
             foreach (AbstractLayerElement pt in this.elements)

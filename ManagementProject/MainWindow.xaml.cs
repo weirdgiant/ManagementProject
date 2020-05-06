@@ -30,23 +30,6 @@ namespace ManagementProject
     public partial class MainWindow : Window
     {
         #region 自定义属性
-        private bool _isLoadMainMenu;
-        public bool IsLoadMainMenu
-        {
-            get
-            {
-                return _isLoadMainMenu;
-            }
-            set
-            {
-                _isLoadMainMenu = value;
-                if (IsLoadMainMenu)
-                {
-                   // UnloadMainMenu();
-                    //MenuInit();
-                }
-            }
-        }
 
         private bool _isTrackPage;
         public bool IsTrackPage
@@ -93,6 +76,12 @@ namespace ManagementProject
             SetMainWindow();
             MainWindowViewModel  = new MainWindowViewModel();
             DataContext =MainWindowViewModel;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
         }
 
         /// <summary>

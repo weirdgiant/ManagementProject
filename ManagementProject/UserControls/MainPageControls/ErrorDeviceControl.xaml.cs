@@ -22,6 +22,15 @@ namespace ManagementProject.UserControls
         public ErrorDeviceControl()
         {
             InitializeComponent();
+            Loaded += ErrorDeviceControl_Loaded;
+        }
+
+        private void ErrorDeviceControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (GlobalVariable . CurrentClientProperty==0)
+            {
+                client.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -38,13 +38,13 @@
                         Command="{Binding TwelveGridCommand}"  
                         Height="25" Width="25" 
                         Style="{StaticResource GelButton}" >
-                    <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-12.png" />
+                    <Image Source="/ManagementProject;component/ImageSource/Icon/PlayerIcon/组-16.png" />
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="110">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsAlarmTracker}" Width="110">
                 <Button x:Name="minbt" 
                         ToolTip="最小化" 
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        Style="{StaticResource TransparentButton}" 
                         Command="{Binding MinWinCommand}" 
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                         HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" >
@@ -53,7 +53,7 @@
                 <Grid Width="10"/>
                 <Button x:Name="recoverbt" 
                         ToolTip="最大化" 
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        Style="{StaticResource TransparentButton}" 
                         Command="{Binding MaxWinCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                         HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30"  >
@@ -62,7 +62,7 @@
                 <Grid Width="10"/>
                 <Button x:Name="closebt" 
                         ToolTip="关闭" 
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Style="{StaticResource TransparentButton}"  
                         Command="{Binding CloseWinCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Width="30">
@@ -72,7 +72,7 @@
         </Grid>
         <!--<UserControls:Player Grid.Row="1"/>-->
         
-        <UserControls:PlayerControl Margin="0,0,0,0" Grid.Row="2"/>
+        <UserControls:PlayerControl x:Name="control" Margin="0,0,0,0" Grid.Row="2"/>
 
     </Grid>
 </Window>

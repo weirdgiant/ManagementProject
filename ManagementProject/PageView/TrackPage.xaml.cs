@@ -27,6 +27,12 @@ namespace ManagementProject.PageView
             InitializeComponent();
             trackPageViewModel = new TrackPageViewModel();
             DataContext = trackPageViewModel;
+            Loaded += TrackPage_Loaded;
+        }
+
+        private void TrackPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            map.deviceinfobt.Margin = new Thickness(0, 32, 373, 0);
         }
     }
 }

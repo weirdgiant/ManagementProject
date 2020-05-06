@@ -1,34 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using ManagementProject.Helper;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ManagementProject.UserControls
 {
+    #region CollageButton
     /// <summary>
     /// CollageButton.xaml 的交互逻辑
     /// </summary>
     public partial class CollageButton : UserControl
     {
+        #region Private Field
         private CollageButtonViewModel _collageButtonViewModel;
+        #endregion
+
+        #region Constructor method
         public CollageButton()
         {
             InitializeComponent();
             _collageButtonViewModel = new CollageButtonViewModel();
             DataContext = _collageButtonViewModel;
         }
+        #endregion
+    } 
+    #endregion
+
+    #region ViewModel
+    public class CollageButtonViewModel : CollageButtonModel
+    {
+        public CollageButtonViewModel()
+        {
+            AlarmScreenControl = GlobalVariable.IsPushAlarmWindow;
+            ScreenState = "投屏已关闭";
+            AlarmScreenState = "报警投屏已开启";
+        }
     }
-    public class CollageButtonModel:INotifyPropertyChangedClass 
+    #endregion
+
+    #region Model
+    public class CollageButtonModel : INotifyPropertyChangedClass
     {
         private bool _isOpen;
         public bool IsOpen
@@ -58,13 +67,30 @@ namespace ManagementProject.UserControls
             {
                 _screenControl = value;
                 NotifyPropertyChanged("ScreenControl");
-                if (value)
-                {
-                    ScreenState = "投屏已开启";
-                }else
-                {
-                    ScreenState = "投屏已关闭";
-                }
+                OperateScreen(value, ScreenType.Screen);
+            }
+        }
+
+        /// <summary>
+        /// 操作投屏
+        /// </summary>
+        /// <param name="isOpen">true 打开投屏,false 关闭投屏</param>
+        /// <param name="screenType">投屏类型</param>
+        private void OperateScreen(bool isOpen, ScreenType screenType)
+        {
+            if (screenType == ScreenType.Screen)
+            {
+                ScreenState = isOpen ? "投屏已开启" : "投屏已关闭";
+                GlobalVariable.IsPushWindow = isOpen;
+                if (isOpen)
+                    PinkongHelper.ClientUpWall();
+                else
+                    PinkongHelper.ClientDownWall();
+            }
+            else
+            {
+                AlarmScreenState = isOpen ? "报警投屏已开启" : "报警投屏已关闭";
+                GlobalVariable.IsPushAlarmWindow = isOpen;
             }
         }
 
@@ -96,14 +122,7 @@ namespace ManagementProject.UserControls
             {
                 _alarmScreenControl = value;
                 NotifyPropertyChanged("AlarmScreenControl");
-                if (value)
-                {
-                    AlarmScreenState = "报警投屏已开启";
-                }
-                else
-                {
-                    AlarmScreenState = "报警投屏已关闭";
-                }
+                OperateScreen(value, ScreenType.AlarmScreen);
             }
         }
 
@@ -121,12 +140,25 @@ namespace ManagementProject.UserControls
             }
         }
     }
-    public class CollageButtonViewModel:CollageButtonModel
+    #endregion
+
+    #region Screen Type
+
+    /// <summary>
+    /// 投屏类型
+    /// </summary>
+    public enum ScreenType
     {
-        public CollageButtonViewModel()
-        {
-            ScreenState = "投屏已关闭";
-            AlarmScreenState = "报警投屏已关闭";
-        }
+        /// <summary>
+        /// 投屏
+        /// </summary>
+        Screen,
+
+        /// <summary>
+        /// 报警投屏
+        /// </summary>
+        AlarmScreen,
     }
+
+    #endregion
 }

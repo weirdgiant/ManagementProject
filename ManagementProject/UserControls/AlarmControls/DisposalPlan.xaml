@@ -5,44 +5,144 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="340"
+             d:DesignWidth="583"
+             Background="#FF222222">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="56"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
-        <Label Content="报警处置预案" FontSize="18"  HorizontalAlignment="Left" Margin="5,5,0,0" Foreground="White"  VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox" Margin="5,5,5,5" Grid.Row="1" Background="#FF1C1C1C" BorderBrush="{x:Null}">
-            <ListBoxItem Height="63" >
-                <Grid >
-                    <Label Content="1、选择短信或者电话通知报告相关领导，确保通知到位。" FontSize="14" Foreground="White" />
-                </Grid>
-            </ListBoxItem>
-        </ListBox>
-        <Button  Margin="0,5,5,0" 
-                 Style="{StaticResource GelButton}" 
+
+        <!--处置预案名称-->
+        <TextBlock Text="{Binding DisposalName}" FontSize="16" Margin="27 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+
+        <Button  Margin="0,0,27,0" 
+                 Style="{StaticResource TransparentButton}" 
                  Command="{Binding OpenDisposalPlanCommand}"
-                 HorizontalAlignment="Right" Width="122" Height="22" VerticalAlignment="Top" >
+                 Visibility="{Binding IsOpenTextVisibility}"
+                 HorizontalAlignment="Right" 
+                 Height="21"
+                 Padding="5 0 5 0"
+                 Background="#009fff"
+                 VerticalAlignment="Center" >
+
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Text="打开预案文件" FontSize="14" Foreground="#FFF7F7F7"/>
-                <Grid Width="5"/>
-                <Image Source="/ManagementProject;component/ImageSource/Icon/AlarmIcon/folder.png" />
+                <TextBlock Margin="0 0 5 0" Text="打开预案文件" VerticalAlignment="Center" FontSize="10" Foreground="#FFF"/>
+                <Image Width="12" Height="12" Source="/ManagementProject;component/ImageSource/Icon/AlarmIcon/folder.png" />
             </StackPanel>
         </Button>
+
+        <Grid Grid.Row="1" Margin="27 7 27 0"  Background="#FF1D1D1D">
+
+            <ListBox Grid.Row="1"
+                     HorizontalAlignment="Stretch"
+                     ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
+                     Background="Transparent"
+                     BorderBrush="{x:Null}"
+                     ItemsSource="{Binding Plan}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  Margin="28 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding PlanStep}"
+                                       FontSize="14"
+                                       Foreground="White"
+                                       Margin="0 10 0 3"
+                                       VerticalAlignment="Center"
+                                       Grid.ColumnSpan="2" />
+
+                            <TextBlock Text="联系人 ：" 
+                                       Visibility="{Binding IsVisibility}"  
+                                       FontSize="12"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left" 
+                                       Margin="23,0,0,0" 
+                                       Grid.Row="1" >
+                                  <Run Text="{Binding Contacts}"/>
+                            </TextBlock>
+
+                            <TextBlock Text="联系电话："
+                                       Visibility="{Binding IsVisibility}" 
+                                       FontSize="12" 
+                                       Foreground="White" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" 
+                                       Margin="0,0,43,0" 
+                                       Grid.Row="1" 
+                                       Grid.Column="1" >
+                                   <Run Text="{Binding Phone}"/>
+                            </TextBlock>
+
+                            <Button  Content="通知" 
+                                     Visibility="{Binding IsVisibility}"
+                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.SendMesCommand}"
+                                     CommandParameter="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor},Path=DataContext}"
+                                     FontSize="12"
+                                     Foreground="White" 
+                                     Width="62" 
+                                     Style="{StaticResource GelButton}" 
+                                     Background="#FF00A7F4" 
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Right" 
+                                     Height="24" 
+                                     Grid.Row="1"
+                                     Margin="0 0 0 10"
+                                     Grid.Column="2" />
+
+                            <CheckBox  FontSize="12"
+                                       Foreground="White"
+                                       IsChecked="{Binding IsChecked}" 
+                                       VerticalAlignment="Bottom"
+                                       Margin="0 0 0 5"
+                                       Style="{x:Null}"
+                                       HorizontalAlignment="Right" 
+                                       Grid.Column="2" />
+
+                            <Path HorizontalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="3" Data="M126,112.33333 L293.71669,112.33333" Fill="#FF3C3A3A" Height="1" Stretch="Fill" Stroke="#FF3C3A3A" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+
         <Button Style="{StaticResource GelButton}" 
                 Command="{Binding HandleAlarmCommand}"
-                Content="处  理" 
-                HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="170" Height="40" FontSize="16"/>
+                Content="处理" 
+                HorizontalAlignment="Left"
+                Margin="27,0,0,0"
+                Grid.Row="2" 
+                VerticalAlignment="Center" 
+                Width="170"
+                Height="40" 
+                FontSize="16" Background="#FF1B1B1B"/>
         <Button Style="{StaticResource GelButton}" 
-                 Command="{Binding PressHandlingCommand}"
-                Content="跟  催" 
-                HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
+                Command="{Binding PressHandlingCommand}"
+                Content="跟催" 
+                Visibility="Collapsed"
+                HorizontalAlignment="Center" Margin="0,0,0,0"  Background="#FF1D1D1D" Grid.Row="2" VerticalAlignment="Center"  Width="170" Height="40" FontSize="16"/>
         <Button Style="{StaticResource GelButton}"  
-                 Command="{Binding ShowMessageCommand}"
-                Content="消  息"  
-                HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Row="2" VerticalAlignment="Top"  Width="170" Height="40" FontSize="16"/>
-        <Border BorderBrush="#FF009FFF" BorderThickness="1" Margin="5,0,5,0" Height="1" VerticalAlignment="Bottom"/>
+                Command="{Binding ShowMessageCommand}"
+                Content="消息"  
+                Visibility="Collapsed"
+                HorizontalAlignment="Right" Margin="0,0,27,0"  Background="#1D1D1D" Grid.Row="2" VerticalAlignment="Center"  Width="170" Height="40" FontSize="16"/>
 
+        <Border BorderBrush="#009fff" BorderThickness="1" Opacity="0.6" Margin="27 0" Height="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

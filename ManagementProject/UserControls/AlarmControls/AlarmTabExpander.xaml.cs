@@ -23,6 +23,11 @@ namespace ManagementProject.UserControls
         public AlarmTabExpander()
         {
             InitializeComponent();
+            bt.Click += Bt_Click;
+        }
+
+        private void Bt_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

@@ -1,10 +1,16 @@
 ﻿using LiveCharts;
+using LiveCharts.Configurations;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using ManagementProject.Model;
+using MangoApi;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace ManagementProject.UserControls.AlarmControls
@@ -17,121 +23,117 @@ namespace ManagementProject.UserControls.AlarmControls
         public WaterPressureMonitor()
         {
             InitializeComponent();
-            DataContext = new WaterPreMonitorViewModel();
         }
     }
 
-    class WaterPreMonitorViewModel : WaterPreMonitorModel
+    public class WaterPreMonitorViewModel : WaterPreMonitorModel
     {
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
+        public Brush DangerBrush { get; set; }//异常画刷
+        public CartesianMapper<ObservableValue> Mapper { get; set; }
 
-        public DelegateCommand MouseDownCommand { get; set; }
-        public DelegateCommand ShowDetailCommand { get; set; }
+
+        public DelegateCommand SelectionChangedCommand { get; set; }
+        public DelegateCommand RadioButtonUncheckedCommand { get; set; }
 
         public WaterPreMonitorViewModel()
         {
-            MouseDownCommand = new DelegateCommand() { ExecuteCommand = new Action<object>(MouseDown) };
-            ShowDetailCommand = new DelegateCommand() { ExecuteCommand = new Action<object>(Down) };
+            Title = "实时水压变化曲线图";
 
-            LoadWaterPressure();
-        }
+            SelectionChangedCommand = new DelegateCommand() { ExecuteCommand = new Action<object>(SelectionChanged) };
+            RadioButtonUncheckedCommand = new DelegateCommand() { ExecuteCommand = new Action<object>(RadioButtonUnchecked) };
+            WaterPress = new ObservableCollection<WaterDeviceInfo>();
+            Values = new ChartValues<double>();
+        }       
 
-        private void Down(object obj)
+        public void LoadWaterPressure(int mapid)
         {
-
-        }
-
-        private void MouseDown(object obj)
-        {
-            //MessageBox.Show(obj.ToString());
-            if (obj != null)
+            WaterPress.Clear();
+            Element[] ret = HttpAPi.GetWaterElements(mapid);
+            if (ret.Length == 0) return;
+            foreach (var item in ret)
             {
-                WaterPressInfo waterPressInfo = (WaterPressInfo)obj;
-
-                LegendName = waterPressInfo.Type.ToString();
-
-                var status = waterPressInfo.Status;
-
-                var cv =new ChartValues<double>();
-
-                Random random = new Random();
-
-                for (int i = 0; i < 10; i++)
+                WaterDeviceInfo info = new WaterDeviceInfo
                 {
-                    var values = random.NextDouble();
-                    cv.Add(values);
-                }
-
-                var ls = new LineSeries() { Values=cv,Title= status.ToString() };
-
-                //if (status==AbnormalInfo.正常)
-                //{
-                //    ls.PointForeground = Brushes.LightSkyBlue;
-                //}
-                //else
-                //{
-                //    ls.PointForeground = Brushes.Red;
-                //}
-
-                SeriesCollection.Clear();
-
-                SeriesCollection.Add(ls);
+                    DeviceType = item.deviceTypeCode,
+                    DeviceCode = item.code,
+                    DeviceName = item.name,
+                    DeviceState= item.deviceStatus,
+                    StatusText="正常",
+                    StateBackground= new SolidColorBrush(Color.FromRgb(0, 159, 255)),
+                    StateForeground= Brushes.White,
+                    ImageUrl = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/38室外消防栓.png" 
+                };
+                WaterPress.Add(info);
             }
         }
 
-        private void LoadWaterPressure()
+        public void LoadLineChart(string code,string altime)
         {
-            #region 折线图
-            SeriesCollection = new SeriesCollection
+            DangerBrush = new SolidColorBrush(Color.FromRgb(238, 83, 80));
+
+            string url = AppConfig.ServerBaseUri + AppConfig.GetWaterValue;
+            WaterValue[] waterValue = HttpAPi.GetWaterValue(code, altime);
+          
+            Mapper = Mappers.Xy<ObservableValue>()
+                .X((item, index) => index)
+                .Y(item => item.Value)
+                .Fill(item => item.Value > 0.3 ? DangerBrush : null)
+                .Stroke(item => item.Value > 0.3 ? DangerBrush : null);
+
+            if (waterValue==null|| waterValue.Length==0)
+                return;
+
+            foreach (var item in waterValue)
             {
-                new LineSeries
+                if (Values.Count >30)
                 {
-                    Title = "正常",
-                    Values = new ChartValues<double> { 0, 0.2, 0.4, 0.6, 1.0, 0.8 }
-                },
-                // new LineSeries
-                //{
-                //    Title = "异常",
-                //    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 },
-                //},
-            };
+                    for (int i=0;i<10;i++)
+                    {
+                        Values.RemoveAt(i);
+                    }
+                }
+                double value = double.Parse(item.value);
+                Values.Add(value);
+            }
 
-            Labels = new[] { "1min", "2min", "3min", "4min", "5min", "6min", "7min", "8min", "9min", "10min" };
+            YFormatter = y => Math.Round(y, 2, MidpointRounding.AwayFromZero).ToString();
+        }
 
-            YFormatter = value => value.ToString();
-            #endregion
-
-            WaterPress = new ObservableCollection<WaterPressInfo>
+        public string Code { get; set; }
+        public bool IsStartUp { get; set; } = false;
+        public async void RefreshAsync()
+        {
+            IsStartUp = true;
+            while (IsStartUp)
             {
-                new WaterPressInfo
-                {
-                    Type=WaterPressureType.喷淋水压,
-                    Status=AbnormalInfo.正常
-                },
-                 new WaterPressInfo
-                {
-                    Status=AbnormalInfo.异常,
-                    Type=WaterPressureType.泵房水压
-                },
-                 new WaterPressInfo
-                {
-                    Status=AbnormalInfo.异常,
-                    Type=WaterPressureType.喷淋水压
-                },
-                 new WaterPressInfo
-                {
-                    Status=AbnormalInfo.正常,
-                    Type=WaterPressureType.喷淋水压
-                }
-                 ,
-                 new WaterPressInfo
-                {
-                    Status=AbnormalInfo.异常,
-                    Type=WaterPressureType.泵房水压
-                }
-            };
+                LoadLineChart(Code, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                await Task.Delay(10000);
+            }
+        }
+
+        private void SelectionChanged(object obj)
+        {
+            if (obj != null)
+            {
+                WaterDeviceInfo waterPressInfo = (WaterDeviceInfo)obj;
+                waterPressInfo.StateForeground = new SolidColorBrush(Color.FromRgb(0, 159, 255));
+                waterPressInfo.StateBackground = Brushes.White ;
+
+                Values.Clear();
+                Code = waterPressInfo.DeviceCode;
+               // LoadLineChart(waterPressInfo.DeviceCode, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+            }
+        }
+
+        private void RadioButtonUnchecked(object obj)
+        {
+            if (obj != null)
+            {
+                WaterDeviceInfo waterPressInfo = (WaterDeviceInfo)obj;
+                waterPressInfo.StateForeground = Brushes.White;
+                waterPressInfo.StateBackground = new SolidColorBrush(Color.FromRgb(0, 159, 255));
+            }
         }
     }
 }

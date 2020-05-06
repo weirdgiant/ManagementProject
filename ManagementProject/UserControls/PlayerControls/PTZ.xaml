@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.PTZ"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920" >
+    <Grid>
+        <Button Name="upbt"  Content="↑" Style="{StaticResource FilletButton  }" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"  Width="20" Height="20"/>
+        <Button Name="downbt"  Content="↓" Style="{StaticResource FilletButton  }" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom"  Width="20" Height="20"/>
+        <Button Name="leftbt" Content="←" Style="{StaticResource FilletButton  }" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"  Width="20" Height="20"/>
+        <Button Name="rightbt" Content="→" Style="{StaticResource FilletButton  }" HorizontalAlignment="Right" Margin="0,0,0,0"  Width="20" Height="20" VerticalAlignment="Center"/>
+        <Button Name="leftupbt"  Content="↖" Style="{StaticResource FilletButton  }" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="20"/>
+        <Button Name="rightdownbt" Content="↘" Style="{StaticResource FilletButton  }" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="20" Height="20"/>
+        <Button Name="rightupbt" Content="↗" Style="{StaticResource FilletButton  }" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20"/>
+        <Button Name="leftdownbt" Content="↙" Style="{StaticResource FilletButton  }" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="20"/>
+
+    </Grid>
+</UserControl>

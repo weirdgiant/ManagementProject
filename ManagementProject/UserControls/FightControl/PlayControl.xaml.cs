@@ -1,13 +1,11 @@
-﻿using ManagementProject.ViewModel;
+﻿using ManagementProject.Helper;
+using ManagementProject.ViewModel;
+using MangoApi;
 using System;
-using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Thumb = System.Windows.Controls.Primitives.Thumb;
 
 namespace ManagementProject.UserControls.FightControl
 {
@@ -16,281 +14,230 @@ namespace ManagementProject.UserControls.FightControl
     /// </summary>
     public partial class PlayControl : UserControl
     {
+        #region Property
 
-        private PlayerPanel playerPanel;
+        public Grid fightGrid;
+        public WinParams winParams;
+        public int winId;
+        public FightPanel fightPanel;
+        private Point mouseOffset = new Point();
+        public CollagePageViewModel collagePageView;
 
-        /// <summary>
-        /// 拼控实体
-        /// </summary>
-        private Grid uniformGrid;
+        #endregion
 
-        /// <summary>
-        /// 拼控的实际高度
-        /// </summary>
-        private double fightHeight;
+        #region  Construction Method
 
-        /// <summary>
-        /// 拼控的实际宽度
-        /// </summary>
-        private double fightWidth;
-
-        public PlayControl(Grid grid)
+        public PlayControl(CollagePageViewModel collagePage)
         {
             InitializeComponent();
-            uniformGrid = grid;
-            InitPanel();
-            DataContext = new PlayControlViewModel(playerPanel,grid);
+
+            InitPanel(collagePage);
+            DataContext = new PlayControlViewModel(this);
         }
 
-        private void InitPanel()
-        {
-            fightHeight = uniformGrid.ActualHeight;
-            fightWidth = uniformGrid.ActualWidth;
+        #endregion
 
-            playerPanel = new PlayerPanel();
-            grid.Children.Add(playerPanel);
-            Grid.SetRow(playerPanel, 1);
+        private void InitPanel(CollagePageViewModel collagePage)
+        {
+            collagePageView = collagePage;
+            fightGrid = collagePage.FightGrid;
+
+            fightPanel = new FightPanel();
+            grid.Children.Add(fightPanel);
+            Grid.SetRow(fightPanel, 1);
 
             GridDrag.PreviewMouseMove += PlayControl_PreviewMouseMove;
-            GridDrag.PreviewMouseLeftButtonDown += PlayControl_PreviewMouseLeftButtonDown;
             GridDrag.PreviewMouseLeftButtonUp += PlayControl_PreviewMouseLeftButtonUp;
+            GridDrag.PreviewMouseLeftButtonDown += PlayControl_PreviewMouseLeftButtonDown;
+
+            Loaded += PlayControl_Loaded;
         }
 
+        private void PlayControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MaxWidth = fightGrid.ActualWidth - Margin.Left * 2;
+            MaxHeight = fightGrid.ActualHeight - Margin.Left * 2;
+
+            var size = GetWinSize(ActualWidth, ActualHeight);
+
+            winParams = new WinParams()
+            {
+                id = collagePageView.GetWinId(),
+                w = size.Width,
+                h = size.Height,
+                z = Convert.ToInt32(GetValue(Panel.ZIndexProperty)),
+                split = fightPanel.GridFight.Children.Count,
+                cam = new Camera[] { }
+            };
+
+            GetWinPoint(fightGrid);
+        }
 
         private void PlayControl_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Grid rec = (Grid)sender;
-            //rec.SetValue(Grid.ZIndexProperty, 0);
-            //Grid.SetZIndex(rec, 0);
+            var rec = (Grid)sender;
             rec.ReleaseMouseCapture();
+
+            GetWinPoint(fightGrid);
+
+            var result = PinkongHelper.SetWindow(winParams);
+
         }
 
         private void PlayControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //zIndex++;
-            Grid rec = (Grid)sender;
-
-            //rec.SetValue(Grid.ZIndexProperty, 1);
-            //UniformGrid.SetZIndex(uniformGrid, zIndex);
-            //Grid.SetZIndex(this, zIndex);
-
+            var rec = (Grid)sender;
             mouseOffset = Mouse.GetPosition(rec);
             rec.CaptureMouse();
         }
 
-        Point mouseOffset = new Point();
-
-        //int zIndex = 0;
-
         private void PlayControl_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            //zIndex++;
-            Grid rec = (Grid)sender;
+            var rec = (Grid)sender;
 
             if (rec.IsMouseCaptured)
             {
-                Point mouseDelta = Mouse.GetPosition(rec);
+                var mouseDelta = Mouse.GetPosition(rec);
                 mouseDelta.Offset(-mouseOffset.X, -mouseOffset.Y);
-
-                var x = mouseDelta.X;
-                var y = mouseDelta.Y;
-
-                //Console.WriteLine(x + "," + y); 
 
                 Margin = new Thickness(
                 Margin.Left + mouseDelta.X,
                 Margin.Top + mouseDelta.Y,
                 Margin.Right - mouseDelta.X,
                 Margin.Bottom - mouseDelta.Y);
-
-                //rec.Margin = new Thickness(
-                //rec.Margin.Left + mouseDelta.X,
-                //rec.Margin.Top + mouseDelta.Y,
-                //rec.Margin.Right - mouseDelta.X,
-                //rec.Margin.Bottom - mouseDelta.Y);
             }
-
-            SetControlToTop(uniformGrid,this);
+            FramEleHelper.SetControlToTop(fightGrid, this);
         }
 
-        /// <summary>
-        /// Set the current control to the top
-        /// </summary>
-        /// <param name="panel"></param>
-        /// <param name="userControl">父控件</param>
-        private void SetControlToTop(Panel panel, Control userControl)
+        private PointW GetWinPoint(Grid panel)
         {
-            //Button bt = ui as Button;
-            //Canvas parent = bt.Parent as Canvas;
-
-            if (panel != null)
+            try
             {
-                IEnumerable<UIElement> uiE = panel.Children.OfType<UIElement>().Where(x => x != userControl);//枚举类型定义
-
-                if (uiE.Count() > 0)//判断 除去用户选择的控件，是否还有其他控件。
+                var point = new PointW();
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
                 {
-                    var maxZ = uiE.Select(x => Panel.GetZIndex(x)).Max();
-                    Grid.SetZIndex(userControl, maxZ + 1);//置于最顶层
-                }
+                    var p = TransformToAncestor(panel).Transform(new Point(0, 0));
+                    point = GetPoint(p.X, p.Y);
+                    winParams.x = point.X;
+                    winParams.y = point.Y;
+
+                    if (!collagePageView.IsSwitchScene)
+                    {
+                        //PinkongHelper.CloseWindowAsync(winParams.id);
+                        //PinkongHelper.SetWindowAsync(winParams);
+                        PinkongHelper.SetWindow(winParams);
+                    }
+                    else
+                    {
+                        winParams.id = winId;
+                    }
+                    //TbId.Text = $"{point.X},{point.Y}";
+                    //TbId.Text = winParams.id.ToString();
+
+                }));
+                return point;
+            }
+            catch
+            {
+                return new PointW(0, 0);
             }
         }
 
-        /// <summary>
-        /// Set the current control to the bottom
-        /// </summary>
-        private void SetControlToBottom(Panel panel)
-        {
-            //Button bt = ui as Button;
-
-            //if (uni.GetZIndex() == 0)
-            //{
-            //    Panel.SetZIndex(bt, bt.GetZIndex());
-            //}
-
-            //Panel.SetZIndex(bt, 0);//置于最底层
-        }
-
-        #region 自定义事件
-        ///// <summary>
-        ///// 光标离边框的距离
-        ///// </summary>
-        //private const double DISTANCE = 4d;
-
-        ///// <summary>
-        ///// 边框的实际宽度
-        ///// </summary>
-        //private double width = 0d;
-
-        ///// <summary>
-        ///// 边框的实际高度
-        ///// </summary>
-        //private double height = 0d;
-
-        //private Point ChangeCursor(object sender, MouseEventArgs e)
-        //{
-        //    width = BorderTitle.ActualWidth;
-        //    height = BorderTitle.ActualHeight;
-
-        //    Point point = e.GetPosition((IInputElement)sender);
-
-        //    var x = point.X;
-        //    var y = point.Y;
-
-        //    //MyTb.Text = $"x:{point.X} y:{point.Y}";
-
-        //    if (x < DISTANCE || width - x < DISTANCE)
-        //    {
-        //        BorderTitle.Cursor = Cursors.SizeWE;
-        //    }
-
-        //    if (y < DISTANCE || height - y < DISTANCE)
-        //    {
-        //        BorderTitle.Cursor = Cursors.SizeNS;
-        //    }
-
-        //    if (x < DISTANCE && y < DISTANCE || width - x < DISTANCE && height - y < DISTANCE)
-        //    {
-        //        BorderTitle.Cursor = Cursors.SizeNWSE;
-        //    }
-
-        //    if (width - x < DISTANCE && y < DISTANCE || height - y < DISTANCE && x < DISTANCE)
-        //    {
-        //        BorderTitle.Cursor = Cursors.SizeNESW;
-        //    }
-        //    return point;
-        //}
-
-        //double d = 0;
-        //private void BorderTitle_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    var point = ChangeCursor(sender, e);
-
-        //    var x = point.X;
-        //    var y = point.Y;
-
-        //    if (Mouse.LeftButton == MouseButtonState.Pressed)
-        //    {
-        //        if (width - x < DISTANCE)
-        //        {
-        //            d++;
-        //            //Width += DISTANCE;
-        //            //Width += DISTANCE;
-        //            Margin = new Thickness(0, 0, -d, 0);
-        //        }
-
-        //        if (height - y < DISTANCE)
-        //        {
-        //            //Height += DISTANCE;
-        //            Margin = new Thickness(0, 0, 0, -DISTANCE);
-        //        }
-        //    }
-        //}
-
-        //private void BorderTitle_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    ChangeCursor(sender, e);
-        //}
-        #endregion
-
-        private Cursor _cursor;
-
-        private void OnResizeThumbDragStarted(object sender, DragStartedEventArgs e)
-        {
-            Thumb thumb = (Thumb)sender;
-
-            _cursor = Cursor;
-            if (thumb.HorizontalAlignment == HorizontalAlignment.Right)
-                Cursor = Cursors.SizeNWSE;
-            else
-                Cursor = Cursors.SizeNESW;
-        }
+        private void OnResizeThumbDragStarted(object sender, DragStartedEventArgs e) => Cursor = Cursors.SizeNWSE;
 
         private void OnResizeThumbDragCompleted(object sender, DragCompletedEventArgs e)
         {
-            Cursor = _cursor;
+            var size = GetWinSize(ActualWidth, ActualHeight);
+            winParams.w = size.Width;
+            winParams.h = size.Height;
+            //TbId.Text = $"w:{winParams.w},h:{winParams.h}";
+
+            var result = PinkongHelper.SetWindow(winParams);
+            //Console.WriteLine(result);
         }
 
         private void OnResizeThumbDragDelta(object sender, DragDeltaEventArgs e)
         {
-            Thumb thumb = (Thumb)sender;
+            FramEleHelper.SetControlToTop(fightGrid, this);
 
-            SetControlToTop(uniformGrid, this);
+            //double yAdjust = Height + e.VerticalChange;
+            //double xAdjust = Width + e.HorizontalChange;
 
-            double yAdjust = Height + e.VerticalChange;
-            double xAdjust = Width + e.HorizontalChange;
+            ////确保不要调整到负宽度或高度           
+            //xAdjust = (ActualWidth + xAdjust) > MinWidth ? xAdjust : MinWidth;
+            //yAdjust = (ActualHeight + yAdjust) > MinHeight ? yAdjust : MinHeight;
 
-            if (thumb.HorizontalAlignment==HorizontalAlignment.Right)
+            //if (xAdjust < 0 || yAdjust < 0)
+            //    return;
+
+            if (ActualWidth < 270 || ActualHeight < 253.33333333333326)
             {
-                //确保不要调整到负宽度或高度           
-                xAdjust = (ActualWidth + xAdjust) > MinWidth ? xAdjust : MinWidth;
-                yAdjust = (ActualHeight + yAdjust) > MinHeight ? yAdjust : MinHeight;
-
-                if (xAdjust < 0 || yAdjust < 0)
-                    return;
-
+                Margin = new Thickness(5);
+                //Width = 270;
+                //Height = 253.33333333333326;
+                return;
+            }
+            else
+            {
                 Margin = new Thickness(
                 Margin.Left,
                 Margin.Top,
                 Margin.Right - e.HorizontalChange,
                 Margin.Bottom - e.VerticalChange);
             }
-            else
-            {
-                //确保不要调整到负宽度或高度           
-                //xAdjust = (ActualWidth + xAdjust) > MinWidth ? xAdjust : MinWidth;
-                //yAdjust = (ActualHeight + yAdjust) > MinHeight ? yAdjust : MinHeight;
-
-                //if (xAdjust < 0 || yAdjust < 0)
-                //    return;
-
-                // Margin = new Thickness(
-                // Margin.Left - e.HorizontalChange,
-                // Margin.Top,
-                // Margin.Right,
-                // Margin.Bottom - e.VerticalChange);
-            }
-            //Width = xAdjust;
-            //Height = yAdjust;
         }
+
+        /// <summary>
+        /// 获取大屏上窗体的坐标
+        /// </summary>
+        /// <param name="x">PlayControl控件相对于FightGrid中的x值</param>
+        /// <param name="y">PlayControl控件相对于FightGrid中的y值</param>
+        /// <returns>大屏窗体的坐标</returns>
+        public PointW GetPoint(double x, double y)
+        {
+            var m = 11520d * (x - 5) / 1680d;
+            var n = 5760d * (y - 5) / 790d;//fightGrid.ActualWidth;
+            return new PointW(Convert.ToInt32(m), Convert.ToInt32(n));
+        }
+
+        /// <summary>
+        /// 获取大屏上窗体大小
+        /// </summary>
+        /// <param name="actualWidth">PC上窗体的实际宽度</param>
+        /// <param name="actualHeight">PC上窗体的实际高度</param>
+        /// <param name="minWidth">PC上窗体初始化宽度</param>
+        /// <param name="minHeight">PC上窗体初始化实际高度</param>
+        /// <param name="wallWinWidth">大屏上窗体的宽度</param>
+        /// <param name="wallWinHeight">大屏上窗体的高度</param>
+        /// <returns>窗体大小</returns>
+        public Size GetWinSize(double actualWidth, double actualHeight, double minWidth = 270d, double minHeight = 253.33333333333326d, double wallWinWidth = 1920d, double wallWinHeight = 1920d)
+        {
+            var width = actualWidth * (wallWinWidth / minWidth);
+            var height = actualHeight * (wallWinHeight / minHeight);
+            return new Size((int)width, (int)height);
+        }
+    }
+
+    public class Size
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
+
+        public Size(int width, int height)
+        {
+            Width = width;
+            Height = height;
+        }
+    }
+    public class PointW
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public PointW(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+        public PointW() { }
     }
 }

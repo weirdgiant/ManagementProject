@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="DataGrid">
+        <!--网格线颜色-->
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Background" Value="Transparent"  />
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"  />
+        <Setter Property="HorizontalGridLinesBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalGridLinesBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Grid Name="Root">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Height="40" x:Name="BackgroundRectangle" Stretch="Fill"  Fill="#FF212122" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
+                        <Label Grid.Column="1" FontSize="16"  Content="{TemplateBinding Content}"   Width="{TemplateBinding Width}" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Name="VerticalSeparator" Grid.RowSpan="2"  Grid.Column="2" Width="1" VerticalAlignment="Stretch" Fill="#FF212122" Visibility="Visible" />
+                        <!--这里的Fill就可以设置分隔线的颜色-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--行样式触发-->
+    <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
+    <Style  TargetType="DataGridRow">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Foreground" Value="Transparent"/>
+        <Style.Triggers>
+            <!--隔行换色-->
+            <Trigger Property="AlternationIndex" Value="0" >
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="AlternationIndex" Value="1" >
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+                <!--<Setter Property="Foreground" Value="White"/>-->
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="#009efe"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--单元格样式触发-->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center"  >
+                           <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="#009efe"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+</ResourceDictionary>

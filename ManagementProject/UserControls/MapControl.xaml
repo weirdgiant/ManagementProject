@@ -5,10 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:windowspresentation="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
     xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+    xmlns:UserControls="clr-namespace:ManagementProject.UserControls"
     x:Class="ManagementProject.UserControls.MapControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Name="myGrid">
+        
+        <UserControls:WindowsFormsHostButton x:Name="deviceinfobt" Margin="0,32,50,0" Height="50" Width="50" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <WindowsFormsHost Name="textpanel"    HorizontalAlignment="Left" Width="150" Height="33" VerticalAlignment="Top" Margin="20,32">
+            <ElementHost >
+                <UserControls:MainWindowTextBox x:Name="text"  >
+                </UserControls:MainWindowTextBox>
+            </ElementHost>
+        </WindowsFormsHost>
         <WindowsFormsHost Name="host">
             <forms:Panel x:Name="panel"/>
         </WindowsFormsHost>

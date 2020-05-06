@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ManagementProject</RootNamespace>
     <AssemblyName>ManagementProject</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -45,6 +45,8 @@
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>
     </DocumentationFile>
+    <LangVersion>7.2</LangVersion>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,11 +57,60 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ManagementProject.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ImageSource\Icon\logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Words, Version=17.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\01 - Code\ClientCode\ManagementProject\ManagementProject\bin\Debug\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI, Version=1.7.5.0, Culture=neutral, PublicKeyToken=a1a0da7def465678" />
     <Reference Include="GMap.NET.Core, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\GMap.NET.Core.dll</HintPath>
@@ -71,6 +122,25 @@
     <Reference Include="GMap.NET.WindowsPresentation, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Lierda.WPFHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cbb49eab16984ff2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lierda.WPFHelper.1.0.3\lib\net462\Lierda.WPFHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -84,13 +154,33 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MahApps.Metro.IconPacks.Modern.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\01 - Code\ClientCode\ManagementProject\ManagementProject\bin\Debug\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\01 - Code\ClientCode\ManagementProject\ManagementProject\bin\Debug\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="microsoft.expression.prototyping.runtime, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="MoonPdfLib, Version=0.2.3.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\01 - Code\ClientCode\ManagementProject\ManagementProject\bin\Debug\MoonPdfLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MouseKeyboardActivityMonitor, Version=3.0.1.29759, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\01 - Code\ClientCode\ManagementProject\ManagementProject\bin\Debug\MouseKeyboardActivityMonitor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="SharpMap, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -107,6 +197,8 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -146,24 +238,158 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuxiliaryWindow.xaml.cs">
+      <DependentUpon>AuxiliaryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\AngleToPointConverter.cs" />
+    <Compile Include="Converters\TimerConvert.cs" />
+    <Compile Include="DHNetSDK\NetSDK.cs" />
+    <Compile Include="DHNetSDK\NetSDKStruct.cs" />
+    <Compile Include="DHNetSDK\NVRSDKManager.cs" />
+    <Compile Include="DHNetSDK\OriginalSDK.cs" />
+    <Compile Include="FunctionalWindows\AlarmDeviceWin.xaml.cs">
+      <DependentUpon>AlarmDeviceWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\CameraSelectedWin.xaml.cs">
+      <DependentUpon>CameraSelectedWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalWindows\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DigitalRec.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
+    <Compile Include="Helper\FramEleHelper.cs" />
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\LoggerWrapper.cs" />
+    <Compile Include="Helper\PinkongHelper.cs" />
+    <Compile Include="Helper\RegistryHelper.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\ChartPageModel.cs" />
+    <Compile Include="Model\MonitorEquipmentModel.cs" />
+    <Compile Include="FunctionalWindows\PdfReader.xaml.cs">
+      <DependentUpon>PdfReader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TrafficRecordModel.cs" />
+    <Compile Include="PageView\ChartPage.xaml.cs">
+      <DependentUpon>ChartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SDK\DownloadFileInfo.cs" />
+    <Compile Include="SDK\ErrorCode.cs" />
+    <Compile Include="SDK\PlayBackArg.cs" />
+    <Compile Include="SDK\SDKManager.cs" />
+    <Compile Include="SDK\SdkPlayer.cs" />
+    <Compile Include="SDK\VideoLocalConfig.cs" />
+    <Compile Include="Services\CategoriesAndProductsService.cs" />
+    <Compile Include="Services\IDataServices.cs" />
+    <Compile Include="TrafficWin.xaml.cs">
+      <DependentUpon>TrafficWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AbnormalInfo.cs" />
+    <Compile Include="UserControls\AlarmControls\AlarmCarConfirm.xaml.cs">
+      <DependentUpon>AlarmCarConfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmConfirm.xaml.cs">
+      <DependentUpon>AlarmConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Converters\HeaderToImageConverter.cs" />
     <Compile Include="Converters\StringToDateTimeConvert.cs" />
     <Compile Include="Converters\StringToDoubleConverter.cs" />
-    <Compile Include="Converters\WaterPreToImageConverter.cs" />
     <Compile Include="GlobalClass\AppConfig.cs" />
     <Compile Include="HTTP\HttpApi.cs" />
     <Compile Include="GlobalClass\MangoApp.cs" />
     <Compile Include="GlobalClass\MangoInfo.cs" />
-    <Compile Include="Model\PlanRotation.cs" />
-    <Compile Include="Model\PlanRotationWinModel.cs" />
+    <Compile Include="UserControls\AlarmControls\AlarmDialog.xaml.cs">
+      <DependentUpon>AlarmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmDoorControl.xaml.cs">
+      <DependentUpon>AlarmDoorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmDoorItem.xaml.cs">
+      <DependentUpon>AlarmDoorItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AnomalyBuildingInfo.xaml.cs">
+      <DependentUpon>AnomalyBuildingInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\FireEscape.xaml.cs">
+      <DependentUpon>FireEscape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\MonitorEquipment.xaml.cs">
+      <DependentUpon>MonitorEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\WaterPressureMonitor.xaml.cs">
+      <DependentUpon>WaterPressureMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmControls\AlarmInfoWin.xaml.cs">
+      <DependentUpon>AlarmInfoWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BuildingControl.xaml.cs">
+      <DependentUpon>BuildingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\AlarmEventColumn.xaml.cs">
+      <DependentUpon>AlarmEventColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\AlarmEventPie.xaml.cs">
+      <DependentUpon>AlarmEventPie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\BuildingDistribution.xaml.cs">
+      <DependentUpon>BuildingDistribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\CircularProgressBar.cs" />
+    <Compile Include="UserControls\ChartControls\EquipNormalRate.xaml.cs">
+      <DependentUpon>EquipNormalRate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\OccurTimeDistribution.xaml.cs">
+      <DependentUpon>OccurTimeDistribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChartControls\OccurTrendPolyline.xaml.cs">
+      <DependentUpon>OccurTrendPolyline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\DownloadControl.xaml.cs">
+      <DependentUpon>DownloadControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\EventDownloadControl.xaml.cs">
+      <DependentUpon>EventDownloadControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\EventDownloadWin.xaml.cs">
+      <DependentUpon>EventDownloadWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventHistoryControls\EventPlayback.xaml.cs">
+      <DependentUpon>EventPlayback.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\FightPanel.xaml.cs">
+      <DependentUpon>FightPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\Player.xaml.cs">
+      <DependentUpon>Player.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FightControl\SceneListControl.xaml.cs">
+      <DependentUpon>SceneListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\AnomalyCameraInfo.xaml.cs">
+      <DependentUpon>AnomalyCameraInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\SchoolBuildingMesItem.xaml.cs">
+      <DependentUpon>SchoolBuildingMesItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainPageControls\SchoolBuildingMsg.xaml.cs">
+      <DependentUpon>SchoolBuildingMsg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MyPopup.cs" />
+    <Compile Include="UserControls\Pagination.cs" />
+    <Compile Include="UserControls\ParameterWin.xaml.cs">
+      <DependentUpon>ParameterWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\MapPlayer.xaml.cs">
+      <DependentUpon>MapPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\PlayControlModel.cs" />
     <Compile Include="Model\WaterPreMonitorModel.cs" />
-    <Compile Include="Model\WaterPressInfo.cs" />
     <Compile Include="PasswordBoxBindingHelper.cs" />
     <Compile Include="ResourceDictionary\BulletCheckBox.cs" />
-    <Compile Include="ResourceDictionary\Pagination.cs" />
+    <Compile Include="SDK\IMOSSDK.cs" />
     <Compile Include="UserControls\AlarmControls\AlarmButtonControl.xaml.cs">
       <DependentUpon>AlarmButtonControl.xaml</DependentUpon>
     </Compile>
@@ -179,12 +405,6 @@
     <Compile Include="UserControls\FightControl\CamResource\DirectoryItem.cs" />
     <Compile Include="UserControls\FightControl\CamResource\DirectoryItemType.cs" />
     <Compile Include="UserControls\FightControl\CamResource\DirectoryStructure.cs" />
-    <Compile Include="UserControls\FightControl\ModifyRotationWin.xaml.cs">
-      <DependentUpon>ModifyRotationWin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\FightControl\PlanRotationControl.xaml.cs">
-      <DependentUpon>PlanRotationControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\FightControl\PlanRotationWin.xaml.cs">
       <DependentUpon>PlanRotationWin.xaml</DependentUpon>
     </Compile>
@@ -193,9 +413,6 @@
     </Compile>
     <Compile Include="UserControls\FightControl\SaveScenesWin.xaml.cs">
       <DependentUpon>SaveScenesWin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\FightControl\SceneList.xaml.cs">
-      <DependentUpon>SceneList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainPageControls\DeviceControlItem.xaml.cs">
       <DependentUpon>DeviceControlItem.xaml</DependentUpon>
@@ -209,12 +426,19 @@
     <Compile Include="UserControls\MainPageControls\SchoolMesItem.xaml.cs">
       <DependentUpon>SchoolMesItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Pagination\Pagination.xaml.cs">
-      <DependentUpon>Pagination.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\MainPageControls\SearchBoxControl.xaml.cs">
       <DependentUpon>SearchBoxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AlarmControls\TabControlWin.xaml.cs">
+      <DependentUpon>TabControlWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\PTZ.xaml.cs">
+      <DependentUpon>PTZ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerControls\SelectedPlayer.xaml.cs">
+      <DependentUpon>SelectedPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RemarkAttribute.cs" />
     <Compile Include="UserControls\TimeControl\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
@@ -224,11 +448,17 @@
     <Compile Include="UserControls\TimeControl\TDateTimeView.xaml.cs">
       <DependentUpon>TDateTimeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TrackCameraList.xaml.cs">
+    <Compile Include="UserControls\TimeControl\TimePickers.xaml.cs">
+      <DependentUpon>TimePickers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackCameraList.xaml.cs">
       <DependentUpon>TrackCameraList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TrackCameraListItem.xaml.cs">
+    <Compile Include="UserControls\TrackPageControls\TrackCameraListItem.xaml.cs">
       <DependentUpon>TrackCameraListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackCameraWin.xaml.cs">
+      <DependentUpon>TrackCameraWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TrackPageControls\TrackInfo.xaml.cs">
       <DependentUpon>TrackInfo.xaml</DependentUpon>
@@ -362,21 +592,114 @@
     <Compile Include="UserControls\AlarmControls\WaterMessage.xaml.cs">
       <DependentUpon>WaterMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TrackPageControls\TrackTabControl.xaml.cs">
+      <DependentUpon>TrackTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrafficRecord\OverSpeedList.xaml.cs">
+      <DependentUpon>OverSpeedList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrafficRecord\ParkingList.xaml.cs">
+      <DependentUpon>ParkingList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TrafficRecord\TrafficList.xaml.cs">
+      <DependentUpon>TrafficList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\WindowsFormsHostButton.xaml.cs">
       <DependentUpon>WindowsFormsHostButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\ChartPageViewModel.cs" />
     <Compile Include="ViewModel\CollagePageViewModel.cs" />
     <Compile Include="ViewModel\DirectoryItemViewModel.cs" />
     <Compile Include="ViewModel\EventHistoryViewModel.cs" />
+    <Compile Include="ViewModel\ExCommandParameter.cs" />
+    <Compile Include="ViewModel\ExInvokeCommandAction.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\PlanRotationWinViewModel.cs" />
+    <Compile Include="ViewModel\MonitorEquipmentViewModel.cs" />
+    <Compile Include="ViewModel\PickersViewModel.cs" />
     <Compile Include="ViewModel\PlayControlViewModel.cs" />
     <Compile Include="ViewModel\PlayerWindowViewModel.cs" />
     <Compile Include="ViewModel\TrackManagementViewModel.cs" />
     <Compile Include="ViewModel\TrackPageViewModel.cs" />
+    <Compile Include="ViewModel\TrafficRecordViewModel.cs" />
+    <Page Include="AuxiliaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\AlarmDeviceWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FunctionalWindows\CameraSelectedWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunctionalWindows\DialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FunctionalWindows\PdfReader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageView\ChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\ScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Styles\ActiveVehicleDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Styles\ElectricAlarmStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Styles\ErrorDeviceDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionary\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TrafficWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmCarConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EventHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -393,15 +716,119 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\AlarmControls\AlarmDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmDoorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmDoorItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AnomalyBuildingInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AlarmControls\FireEscape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\MonitorEquipment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AlarmControls\WaterPressureMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AlarmControls\AlarmInfoWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BuildingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ChartControls\AlarmEventColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ChartControls\AlarmEventPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ChartControls\BuildingDistribution.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ChartControls\EquipNormalRate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ChartControls\OccurTimeDistribution.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ChartControls\OccurTrendPolyline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\DownloadControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\EventDownloadControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\EventDownloadWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventHistoryControls\EventPlayback.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\FightPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\Player.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\FightControl\SceneListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\AnomalyCameraInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\SchoolBuildingMesItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\MainPageControls\SchoolBuildingMsg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Pagination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UserControls\ParameterWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\MapPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceDictionary\BulletCheckBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ResourceDictionary\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ResourceDictionary\Pagination.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -429,14 +856,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\FightControl\ModifyRotationWin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\FightControl\PlanRotationControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UserControls\FightControl\PlanRotationWin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -446,10 +865,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\FightControl\SaveScenesWin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\FightControl\SceneList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -469,11 +884,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Pagination\Pagination.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UserControls\MainPageControls\SearchBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlarmControls\TabControlWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\PTZ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerControls\SelectedPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,11 +912,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\TrackCameraList.xaml">
+    <Page Include="UserControls\TimeControl\TimePickers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackCameraList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TrackCameraListItem.xaml">
+    <Page Include="UserControls\TrackPageControls\TrackCameraListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrackPageControls\TrackCameraWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -661,6 +1092,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TrackPageControls\TrackTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrafficRecord\OverSpeedList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrafficRecord\ParkingList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TrafficRecord\TrafficList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\WindowsFormsHostButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -684,6 +1131,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Fonts\Segoe mdl2 assets.ttf" />
+    <Fakes Include="Fakes\Aspose.Words.fakes" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -748,8 +1202,191 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ImageSource\Icon\不查看.png" />
-    <Resource Include="ImageSource\Icon\查看.png" />
+    <Resource Include="ImageSource\Icon\home.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-16.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FACE-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FENCE.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\DOOR-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\GAS-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\GAS-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\WATER-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\WATER-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\WATER-3.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\WATER-4.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FENCE-5.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\CAR-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\CAR-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\DOOR-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FACE-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\DOOR-3.png" />
+    <Resource Include="ImageSource\Icon\History\文件夹.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\ArGasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\COGasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\CombustibleGasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\door_close.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\door_open.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\H2GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\LiquidLevelSensor.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\N3GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\O2GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\WaterPressureSensor.png" />
+    <Resource Include="ImageSource\Icon\menuicon\历史事件_点击.png" />
+    <Resource Include="ImageSource\Icon\menuicon\在线电子地图_点击.png" />
+    <Resource Include="ImageSource\Icon\menuicon\拼控_点击.png" />
+    <Resource Include="ImageSource\Icon\menuicon\车辆追踪_点击.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\LeakageMonitoring.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\SinglePhaseMonitoring.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\ThreePhaseMonitoring.png" />
+    <Resource Include="ImageSource\background\bg211.png" />
+    <Resource Include="ImageSource\background\home_campus_select.png" />
+    <Resource Include="ImageSource\Icon\Home\home_checked.png" />
+    <Resource Include="ImageSource\Icon\Home\home_totay_alarm.png" />
+    <Resource Include="ImageSource\Icon\Home\home_unchecked.png" />
+    <Resource Include="ImageSource\background\home_background.png" />
+    <Resource Include="ImageSource\background\home_check_device.png" />
+    <Resource Include="ImageSource\background\home_today_log.png" />
+    <Resource Include="ImageSource\Icon\Home\home_faults_number.png" />
+    <Resource Include="ImageSource\Icon\Home\home_logo.png" />
+    <Resource Include="ImageSource\Icon\building_click.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\ELECTRICITY-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\ELECTRICITY-2.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\回放1.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\放大.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\缩小.png" />
+    <Resource Include="ImageSource\background\bg_login_mango.png" />
+    <Resource Include="ImageSource\background\home_elect.png" />
+    <Resource Include="ImageSource\Icon\Home\Icon\摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\Icon\气体.png" />
+    <Resource Include="ImageSource\Icon\Home\Icon\水压.png" />
+    <Resource Include="ImageSource\Icon\Home\Icon\消防设备.png" />
+    <Resource Include="ImageSource\Icon\Home\Icon\门磁.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\喷淋水压.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\泵房水压.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\消防水压.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FENCE-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FENCE-2.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\FIRE-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\MAGNETIC-1.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\AlarmSignal\REDSCAN-1.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\一氧化碳探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\三相电监测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\人脸识别摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\其他消防设备.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\单相电监测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\可燃气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\室内消防栓.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\室外消防栓.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\应急灯.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\感温探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\感烟探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\手动报警按钮.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\普通半球球机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\普通快球机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\普通枪机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\枪球联动摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\气体.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氢气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氧气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氩气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氮气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\水压.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\水压传感器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\测速卡口摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\消火栓按钮.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\消防主机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\消防电源.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\消防设备.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\液位传感器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\漏电监测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\灭火器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\电力.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\违停监测摄像机.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\门磁.png" />
+    <Resource Include="ImageSource\消防通道地图.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-16点击.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-1点击.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-1白.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-4点击.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-6点击.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\组-9点击.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\电子地桩.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\窗磁.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\红外幕帘.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\门禁.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\空白摄像机logo.png" />
+    <Resource Include="ImageSource\Icon\PlayerIcon\空白摄像机样式.png" />
+    <Resource Include="ImageSource\Icon\menuicon\vehicle_violation.png" />
+    <Resource Include="ImageSource\Icon\menuicon\vehicle_violation_click.png" />
+    <Resource Include="ImageSource\Icon\设备信息.png" />
+    <Resource Include="ImageSource\Icon\返回图表.png" />
+    <Resource Include="ImageSource\Icon\mainwindowicon\logo.ico" />
+    <Resource Include="ImageSource\Icon\logo.ico" />
+    <Resource Include="ImageSource\background\fudan_jiangwan.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\F2GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\NH3GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\NO2GasDetector.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\PH3GasDetector.png" />
+    <Resource Include="bin\Debug\Resource\building.png" />
+    <Resource Include="bin\Debug\Resource\device_details.png" />
+    <Resource Include="bin\Debug\Resource\EBIT实验室.png" />
+    <Resource Include="bin\Debug\Resource\football-field.png" />
+    <Resource Include="bin\Debug\Resource\一号楼.png" />
+    <Resource Include="bin\Debug\Resource\上海数学中心.png" />
+    <Resource Include="bin\Debug\Resource\专家公寓.png" />
+    <Resource Include="bin\Debug\Resource\先材楼.png" />
+    <Resource Include="bin\Debug\Resource\八号楼.png" />
+    <Resource Include="bin\Debug\Resource\六号楼.png" />
+    <Resource Include="bin\Debug\Resource\化学楼.png" />
+    <Resource Include="bin\Debug\Resource\化学西楼.png" />
+    <Resource Include="bin\Debug\Resource\十号楼.png" />
+    <Resource Include="bin\Debug\Resource\实验楼贴图.png" />
+    <Resource Include="bin\Debug\Resource\展馆贴图.png" />
+    <Resource Include="bin\Debug\Resource\恒隆物理楼.png" />
+    <Resource Include="bin\Debug\Resource\文科图书馆.png" />
+    <Resource Include="bin\Debug\Resource\智华楼.png" />
+    <Resource Include="bin\Debug\Resource\李兆基图书馆.png" />
+    <Resource Include="bin\Debug\Resource\材料科学系.png" />
+    <Resource Include="bin\Debug\Resource\校史馆.png" />
+    <Resource Include="bin\Debug\Resource\档案馆.png" />
+    <Resource Include="bin\Debug\Resource\水泵房贴图.png" />
+    <Resource Include="bin\Debug\Resource\法学院.png" />
+    <Resource Include="bin\Debug\Resource\消防通道地图.png" />
+    <Resource Include="bin\Debug\Resource\物理科研楼.png" />
+    <Resource Include="bin\Debug\Resource\环境科学楼.png" />
+    <Resource Include="bin\Debug\Resource\理科图书馆.png" />
+    <Resource Include="bin\Debug\Resource\生命科学学院.png" />
+    <Resource Include="bin\Debug\Resource\相辉堂.png" />
+    <Resource Include="bin\Debug\Resource\立人生物楼.png" />
+    <Resource Include="bin\Debug\Resource\第三教学楼 - 副本.png" />
+    <Resource Include="bin\Debug\Resource\第三教学楼.png" />
+    <Resource Include="bin\Debug\Resource\第五宿舍.png" />
+    <Resource Include="bin\Debug\Resource\第八宿舍.png" />
+    <Resource Include="bin\Debug\Resource\第六宿舍.png" />
+    <Resource Include="bin\Debug\Resource\管理学院.png" />
+    <Resource Include="bin\Debug\Resource\经济学院.png" />
+    <Resource Include="bin\Debug\Resource\计算中心.png" />
+    <Resource Include="bin\Debug\Resource\足球场.png" />
+    <Resource Include="bin\Debug\Resource\跃进楼.png" />
+    <Resource Include="bin\Debug\Resource\逸夫楼.png" />
+    <Resource Include="bin\Debug\Resource\遗传学楼.png" />
+    <Resource Include="bin\Debug\Resource\食堂.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\二氧化氮探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\围栏.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\张力围栏.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氟气探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\泄漏电缆.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\磷化氢探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\红外对射.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\红外扫描探测器.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\震动光缆.png" />
+    <Resource Include="ImageSource\Icon\Home\HomeClassIcon\氨气探测器.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\关锁.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\开锁.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\无设备.png" />
+    <Content Include="SDK\ErrorCode.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="ImageSource\Icon\PlayerIcon\组-1%28白%29.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-1.png" />
     <Resource Include="ImageSource\Icon\PlayerIcon\组-12%28白%29.png" />
@@ -826,6 +1463,8 @@
     <Resource Include="ImageSource\Icon\mainwindowicon\红外幕帘.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\门磁.png" />
     <Resource Include="ImageSource\Icon\mainwindowicon\门禁.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\38室外消防栓.png" />
+    <Resource Include="ImageSource\Icon\AlarmIcon\液位.png" />
     <Content Include="ImageSource\Icon\menuicon\menuclose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -859,6 +1498,44 @@
       <Name>MangoProtocol</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImageSource\Icon\Home\HomeTypeIcon\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -31,11 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapView));
             this.mapBox1 = new SharpMap.Forms.MapBox();
+            this.mapZoomToolStrip1 = new SharpMap.Forms.ToolBar.MapZoomToolStrip(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deviceTypeListComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label_coor = new System.Windows.Forms.ToolStripLabel();
-            this.label_zoomlevel = new System.Windows.Forms.ToolStripLabel();
-            this.mapZoomToolStrip1 = new SharpMap.Forms.ToolBar.MapZoomToolStrip(this.components);
             this.mapZoomToolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,24 @@
             this.mapBox1.DragOver += new System.Windows.Forms.DragEventHandler(this.MapView_DragOver);
             this.mapBox1.Resize += new System.EventHandler(this.mapBox1_Resize);
             // 
+            // mapZoomToolStrip1
+            // 
+            this.mapZoomToolStrip1.Enabled = false;
+            this.mapZoomToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator1,
+            this.deviceTypeListComboBox,
+            this.toolStripSeparator2,
+            this.label_coor});
+            this.mapZoomToolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.mapZoomToolStrip1.MapControl = this.mapBox1;
+            this.mapZoomToolStrip1.Name = "mapZoomToolStrip1";
+            this.mapZoomToolStrip1.Size = new System.Drawing.Size(779, 25);
+            this.mapZoomToolStrip1.Stretch = true;
+            this.mapZoomToolStrip1.TabIndex = 1;
+            this.mapZoomToolStrip1.Text = "mapZoomToolStrip1";
+            this.mapZoomToolStrip1.Visible = false;
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -84,33 +103,22 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // deviceTypeListComboBox
+            // 
+            this.deviceTypeListComboBox.Name = "deviceTypeListComboBox";
+            this.deviceTypeListComboBox.Size = new System.Drawing.Size(119, 25);
+            this.deviceTypeListComboBox.SelectedIndexChanged += new System.EventHandler(this.deviceTypeListComboBox_SelectedIndexChanged);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // label_coor
             // 
             this.label_coor.Name = "label_coor";
             this.label_coor.Size = new System.Drawing.Size(32, 22);
             this.label_coor.Text = "坐标";
-            // 
-            // label_zoomlevel
-            // 
-            this.label_zoomlevel.Name = "label_zoomlevel";
-            this.label_zoomlevel.Size = new System.Drawing.Size(56, 22);
-            this.label_zoomlevel.Text = "缩放级别";
-            // 
-            // mapZoomToolStrip1
-            // 
-            this.mapZoomToolStrip1.Enabled = false;
-            this.mapZoomToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSeparator1,
-            this.label_coor,
-            this.label_zoomlevel});
-            this.mapZoomToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.mapZoomToolStrip1.MapControl = this.mapBox1;
-            this.mapZoomToolStrip1.Name = "mapZoomToolStrip1";
-            this.mapZoomToolStrip1.Size = new System.Drawing.Size(779, 25);
-            this.mapZoomToolStrip1.TabIndex = 1;
-            this.mapZoomToolStrip1.Text = "mapZoomToolStrip1";
-            this.mapZoomToolStrip1.Visible = false;
             // 
             // MapView
             // 
@@ -131,10 +139,11 @@
         #endregion
 
         private SharpMap.Forms.MapBox mapBox1;
+        private SharpMap.Forms.ToolBar.MapZoomToolStrip mapZoomToolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel label_coor;
-        private System.Windows.Forms.ToolStripLabel label_zoomlevel;
-        private SharpMap.Forms.ToolBar.MapZoomToolStrip mapZoomToolStrip1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripComboBox deviceTypeListComboBox;
     }
 }

@@ -1,0 +1,12 @@
+﻿<Window x:Class="ManagementProject.UserControls.ParameterWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementProject.UserControls"
+        mc:Ignorable="d"
+        Title="ParameterWin" Width="128" SizeToContent="Height"   ShowInTaskbar="False"  ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+    <StackPanel Name="panel">
+        <!--<ToggleButton Content="daolukou" Style="{StaticResource myToggleButton   }" Background="White" BorderBrush="{x:Null}" />-->
+    </StackPanel>
+</Window>

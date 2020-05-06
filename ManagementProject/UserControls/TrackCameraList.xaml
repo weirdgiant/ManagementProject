@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="300">
-    <Grid Background="#FF3C3C3C" Opacity="0.9">
+    <Grid Background="#FF323232">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
@@ -16,25 +16,31 @@
             <Label Content="摄像机列表" FontSize="15" Foreground="White"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="100"/>
             <Image Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/摄像机白.png" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
         </Grid>
-        <Grid  Grid.Row="2" >
-            <Button Margin="15,10,0,0" Content="确 定" Background="#FF00A7F4" BorderBrush="{x:Null}" Style="{StaticResource FilletButton}" FontSize="14" HorizontalAlignment="Left" Width="125" Height="45" VerticalAlignment="Top" />
-            <Button Margin="0,10,15,0" Content="返 回" Background="#FF00A7F4" BorderBrush="{x:Null}" Style="{StaticResource FilletButton}" FontSize="14" HorizontalAlignment="Right" Width="125" Height="45" VerticalAlignment="Top" />
-        </Grid>
-        <Grid  Grid.Row="1">
-            <ListView ItemsSource="{Binding Items}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0" >
+
+        <StackPanel Grid.Row="1">
+            <ListView ItemsSource="{Binding CameraLists}" Background="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Margin="0" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Border CornerRadius="5" Width="275" Background="#FF282828" Margin="5">
-                                <Grid  >
-                                    <Label Content="教学楼摄像机" FontSize="16" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" />
-                                    <Image   HorizontalAlignment="Right" Height="23" VerticalAlignment="Center" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/摄像机白.png" Margin="0,0,13,0"/>
+                        <StackPanel Orientation="Horizontal" >
+                            <Border CornerRadius="5" Width="270" Height="45" Background="#FF252525" Margin="5">
+                                <Grid>
+                                    <Label Content="{Binding Name}" FontSize="16" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0" />
+                                    <Grid HorizontalAlignment="Right" Margin="0,0,13,0">
+                                        <Ellipse Height="35" Width="35" Fill="#FF464646"  />
+                                        <Image  Height="23" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/摄像机白.png"/>
+                                    </Grid>
                                 </Grid>
                             </Border>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>
+
+            <Grid >
+                <Button Margin="15,10,0,0" Content="确 定" Command="{Binding ConfirmCommand}" Background="#FF00A7F4" BorderBrush="{x:Null}" Style="{StaticResource FilletButton}" FontSize="14" HorizontalAlignment="Left" Width="130" Height="38" VerticalAlignment="Top" />
+                <Button Margin="0,10,15,0" Content="返 回" Command="{Binding ReturnCommand}" Background="#FF00A7F4" BorderBrush="{x:Null}" Style="{StaticResource FilletButton}" FontSize="14" HorizontalAlignment="Right" Width="130" Height="38" VerticalAlignment="Top" />
+            </Grid>
+
+        </StackPanel>
     </Grid>
 </UserControl>

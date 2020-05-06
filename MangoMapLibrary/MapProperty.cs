@@ -27,11 +27,13 @@ namespace MangoMapLibrary
         private void MapProperty_Load(object sender, EventArgs e)
         {
             this.textBox1.Text = map.name;
+            this.label11.Text = map.id.ToString();
             this.textBox2.Text = map.type.ToString();
             this.textBox3.Text = map.defaultLongitude.ToString();
             this.textBox4.Text = map.defaultLatitude.ToString();
             this.textBox5.Text = map.defaultZoomLevel.ToString();
             this.textBox6.Text = map.idx.ToString();
+            this.textBox7.Text = map.pid.ToString();
             this.label7.Text = Color.FromArgb(map.backgroundColor).ToString();
         }
 
@@ -43,6 +45,7 @@ namespace MangoMapLibrary
             map.defaultLatitude = double.Parse(this.textBox4.Text);
             map.defaultZoomLevel = int.Parse(this.textBox5.Text);
             map.idx = int.Parse(this.textBox6.Text);
+            map.pid = int.Parse(this.textBox7.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

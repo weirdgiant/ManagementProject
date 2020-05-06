@@ -12,15 +12,43 @@ namespace ManagementProject
 {
     public static class GlobalVariable
     {
+        public static UserControls.DeviceControl deviceControl { get; set; }
+        public static int MaxCameraCount { get; set; } = 5;
+        public static bool IsFake { get; set; } = false;
+
+        /// <summary>
+        /// 是否打开投屏
+        /// </summary>
+        public static bool IsPushWindow { get; set; }
+
+        /// <summary>
+        /// 是否打开报警投屏
+        /// </summary>
+        public static bool IsPushAlarmWindow { get; set; } = true;
+
+
         /// <summary>
         /// 当前客户端配置信息
         /// </summary>
         public static ClientConfig CurrenClientConfig { get; set; }
+        
+        public static int CurrentClientProperty { get; set; }
+        public static Signal[] Signals { get; set; }
+        public static AlarmModule[] AlarmModules { get; set; }
+        public static AlarmModuleConfig[] AlarmModuleConfigs { get; set; }
+        public static MangoMap[] MapList { get; set; }
+
+        public static Dictionary<int, Alarm> AlarmDic = new Dictionary<int, Alarm>();
+        // public static ClientConfig [] ClientConfigList { get; set; }
         /// <summary>
         /// 当前选中地图ID
         /// </summary>
-        public static int CurrentMapId;
+        public static int CurrentMapId { get; set; }
+        public static int CurrentSid { get; set; }
+        public static MapKind CurrentMapKind { get; set; } 
 
+        public static string[] SidList { get; set; }
+        public static string[] AlarmMapList { get; set; }
         private static int _selectedSchoolId;
         /// <summary>
         /// 当前选择校区ID
@@ -37,26 +65,13 @@ namespace ManagementProject
                 MainWindow main = (MainWindow)Application.Current.MainWindow;
                 MainWindowViewModel mainWindowViewModel = (MainWindowViewModel)main.DataContext;
                 mainWindowViewModel.mainPageViewModel.Sid = value;
+                if (deviceControl != null)
+                {
+                    deviceControl.MapId = value;
+                }
             }
         }
         //ControlStatus
-        private static bool _isMapLoaded;
-        /// <summary>
-        /// 地图加载完成
-        /// </summary>
-        public static bool IsMapLoaded
-        {
-            get
-            {
-                return _isMapLoaded;
-            }
-            set
-            {
-                _isMapLoaded = value;
-                MainWindow main = (MainWindow)Application.Current.MainWindow;
-                main.IsLoadMainMenu = value;
-            }
-        }
         /// <summary>
         /// 指示当前页面是否是活动界面
         /// </summary>
@@ -68,29 +83,53 @@ namespace ManagementProject
                 main.IsTrackPage = value;
             }
         }
+        private static bool _isAlarmPage;
         /// <summary>
         /// 指示当前页面是否是报警界面
         /// </summary>
         public static bool IsAlarmPage
         {
+            get
+            {
+                return _isAlarmPage;
+            }
             set
             {
+                _isAlarmPage = value;
                 MainWindow main = (MainWindow)Application.Current.MainWindow;
                 main.IsAlarmPage = value;
             }
         }
+
+        /// <summary>
+        /// 是否在报警页面
+        /// </summary>
+        public static int CurrentAlarmLevel { get; set; }
 
         //WindowStatus
         public static bool PlayerWindowIsOpened { get; set; }
 
 
         //PageStatus
+
         /// <summary>
         /// 报警页面类型
         /// </summary>
-        public static AlarmType AlarmPageType;
+        public static string AlarmPageType { get; set; }
     }
     #region 枚举类
+
+    public enum MapKind
+    {
+        /// <summary>
+        /// 学校
+        /// </summary>
+        School,
+        /// <summary>
+        /// 建筑
+        /// </summary>
+        Building
+    }
 
     /// <summary>
     /// 播放窗口类型
@@ -104,7 +143,9 @@ namespace ManagementProject
         /// <summary>
         /// 追踪
         /// </summary>
-        Track
+        Track,
+        Module,
+        Normal
     }
     /// <summary>
     /// 播放器状态
@@ -128,7 +169,7 @@ namespace ManagementProject
     /// <summary>
     /// 主菜单选择状态
     /// </summary>
-    public enum MainMenuConfig
+    public enum MainMenuIndex
     {
         /// <summary>
         /// 电子地图
@@ -145,7 +186,11 @@ namespace ManagementProject
         /// <summary>
         /// 历史事件
         /// </summary>
-        History
+        History,
+        /// <summary>
+        /// 交通厅违规记录
+        /// </summary>
+        TrafficRecord
     }
     /// <summary>
     /// 报警类型

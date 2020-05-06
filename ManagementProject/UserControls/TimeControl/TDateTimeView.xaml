@@ -116,151 +116,36 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="CommonButtonStyle"
-               TargetType="{x:Type Button}">
-            <Setter Property="FontSize"
-                    Value="12" />
-            <Setter Property="Foreground"
-                    Value="Black" />
-            <Setter Property="FocusVisualStyle"
-                    Value="{x:Null}" />
-            <Setter Property="Template">
+      
+        <Style x:Key="CalendarStyle1" TargetType="{x:Type Calendar}">
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="Background">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="ButtonBorder"
-                                CornerRadius="3"
-                                BorderThickness="1"
-                                SnapsToDevicePixels="True"
-                                Background="#FFFFFF"
-                                Margin="0">
-                            <!--Background="#FFFFFF"按钮背景颜色 20180420 0937-->
-                            <Grid>
-                                <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Margin="0,0,0,0" />
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsPressed"
-                                     Value="true">
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Opacity"
-                                        Value="0.5">
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsEnabled"
-                                     Value="false">
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Background"
-                                        Value="#d8d8d8">
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE4EAF0" Offset="0"/>
+                        <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                        <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <Style x:Key="CommonButtonStyle2"
-               TargetType="{x:Type Button}">
-            <Setter Property="FontSize"
-                    Value="12" />
-            <Setter Property="Foreground"
-                    Value="White" />
-            <Setter Property="FocusVisualStyle"
-                    Value="{x:Null}" />
-            <Setter Property="Template">
+            <Setter Property="BorderBrush">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="ButtonBorder"
-                                CornerRadius="3"
-                                BorderThickness="1"
-                                SnapsToDevicePixels="True"
-                                Background="{TemplateBinding Background}"
-                                Margin="0">
-                            <!--Background="#FFFFFF"按钮背景颜色 姜彦20180420 0937-->
-                            <Grid>
-                                <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Margin="0,0,0,0" />
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsPressed"
-                                     Value="true">
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Opacity"
-                                        Value="0.5">
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsEnabled"
-                                     Value="false">
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Background"
-                                        Value="#d8d8d8">
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="#FF617584" Offset="1"/>
+                    </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <Style x:Key="CalendarCloseButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle">
-                <Setter.Value>
-                    <Style>
-                        <Setter Property="Control.Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Rectangle Margin="2" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Width" Value="18"/>
-            <Setter Property="Height" Value="18"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Cursor" Value="Hand"/>
-
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="Red"/>
-                                <Setter Property="Background" TargetName="border" Value="{x:Null}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{x:Null}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="{x:Null}"/>
-                                <Setter Property="Foreground" Value="Red"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{x:Null}"/>
-                            </Trigger>
-                            <Trigger Property="ToggleButton.IsChecked" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#FFC11774"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FFC11774"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
-                                <Setter Property="Foreground" Value="#FF838383"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                            <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{TemplateBinding CalendarItemStyle}"/>
+                        </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -273,7 +158,7 @@
 
         <Grid Height="229"
               Width="185"
-              Background="White" Opacity="0.9">
+              Background="White" Opacity=".8">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="24" />
@@ -312,7 +197,8 @@
                           PreviewMouseUp="calDate_PreviewMouseUp" 
                           Background="{x:Null}"
                           BorderThickness="0"
-                          BorderBrush="Black" />
+                          BorderBrush="Transparent" 
+                          Style="{StaticResource CalendarStyle1}" />
             </Grid>
 
             <Grid Grid.Row="2"
@@ -328,11 +214,11 @@
                 </Border>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <ComboBox x:Name="CboHour"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="45"/>
+                    <ComboBox x:Name="CboHour"  Style="{x:Null}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="45"/>
                     <TextBlock  Text=":" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2" Foreground="Black"/>
-                    <ComboBox x:Name="CboMin"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="45"/>
+                    <ComboBox x:Name="CboMin" Style="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45"/>
                     <TextBlock  Text=":" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2" Foreground="Black"/>
-                    <ComboBox x:Name="CboSec"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="45"/>
+                    <ComboBox x:Name="CboSec"  Style="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="45"/>
                 </StackPanel>
 
             </Grid>

@@ -6,13 +6,32 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ValueConverters.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/Colors.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ComboBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/Styles/Fonts.xaml"/>
                 
-                <ResourceDictionary Source="ResourceDictionary/ButtonStyleDictionary.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/ControlStyleDictionary.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/SkinDictionary.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/TreeViewDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ButtonStyleDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ControlStyleDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/UserControls/Pagination.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/SkinDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/TreeViewDictionary.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ValueConverters.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ScrollViewer.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ToggleButton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/ProgressBar.xaml"/>
+
+                <!--MaterialDesign-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource DefaultScrollBar}"></Style>
+            <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource DefaultScrollViewer}"></Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

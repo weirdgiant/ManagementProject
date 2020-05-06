@@ -5,7 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagementProject.UserControls"
         mc:Ignorable="d"
-        Title="SearchBoxControl" SizeToContent="WidthAndHeight" ShowInTaskbar="False"  ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+        Title="SearchBoxControl"
+        SizeToContent="WidthAndHeight" 
+        ShowInTaskbar="False" 
+        ResizeMode="NoResize"
+        Opacity="0.95"
+        OpacityMask="White" 
+        AllowsTransparency="True"
+        Background="Transparent" 
+        WindowStyle="None">
     <Grid>
         <local:MainWindowTextBox x:Name="choosetb" HorizontalAlignment="Left" Height="35" Margin="0,0,0,0" VerticalAlignment="Top" Width="250"/>
         <local:MainWindowSearchBox HorizontalAlignment="Left" Height="35" Margin="0,40,0,0" VerticalAlignment="Top" Width="250"/>

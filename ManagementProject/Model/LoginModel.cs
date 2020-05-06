@@ -9,7 +9,19 @@ namespace ManagementProject.Model
 {
     public class LoginModel : INotifyPropertyChangedClass
     {
-       
+        private bool _isLoginEnabled;
+        public bool IsLoginEnabled
+        {
+            get
+            {
+                return _isLoginEnabled;
+            }
+            set
+            {
+                _isLoginEnabled = value;
+                NotifyPropertyChanged("IsLoginEnabled");
+            }
+        }
         private string _username;
         /// <summary>
         /// 用户名

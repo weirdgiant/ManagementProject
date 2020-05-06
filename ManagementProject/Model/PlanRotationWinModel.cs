@@ -21,6 +21,18 @@ namespace ManagementProject.Model
             }
         }
 
+        private List<Scenes> scenesList;
+
+        public List<Scenes> ScenesList
+        {
+            get { return scenesList; }
+            set
+            {
+                scenesList = value;
+                NotifyPropertyChanged("ScenesList");
+            }
+        }
+
         private string rotationName;
 
         /// <summary>
@@ -79,5 +91,18 @@ namespace ManagementProject.Model
                 NotifyPropertyChanged("Scenes");
             }
         }
+    }
+
+    public class Scenes
+    {
+        /// <summary>
+        /// 场景Id
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 场景名称
+        /// </summary>
+        public string Name { get; set; }
     }
 }

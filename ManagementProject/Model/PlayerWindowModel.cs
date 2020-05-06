@@ -36,5 +36,20 @@ namespace ManagementProject.Model
                 NotifyPropertyChanged("WindowLogo");
             }
         }
+
+
+        private Visibility _isAlarmTracker=Visibility.Visible;
+        public Visibility IsAlarmTracker
+        {
+            get
+            {
+                return _isAlarmTracker;
+            }
+            set
+            {
+                _isAlarmTracker = value;
+                NotifyPropertyChanged("IsAlarmTracker");
+            }
+        }
     }
 }

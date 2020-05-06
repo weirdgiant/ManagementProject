@@ -32,62 +32,6 @@ namespace ManagementProject.PageView
             MainWindowViewModel.alarmPageViewModel.PageType = GlobalVariable.AlarmPageType;
             AlarmPageViewModel= MainWindowViewModel.alarmPageViewModel;
             DataContext = AlarmPageViewModel;
-            //InitControl(AlarmPageViewModel.PageType);
-        }
-
-        /// <summary>
-        /// 根据报警类型加载控件
-        /// </summary>
-        /// <param name="type">报警类型</param>
-        private void InitControl(AlarmType type)
-        {
-            switch (type)
-            {
-                case AlarmType.FireAlarm:
-                    InitFireAlarmControls();
-                    break;
-                case AlarmType.WaterAlarm:
-                    InitWaterAlarmControls();
-                    break;
-                case AlarmType.CarAlarm:
-                    InitCarAlarmControls();
-                    break;
-            }
-        }
-        /// <summary>
-        /// 初始化火灾报警控件
-        /// </summary>
-        private void InitFireAlarmControls()
-        {
-            AlarmMainPage alarmMainPage = new AlarmMainPage
-            {
-                DataContext = AlarmPageViewModel
-            };
-            mianGrid.Children.Add(alarmMainPage);
-        }
-        /// <summary>
-        /// 初始化水压报警控件
-        /// </summary>
-        private void InitWaterAlarmControls()
-        {
-            AlarmMainPage alarmMainPage = new AlarmMainPage();
-            alarmMainPage.DataContext = AlarmPageViewModel;
-            WaterMessage waterMessage = new WaterMessage();
-            waterMessage.DataContext = AlarmPageViewModel.waterMessageViewModel;
-            alarmMainPage.panel2.Children.Add(waterMessage);
-            mianGrid.Children.Add(alarmMainPage);
-        }
-        /// <summary>
-        /// 初始化车辆报警控件
-        /// </summary>
-        private void InitCarAlarmControls()
-        {
-            AlarmMainPage alarmMainPage = new AlarmMainPage();
-            alarmMainPage.DataContext = AlarmPageViewModel;
-            AlarmCarInfo alarmCarInfo = new AlarmCarInfo();
-            alarmCarInfo.DataContext = AlarmPageViewModel.alarmCarInfoViewModel;
-            alarmMainPage.panel2.Children.Add(alarmCarInfo);
-            mianGrid.Children.Add(alarmMainPage);
         }
     }
 }

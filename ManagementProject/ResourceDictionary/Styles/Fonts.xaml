@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="FontUserIcon">&#xe600;</system:String>
+    <system:String x:Key="FontLoginPhoneIcon">&#xe609;</system:String>
+    <system:String x:Key="FontBackHomeIcon">&#xe672;</system:String>
+
+    <!--EventHistoryDownload-->
+    <system:String x:Key="FontEventDownloadIcon">&#xe619;</system:String>
+
+    <!--TrackTabControl 有效时间-->
+    <system:String x:Key="FontTrackerTimeIcon">&#xE2AD;</system:String>
+
+    <system:String x:Key="FontTrackerCarIcon">&#xEC47;</system:String>
+
+    <system:String x:Key="FontView">&#xe631;</system:String>
+
+    <FontFamily x:Key="SegoeMDL2AssetsFont">/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets</FontFamily>
+    
+</ResourceDictionary>

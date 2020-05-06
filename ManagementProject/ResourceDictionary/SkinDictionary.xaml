@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ManagementProject.ResourceDictionary">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="Grid" x:Key="titlegrid">
 
@@ -9,7 +8,7 @@
     </Style>
     <SolidColorBrush x:Key="LoginGridBackground" Color="#FF0B161C"/>
     <Color x:Key="Mainbackground">#FF0B161C</Color>
-
+    <SolidColorBrush x:Key="ButtonBackgroundHover" Color="#3e3e42" />
 
     <SolidColorBrush x:Key="myBrush" Color="White"/>
 

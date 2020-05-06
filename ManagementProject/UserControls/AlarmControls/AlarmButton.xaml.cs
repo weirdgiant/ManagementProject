@@ -41,8 +41,8 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("AlarmCount");
             }
         }
-        private string _alarmIcon;
-        public string AlarmIcon
+        private BitmapImage _alarmIcon;
+        public BitmapImage AlarmIcon
         {
             get
             {
@@ -52,6 +52,20 @@ namespace ManagementProject.UserControls
             {
                 _alarmIcon = value;
                 NotifyPropertyChanged("AlarmIcon");
+            }
+        }
+
+        private string _type;
+        public string Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+                NotifyPropertyChanged("Type");
             }
         }
 
@@ -66,25 +80,9 @@ namespace ManagementProject.UserControls
             {
                 _alarmType = value;
                 NotifyPropertyChanged("AlarmType");
-                AlarmTypeInit();
             }
         }
 
-        private void AlarmTypeInit()
-        {
-            switch (AlarmType)
-            {
-                case AlarmType.CarAlarm:
-                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/车辆违停.png";
-                    break;
-                case AlarmType.FireAlarm:
-                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/火灾报警.png";
-                    break;
-                case AlarmType.WaterAlarm:
-                    AlarmIcon = "/ManagementProject;component/ImageSource/Icon/AlarmIcon/水压报警.png";
-                    break;
-            }
-        }
     }
     public class AlarmButtonViewModel : AlarmButtonModel
     {
@@ -99,7 +97,7 @@ namespace ManagementProject.UserControls
 
         private void AlarmPageInit(object obj)
         {
-            GlobalVariable.AlarmPageType = AlarmType;
+            GlobalVariable.AlarmPageType = Type.Trim();// AlarmType;
             mainWindowViewModel.PageUrl = "/ManagementProject;component/PageView/AlarmPage.xaml";           
             mainWindowViewModel.mainWindowMenuViewModel.HiddenMenu();
         }

@@ -22,13 +22,53 @@
             <Label x:Name="textBox"  Height="25"  Content="播放时间："  Foreground="White" VerticalContentAlignment="Center" />
             <Label x:Name="textBox1" Height="25"  Content="{Binding PlaybackTime}"  Foreground="White" VerticalContentAlignment="Center" />
         </StackPanel>
-        <Label x:Name="label" Content="开始时间：" HorizontalAlignment="Left" Margin="53,0,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="1"/>
-        <!--<xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A" TimeFormat="FullDateTime" TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>-->
-        <my:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" BorderBrush="#FF2A2A2A"  Background="Black" Foreground="White"/>
-        <Label x:Name="label1" Content="结束时间：" HorizontalAlignment="Left" Margin="32,-2,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
-        <!--<xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>-->
-        <my:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>
-        <Slider x:Name="slider" Margin="53,35,0,5" Style="{StaticResource Slider1}" Grid.Column="1" Grid.ColumnSpan="4"/>
+        <Label  Content="开始时间：" HorizontalAlignment="Left" Margin="53,5,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="1"/>
+        <!--<xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Text="{Binding StartTime}" Grid.Column="2" BorderBrush="#FF2A2A2A"   TextAlignment="Left" Kind="Local" AutoCloseCalendar="True" Background="Black" Foreground="White"/>-->
+        <my:DateTimePicker x:Name="start" 
+                           ButtonForeground="White" 
+                           Margin="0,5,0,0" 
+                           TimeText="{Binding StartTime,Converter={StaticResource DebugConverter}}" 
+                           VerticalAlignment="Top"
+                           Grid.Column="2" 
+                           BorderBrush="#FF2A2A2A"  
+                           ButtonFontSize="15"
+                           Background="Black"
+                           Foreground="White"/>
+        
+        <Label Content="结束时间：" HorizontalAlignment="Left" Margin="32,5,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFF" Grid.Column="3" Grid.ColumnSpan="2"/>
+        <!--<xctk:DateTimePicker Margin="0,0,0,0" VerticalAlignment="Top" Text="{Binding EndTime}" Grid.Column="4" BorderBrush="#FF2A2A2A" Foreground="White" Background="Black"/>-->
+        <my:DateTimePicker x:Name="end"
+                           Margin="0,5,0,0" 
+                           ButtonForeground="White"
+                           TimeText="{Binding EndTime}"
+                           VerticalAlignment="Top" 
+                           ButtonFontSize="15"
+                           Grid.Column="4"
+                           BorderBrush="#FF2A2A2A" 
+                           Foreground="White" 
+                           Background="Black"/>
+        
+        <Slider x:Name="slider"
+                Maximum="{Binding MaxiMum}" 
+                Minimum="{Binding MiniMum}" 
+                Value="{Binding SliderValue}"               
+                SmallChange="3"
+                LargeChange="500"
+                Delay="100"
+                IsMoveToPointEnabled="True" 
+                Margin="53,35,0,5" Style="{StaticResource Slider1}" Grid.Column="1" Grid.ColumnSpan="4">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.SliderMoveCommand}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.SliderDownCommand}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+
         <Button x:Name="startbt" ToolTip="{Binding StartBtToolTip}" Command="{Binding StartCommand}"  Style="{StaticResource RoundedGelButton}" HorizontalAlignment="Left" Margin="54,5,0,5" Width="40" Grid.Column="5">
             <Image Source="{Binding StartIcon}" />
         </Button>

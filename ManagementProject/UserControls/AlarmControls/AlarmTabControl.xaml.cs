@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MangoApi;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace ManagementProject.UserControls
         {
             InitializeComponent();
         }
+
     }
     public class AlarmTabModel:INotifyPropertyChangedClass
     {
@@ -43,12 +46,26 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("AlarmCount");
             }
         }
+
+        private ObservableCollection<Alarm> _alarmInfo;
+        public ObservableCollection<Alarm> AlarmInfo
+        {
+            get
+            {
+                return _alarmInfo;
+            }
+            set
+            {
+                _alarmInfo = value;
+                NotifyPropertyChanged("AlarmInfo");
+                AlarmCount = AlarmInfo.Count;
+            }
+        }
     }
     public class AlarmTabViewModel:AlarmTabModel
     {
         public AlarmTabViewModel()
         {
-
         }
     }
 }

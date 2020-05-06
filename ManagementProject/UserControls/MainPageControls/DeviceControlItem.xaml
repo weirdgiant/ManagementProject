@@ -17,6 +17,6 @@
             </Border>
         </StackPanel>
 
-        <RadioButton IsChecked="True" HorizontalAlignment="Right" Width="15" Margin="0,8,8,8"/>
+        <RadioButton IsChecked="True" HorizontalAlignment="Right" Width="18" Margin="0,6,6,6"/>
     </Grid>
 </UserControl>

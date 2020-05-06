@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,20 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class SearchBoxControl : Window
     {
+        private MainPageViewModel mainPageViewModel { get; set; }
         public SearchBoxControl()
         {
             InitializeComponent();
+           
+            Loaded += SearchBoxControl_Loaded;
+        }
+
+        private void SearchBoxControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel = (MainPageViewModel)DataContext;
+            choosetb.DataContext = mainPageViewModel.mainWindowTextBoxViewModel;
+            mainPageViewModel.mainWindowTextBoxViewModel.AddList();
+            mainPageViewModel.mainWindowTextBoxViewModel.InHomeMap();
         }
     }
 }

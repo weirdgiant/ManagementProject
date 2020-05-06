@@ -1,7 +1,4 @@
-﻿using ManagementProject.UserControls.TimeControl;
-using ManagementProject.ViewModel;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace ManagementProject.UserControls.FightControl
 {
@@ -10,10 +7,6 @@ namespace ManagementProject.UserControls.FightControl
     /// </summary>
     public partial class PlanRotationWin : Window
     {
-        public PlanRotationWin()
-        {
-            InitializeComponent();
-            DataContext = new PlanRotationWinViewModel();
-        }
+        public PlanRotationWin() => InitializeComponent();
     }    
 }

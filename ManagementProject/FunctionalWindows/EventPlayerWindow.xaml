@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:ManagementProject.FunctionalWindows"
         mc:Ignorable="d"
         Title="EventPlayerWindow"  Height="800" Width="1000" WindowStyle="None" Background="Transparent" OpacityMask="White" AllowsTransparency="True">
-    <Grid>
-        
-    </Grid>
+    <Grid/>
 </Window>

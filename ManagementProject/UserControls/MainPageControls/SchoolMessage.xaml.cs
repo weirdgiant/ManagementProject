@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MangoApi;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,24 @@ namespace ManagementProject.UserControls
         public SchoolMessage()
         {
             InitializeComponent();
+            Loaded += SchoolMessage_Loaded;
+        }
+
+        private async void SchoolMessage_Loaded(object sender, RoutedEventArgs e)
+        {
+            DeviceCount[] counts = HttpAPi.GetAllDeviceCount(GlobalVariable.CurrentMapId);
+            if (counts!=null)
+            {
+                foreach (var item in counts)
+                {
+                    SchoolMesItem mesItem = new SchoolMesItem();
+                    mesItem.count.Text = item.deviceCount;
+                    mesItem.type.Text = item.deviceType;
+                    mesItem.image.Source = await HttpAPi.LoadImage(AppConfig.ImageBaseUri + item.deviceIcon);
+                    devicePanel.Children.Add(mesItem);
+                }
+            }
+            int count = devicePanel.Children.Count;
         }
     }
 
@@ -125,52 +145,33 @@ namespace ManagementProject.UserControls
             }
         }
 
-        private string _deviceIcon;
-        /// <summary>
-        /// 设备图标
-        /// </summary>
-        public string DeviceIcon
+
+        private string _schoolName;
+        public string SchoolName
         {
             get
             {
-                return _deviceIcon;
+                return _schoolName;
             }
             set
             {
-                _deviceIcon = value;
-                NotifyPropertyChanged("DeviceIcon");
+                _schoolName = value;
+                NotifyPropertyChanged("SchoolName");
             }
         }
-        private string _deviceName;
-        /// <summary>
-        /// 设备名称
-        /// </summary>
-        public string DeviceName
+
+
+        private School _school;
+        public School SchoolMes
         {
             get
             {
-                return _deviceName;
+                return _school;
             }
             set
             {
-                _deviceName = value;
-                NotifyPropertyChanged("DeviceName");
-            }
-        }
-        private string _deviceCount;
-        /// <summary>
-        /// 设备数量
-        /// </summary>
-        public string DeviceCount
-        {
-            get
-            {
-                return _deviceCount;
-            }
-            set
-            {
-                _deviceCount = value;
-                NotifyPropertyChanged("DeviceCount");
+                _school = value;
+                NotifyPropertyChanged("SchoolMes");
             }
         }
 
@@ -186,17 +187,20 @@ namespace ManagementProject.UserControls
             CloseWinCommand.ExecuteCommand = new Action<object>(CloseWin);
             MoveWinCommand = new DelegateCommand();
             MoveWinCommand.ExecuteCommand = new Action<object>(MoveWin);
-            InitMes();
+            //InitMes();
         }
 
 
-        private void InitMes()
+        public void InitMes()
         {
+            MangoMap[] map = GlobalVariable.MapList;
+            MangoMap[] results = map.Where(x => x.pid == GlobalVariable .CurrentMapId).ToArray();
+            SchoolName =SchoolMes.SchoolName;
             CreationDate = "";
-            BuildingNumber = "";
-            Head = "";
-            Phone = "";
-            Remarks = "";
+            BuildingNumber = results.Length.ToString();
+            Head = SchoolMes.Contact;
+            Phone = SchoolMes.Phone;
+            Remarks = SchoolMes.Discription;
         }
 
         private void CloseWin (object obj)

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.AlarmControls.AlarmDoorItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls.AlarmControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Image Name="stateImg" Width="80" Grid.RowSpan="2" HorizontalAlignment="Left" Margin="50,0,0,0" Source="/ManagementProject;component/ImageSource/Icon/AlarmIcon/关锁.png" />
+        <TextBlock Name="deviceName" Grid.Row="0" Text="110实验室" FontSize="16" Foreground="White" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="130,0,0,8" />
+        <TextBlock Name="state" Grid.Row="1" Text="解锁失败" FontSize="14" Foreground="Red"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="130,8,0,0"  />
+        <Button Name="openbt" Content="解锁" HorizontalAlignment="Right" Margin="0,0,30,0" VerticalAlignment="Center" Width="76" Grid.RowSpan="2"/>
+    </Grid>
+</UserControl>

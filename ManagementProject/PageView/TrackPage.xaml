@@ -11,7 +11,8 @@
       Title="TrackPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"
+                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}"/>
         </i:EventTrigger>
         <i:EventTrigger EventName="Unloaded">
             <i:InvokeCommandAction Command="{Binding UnLoadCommand}"/>
@@ -29,7 +30,7 @@
                 VerticalAlignment="Bottom" Width="50" Height="50">
             <Image Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/活动添加.png" />
         </Button>
-        <UserControls:MapControl SelectedSchoolId="{Binding Sid}"/>
+        <UserControls:MapControl x:Name="map" SelectedSchoolId="{Binding Sid}"/>
         <!--<UserControls:WindowsFormsHostButton x:Name="trackmanagebt" Margin="50,0,0,50" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="50" Height="50"/>-->
         <!--<UserControls:TrackerInfoControl Grid.Column="1" Width="300" Margin="0,0,0,0" HorizontalAlignment="Right"/>-->
 

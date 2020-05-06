@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ManagementProject.UserControls
         public MainWindowStatistics()
         {
             InitializeComponent();
-            drapbt.Click += Drapbt_Click;
+            //drapbt.Click += Drapbt_Click;
         }
 
         private void Drapbt_Click(object sender, RoutedEventArgs e)
@@ -98,13 +99,47 @@ namespace ManagementProject.UserControls
             public BitmapImage icon { get; set; }
             public string name { get; set; }
             public string count { get; set; }
+            public string deviceTypeCode { get; set; }
         }
     }
     public class MainWindowStatisticsViewModel:MainWindowStatisticsModel
     {
+        public DelegateCommand DeviceControlCommand { get; set; }
         public MainWindowStatisticsViewModel()
         {
-
+            DeviceControlCommand = new DelegateCommand();
+            DeviceControlCommand.ExecuteCommand = new Action<object>(DeviceControl);
+        }
+        private void DeviceControl(object obj)
+        {
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            MainWindowViewModel mainWindowViewModel = (MainWindowViewModel)main.DataContext;
+            MainPageViewModel mainPageViewModel = mainWindowViewModel.mainPageViewModel;
+            if (obj != null)
+            {
+                CheckBox bt = (CheckBox)obj;
+                string typecode = (string)bt.DataContext;
+                if (bt.IsChecked== true)
+                {
+                    List<string> list = mainPageViewModel.DeviceTypeList;
+                    if (!list.Contains(typecode))
+                    {
+                        list.Add(typecode);
+                        mainPageViewModel.DeviceTypeList = null;
+                        mainPageViewModel.DeviceTypeList = list;
+                    }
+                }
+                else
+                {
+                    List<string> list = mainPageViewModel.DeviceTypeList;
+                    if (list.Contains(typecode))
+                    {
+                        list.Remove(typecode);
+                        mainPageViewModel.DeviceTypeList = null;
+                        mainPageViewModel.DeviceTypeList = list;
+                    }
+                }
+            }
         }
     }
 }

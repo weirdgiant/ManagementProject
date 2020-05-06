@@ -31,36 +31,48 @@ namespace ManagementProject.UserControls
         {
             InitAlarmButton();
         }
-        private void InitAlarmButton()
+        public async void InitAlarmButton()
         {
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            MainWindowViewModel mainWindowViewModel = (MainWindowViewModel)main.DataContext;
-            string url = AppConfig.ServerBaseUri + AppConfig.GetAlarmCount;
-            Alarm[] UnDealedAlarm = HttpAPi.GetAlarm(url);
-            foreach (var item in UnDealedAlarm)
+            try
             {
-                AlarmButton alarmButton = new AlarmButton();
-                AlarmButtonViewModel alarmButtonViewModel = new AlarmButtonViewModel(mainWindowViewModel);
-                alarmButtonViewModel.AlarmCount= item.alarmCount.ToString();
-                switch (item.flagVal)
+                alarmControl.Children.Clear();
+                MainWindow main = (MainWindow)Application.Current.MainWindow;
+                MainWindowViewModel mainWindowViewModel = (MainWindowViewModel)main.DataContext;
+                string url = AppConfig.ServerBaseUri + AppConfig.GetAlarmCount;
+                string clientId = App.mango.getClientInfo().userId.ToString ();// string.Join(",", GlobalVariable.AlarmMapList);
+                Alarm[] UnDealedAlarm = HttpAPi.GetUndealAlarm(url, clientId);
+                foreach (var item in UnDealedAlarm)
                 {
-                    case "门禁":
-                        alarmButtonViewModel.AlarmType = AlarmType.CarAlarm;
-                        break;
-                    case "火灾":
-                        alarmButtonViewModel.AlarmType = AlarmType.FireAlarm;
-                        break;
-                    case "水压":
-                        alarmButtonViewModel.AlarmType = AlarmType.WaterAlarm;                      
-                        break;                   
+                    AlarmButton alarmButton = new AlarmButton();
+                    AlarmButtonViewModel alarmButtonViewModel = new AlarmButtonViewModel(mainWindowViewModel);
+                    alarmButtonViewModel.AlarmCount = item.alarmCount.ToString();
+                    alarmButtonViewModel.Type = item.flag;
+                    AlarmTypeInfo alarmTypeInfo = MangoInfo.instance.AlarmTypeInfos.Where(x => x.listValue.Trim() == item.flag.Trim()).ToArray()[0];
+                    alarmButtonViewModel.AlarmIcon = await HttpAPi.LoadImage(AppConfig.ImageBaseUri + alarmTypeInfo.imgUrl);
+                    alarmButton.DataContext = alarmButtonViewModel;
+                    Grid grid = new Grid
+                    {
+                        Width = 15
+                    };
+                    alarmControl.Children.Add(alarmButton);
+                    alarmControl.Children.Add(grid);
+                    GlobalVariable.AlarmDic.Clear();
+                    GetAlarmInfo(item.flag);
                 }
-                alarmButton.DataContext = alarmButtonViewModel;
-                Grid grid = new Grid
-                {
-                    Width = 15
-                };
-                alarmControl.Children.Add(alarmButton);
-                alarmControl.Children.Add(grid);
+            }catch (Exception ex)
+            {
+                Logger.Error(typeof(AlarmButtonControl),ex.Message);
+            }
+
+        }
+
+        public void GetAlarmInfo(string type)
+        {
+            string url = AppConfig.ServerBaseUri + AppConfig.GetAlarmInfo;
+            Alarm[] alarm = HttpAPi.GetAlarmInfo(url, type);
+            foreach (var item in alarm)
+            {
+                GlobalVariable.AlarmDic.Add(item .id,item);
             }
            
         }

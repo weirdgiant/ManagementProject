@@ -19,77 +19,83 @@
                IsOpen="{Binding IsOpened}"
                PopupAnimation="Fade"  
                Placement="Left"  AllowsTransparency="True">
-            <Border Name="showpanel" Background="#FF2F2F2F" Height="50"  CornerRadius="5" BorderBrush="Black" BorderThickness="1"  Opacity="0.9">
+            <Border Name="showpanel" Background="#FF2F2F2F"  BorderBrush="Black"  Height="50"  CornerRadius="5" BorderThickness="1"  Opacity="0.95">
                 <Grid>
-                    <StackPanel Orientation="Horizontal"  >
-                        <Button Name="mapbt" 
-                                Command="{Binding MapSelectedCommand}" 
-                                Visibility="{Binding IsMap}"
-                                Width="107" Height="50" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                            <StackPanel>
-                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/在线电子地图.png" Height="20"/>
-                                <TextBlock Text="电子地图" Foreground="White" FontSize="10" />
-                            </StackPanel>
-                        </Button>
-                        <Separator Visibility="{Binding IsMap}" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                            <Separator.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="90"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Separator.LayoutTransform>
-                        </Separator>
-                        <Button Name="collagebt"
-                                Width="107" 
-                                Command="{Binding CollageSelectedCommand}" 
-                                Visibility="{Binding IsCollage}"
-                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                            <StackPanel  >
-                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/拼控.png" Height="20"/>
-                                <TextBlock Text="拼控" Foreground="White" FontSize="10" />
-                            </StackPanel>
-                        </Button>
-                        <Separator  Visibility="{Binding IsCollage}" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                            <Separator.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="90"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Separator.LayoutTransform>
-                        </Separator>
-                        <Button Name="carbt" Width="107" 
-                                Command="{Binding TrackSelectedCommand}" 
-                                 Visibility="{Binding IsTracker}"
-                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                            <StackPanel >
-                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/车辆追踪.png" Height="20"/>
-                                <TextBlock Text="车辆追踪" Foreground="White" FontSize="10" />
-                            </StackPanel>
-                        </Button>
-                        <Separator Visibility="{Binding IsTracker}" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="50" >
-                            <Separator.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="90"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Separator.LayoutTransform>
-                        </Separator>
-                        <Button Name="historybt"
-                                Width="107"
-                                Visibility="{Binding IsHistory}"
-                                Command="{Binding HistorySelectedCommand}"
-                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0" VerticalAlignment="Stretch">
-                            <StackPanel  >
-                                <Image Source="/ManagementProject;component/ImageSource/Icon/menuicon/历史事件.png" Height="20"/>
-                                <TextBlock Text="历史事件" Foreground="White" FontSize="10" />
-                            </StackPanel>
-                        </Button>
+
+                    <StackPanel Orientation="Horizontal" >
+
+                        <RadioButton  Content="电子地图"
+                          HorizontalAlignment="Center"
+                          Height="50"
+                          Width="107" 
+                          FontSize="10" 
+                          VerticalAlignment="Center" 
+                                     IsChecked="{Binding IsMapSelected}" 
+                          Style="{StaticResource MapRadioButtonStyle}"
+                          Command="{Binding MapSelectedCommand}" 
+                          Visibility="{Binding IsMap}"/>
+                        <Path Visibility="{Binding IsMap}" Data="M214,246 L214,293.67133" Fill="#FF434242" Height="48"  Stretch="Fill" Stroke="#FF434242"  Width="1"/>
+                          <Path Visibility="{Binding IsMap}" Data="M214,246 L214,293.67133" Fill="Black" Height="48"  Stretch="Fill" Opacity="0.5" Stroke="Black"  Width="1"/>
+
+                        <RadioButton  
+                            Content="拼控"
+                            Name="collagebt"
+                            HorizontalAlignment="Center"
+                            Height="50"
+                            Width="107" 
+                            FontSize="10" 
+                            VerticalAlignment="Center" 
+                            IsChecked="{Binding IsCollageSelected}"
+                            Style="{StaticResource FightRadioButtonStyle}"
+                            Command="{Binding CollageSelectedCommand}" 
+                            Visibility="{Binding IsCollage}"/>
+
+                        <Path Visibility="{Binding IsCollage}" Data="M214,246 L214,293.67133" Fill="#FF434242" Height="48"  Stretch="Fill" Stroke="#FF434242"  Width="1"/>
+                        <Path Visibility="{Binding IsCollage}" Data="M214,246 L214,293.67133" Fill="Black" Height="48"  Stretch="Fill" Opacity="0.5" Stroke="Black"  Width="1"/>
+
+                        <RadioButton  
+                            Content="车辆追踪"
+                            Name="carbt"
+                            HorizontalAlignment="Center"
+                            Height="50"
+                            Width="107" 
+                            FontSize="10" 
+                            VerticalAlignment="Center" 
+                            Style="{StaticResource VehicleTraRadioButtonStyle}"
+                            IsChecked="{Binding IsTrackerSelected}"
+                            Command="{Binding TrackSelectedCommand}" 
+                            Visibility="{Binding IsTracker}"/>
+
+                        <Path Visibility="{Binding IsTracker}" Data="M214,246 L214,293.67133" Fill="#FF434242" Height="48"  Stretch="Fill" Stroke="#FF434242"  Width="1"/>
+                        <Path Visibility="{Binding IsTracker}" Data="M214,246 L214,293.67133" Fill="Black" Height="48"  Stretch="Fill" Opacity="0.5" Stroke="Black"  Width="1"/>
+
+                        <RadioButton  
+                            Content="历史事件"
+                            Name="historybt"
+                            HorizontalAlignment="Center"
+                            Height="50"
+                            Width="107" 
+                            FontSize="10" 
+                            VerticalAlignment="Center" 
+                            IsChecked="{Binding IsHistorySelected}"
+                            Style="{StaticResource HistoryEventRadioButtonStyle}"
+                            Command="{Binding HistorySelectedCommand}"
+                            Visibility="{Binding IsHistory}"/>
+                        <Path Visibility="{Binding IsTrafficRecord}" Data="M214,246 L214,293.67133" Fill="#FF434242" Height="48"  Stretch="Fill" Stroke="#FF434242"  Width="1"/>
+                        <Path Visibility="{Binding IsTrafficRecord}" Data="M214,246 L214,293.67133" Fill="Black" Height="48"  Stretch="Fill" Opacity="0.5" Stroke="Black"  Width="1"/>
+
+                        <RadioButton  
+                            Content="交通违规记录"
+                            HorizontalAlignment="Center"
+                            Height="50"
+                            Width="107" 
+                            FontSize="10" 
+                            VerticalAlignment="Center" 
+                            IsChecked="{Binding IsTrafficRecordSelected}"
+                            Style="{StaticResource TrafficViolationRecordStyle}"
+                            Command="{Binding TrafficRecordSelectedCommand}"
+                            Visibility="{Binding IsTrafficRecord}"/>
+
                     </StackPanel>
                 </Grid>
             </Border>

@@ -30,7 +30,13 @@ namespace MangoMapLibrary
             label3.Text = this.device.Type;
             label9.Text = this.device.p.ToString();
 
+            if (device.Ele!=null)
+                textBox4.Text = device.Ele.mapId.ToString();
 
+            if(device is LayerElementBuilding)
+            {
+                this.textBox4.Text = (device as LayerElementBuilding).Ext.linkMap.ToString();
+            }
             //
             textBox3.Enabled = !(device is LayerElementFence);
         }
@@ -40,7 +46,10 @@ namespace MangoMapLibrary
             device.Angle = int.Parse(textBox3.Text);
             device.Ele.name = textBox2.Text;
             device.Ele.code = textBox1.Text;
-
+            if (device is LayerElementBuilding)
+            {
+                (device as LayerElementBuilding).Ext.linkMap = int.Parse(this.textBox4.Text);
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

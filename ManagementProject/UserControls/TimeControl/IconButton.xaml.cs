@@ -14,10 +14,10 @@ namespace ManagementProject.UserControls.TimeControl
         {
             InitializeComponent();
 
-            this.button.Click += delegate
+            button.Click += delegate
             {
                 RoutedEventArgs newEvent = new RoutedEventArgs(IconButton.ClickEvent, this);
-                this.RaiseEvent(newEvent);
+                RaiseEvent(newEvent);
             };
         } 
         #endregion

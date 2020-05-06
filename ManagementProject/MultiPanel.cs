@@ -11,7 +11,7 @@ namespace ManagementProject
     /// <summary>
     /// 初始化Grid布局方式
     /// </summary>
-    public  class MultiPanel
+    public class MultiPanel
     {
         public static int CurrentModel = 0;
         public static Dictionary<int, Player> DictPanel = null;
@@ -65,7 +65,7 @@ namespace ManagementProject
             }
         }
 
-        public  void SetCurrentLayout(int model)
+        public void SetCurrentLayout(int model)
         {
             switch (model)
             {
@@ -83,6 +83,29 @@ namespace ManagementProject
                     break;
                 case 5:
                     SetLayout5();
+                    break;
+            }
+        }
+
+        public void SetControl(string control)
+        {
+            switch (control)
+            {
+                case "地图":
+                    break;
+                case "摄像机":
+                    break;
+                case "处置预案":
+                    break;
+                case "水压图标":
+                    break;
+                case "水压设备列表":
+                    break;
+                case "气体设备列表":
+                    break;
+                case "车辆地图":
+                    break;
+                case "车辆信息":
                     break;
             }
         }
@@ -108,7 +131,7 @@ namespace ManagementProject
         /// </summary>
         /// <param name="column">列</param>
         /// <param name="row">行</param>
-        public  void SetModelByColumnAndRow(int column, int row)
+        public void SetModelByColumnAndRow(int column, int row)
         {
             Clear();
             CreateColumnAndRow(OriginalGrid, row, column);
@@ -130,14 +153,14 @@ namespace ManagementProject
         /// <summary>
         /// 将Grid分为4格
         /// </summary>
-        public  void SetModel4()
+        public void SetModel4()
         {
-            SetModelByColumnAndRow(2,2);
+            SetModelByColumnAndRow(2, 2);
         }
         /// <summary>
         /// 将Grid分为6格
         /// </summary>
-        public  void SetModel6()
+        public void SetModel6()
         {
             Clear();
             CreateColumnAndRow(OriginalGrid, 3, 3);
@@ -145,7 +168,7 @@ namespace ManagementProject
         /// <summary>
         /// 将Grid分为8格
         /// </summary>
-        public  void SetModel8()
+        public void SetModel8()
         {
             Clear();
             CreateColumnAndRow(OriginalGrid, 4, 4);
@@ -153,21 +176,21 @@ namespace ManagementProject
         /// <summary>
         /// 将Grid分为9格
         /// </summary>
-        public  void SetModel9()
+        public void SetModel9()
         {
             SetModelByColumnAndRow(3, 3);
         }
         /// <summary>
         /// 将Grid分为12格
         /// </summary>
-        public  void SetModel12()
+        public void SetModel12()
         {
-             SetModelByColumnAndRow(4,3);
+            SetModelByColumnAndRow(4, 3);
         }
         /// <summary>
         /// 将Grid分为16格
         /// </summary>
-        public  void SetModel16()
+        public void SetModel16()
         {
             SetModelByColumnAndRow(4, 4);
         }
@@ -181,7 +204,7 @@ namespace ManagementProject
         /// |   1   |
         /// ---------
         /// </summary>
-        public  void SetLayout1()
+        public void SetLayout1()
         {
 
         }
@@ -193,9 +216,9 @@ namespace ManagementProject
         /// |   3   |   4    |
         /// ------------------
         /// </summary>
-        public  void SetLayout2()
+        public void SetLayout2()
         {
-
+            SetModel6();
         }
         /// <summary>
         /// AlarmMain布局
@@ -205,9 +228,9 @@ namespace ManagementProject
         /// |   2   |   3    |
         /// ------------------
         /// </summary>
-        public  void SetLayout3()
+        public void SetLayout3()
         {
-
+            SetModel6();
         }
         /// <summary>
         /// AlarmMain布局
@@ -219,9 +242,9 @@ namespace ManagementProject
         /// |        |   4   |
         /// ------------------
         /// </summary>
-        public  void SetLayout4()
+        public void SetLayout4()
         {
-
+            SetModel6();
         }
         /// <summary>
         /// AlarmMain布局
@@ -231,12 +254,12 @@ namespace ManagementProject
         /// |        |   3   |
         ///  -----------------
         /// </summary>
-        public  void SetLayout5()
+        public void SetLayout5()
         {
-
+            SetModel6();
         }
         #endregion
-        private  void Clear()
+        private void Clear()
         {
             OriginalGrid.RowDefinitions.Clear();
             OriginalGrid.ColumnDefinitions.Clear();

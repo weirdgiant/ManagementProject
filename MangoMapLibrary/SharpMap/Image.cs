@@ -17,9 +17,12 @@ namespace MangoMapLibrary
             HttpWebRequest request = webRequest as HttpWebRequest;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             string encoding = response.ContentEncoding;
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            Bitmap ret = new Bitmap(reader.BaseStream);
-            return ret;
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                Bitmap ret = new Bitmap(reader.BaseStream);
+                response.Dispose();
+                return ret;
+            };
         }
         
         

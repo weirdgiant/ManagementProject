@@ -5,10 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagementProject.UserControls"
         mc:Ignorable="d"
-        Title="ErrorDeviceControl"  Width="50" SizeToContent="Height"  ShowInTaskbar="False"  ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" WindowStyle="None">
-    <StackPanel >
-        <local:ClientInfoButton Height="50" />
-        <!--<Grid Height="10"/>-->
-        <local:CameraInfoButton Height="50" />
-    </StackPanel>
+        Title="ErrorDeviceControl" 
+        Width="50" 
+        SizeToContent="Height" 
+        ShowInTaskbar="False"  
+        ResizeMode="NoResize" 
+        Opacity="0.9"  
+        OpacityMask="White"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None">
+    <Grid>
+        <DockPanel Height="100">
+            <local:CameraInfoButton Height="50" DockPanel.Dock="Bottom"/>
+            <local:ClientInfoButton x:Name="client" Height="50"  DockPanel.Dock="Bottom" />
+
+        </DockPanel>
+
+    </Grid>
 </Window>

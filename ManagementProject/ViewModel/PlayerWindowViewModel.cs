@@ -1,6 +1,7 @@
 ﻿using ManagementProject.FunctionalWindows;
 using ManagementProject.Model;
 using ManagementProject.UserControls;
+using MangoApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,10 @@ namespace ManagementProject.ViewModel
 {
     public class PlayerWindowViewModel : PlayerWindowModel
     {
+        public string CameraCode;
         PlayerPanel playerPanel { get; set; }
         private PlayerWindowType playerWindowType;
+        Dictionary<string, Device> CameraDic = new Dictionary<string, Device>();
         public DelegateCommand SixGridCommand { get; set; }
         public DelegateCommand NineGridCommand { get; set; }
         public DelegateCommand TwelveGridCommand { get; set; }
@@ -22,10 +25,11 @@ namespace ManagementProject.ViewModel
         public DelegateCommand MaxWinCommand { get; set; }
         public DelegateCommand DragCommand { get; set; }
 
-        public PlayerWindowViewModel(PlayerPanel playerPanel, PlayerWindowType type)
+        public PlayerWindowViewModel( PlayerWindowType type,string cameracode)
         {
+            CameraCode = cameracode;
             playerWindowType = type;
-            this.playerPanel = playerPanel;
+            
             SetWindowsType(type);
 
             CloseWinCommand = new DelegateCommand();
@@ -47,6 +51,10 @@ namespace ManagementProject.ViewModel
             NineGridCommand.ExecuteCommand = new Action<object>(NineGrid);
             TwelveGridCommand = new DelegateCommand();
             TwelveGridCommand.ExecuteCommand = new Action<object>(TwelveGrid);
+        }
+        public void SetPanel(PlayerPanel playerPanel)
+        {
+            this.playerPanel = playerPanel;
         }
 
         private void SetWindowsType(PlayerWindowType type)
@@ -92,15 +100,26 @@ namespace ManagementProject.ViewModel
         }
         private void SixGrid(object obj)
         {
-            PlayerPanel.InitSixPlayerPanel(3,3,playerPanel .playgrid, playerWindowType);
+            playerPanel.Clear();
+            List<string> codelist = new List<string>();
+            playerPanel.InitSixPlayerPanel(3,3, CameraCode, playerPanel .playgrid,ref codelist, playerWindowType);
         }
         private void NineGrid(object obj)
         {
-            PlayerPanel.InitPlayerPanel(3, 3, playerPanel.playgrid, playerWindowType);
+            playerPanel.Clear();
+            playerPanel.InitPlayerPanel(3, 3, CameraCode, playerPanel.playgrid, playerWindowType);
         }
         private void TwelveGrid(object obj)
         {
-            PlayerPanel.InitPlayerPanel(3, 4, playerPanel.playgrid, playerWindowType);
+            playerPanel.Clear();
+            playerPanel.InitPlayerPanel(4, 4, CameraCode, playerPanel.playgrid, playerWindowType);
         }
+
+        private void GetCamera(string code,int num)
+        {
+            Device[] camera = HttpAPi.GetCamera(code,num);
+
+        }
+       
     }
 }

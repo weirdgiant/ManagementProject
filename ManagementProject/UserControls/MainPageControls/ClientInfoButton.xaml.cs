@@ -1,4 +1,5 @@
-﻿using MangoApi;
+﻿using ManagementProject.Converters;
+using MangoApi;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +29,14 @@ namespace ManagementProject.UserControls
             InitializeComponent();
             clientInfoViewModel = new ClientInfoViewModel();
             DataContext = clientInfoViewModel;
+           // LostFocus += ClientInfoButton_LostFocus;
         }
+
+        private void ClientInfoButton_LostFocus(object sender, RoutedEventArgs e)
+        {
+            pop.StaysOpen = false;
+        }
+
         private void Bt_Click(object sender, RoutedEventArgs e)
         {
             pop.IsOpen = true;
@@ -51,8 +59,8 @@ namespace ManagementProject.UserControls
             }
         }
 
-        private ObservableCollection<ClientState> _clientList;
-        public ObservableCollection<ClientState> ClientList
+        private ObservableCollection<ClientInfo> _clientList;
+        public ObservableCollection<ClientInfo> ClientList
         {
             get
             {
@@ -64,6 +72,7 @@ namespace ManagementProject.UserControls
                 NotifyPropertyChanged("ClientList");
             }
         }
+
     }
     public class ClientInfoViewModel:ClientInfoModel
     {
@@ -75,7 +84,46 @@ namespace ManagementProject.UserControls
         }
         private void ShowClientInfo(object obj)
         {
-            ClientList = new ObservableCollection<ClientState>();
+            ClientList = new ObservableCollection<ClientInfo>();
+            ClientConfig[] clientConfig= HttpAPi.GetAllClientInfo(AppConfig.ServerBaseUri + AppConfig.GetAllClientInfo);
+            ClientConfig[] ret = clientConfig.Where(x => x.status == 0).ToArray();
+            if (ret.Length !=0)
+            {
+                int index = 1;
+                foreach (var item in ret)
+                {
+                    string time = "";
+                    string date = "";
+                    if (item.offlineTime != null)
+                    {
+                        DateTime dateTime =TimerConvert.ConvertTimeStampToDateTime(long.Parse(item.offlineTime));
+                        time = dateTime.ToString("HH:mm:ss");
+                        date = dateTime.Date.ToString("yyyy-MM-dd");
+                    }
+                    ClientInfo info = new ClientInfo()
+                    {
+                        id = item.id,
+                        ip = item.ipAddress,
+                        name = item.clientName,
+                        index = index,
+                        outdate= date,
+                        outtime = time,
+                    };
+                    index++;
+                    ClientList.Add(info);
+                }
+            }
+           //ClientList = new ObservableCollection<ClientConfig>(clientConfig);
         }
+    }
+
+    public class ClientInfo
+    {
+        public int id { get; set; }
+        public int index { get; set; }
+        public string name { get; set; }
+        public string ip { get; set; }
+        public string outdate { get; set; }
+        public string outtime { get; set; }
     }
 }

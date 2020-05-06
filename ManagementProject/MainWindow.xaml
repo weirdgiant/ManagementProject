@@ -6,7 +6,13 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:UserControls="clr-namespace:ManagementProject.UserControls" x:Class="ManagementProject.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"  WindowStyle="None"  Icon="ImageSource/Icon/mainwindowicon/logo.png">
+        Title="MainWindow" Height="1080" Width="1920" 
+        WindowState="Normal"  
+        WindowStyle="None" 
+        Icon="ImageSource/Icon/mainwindowicon/logo.png"
+        ResizeMode="NoResize"
+        Background="#131313" 
+        WindowStartupLocation="Manual">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ShowCommand}"/>
@@ -15,40 +21,53 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Name="maingrid" Background="#FF252525" >
-            <StackPanel Orientation="Horizontal" Margin="10" >
-                <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="25"  Source="ImageSource/Icon/mainwindowicon/logo.png" />
-                <Label  Content="{Binding TitleName}"  HorizontalAlignment="Left"  FontSize="13" VerticalAlignment="Center" Foreground="White"/>
-                <Label  Content="{Binding CurrentTime}"   HorizontalAlignment="Left"   FontSize="12" Foreground="White" Height="25" VerticalAlignment="Center" />
+        <Grid x:Name="maingrid"  Background="#252525" >
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="1" Opacity="0.8" BlurRadius="20" Color="Black"/>
+            </Grid.Effect>
+
+            <StackPanel Orientation="Horizontal" >
+                <Image x:Name="mwicon"  HorizontalAlignment="Left" Width="30" Margin="22 0 0 0" Source="{Binding TitleIcon}" />
+                <TextBlock  Text="{Binding TitleName}"  HorizontalAlignment="Left" Margin="11 0 0 0" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock  Text="{Binding CurrentTime}" HorizontalAlignment="Left"  Margin="11 0 0 0"  FontSize="18" Foreground="White" VerticalAlignment="Center" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <Border ToolTip="登录用户"
+                        HorizontalAlignment="Right" VerticalAlignment="Center"  Height="30" Margin="0 0 15 0">
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock Text="{StaticResource FontUserIcon}" FontSize="27" Style="{StaticResource IconFontStyle}"/>
+                        <Label Content="{Binding UserName}" Foreground="White" VerticalContentAlignment="Center" />
+                    </StackPanel>
+                </Border>
+                <UserControls:CollageButton Visibility="{Binding DataContext.IsShowCollageButton,RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                            VerticalAlignment="Center"  
+                                            Height="30" 
+                                            Margin="0 0 15 0"
+                                            Width="30"/>
+
                 <Button ToolTip="最小化" 
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Style="{StaticResource TransparentButton}" 
                         Command="{Binding MinSizeCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
                         HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="45" >
                     <Image Width="20"  Source="ImageSource/Icon/mainwindowicon/min.png" />
+
+                    <!--<TextBlock Text="&#xe65a;" FontSize="20" Style="{StaticResource IconFontStyle}"/>-->
+
                 </Button>
                 <Button ToolTip="关闭" 
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        Command="{Binding ShutDownCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                        Style="{StaticResource  TransparentButton}" 
+                        Command="{Binding ShutDownCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White"  Width="45" Background="{x:Null}">
                     <Image Width="20" Source="ImageSource/Icon/mainwindowicon/close.png" />
+                    <!--<TextBlock Text="&#xe660;" FontSize="20" Style="{StaticResource IconFontStyle}"/>-->
                 </Button>
             </StackPanel>
-            <Border  ToolTip="登录用户"
-                    HorizontalAlignment="Right" Margin="0,8,170,7" VerticalAlignment="Center"  Height="30" Width="115">
-                <StackPanel  Orientation="Horizontal" >
-                    <Image Source="ImageSource/Icon/mainwindowicon/用户.png" Width="28"/>
-                    <Label Content="{Binding UserName}" Foreground="White" VerticalContentAlignment="Center" />
-                </StackPanel>
-            </Border>
-            <UserControls:CollageButton  HorizontalAlignment="Right"  Margin="0,0,120,0" VerticalAlignment="Center"  Height="30" Width="30"/>
-
 
         </Grid>
         <Grid Grid.Row="1">

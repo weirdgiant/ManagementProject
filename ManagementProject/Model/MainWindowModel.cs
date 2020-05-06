@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ManagementProject.Model
 {
@@ -70,5 +71,32 @@ namespace ManagementProject.Model
                 NotifyPropertyChanged("UserName");
             }
         }
+
+        private string _titleIcon;
+        public string TitleIcon
+        {
+            get
+            {
+                return _titleIcon;
+            }
+            set
+            {
+                _titleIcon = value;
+                NotifyPropertyChanged("TitleIcon");
+            }
+        }
+
+        private Visibility isShowCollageButton;
+
+        public Visibility IsShowCollageButton
+        {
+            get { return isShowCollageButton; }
+            set
+            {
+                isShowCollageButton = value;
+                NotifyPropertyChanged("IsShowCollageButton");
+            }
+        }
+
     }
 }

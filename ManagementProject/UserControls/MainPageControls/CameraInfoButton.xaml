@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="50">
+             d:DesignHeight="50" d:DesignWidth="50" Opacity="0.95" Visibility="{Binding IsHidden}" >
+
     <Grid>
         <ToggleButton Name="bt" 
                       Background="{x:Null}" 
@@ -15,47 +16,69 @@
                       IsChecked="{Binding IsOpened}">
             <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/摄像机异常.png" />
         </ToggleButton>
-        <Popup Name="pop" PlacementTarget="{Binding ElementName=bt}" 
-                IsOpen="{Binding IsOpened}"
-                StaysOpen="False"
-                PopupAnimation="Scroll"
-                Placement="Left" Grid.IsSharedSizeScope="True" AllowsTransparency="True" VerticalOffset="-662" >
-            <Border Height="712" Width="332" Opacity="0.9" Background="#FF2F2F2F" CornerRadius="5" >
+        <local:MyPopup x:Name="pop"
+                       PlacementTarget="{Binding ElementName=bt}" 
+                       IsOpen="{Binding IsOpened}"
+                       StaysOpen="False" 
+                       PopupAnimation="Scroll"
+                       Placement="Left"
+                       Grid.IsSharedSizeScope="True"
+                       AllowsTransparency="True"
+                       HorizontalOffset="-1"
+                       VerticalOffset="-614" >
+            <Border Height="663" Width="323" Opacity="0.95" Background="#252525" CornerRadius="5" >
                 <StackPanel>
-                    <Grid Height="100" >
-                        <Label Content="摄像机检测信息" Foreground="White" FontSize="16" Margin="73,15,126,51"/>
-                        <StackPanel   Margin="73,49,101,18" Orientation="Horizontal" >
-                            <Ellipse Height="10" Width="10" Fill="#FFC24444" />
-                            <Label Content="异常摄像机列表" FontSize="14"  Foreground="Gray" VerticalAlignment="Center"/>
+                    
+                    <StackPanel Height="70"  Margin="12,37,0,0" >
+                        <TextBlock Text="摄像机检测信息" Foreground="White" FontSize="16" />
+                        <StackPanel Orientation="Horizontal" >
+                            <Ellipse Height="6" Width="6" Fill="#FFC24444" />
+                            <Label Content="异常摄像机列表" FontSize="14"  Foreground="#BABABA" VerticalAlignment="Center"/>
                         </StackPanel>
-                    </Grid>
-                    <Border Background="#FF1C1C1C" Height="2"/>
-                    <ListBox Name="listBox" Height="610" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding ErrorCameraList}">
+                    </StackPanel>
+
+                    <Path Data="M126,112.33333 L293.71669,112.33333" Fill="#991C1C1C" HorizontalAlignment="Center" Height="1"  Opacity="0.6" Stretch="Fill" Stroke="#CC000000" Width="300"/>
+
+                    <ListBox Name="listBox"
+                             Height="526"
+                             HorizontalAlignment="Center" 
+                             Background="{x:Null}"
+                             BorderBrush="{x:Null}" 
+                             ItemsSource="{Binding ErrorCameraList}"
+                             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Width="330" Height="80">
-                                    <Border CornerRadius="5" Background="#FF282828" Margin="2">
-                                        <Grid  >
-                                            <Label Content="{Binding errorDeviceName}" FontSize="14" Foreground="White" Margin="15,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
-                                            <Label Content="识别号:" FontSize="12" Foreground="#FF7A7A7A"  Margin="15,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"  />
-                                            <Label Content="{Binding code}" FontSize="12" Foreground="#FF7A7A7A"  Margin="64,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                            <ToggleButton Background="{x:Null}" 
-                                                          BorderBrush="{x:Null}" 
-                                                          Command="{Binding ShowErrorCameraInfoCommand}"
-                                                          CommandParameter="{Binding SelectedItem, ElementName=listBox}"
-                                                          Style="{StaticResource myToggleButton}"
-                                                          IsChecked="{Binding IsOpened}"
-                                                          Margin="0,0,10,0" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                                <Image Source="/ManagementProject;component/ImageSource/Icon/不查看.png" />
-                                            </ToggleButton>
-                                        </Grid>
-                                    </Border>
+
+                                <Grid Width="323" Height="70" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding errorDeviceName}" FontSize="14" Foreground="White" Margin="12,12,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                    <TextBlock Text="识别号:" FontSize="12" Foreground="#FF7A7A7A"  Margin="12,0,0,20"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  />
+                                    <TextBlock Text="{Binding errorDeviceCode}" FontSize="12" Foreground="#FF7A7A7A"  Margin="64,0,0,20" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                    <ToggleButton Name="selectedbt" Background="{x:Null}" 
+                                                  Click="selectedbt_Click"
+                                                  BorderBrush="{x:Null}" 
+                                                  Tag="{Binding errorDeviceCode}"
+                                                  TabIndex="{Binding mapId}"
+                                                  Style="{StaticResource ToggleImageButton}"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.ShowErrorCameraInfoCommand}"
+                                                  CommandParameter="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor},Path=DataContext}"
+                                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},Path=DataContext.IsChecked}"
+                                                  Margin="0,0,12,0" Height="30"
+                                                  HorizontalAlignment="Right" 
+                                                  VerticalAlignment="Center">
+                                        <TextBlock x:Name="bt" Cursor="Hand" Style="{StaticResource IconFontStyle}" Text="{StaticResource FontView}" Foreground="#FF9B9B9B" />
+                                    </ToggleButton>
+                                    <Path  Data="M126,112.33333 L293.71669,112.33333"  Opacity="0.6"  Fill="#FF3C3C3C" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="1"  Stretch="Fill" Stroke="#FF3C3C3C" Width="300"/>
+
                                 </Grid>
+
+
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
             </Border>
-        </Popup>
+        </local:MyPopup>
     </Grid>
 </UserControl>

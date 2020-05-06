@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:ManagementProject.UserControls"
         mc:Ignorable="d"
         Title="MainMenu" Height="50" Width="50"  WindowStyle="None" ShowInTaskbar="False" Background="Transparent" OpacityMask="White" AllowsTransparency="True" ResizeMode="NoResize">
+
+    <Window.Effect>
+        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="0" Opacity="1" />
+    </Window.Effect>
+
     <Grid>
         <local:MainWindowMenu/>
     </Grid>

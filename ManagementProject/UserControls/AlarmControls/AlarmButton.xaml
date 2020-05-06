@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="85" d:DesignWidth="85">
     <Grid>
-        <Grid>
-            <Button Name="alarmbt"  Margin="5,5" Command="{Binding AlarmPageInitCommand}" Background="Red"  Style="{StaticResource ImageCountButton}">
+        <Grid.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="0" Opacity="1" />
+        </Grid.Effect>
 
-                <Image Name="alarmicon" Source="{Binding AlarmIcon}" Margin="0,0,0,0" />
-
-            </Button>
-            <Border Name="numberbackground" CornerRadius="15" BorderThickness="1" Background="#FFFAE000" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="30">
-                <Grid >
-                    <TextBlock Name="alarmcount" Text="{Binding AlarmCount}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="Red"/>
-                </Grid>
-            </Border>
-        </Grid>
+        <Button Name="alarmbt" Width="76" Height="76" Margin="5,5" Command="{Binding AlarmPageInitCommand}" Background="Red"  Style="{StaticResource ImageCountButton}">
+            <Image Name="alarmicon" Width="58" Height="58" Source="{Binding AlarmIcon}" Margin="0,0,0,0" />
+        </Button>
+        <Border Name="numberbackground" CornerRadius="15" BorderThickness="1" Background="#FFFAE000" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="22">
+            <Grid >
+                <TextBlock Name="alarmcount" Text="{Binding AlarmCount}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="Red"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

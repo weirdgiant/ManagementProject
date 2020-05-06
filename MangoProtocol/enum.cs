@@ -12,7 +12,8 @@ namespace com.mango.protocol.Enum
 {
     [global::ProtoBuf.ProtoContract(Name=@"PushWindowType")]
     public enum PushWindowType
-    {           
+    {
+            
       [global::ProtoBuf.ProtoEnum(Name=@"WINDOW_CLOSE", Value=0)]
       WINDOW_CLOSE = 0,
             
@@ -55,7 +56,55 @@ namespace com.mango.protocol.Enum
       SC_LOGOUT = 261,
             
       [global::ProtoBuf.ProtoEnum(Name=@"SC_ALARM", Value=276)]
-      SC_ALARM = 276
+      SC_ALARM = 276,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_GETUNCONFIRMEDALARM", Value=277)]
+      CS_GETUNCONFIRMEDALARM = 277,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_GETUNCONFIRMEDALARM", Value=278)]
+      SC_GETUNCONFIRMEDALARM = 278,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_GETALARMLIST", Value=279)]
+      SC_GETALARMLIST = 279,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_CONFIRMALARMBYCODE", Value=280)]
+      CS_CONFIRMALARMBYCODE = 280,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_CONFIRMALARM", Value=281)]
+      CS_CONFIRMALARM = 281,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_CONFIRMALARM", Value=282)]
+      SC_CONFIRMALARM = 282,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_HASTENHANDLE", Value=283)]
+      CS_HASTENHANDLE = 283,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_HASTENHANDLE", Value=284)]
+      SC_HASTENHANDLE = 284,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_SENDSMS", Value=285)]
+      CS_SENDSMS = 285,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_SENDSMS", Value=286)]
+      SC_SENDSMS = 286,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_PINKONG", Value=287)]
+      CS_PINKONG = 287,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_PINKONG", Value=288)]
+      SC_PINKONG = 288,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_LUNXUN", Value=289)]
+      CS_LUNXUN = 289,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_LUNXUN", Value=290)]
+      SC_LUNXUN = 290,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CS_ACCESSCONTROl", Value=291)]
+      CS_ACCESSCONTROl = 291,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SC_ACCESSCONTROL", Value=292)]
+      SC_ACCESSCONTROL = 292
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"ALARM_STATE")]
@@ -79,6 +128,41 @@ namespace com.mango.protocol.Enum
             
       [global::ProtoBuf.ProtoEnum(Name=@"FIXED", Value=10)]
       FIXED = 10
+    }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"Pinkongtype")]
+    public enum Pinkongtype
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SetWindow", Value=1)]
+      SetWindow = 1,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SetCamera", Value=2)]
+      SetCamera = 2,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CloseWindow", Value=3)]
+      CloseWindow = 3,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"GetOutput", Value=4)]
+      GetOutput = 4,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SaveScene", Value=5)]
+      SaveScene = 5,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SwitchScene", Value=6)]
+      SwitchScene = 6,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"CloseAll", Value=7)]
+      CloseAll = 7,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"GetWindows", Value=8)]
+      GetWindows = 8,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SetScene", Value=9)]
+      SetScene = 9,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SetOutput", Value=10)]
+      SetOutput = 10
     }
   
 }

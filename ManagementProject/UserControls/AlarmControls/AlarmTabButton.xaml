@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="85" d:DesignWidth="150">
-    <Grid>
-        <RadioButton  Style="{StaticResource RadioStyle }"
-                          Foreground="White" Margin="0" >
-            <Grid Height="85" Width="150" >
-                <Label  Content="主场景" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+             d:DesignHeight="50" d:DesignWidth="100">
+    <Grid> 
+        <RadioButton  Style="{StaticResource AlarmRadio }"
+                          Command="{Binding AlarmMainCommand}"
+                          Foreground="White" Margin="0,0,0,0">
+            <Grid Height="50" Width="100" >
+                <Label  Content="消防水压" Foreground="White" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-            
         </RadioButton>
     </Grid>
 </UserControl>

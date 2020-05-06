@@ -3,58 +3,161 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-         xmlns:usercontrols="clr-namespace:ManagementProject.UserControls"
-         mc:Ignorable="d" 
-             Width="600" SizeToContent="Height "  WindowStyle="None"   WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Opacity="0.9"  OpacityMask="White"  AllowsTransparency="True" Background="Transparent" >
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:usercontrols="clr-namespace:ManagementProject.UserControls"
+             mc:Ignorable="d" 
+             Width="555" 
+             SizeToContent="Height "  
+             WindowStyle="None"   
+             WindowStartupLocation="CenterScreen" 
+             ResizeMode="NoResize" 
+             Opacity="0.95"  
+             AllowsTransparency="True"
+             Background="Transparent" >
+
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseDown">
+        <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding MoveWinCommand,Mode=TwoWay}" 
                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
             </i:InvokeCommandAction>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid  Background="white" Opacity="0.9">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="144*"/>
-            <RowDefinition Height="91*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF2F2F2F" >
-            <Button 
-                Command="{Binding CloseWinCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30">
-                <Image Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
+
+    <Border Background="#252525" CornerRadius="12">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="359"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Command="{Binding CloseWinCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                    Style="{StaticResource TransparentButton}" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Right"
+                    Width="30"
+                    Height="30"  
+                    Margin="8"
+                    Content="&#xE106;"
+                    Foreground="White"
+                    FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                    FontWeight="Bold" 
+                    FontSize="16">
             </Button>
+
+
+            <StackPanel   Grid.Row="1">
+
+                <StackPanel  HorizontalAlignment="Center"  Orientation="Horizontal">
+                    <Image Height="40" Width="40"  Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/校区.png" />
+                    <TextBlock  Text="{Binding SchoolName}"  VerticalAlignment="Center" Foreground="White"  FontSize="16" Margin="10,0,0,0" />
+                </StackPanel>
+
+                <Grid Height="Auto" Margin="53 50 53 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="20"/>
+                        
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="创办时间"
+                               Foreground="White"
+                               Margin="0 5" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="2001年" 
+                               Foreground="White" 
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Grid.Row="1" 
+                               Margin="0,3,0,2"/>
+
+                    <TextBlock Text="建筑数量"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left" 
+                               Grid.Column="1"
+                               Margin="0,5"/>
+                    
+                    <TextBlock Text="{Binding BuildingNumber}"
+                               Foreground="White" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Margin="0,3,0,2"/>
+
+                    <TextBlock Text="保卫处负责人"
+                               Foreground="White" 
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Margin="0 5"
+                               Grid.Row="3" />
+
+                    <TextBlock Text="{Binding Head}"
+                               Foreground="White" 
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left" 
+                               Grid.Row="4"/>
+
+                    <TextBlock Text="备注说明" 
+                               Foreground="White" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" 
+                               Grid.Row="6" 
+                               Margin="0 5"/>
+
+                    <TextBlock Text="联系电话"
+                               Foreground="White" 
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" 
+                               Grid.Column="1"  
+                               Grid.Row="3" 
+                               Margin="0 5" />
+                    
+                    <TextBlock Text="{Binding Phone}"
+                               Foreground="White"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Grid.Column="1"   
+                               Grid.Row="4" />
+
+                    <TextBlock Text="{Binding Remarks}" 
+                               TextWrapping="Wrap"
+                               Grid.ColumnSpan="2" 
+                               Foreground="White" 
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left" 
+                               Grid.Row="7" />
+
+                </Grid>
+
+            </StackPanel>
+            
+            
+            <Border Grid.Row="2" Background="White" CornerRadius="0,0,12,12">
+                <Grid Margin="42,30">
+                    <ScrollViewer x:Name="scrList" Margin="0" MaxHeight="360" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Name="devicePanel" Width="{Binding ElementName=scrList, Path=Width, Mode=OneWay}">
+
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
         </Grid>
-
-
-        <Grid  Background="#FF2F2F2F" Grid.Row="1">
-            <Label  Content="上海财经大学国定路校区"  VerticalAlignment="Top" Foreground="White"  FontSize="16" Margin="213,0,188,0" />
-            <Label  Content="创办时间" Foreground="White" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top"/>
-            <Label  Content="建筑数量" Foreground="White" HorizontalAlignment="Left" Margin="380,50,0,0" VerticalAlignment="Top"/>
-            <Label  Content="保卫处负责人" Foreground="White" HorizontalAlignment="Left" Margin="133,130,0,0" VerticalAlignment="Top"/>
-            <Label  Content="联系电话" Foreground="White" HorizontalAlignment="Left" Margin="380,130,0,0" VerticalAlignment="Top"/>
-            <Label  Content="备注说明" Foreground="White" HorizontalAlignment="Left" Margin="133,210,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBlock" HorizontalAlignment="Left" Foreground="White" Margin="133,235,0,0" TextWrapping="Wrap" Text="这就是说明。。。。。" VerticalAlignment="Top" Height="50" Width="305" Background="{x:Null}" BorderBrush="{x:Null}"/>
-            <Label  Content="1917年"  Foreground="White" HorizontalAlignment="Left" Margin="133,75,0,0" VerticalAlignment="Top"/>
-            <Label  Content="26"  Foreground="White" HorizontalAlignment="Left" Margin="380,75,0,0" VerticalAlignment="Top"/>
-            <Label  Content="李某某"  Foreground="White" HorizontalAlignment="Left" Margin="133,155,0,0" VerticalAlignment="Top"/>
-            <Label  Content="18888888888"  Foreground="White" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top"/>
-            <Image HorizontalAlignment="Left" Margin="188,5,0,0" VerticalAlignment="Top" Source="/ManagementProject;component/ImageSource/Icon/MainWinControlIcon/校区.png" Height="20" Width="20"/>
-        </Grid>
-
-        <Grid Margin="0" Grid.Row="2" Background="White" Opacity="1" >
-            <WrapPanel Margin="80,10,30,10" Name="devicePanel">
-                <usercontrols:SchoolMesItem />
-                <usercontrols:SchoolMesItem />
-                <usercontrols:SchoolMesItem />
-                <usercontrols:SchoolMesItem />
-                <usercontrols:SchoolMesItem />
-            </WrapPanel>
-        </Grid>
-
-    </Grid>
+    </Border>
 </Window>

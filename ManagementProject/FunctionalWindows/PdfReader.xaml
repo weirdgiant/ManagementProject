@@ -1,0 +1,15 @@
+﻿<Window x:Class="ManagementProject.PdfReader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementProject"
+        xmlns:moonpdflib="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+        mc:Ignorable="d"
+         Title="预案文件" Height="782" Width="1115" WindowStyle="ToolWindow">
+    <Grid>
+        <Border Background="#d3d3d3" Grid.Row="1">
+            <moonpdflib:MoonPdfPanel x:Name="moonPdfPanel" Background="LightGray" ViewType="SinglePage" PageRowDisplay="ContinuousPageRows" PageMargin="0,2,4,2" AllowDrop="True"/>
+        </Border>
+    </Grid>
+</Window>

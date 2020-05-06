@@ -3,21 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:ManagementProject.UserControls"
-             mc:Ignorable="d" d:DesignWidth="800" Height="85">
-    <Grid>
-        <Grid HorizontalAlignment="Left" Width="88" >
+             mc:Ignorable="d" d:DesignWidth="800" Height="59">
+    <StackPanel Background="#252525" Orientation="Horizontal">
+        
+        <Grid HorizontalAlignment="Left" Width="114" Height="59">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF302F2F" Offset="0"/>
-                    <GradientStop Color="#FFA1000E" Offset="1"/>
+                    <GradientStop Color="#960011" Offset="0"/>
+                    <GradientStop Color="#CC0202" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <TextBlock Text="报警&#x000A;数量" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"  TextAlignment="Center"/>
-            <Label Content="3" FontSize="18" Foreground="White" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="报警&#x000A;数量" Foreground="White" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Center"  TextAlignment="Center"/>
+            <Label Content="{Binding AlarmCount}" FontSize="30" Foreground="White" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Center"/>
         </Grid>
-        <Grid Margin="88,0,0,0"/>
 
+        <Grid>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Name="panel">
+                
+            </StackPanel>
+        </Grid>
+        
 
-    </Grid>
+    </StackPanel>
 </UserControl>

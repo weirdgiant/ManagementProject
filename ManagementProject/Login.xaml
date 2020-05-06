@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:ManagementProject"
         mc:Ignorable="d"
-        Title="Login" Height="1080" Width="1920" WindowStyle="None" WindowState="Maximized" Icon="ImageSource/Icon/mainwindowicon/logo.png" >
+        Title="Login" Height="1080" Width="1920" WindowStyle="None" WindowState="Normal"    Icon="ImageSource/Icon/mainwindowicon/logo.png" WindowStartupLocation="Manual" Top="0" Left="0"  Loaded="Window_Loaded">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding MoveWinCommand,Mode=TwoWay}" 
@@ -34,7 +34,7 @@
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="485*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" Margin="0,0,0,0"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Source="ImageSource/background/bg2.png"/>
+        <Image x:Name="image" Margin="0,0,0,0"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Source="ImageSource/background/bg_login_mango.png"/>
 
         <Grid Margin="0,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -74,15 +74,26 @@
                          local:PasswordBoxBindingHelper.BindedPassword= "{Binding Path=PassWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                          VerticalContentAlignment="Center" Margin="1,0,9,0"  FontSize="18" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5"/>
             <Image x:Name="emailicon" Margin="0,0,0,0" Source="ImageSource/Icon/email.png" RenderTransformOrigin="0.647,1.722" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2"/>
-            <Image x:Name="phoneicon" Margin="0,0,0,0" Source="ImageSource/Icon/phone.png" RenderTransformOrigin="3.861,0.611" Grid.Row="7" Grid.Column="6" Grid.RowSpan="2"/>
+            <!--<Image x:Name="phoneicon" Margin="0,0,0,0" Source="ImageSource/Icon/phone.png" RenderTransformOrigin="3.861,0.611" Grid.Row="7" Grid.Column="6" Grid.RowSpan="2"/>-->
+            <TextBlock x:Name="phoneicon"
+                       Margin="0,0,0,0" 
+                       Foreground="#FF8B8B8B"
+                       Text="{StaticResource FontLoginPhoneIcon}"
+                       FontWeight="Bold"
+                       Style="{StaticResource IconFontStyle}"
+                       Grid.Row="7" 
+                       Grid.Column="6" 
+                       Grid.RowSpan="2" FontSize="14"/>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="inquir@mangocosmos.com" FontSize="9" Foreground="#FF8B8B8B" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3"/>
             <TextBlock x:Name="textBlock1" Margin="0,0,0,0" TextWrapping="Wrap" Text="021-65691583" FontSize="9" Foreground="#FF8B8B8B" Grid.Row="8" Grid.Column="7" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="textBlock2" Margin="0,0,0,0" TextWrapping="Wrap" Text="V1.2.3.410 P20180122" FontSize="9" Foreground="#FF8D8D8D" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <TextBlock x:Name="textBlock2" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Version}" FontSize="9" Foreground="#FF8D8D8D" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3"/>
             <TextBlock x:Name="textBlock3" Margin="0,0,0,0" TextWrapping="Wrap" Text="©版权所有 上海芒宇信息科技有限公司" Foreground="#FF8B8B8B" FontSize="9" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="5"/>
-            <Button x:Name="loginbt"  
+            <Button x:Name="loginbt" 
+                    IsDefault="True" 
                     Style="{StaticResource FilletButton}" 
                     Command="{Binding LoginOKCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  
+                    IsEnabled="{Binding IsLoginEnabled}"
                     Content="登 录" Margin="0,0" Background="#FF00A7F4" FontSize="18" Foreground="White" Grid.Row="5" Grid.Column="3"/>
             <Button x:Name="closebt" 
                     Style="{StaticResource FilletButton}" 

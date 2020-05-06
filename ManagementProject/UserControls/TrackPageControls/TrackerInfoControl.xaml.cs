@@ -21,48 +21,10 @@ namespace ManagementProject.UserControls
     /// </summary>
     public partial class TrackerInfoControl : UserControl
     {
-        TrackerInfoViewModel trackInfoViewModel = new TrackerInfoViewModel();
         public TrackerInfoControl()
         {
             InitializeComponent();
-            DataContext = trackInfoViewModel;
         }
     }
 
-    public class TrackerInfo
-    {
-        public string Name { get; set; }
-        public string Time { get; set; }
-    }
-
-    public class TrackerInfoModel:INotifyPropertyChangedClass
-    {
-        private ObservableCollection<TrackerInfo> _items ;
-        public ObservableCollection<TrackerInfo> Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-                NotifyPropertyChanged("Items");
-            }
-        }
-    }
-    public class TrackerInfoViewModel:TrackerInfoModel
-    {
-        public TrackerInfoViewModel()
-        {
-            Items = new ObservableCollection<TrackerInfo>();
-            for (int i=0;i<4;i++)
-            {
-                TrackerInfo trackInfo = new TrackerInfo();
-                trackInfo.Name = i + "";
-                trackInfo.Time = i + 1 + "";
-                Items.Add(trackInfo);
-            }
-        }
-    }
 }

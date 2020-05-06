@@ -19,16 +19,22 @@ using Newtonsoft.Json;
 
 namespace MangoMapLibrary
 {
+    #region Delegate Type
     public delegate void OnElementDelete(AbstractLayerElement element);
+    public delegate void OnElementRemove(AbstractLayerElement element);
     public delegate void OnElementAdd(AbstractLayerElement element);
-    public delegate void OnElementClick(AbstractLayerElement element);
+    public delegate void OnElementClick(object sender,Point point);
     public delegate void OnElementMoveIn(AbstractLayerElement element);
     public delegate void OnElementChanged(AbstractLayerElement element);
     public delegate void OnLayerChanged(MangoLayer layer);
     public delegate void OnLayerCreate(MangoLayer layer);
     public delegate void OnLayerDelete(MangoLayer layer);
 
-    public partial class MapView : UserControl
+    public delegate void OnElementMove(MangoLayer layer);
+
+    #endregion
+
+    public partial class MapView : UserControl,IDisposable 
     {
         public enum RunningMode
         {
@@ -36,8 +42,15 @@ namespace MangoMapLibrary
             EDITOR
         }
 
-        private DeviceLayer deviceLayer;
+        public DeviceLayer deviceLayer;
+        //private Thread alarmThread;
+        private bool running = true;
+        private string MAP_PATH;
+        private RunningMode Mode { get; }
+        private Dictionary<string, DeviceType> deviceTypeList;
+
         public event OnElementDelete OnElementDelete;
+        public event OnElementDelete OnElementRemove;
         public event OnElementAdd OnElementAdd;
         public event OnElementClick OnElementClick;
         public event OnElementMoveIn OnElementMoveIn;
@@ -46,25 +59,29 @@ namespace MangoMapLibrary
         public event OnLayerDelete OnLayerDelete;
         public event OnElementChanged OnElementChanged;
 
-        private Dictionary<string, DeviceType> deviceTypeList;
-        private Thread alarmThread;
-        private bool running    = true;
-        private string MAP_PATH;
-        private RunningMode Mode { get; }
-
-        public MapView(string MAP_PATH,RunningMode mode)
+        
+        public MapView(string MAP_PATH, RunningMode mode)
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
             this.MAP_PATH = MAP_PATH;
-            this.Mode = mode;
-            this.DoubleBuffered = true;
-            this.mapBox1.ActiveTool = MapBox.Tools.Pan;
-            this.alarmThread = new Thread(AlarmThreadRunning);
-            this.alarmThread.Start();
+            Mode = mode;
+            DoubleBuffered = true;
+            mapBox1.ActiveTool = MapBox.Tools.Pan;
+            //alarmThread = new Thread(AlarmThreadRunning);
+            //alarmThread.Start();
+            RefreshDateTimeAsync();
         }
 
-        private void AlarmThreadRunning()
+        public new void Dispose()
+        {
+            mapBox1.Map.Dispose();
+            mapBox1.Dispose();
+            mapZoomToolStrip1.Dispose();
+        }
+
+
+        private async void RefreshDateTimeAsync()
         {
             bool drawFlag = false;
             while (running)
@@ -74,13 +91,31 @@ namespace MangoMapLibrary
                     try
                     {
                         deviceLayer.RenderAlarm(this.mapBox1.CreateGraphics(), this.mapBox1.Map, drawFlag);
-                    }catch(Exception e) { }
-                    
+                    }
+                    catch (Exception e) { }
+                }
+                drawFlag = !drawFlag;
+                await Task.Delay(1000);
+            }
+        }
+
+        private void AlarmThreadRunning()
+        {
+
+            bool drawFlag = false;
+            while (running)
+            {
+                if (deviceLayer != null)
+                {
+                    try
+                    {
+                        deviceLayer.RenderAlarm(this.mapBox1.CreateGraphics(), this.mapBox1.Map, drawFlag);
+                    }
+                    catch (Exception e) { }
                 }
                 drawFlag = !drawFlag;
                 Thread.Sleep(500);
             }
-            
         }
 
         public DeviceLayer AddDeviceLayer(string name)
@@ -92,20 +127,20 @@ namespace MangoMapLibrary
 
         public void RemoveLayer(string name)
         {
-            ILayer layer    = this.mapBox1.Map.GetLayerByName(name);
-            if(layer != null)
+            ILayer layer = mapBox1.Map.GetLayerByName(name);
+            if (layer != null)
             {
-                this.mapBox1.Map.Layers.Remove(layer);
-                if (this.OnLayerDelete != null)
+                mapBox1.Map.Layers.Remove(layer);
+                if (OnLayerDelete != null)
                 {
-                    this.OnLayerDelete.Invoke((layer as AbstractMangoLayer).MangoLayer());
+                    OnLayerDelete.Invoke((layer as AbstractMangoLayer).MangoLayer());
                 }
             }
         }
 
         public Map Map()
         {
-            return this.mapBox1.Map;
+            return mapBox1.Map;
         }
 
         internal void InvokeOnLayerChanged(AbstractMangoLayer layer)
@@ -127,12 +162,9 @@ namespace MangoMapLibrary
                     return LoadShapeFileLayer(layer);
                 case LayerType.GDI_IMAGE:
                     return LoadGDILayer(layer);
-                
             }
-
             return null;
         }
-                
 
         private ILayer LoadGDILayer(MangoLayer layer)
         {
@@ -146,14 +178,14 @@ namespace MangoMapLibrary
                 return null;
             }
 
-            MangoGDILayer gdiImageLayer = new MangoGDILayer(layer,filename);
+            MangoGDILayer gdiImageLayer = new MangoGDILayer(layer, filename);
             this.mapBox1.Map.Layers.Add(gdiImageLayer);
             return gdiImageLayer;
         }
 
-        public ILayer AddLabelLayer(string name,MangoVectorLayer layer)
+        public ILayer AddLabelLayer(string name, MangoVectorLayer layer)
         {
-            MangoLabelLayer lLayer = new MangoLabelLayer(layer.Layer,name);
+            MangoLabelLayer lLayer = new MangoLabelLayer(layer.Layer, name);
             lLayer.DataSource = (layer).DataSource;
             lLayer.Enabled = true;
             lLayer.LabelColumn = "Name";
@@ -167,74 +199,80 @@ namespace MangoMapLibrary
         {
             this.deviceTypeList = deviceTypeList;
             //初始化添加设备菜单
-            foreach(DeviceType type in deviceTypeList.Values)
+          //  menuItemAddDevice.DropDownItems.Clear();
+            foreach (DeviceType type in deviceTypeList.Values)
             {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = type.deviceTypeName;
-                item.Tag = type;
+                if (type.deviceClass.Equals("Camera"))
+                {
+                    continue;
+                }
+                ToolStripMenuItem item = new ToolStripMenuItem() { Text = type.deviceTypeName, Tag = type };
                 item.Click += Item_Click;
-               // this.menuItemAddDevice.DropDownItems.Add(item);
+               // menuItemAddDevice.DropDownItems.Add(item);
             }
+
+            //初始化设备过滤菜单
+            deviceTypeListComboBox.Items.Clear();
+            deviceTypeListComboBox.Items.Add("全部");
+            foreach (DeviceType type in deviceTypeList.Values)
+            {
+                deviceTypeListComboBox.Items.Add(type.deviceTypeName);
+            }
+
         }
 
         private void Item_Click(object sender, EventArgs e)
         {
+            var t = mapZoomToolStrip1.Text;
+            var T = mapBox1.Text;
+            var IT = mapZoomToolStrip1.Items[10].Text;
+
             DeviceType type = (sender as ToolStripMenuItem).Tag as DeviceType;
-            if(type.deviceClass == "ElectronicFence")
+            if (type.deviceClass == "ElectronicFence")
             {
-                this.drawFence = new DrawFence();
-                this.drawFence.type = type.deviceTypeCode;
+                drawFence = new DrawFence();
+                drawFence.type = type.deviceTypeCode;
                 return;
             }
 
+            Coordinate p = mapBox1.Map.ImageToWorld(addMemuPoint);
+            MangoLayerElement ele = new MangoLayerElement(currentMap.id, p, type.deviceTypeCode);
+            LayerDeviceElement element = new LayerDeviceElement(ele, type.ToIconSet());
+            deviceLayer.AddLayerElement(element);
+            Refresh();
 
-            Coordinate p = this.mapBox1.Map.ImageToWorld(this.addMemuPoint);
-            MangoLayerElement ele = new MangoLayerElement(this.currentMap.id,p, type.deviceTypeCode);
-            LayerElement element = new LayerElement(ele, type.ToIconSet());
-            this.deviceLayer.AddLayerElement(element);
-            this.Refresh();
-
-            if(this.OnElementAdd != null)
+            if (OnElementAdd != null)
             {
-                this.OnElementAdd.Invoke(element);
+                OnElementAdd.Invoke(element);
             }
         }
 
         public ILayer LoadShapeFileLayer(MangoLayer layer)
         {
-            if (layer.filenamePrefix == null || layer.filenamePrefix == "")
-            {
+            if (string.IsNullOrEmpty(layer.filenamePrefix))
                 return null;
-            }
-            string filename = MAP_PATH + layer.filenamePrefix;     // 默认载入文件名, .shp 为层文件名，每个图层包括前缀名+ (.shp,.dbf,.sbx 等若干文件)
-            if (!System.IO.File.Exists(filename))
-            {
+
+            string filename = MAP_PATH + layer.filenamePrefix; // 默认载入文件名, .shp 为层文件名，每个图层包括前缀名+ (.shp,.dbf,.sbx 等若干文件)
+            if (!File.Exists(filename))
                 return null;
-            }
+
             ShapeFile shapeFileData = new ShapeFile(filename);
             MangoVectorLayer shapeFileLayer = new MangoVectorLayer(layer, shapeFileData);
             shapeFileLayer.RenderPrepare();
             this.mapBox1.Map.Layers.Add(shapeFileLayer);
             return shapeFileLayer;
-            
         }
 
         public override void Refresh()
         {
             base.Refresh();
-            
-            this.mapBox1.Refresh();
+            mapBox1.Refresh();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             LayersForm form = new LayersForm(this);
             form.ShowDialog();
-        }
-
-        private void itemAddLabel_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private Point GetLocation(double r, double angle, Point loc)
@@ -249,16 +287,15 @@ namespace MangoMapLibrary
         private void MenuItemCamera_Click(object sender, EventArgs e)
         {
             Bitmap image = new Bitmap("D:\\a\\a.bmp");
-            Graphics g  = this.mapBox1.CreateGraphics();
+            Graphics g = mapBox1.CreateGraphics();
             // Create parallelogram for drawing image.
             PointF ulCorner = new PointF(addMemuPoint.X, addMemuPoint.Y);
             PointF o = new PointF(ulCorner.X + image.Width / 2, ulCorner.Y + image.Width / 2);
             PointF a = MathUtil.GetPointByAngle(ulCorner, o, 60);
-            PointF b = MathUtil.GetPointByAngle(ulCorner, o, 60+90);
-            PointF c = MathUtil.GetPointByAngle(ulCorner, o, 60+270);
+            PointF b = MathUtil.GetPointByAngle(ulCorner, o, 60 + 90);
+            PointF c = MathUtil.GetPointByAngle(ulCorner, o, 60 + 270);
             // Draw image to screen.+
             g.DrawImage(image, new PointF[] { a, b, c });
-
         }
 
         private PointF addMemuPoint;        //添加设备时鼠标坐标
@@ -268,45 +305,63 @@ namespace MangoMapLibrary
 
         private void mapMouseMenu_Opened(object sender, EventArgs e)
         {
-            if(drawFence != null)
+            if (drawFence != null)
             {
-                this.OnAddFenceFinished();
-                this.drawFence = null;
-                this.mapBox1.Refresh();
+                OnAddFenceFinished();
+                drawFence = null;
+                mapBox1.Refresh();
                 return;
             }
 
-           // this.mapMouseMenu.Enabled = this.deviceLayer != null;
-
-            Point p      = this.mapBox1.PointToClient(Control.MousePosition);
+            //mapMouseMenu.Enabled = deviceLayer != null;
+            Point p = mapBox1.PointToClient(MousePosition);
             addMemuPoint = new PointF(p.X, p.Y);
+
+            AbstractLayerElement device = this.deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
+            if (device != null)
+            {
+                //MenuItemDelete.Enabled = (device.Type != "@Building")&& (device.Type != "@BuildingIcon");
+               // MenuItemRemove.Enabled=device.Type!= "TensionFence" && device.Type != "VibrantCable " && device.Type != "InfraredRadiationDetector" && device.Type != "LeakyCable";
+            }
         }
 
         private void MenuItemDelete_Click(object sender, EventArgs e)
         {
-            AbstractLayerElement device  = this.deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
-            if(device != null)
+            AbstractLayerElement device = deviceLayer.Get(addMemuPoint, mapBox1.Map);
+            if (device != null)
             {
-                this.DeleteElement(device);
+                DeleteElement(device);
             }
+        }
+
+        private void MenuItemRemove_Click(object sender, EventArgs e)
+        {
+            AbstractLayerElement device = this.deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
+            if (device != null)
+                RemoveElement(device);
         }
 
         public void DeleteElement(AbstractLayerElement element)
         {
-            this.deviceLayer.Remove(element);
-            this.mapBox1.Refresh();
-            if (this.OnElementDelete != null)
+            deviceLayer.Remove(element);
+            mapBox1.Refresh();
+            if (OnElementDelete != null)
+                OnElementDelete.Invoke(element);
+        }
+
+        public void RemoveElement(AbstractLayerElement element)
+        {
+            deviceLayer.Remove(element);
+            mapBox1.Refresh();
+            if (OnElementRemove != null)
             {
-                this.OnElementDelete.Invoke(element);
+                OnElementRemove.Invoke(element);
             }
         }
 
         public void Zoom(int level)
         {
-            if (this.mapBox1.Map!=null)
-            {
-                this.mapBox1.Map.Zoom = level;
-            }          
+            mapBox1.Map.Zoom = level;
         }
 
         public void Center(Coordinate p)
@@ -314,22 +369,38 @@ namespace MangoMapLibrary
             this.mapBox1.Map.Center = p;
         }
 
+
+        /// <summary>
+        /// Place the device at a height of 1/2 on the screen 2/3
+        /// </summary>
+        /// <param name="element">The device to be moved</param>
+        public void MoveToTwoThirds(AbstractLayerElement element)
+        {
+            if (element != null)
+            {
+                mapBox1.Map.Center = new Coordinate(element.p.X - (1d / 6d) * mapBox1.Map.Envelope.Width,
+                mapBox1.Map.Envelope.Centre.Y);
+                Refresh();
+            }
+        }
+
+
         private void OnAddFenceFinished()
         {
-            if(drawFence.lines.Count == 0)
+            if (drawFence.lines.Count == 0)
             {
                 return;
             }
             IconExtParamFence ext = new IconExtParamFence();
             ext.type = drawFence.type;
             ext.points = new PointF[drawFence.lines.Count];
-            for(int i = 0; i < ext.points.Length; i++)
+            for (int i = 0; i < ext.points.Length; i++)
             {
                 Coordinate p = (drawFence.lines[i]);
                 ext.points[i] = new PointF((float)p.X, (float)p.Y);
             }
             Coordinate p1 = (drawFence.lines[0]);
-            LayerElementFence fence = new LayerElementFence(new MangoLayerElement(this.currentMap.id,p1, ElementType.TYPE_FENCE), deviceTypeList[drawFence.type].ToIconSet(), ext);
+            LayerElementFence fence = new LayerElementFence(new MangoLayerElement(this.currentMap.id, p1, ElementType.TYPE_FENCE), deviceTypeList[drawFence.type].ToIconSet(), ext);
             this.deviceLayer.AddLayerElement(fence);
             this.mapBox1.Refresh();
             if (this.OnElementAdd != null)
@@ -364,23 +435,29 @@ namespace MangoMapLibrary
             return this.deviceTypeList[type].ToIconSet();
         }
 
-        public void LoadMap(MangoMap map,MangoLayer[] layers, MangoLayerElement[] elements)
+        public void LoadMap(MangoMap map, MangoLayer[] layers, MangoLayerElement[] elements)
         {
-            this.Clear();
-            this.SetBackgroundColor(Color.FromArgb(map.backgroundColor));
-            this.SetMap(map);
-            this.Zoom(map.defaultZoomLevel);
+            Clear();
+            SetBackgroundColor(Color.FromArgb(map.backgroundColor));
+            SetMap(map);
+            Zoom(map.defaultZoomLevel);
+            deviceTypeListComboBox.SelectedIndex = 0;
 
             List<ILayer> _layers = new List<ILayer>();
             foreach (MangoLayer layer in layers)
             {
-                ILayer mapLayer = this.LoadLayer(layer);
+                ILayer mapLayer = LoadLayer(layer);
                 if (mapLayer == null)
                 {
                     continue;
                 }
                 _layers.Add(mapLayer);
             }
+
+            // 添加设备层
+            DeviceLayer deviceLayer = AddDeviceLayer("DeviceLayer");
+
+            AddElement(elements, deviceLayer);
 
             //添加标签层
             foreach (ILayer _layer in _layers)
@@ -391,123 +468,187 @@ namespace MangoMapLibrary
                     MangoLayer layer = (_layer as MangoVectorLayer).Layer;
                     if (layer.labelEnabled == 1)
                     {
-                        this.AddLabelLayer(layer.name + "(标签层)", _layer as MangoVectorLayer);
+                        AddLabelLayer(layer.name + "(标签层)", _layer as MangoVectorLayer);
                     }
-                }
-
-            }
-
-            // 添加设备层
-            DeviceLayer deviceLayer = this.AddDeviceLayer("DeviceLayer");
-            
-            if (elements != null)
-            {
-                foreach (MangoLayerElement ele in elements)
-                {
-                    switch (ele.deviceTypeCode)
-                    {
-                        case ElementType.TYPE_BUILDING:
-                            {
-                                IconExtParamBuilding ext = JsonConvert.DeserializeObject<IconExtParamBuilding>(ele.iconExt);
-                                Bitmap bitmap = new Bitmap(ext.filename);
-                                ElementIconSet set = new ElementIconSet(bitmap, null, null);
-                                LayerElementBuilding building = new LayerElementBuilding(ele, set, ext);
-                                deviceLayer.AddLayerElement(building);
-                                break;
-                            }
-                        case ElementType.TYPE_FENCE:
-                            {
-                                IconExtParamFence ext = JsonConvert.DeserializeObject<IconExtParamFence>(ele.iconExt);
-                                LayerElementFence fence = new LayerElementFence(ele, this.GetIconSet(ext.type), ext);
-                                deviceLayer.AddLayerElement(fence);
-                                break;
-                            }
-                        default:
-                            {
-                                
-                                LayerElement element = new LayerElement(ele, GetIconSet(ele.deviceTypeCode));
-                                deviceLayer.AddLayerElement(element);
-                                break;
-                            }
-
-                    }
-
-
                 }
             }
 
-            this.Center(new Coordinate(map.defaultLatitude, map.defaultLongitude));
-            this.Refresh();
+            Center(new Coordinate(map.defaultLatitude, map.defaultLongitude));
+            Refresh();
         }
 
-        private void mapBox1_Click(object sender, EventArgs e)
+        private void AddElement(MangoLayerElement[] elements, DeviceLayer deviceLayer)
         {
-            if(this.drawFence != null)
+            if (elements != null)
             {
-                
-                this.AddFence();
+                try
+                {
+                    foreach (MangoLayerElement ele in elements)
+                    {
+                        switch (ele.deviceTypeCode)
+                        {
+                            case ElementType.TYPE_BUILDING:
+                            case ElementType.TYPE_BUILDING_ICON:
+                                {
+                                    IconExtParamBuilding ext = JsonConvert.DeserializeObject<IconExtParamBuilding>(ele.iconExt);
+
+                                    var baseDic = AppDomain.CurrentDomain.BaseDirectory;
+                                    if (!File.Exists(baseDic + ext.filename))
+                                    {
+                                        MessageBox.Show($"未找到 {ext.filename} 文件");
+                                        continue;
+                                    }
+
+                                    Bitmap bitmap = new Bitmap(ext.filename);
+                                    ElementIconSet set = new ElementIconSet(bitmap, null, null);
+                                    LayerElementBuilding building = new LayerElementBuilding(ele, set, ext);
+
+                                    deviceLayer.AddLayerElement(building);
+                                    break;
+                                }
+                            case ElementType.FENCE_InfraredRadiationDetector:
+                            case ElementType.FENCE_LeakyCable:
+                            case ElementType.FENCE_TensionFence:
+                            case ElementType.FENCE_VibrantCable:
+                                {
+                                    if (ele.iconExt == null)
+                                        continue;
+
+                                    IconExtParamFence ext = JsonConvert.DeserializeObject<IconExtParamFence>(ele.iconExt);
+                                    LayerElementFence fence = new LayerElementFence(ele, this.GetIconSet(ext.type), ext);
+                                    deviceLayer.AddLayerElement(fence);
+                                    break;
+                                }
+                            case "":
+                            case null:
+                                continue;
+                            default:
+                                {
+                                    LayerDeviceElement element = new LayerDeviceElement(ele, GetIconSet(ele.deviceTypeCode));
+                                    deviceLayer.AddLayerElement(element);
+                                    break;
+                                }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
+            }
+        }
+
+        public void mapBox1_Click(object sender, EventArgs e) => ClickMap(false);
+
+        public void ClickMap(bool isClear=true)
+        {
+            if (drawFence != null)
+            {
+                AddFence();
                 return;
             }
-            if(deviceLayer == null)
-            {
+            if (deviceLayer == null)
                 return;
-            }
 
-            this.deviceLayer.ClearSelected();
+            if (isClear)
+                deviceLayer.ClearSelected();
 
-            Point p = this.mapBox1.PointToClient(Control.MousePosition);
+            Point p = mapBox1.PointToClient(MousePosition);
             PointF c = new PointF(p.X, p.Y);
             AbstractLayerElement device = this.deviceLayer.Get(c, this.mapBox1.Map);
             if (device != null)
             {
                 device.status = ICON_STATUS.CHECKED;
-                if(this.OnElementClick != null)
+                if (OnElementClick != null)
                 {
-                    this.OnElementClick.Invoke(device);
+                    OnElementClick.Invoke(device, p);
                 }
             }
-            this.mapBox1.Refresh();
+            mapBox1.Refresh();
         }
 
-        
+        /// <summary>
+        /// 世界坐标转换为屏幕坐标
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="point"></param>
+        public void RenderToScreen(Coordinate p,out PointF point)
+        {
+            //世界坐标转换为屏幕坐标
+            var _p = mapBox1.Map.WorldToImage(p,true);
+            point = _p;
+        }
 
-        
+
+        /// <summary>
+        /// 设置消防道路
+        /// </summary>
+        /// <param name="map">MapView</param>
+        /// <param name="isSet">是否设置 true:设置 false:取消设置</param>
+        public void SetFireRoad(bool isSet)
+        {
+          
+            foreach (ILayer layer in Map().Layers)
+            {
+                try
+                {
+                    if (layer.LayerName.Equals("消防道路") && layer is MangoVectorLayer)
+                    {
+                        MangoVectorLayer mangoLayer = (MangoVectorLayer)layer;
+                        mangoLayer.Layer.color = (isSet == true) ? Color.Red.ToArgb().ToString() : Color.White.ToArgb().ToString();
+                        InvokeOnLayerChanged(mangoLayer);
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+
 
         private void mapBox1_MouseMove(Coordinate worldPos, MouseEventArgs imagePos)
         {
             Point p = this.mapBox1.PointToClient(Control.MousePosition);
             PointF c = new PointF(p.X, p.Y);
-            Coordinate coor =  this.mapBox1.Map.ImageToWorld(c);
-            label_coor.Text = "坐标:" + Math.Round(coor.X,3) + "," + Math.Round(coor.Y,3);
+            Coordinate coor = this.mapBox1.Map.ImageToWorld(c);
 
-            
-            if(this.Mode == RunningMode.VIEW)
+            var xCoor = Math.Round(coor.X, 3);
+            var yCoor = Math.Round(coor.Y, 3);
+
+            label_coor.Text = $"坐标:{xCoor},{yCoor}";
+
+            if (this.Mode == RunningMode.VIEW)
             {
                 if (this.deviceLayer != null)
                 {
                     AbstractLayerElement device = this.deviceLayer.Get(c, this.mapBox1.Map);
                     if (device != null)
                     {
-                        if (this.OnElementMoveIn != null)
+                        if (OnElementMoveIn != null)
                         {
-                            this.OnElementMoveIn.Invoke(device);
+                            OnElementMoveIn.Invoke(device);
                         }
                     }
                 }
-            }            
+            }
         }
 
         private void DrawDragDropEffect(IDataObject dragEventData)
         {
             Bitmap bitmap = null;
-            object data = dragEventData.GetData(typeof(LayerElement));
+            object data = dragEventData.GetData(typeof(LayerDeviceElement));
             if (data != null)
             {
-                bitmap = (data as LayerElement).iconSet.icon;
+                bitmap = (data as LayerDeviceElement).iconSet.icon;
                 Point p = this.mapBox1.PointToClient(Control.MousePosition);
-                Graphics g = this.mapBox1.CreateGraphics();
-
-                g.DrawImage(bitmap, p.X - LayerElement.ICON_RADIUS, p.Y - LayerElement.ICON_RADIUS, LayerElement.ICON_RADIUS*2, LayerElement.ICON_RADIUS*2);
+                using (Graphics g = this.mapBox1.CreateGraphics())
+                {
+                    g.DrawImage(bitmap, p.X - LayerDeviceElement.ICON_RADIUS, p.Y - LayerDeviceElement.ICON_RADIUS, LayerDeviceElement.ICON_RADIUS * 2, LayerDeviceElement.ICON_RADIUS * 2);
+                };
             }
             else
             {
@@ -516,35 +657,34 @@ namespace MangoMapLibrary
                 {
                     bitmap = (data as LayerElementBuilding).iconSet.icon;
                     Point p = this.mapBox1.PointToClient(Control.MousePosition);
-                    Graphics g = this.mapBox1.CreateGraphics();
-                    
-                    g.DrawImage(bitmap, p.X - bitmap.Width / 2, p.Y - bitmap.Height / 2);
+                    using (Graphics g = this.mapBox1.CreateGraphics())
+                    {
+                        g.DrawImage(bitmap, p.X - bitmap.Width / 2, p.Y - bitmap.Height / 2);
+                        //g.DrawImage(new Bitmap(), p.X - bitmap.Width / 2, p.Y - bitmap.Height / 2);
+                    };
                 }
             }
 
-            this.mapBox1.Refresh();
+            mapBox1.Refresh();
         }
 
         public List<AbstractLayerElement> GetDeviceList()
         {
-            if(this.deviceLayer == null)
+            if (deviceLayer == null)
             {
                 return null;
             }
-            return this.deviceLayer.GetAllElements();
+            return deviceLayer.GetAllElements();
         }
 
-        public void SetMap(MangoMap map)
-        {
-            this.currentMap = map;
-        }
+        public void SetMap(MangoMap map) => currentMap = map;
 
         private void MenuItemProperties_Click(object sender, EventArgs e)
         {
             AbstractLayerElement device = this.deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
             if (device != null)
             {
-                this.ShowElementProperty(device);
+                ShowElementProperty(device);
             }
         }
 
@@ -552,21 +692,15 @@ namespace MangoMapLibrary
         {
             try
             {
-                this.mapBox1.BackColor = color;
+                mapBox1.BackColor = color;
             }
-            catch(Exception e)
-            {
-
-            }         
+            catch { }
         }
 
         public void Clear()
         {
-            if (this.mapBox1.Map!=null)
-            {
-                this.mapBox1.Map.Layers.Clear();
-            }            
-            this.Refresh();
+            mapBox1.Map.Layers.Clear();
+            Refresh();
         }
 
         private void MapView_DragDrop(object sender, DragEventArgs e)
@@ -576,10 +710,10 @@ namespace MangoMapLibrary
                 return;
             }
             
-            object data = e.Data.GetData(typeof(LayerElement));
+            object data = e.Data.GetData(typeof(LayerDeviceElement));
             if(data != null)
             {
-                OnDragDropElement(data as LayerElement);
+                OnDragDropElement(data as LayerDeviceElement);
             }
             else
             {
@@ -595,9 +729,21 @@ namespace MangoMapLibrary
             }
         }
 
+        /// <summary>
+        /// 地图缩放比例
+        /// </summary>
+        public double MapZoom
+        {
+            get => mapBox1.Map.Zoom;
+            set
+            {
+                mapBox1.Map.Zoom = value;
+                mapBox1.Refresh();
+            }
+        }
+
         private void OnDragDropElement(AbstractLayerElement device)
         {
-            //mapId
             device.Ele.mapId = this.currentMap.id;
 
             Point tmp = this.mapBox1.PointToClient(Control.MousePosition);
@@ -608,46 +754,77 @@ namespace MangoMapLibrary
             this.mapBox1.Refresh();
             if (this.OnElementAdd != null)
             {
-                this.OnElementAdd.Invoke(device);
+                this.OnElementMoveIn.Invoke(device);
             }
         }
 
         private void MapView_DragOver(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.All;
-            this.DrawDragDropEffect(e.Data);
+           // e.Effect = DragDropEffects.All;
+           // this.DrawDragDropEffect(e.Data);
         }
 
         public void Close()
         {
-            this.running = false;
+            running = false;
+            //if (alarmThread != null)
+            //{
+            //    alarmThread.Abort();
+            //}
         }
-
-
 
         private void MapView_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Copy;
+            //e.Effect = DragDropEffects.Copy;
         }
-
 
         public void Center(AbstractLayerElement element)
         {
-            this.mapBox1.Map.Center = element.p;
-            this.Refresh();
+            if (element!=null)
+            {
+                mapBox1.Map.Center = element.p;
+                Refresh();
+            }
         }
 
         private void 闪烁ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbstractLayerElement device = this.deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
-            if (device != null)
+            var device = deviceLayer.Get(addMemuPoint, this.mapBox1.Map);
+            FlickerOne(device);
+        }
+
+
+
+        /// <summary>
+        /// 设备闪烁
+        /// </summary>
+        /// <param name="element">设备</param>
+        public void FlickerOne(AbstractLayerElement element)
+        {
+            if (element != null)
             {
-                (device).alarm = !(device).alarm;
+                (element).alarm = !(element).alarm;
+            }
+        }
+
+        public void StopFlickerOne(AbstractLayerElement element)
+        {
+            if (element != null)
+            {
+                (element).alarm = false;
+            }
+        }
+
+        public void FlickerOne(AbstractLayerElement element,bool state)
+        {
+            if (element != null)
+            {
+                (element).alarm = state;
             }
         }
 
 
-        
+
 
         public void CreateLayer(string filename)
         {
@@ -672,37 +849,126 @@ namespace MangoMapLibrary
             DeviceProperty p = new DeviceProperty(element);
             if (p.ShowDialog() == DialogResult.OK)
             {
-                this.Refresh();
-                if (this.OnElementChanged != null)
+                Refresh();
+                if (OnElementChanged != null)
                 {
-                    this.OnElementChanged.Invoke(element);
+                    OnElementChanged.Invoke(element);
                 }
+            }
+        }
+		 /// <summary>
+        /// 打开或关闭所有设备标签
+        /// </summary>
+        /// <param name="isShow">true:开,false:关</param>
+        public void SwitchDeviceTag(bool isShow)
+        {
+            Global.ShowMapTag = isShow;
+            mapBox1.Refresh();
+        }
+
+        /// <summary>
+        /// Lock the viewport
+        /// </summary>
+        /// <param name="isLock">true is lock, false is unlock</param>
+        private void LockMapViewPort(bool isLock)
+        {
+            var lockButton = mapZoomToolStrip1.Items[14] as ToolStripButton;
+            lockButton.Checked = isLock;
+        }
+
+        /// <summary>
+        /// 鼠标坐标
+        /// </summary>
+        public Coordinate MouseCoor
+        {
+            get { return MouseCoor; }
+            set
+            {
+                MouseCoor = value;
             }
         }
 
         public void SelectOne(AbstractLayerElement element)
         {
-            this.deviceLayer.ClearSelected();
-            element.status = ICON_STATUS.CHECKED;
+            deviceLayer.ClearSelected();
+            if (element!=null)
+                element.status = ICON_STATUS.CHECKED;
+        }
+
+        public void UnSelectOne(AbstractLayerElement element)
+        {
+            if (element!=null)
+                element.status = ICON_STATUS.NORMAL;
         }
 
         private void mapBox1_Resize(object sender, EventArgs e)
         {
-            Console.WriteLine("Zoom " + this.mapBox1.Map.Zoom);
-            Console.WriteLine(this.mapBox1.Map.MapScale);
+            Console.WriteLine("Zoom " + mapBox1.Map.Zoom);
+            Console.WriteLine(mapBox1.Map.MapScale);
         }
+
+        private DeviceType GetDeviceTypeByName(string name)
+        {
+            foreach (DeviceType type in deviceTypeList.Values)
+            {
+                if (type.deviceTypeName.Equals(name))
+                {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        private void deviceTypeListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (deviceLayer == null) return;
+
+            if (deviceTypeListComboBox.SelectedIndex <= 0)
+            {
+                deviceLayer.SetRenderType(null);
+            }
+            else
+            {
+                DeviceType type = GetDeviceTypeByName(this.deviceTypeListComboBox.SelectedItem as string);
+                if (type != null)
+                {
+                    List<string> all = new List<string>();
+                    all.Add(type.deviceTypeCode);
+                    deviceLayer.SetRenderType(all);
+                }
+                else
+                {
+                    deviceLayer.SetRenderType(null);
+                }
+            }
+            Refresh();
+        }
+
+        public void SelectedDeviceType(List<string> typecode)
+        {
+            if (this.deviceLayer == null) return;
+            this.deviceLayer.SetRenderType(typecode);
+            this.Refresh();
+        }
+
+        public void SetCodeList(List<string> codeList)
+        {
+            if (this.deviceLayer == null) return;
+            this.deviceLayer.SetCodeList(codeList);
+            this.Refresh();
+        }
+		
+
+      
     }
 
-
-
+    #region Draw Fence
     public class DrawFence
     {
         public List<Coordinate> lines = new List<Coordinate>();
         public string type;
 
-        public void Add(Coordinate point)
-        {
-            lines.Add(point);
-        }
+        public void Add(Coordinate point) => lines.Add(point);
     }
+    #endregion
 }

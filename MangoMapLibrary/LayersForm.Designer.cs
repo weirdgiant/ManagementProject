@@ -32,9 +32,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ButtonUp = new System.Windows.Forms.Button();
+            this.ButtonDown = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -76,37 +76,38 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(283, 93);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "图层下移";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(283, 123);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "图层上移";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Shape图层|*.shp|图形文件|*.jpg;*.png;*.jpeg;*.bmp;*.gif|所有文件(*.*)|*.*";
+            // 
+            // ButtonUp
+            // 
+            this.ButtonUp.Location = new System.Drawing.Point(283, 79);
+            this.ButtonUp.Name = "ButtonUp";
+            this.ButtonUp.Size = new System.Drawing.Size(75, 23);
+            this.ButtonUp.TabIndex = 5;
+            this.ButtonUp.Text = "↑";
+            this.ButtonUp.UseVisualStyleBackColor = true;
+            this.ButtonUp.Click += new System.EventHandler(this.ButtonUp_Click);
+            // 
+            // ButtonDown
+            // 
+            this.ButtonDown.Location = new System.Drawing.Point(283, 108);
+            this.ButtonDown.Name = "ButtonDown";
+            this.ButtonDown.Size = new System.Drawing.Size(75, 23);
+            this.ButtonDown.TabIndex = 6;
+            this.ButtonDown.Text = "↓";
+            this.ButtonDown.UseVisualStyleBackColor = true;
+            this.ButtonDown.Click += new System.EventHandler(this.ButtonDown_Click);
             // 
             // LayersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(377, 212);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ButtonDown);
+            this.Controls.Add(this.ButtonUp);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -125,8 +126,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button ButtonUp;
+        private System.Windows.Forms.Button ButtonDown;
     }
 }

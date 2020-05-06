@@ -95,13 +95,28 @@ namespace MangoMapLibrary
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var tmp = this.checkedListBox1.SelectedItem;
-            button3.Enabled = button5.Enabled = button4.Enabled = (tmp is MangoVectorLayer || tmp is MangoGDILayer);
+            button3.Enabled = (tmp is MangoVectorLayer || tmp is MangoGDILayer);
             button2.Enabled = tmp is AbstractMangoLayer;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             var layer = this.checkedListBox1.SelectedItem;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ButtonUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonDown_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

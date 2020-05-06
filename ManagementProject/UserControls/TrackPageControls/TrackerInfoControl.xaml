@@ -5,52 +5,174 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="300">
-    <Grid Background="#FF3C3C3C" Opacity="0.9">
+             d:DesignHeight="1030" d:DesignWidth="323">
+    <Grid Background="#252525">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="132"/>
+            <RowDefinition Height="44"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF0072B7">
-            <Label Content="学科研讨会" FontSize="15" Foreground="White"  VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="0" Background="#0072B7">
+            <TextBlock Text="{Binding TrackerName}" FontSize="16" Foreground="White" VerticalAlignment="Center" Margin="12"/>
         </Grid>
-        <Grid Grid.Row="1" Background="#FF282828">
-            <Image HorizontalAlignment="Left" Width="30" Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/有效时间.png" Margin="10,10,0,8" VerticalAlignment="Center" />
-            <Label Margin="50,0,0,0" Content="有效时间：" FontSize="14" Foreground="White"  VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="1" Background="#282828">
+
+            <TextBlock HorizontalAlignment="Left"
+                       FontSize="24"
+                       Margin="12,0,0,0"
+                       Text="{StaticResource FontTrackerTimeIcon}"
+                       Style="{StaticResource SegoeFontStyle}"
+                       VerticalAlignment="Center" />
+
+            <TextBlock Margin="45,0,0,0" Text="有效时间：" FontSize="16" Foreground="White"  VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Border CornerRadius="5" Background="#FF009FFF" Margin="20,30,20,30" >
-                <Grid >
-                    <TextBlock Margin="30,30,0,45" Text="2018-07-10" FontSize="10"  Foreground="White"  HorizontalAlignment="Left" Width="70" />
-                    <TextBlock Margin="30,45,0,30" Text="06:30:00" FontSize="14"  Foreground="White"  HorizontalAlignment="Left" Width="70" />
-                    <TextBlock Margin="0,30,30,45" Text="2018-07-11" FontSize="10"  Foreground="White"  HorizontalAlignment="Right" Width="70" />
-                    <TextBlock Margin="0,45,30,30" Text="22:30:00" FontSize="14"  Foreground="White"  HorizontalAlignment="Right" Width="70" />
-                    <Border Height="1" Margin="114,44,126,45" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" />
+            <Border CornerRadius="5" Width="295" Height="66" Background="#FF009FFF" >
+                <Grid HorizontalAlignment="Right" Width="295" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="8"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock  Text="{Binding TrackerStartDate}" FontSize="14"  Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                    <TextBlock  Text="{Binding TrackerEndDate}" FontSize="14"  Foreground="White"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="2" />
+                    <TextBlock  Text="{Binding TrackerStartTime}" FontSize="14"  Foreground="White"  HorizontalAlignment="Center"  VerticalAlignment="Top" Grid.Row="3" />
+                    <TextBlock  Text="{Binding TrackerEndTime}" FontSize="14"  Foreground="White"  HorizontalAlignment="Center"  VerticalAlignment="Top" Grid.Column="2" Grid.Row="3" />
+
+                    <Border Height="2"  Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="1"  Grid.Row="1" />
                 </Grid>
             </Border>
         </Grid>
         <Grid Grid.Row="3"  Background="#FF282828">
-            <Label Content="车辆进入历史" FontSize="14" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,50,0"/>
-            <Image HorizontalAlignment="Right" Width="30" Source="/ManagementProject;component/ImageSource/Icon/TrackerIcon/车辆进入历史.png" VerticalAlignment="Center" Margin="0,0,10,0" />
+            <TextBlock Text="车辆进入历史"
+                       FontSize="16" 
+                       Foreground="White" 
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" 
+                       Margin="12,0,0,0"/>
+            
+            <TextBlock HorizontalAlignment="Right"
+                       FontSize="24" 
+                       Text="{StaticResource FontTrackerCarIcon}"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource SegoeFontStyle}"
+                       Margin="0,0,14,0" />
         </Grid>
-        <ListView Grid.Row="4" ItemsSource="{Binding Items}" Background="{x:Null}" BorderBrush="{x:Null}" >
-            <ListView.ItemTemplate>
+
+
+        <!--<ListBox Grid.Row="4"  HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" >
+
+            <StackPanel>
+
+                <Border CornerRadius="5" Width="295" Height="66" Background="#252525" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0" Opacity="1" />
+                    </Border.Effect>
+
+                    <Grid Margin="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="6"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="津CD0001" FontSize="14" Foreground="#FF0072B7" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                        <TextBlock Text="2018.05.06 14:15:13"  FontSize="14" Foreground="White"  VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Row="2"/>
+                        <TextBlock Text="车牌号" FontSize="14"   Foreground="White"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1"/>
+                        <TextBlock Text="进入时间"  FontSize="14"   Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="5" Width="295" Height="66" Background="#252525" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0" Opacity="1" />
+                    </Border.Effect>
+
+                    <Grid Margin="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="6"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="津CD0001" FontSize="14" Foreground="#FF0072B7" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                        <TextBlock Text="2018.05.06 14:15:13"  FontSize="14" Foreground="White"  VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Row="2"/>
+                        <TextBlock Text="车牌号" FontSize="14"   Foreground="White"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1"/>
+                        <TextBlock Text="进入时间"  FontSize="14"   Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="5" Width="295" Height="66" Background="#252525" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0" Opacity="1" />
+                    </Border.Effect>
+
+                    <Grid Margin="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="6"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="津CD0001" FontSize="14" Foreground="#FF0072B7" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                        <TextBlock Text="2018.05.06 14:15:13"  FontSize="14" Foreground="White"  VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Row="2"/>
+                        <TextBlock Text="车牌号" FontSize="14"   Foreground="White"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1"/>
+                        <TextBlock Text="进入时间"  FontSize="14"   Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+
+        </ListBox>-->
+
+        <ListBox Grid.Row="4" HorizontalAlignment="Center"  ItemsSource="{Binding Items}" Background="{x:Null}" BorderBrush="{x:Null}" >
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Border CornerRadius="5" Width="275" Background="#FF282828" Margin="5">
-                            <Grid  >
-                                <Label Content="{Binding Name}" FontSize="14" Foreground="#FF0072B7" Margin="0,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="139"/>
-                                <Label Content="{Binding Time}" FontSize="12" Foreground="White"  Margin="0,0,0,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="139"/>
-                                <Label Content="车牌号" Foreground="White"  HorizontalAlignment="Right" Height="23" Margin="0,12,10,0" VerticalAlignment="Top"/>
-                                <Label Content="进入时间"  Foreground="White" Margin="0,36,10,10" HorizontalAlignment="Right"/>
+                    <StackPanel>
+                        <Border CornerRadius="5" Width="295" Height="66" Background="#252525" Margin="5">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="16" ShadowDepth="0" Opacity="1" />
+                            </Border.Effect>
+
+                            <Grid Margin="12">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="6"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Name}" FontSize="14" Foreground="#FF0072B7" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Time}"  FontSize="14" Foreground="White"  VerticalAlignment="Top" HorizontalAlignment="Center"  Grid.Row="2"/>
+                                <TextBlock Text="车牌号" FontSize="14"   Foreground="White"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1"/>
+                                <TextBlock Text="进入时间"  FontSize="14"   Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
                             </Grid>
                         </Border>
+
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

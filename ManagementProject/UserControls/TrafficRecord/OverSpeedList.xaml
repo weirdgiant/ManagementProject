@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.TrafficRecord.OverSpeedList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:timecontrol="clr-namespace:ManagementProject.UserControls.TimeControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="790" d:DesignWidth="1180">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="88"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="601*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0" Margin="10">
+            <Border CornerRadius="6" Background="#242424" Margin="0,10,534,0" Height="44" VerticalAlignment="Top">
+                <Grid>
+                    <TextBlock Text="事件发生时间"
+                           Margin="10,10,0,0" 
+                           FontSize="16" 
+                           Foreground="White"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"/>
+
+
+                    <timecontrol:DateTimePicker
+                            x:Name="start" 
+                            Width="180"
+                            Margin="134,0,312,0"
+                            TimeText="{Binding OverSpeedStartTime}"
+                            ButtonFontSize="20"
+                            TextBackground="Transparent"
+                            ButtonForeground="White" 
+                            Foreground="White" 
+                            VerticalAlignment="Center"/>
+
+                    <Border VerticalAlignment="Center" Height="30" Width="160" Margin="122,0,344,0" Background="#66706F6F"/>
+
+                    <Border Height="30"  Width="160" Margin="416,0,50,0" Background="#66706F6F" VerticalAlignment="Center"/>
+
+                    <timecontrol:DateTimePicker
+                            x:Name="end" 
+                            TimeText="{Binding OverSpeedEndTime}" 
+                            Width="180"
+                            Margin="429,0,17,0"
+                            ButtonFontSize="20"
+                            VerticalAlignment="Center"
+                            TextBackground="Transparent" 
+                            ButtonForeground="White" 
+                            Foreground="White" Height="25" />
+
+                    <TextBlock Text="到" 
+                               Foreground="White"
+                               HorizontalAlignment="Left"
+                               Margin="356,0,0,0"
+                               VerticalAlignment="Center"/>
+
+                </Grid>
+
+            </Border>
+            <Button Command="{Binding SearchOverSpeedCommand}" 
+                    Content="查 询" 
+                    FontSize="16"
+                    Visibility="Visible"
+                    Foreground="White" 
+                    Background="#FF00A7F4"
+                    BorderBrush="{x:Null}" 
+                    Style="{StaticResource FilletButton}" 
+                    VerticalAlignment="Top" 
+                    Height="28" 
+                    Width="100"
+                    Margin="1020,19,0,0"
+                    />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="车辆超速报警TOP10" FontSize="16" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"  />
+            <Label Content="车辆超速报警设备TOP10" FontSize="16" Foreground="White" Margin="610,0,0,0" HorizontalAlignment="Left"  />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="159*"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Margin="20,1,20,10" CornerRadius="6" Background="#242424">
+                <Grid>
+                    <DataGrid  x:Name="listView" 
+                               ItemsSource="{Binding OverSpeedCar}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="车牌"  Foreground="White"  Binding="{Binding Path=CarNumber}" Width="*"/>
+                            <DataGridTextColumn  Header="超速次数" Foreground="White" Binding="{Binding Path=AlarmCount}" Width="*"/>
+                            <DataGridTextColumn  Header="车主" Foreground="White"  Binding="{Binding Path=CarOwner}" Width="*"/>
+                            <DataGridTextColumn  Header="电话" Foreground="White"  Binding="{Binding Path=Phone}" Width="*"/>
+                            <DataGridTextColumn  Header="部门" Foreground="White"  Binding="{Binding Path=Department}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </Border>
+            <Border Grid.Row="0" Margin="20,1,20,10" CornerRadius="6" Background="#242424" Grid.Column="1">
+                <Grid>
+                    <DataGrid ItemsSource="{Binding OverSpeedDevice}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="设备名称"  Foreground="White"  Binding="{Binding AlarmDevice}" Width="*"/>
+                            <DataGridTextColumn  Header="报警次数" Foreground="White"  Binding="{Binding AlarmCount}" Width="*"/>
+                            <DataGridTextColumn  Header="唯一标识" Foreground="White"  Binding="{Binding DeviceCode}" Width="*"/>
+                            <DataGridTextColumn  Header="位置" Foreground="White"  Binding="{Binding Location}" Width="*"/>
+                            <DataGridTextColumn  Header="型号" Foreground="White"  Binding="{Binding DeviceType}" Width="*"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
+
+            </Border>
+            <Path 
+                          Data="M80.5,140.5 L1080.0662,140.5" 
+                          HorizontalAlignment="Center"
+                          Height="1"  
+                          Stretch="Fill"
+                          Fill="#363636"
+                          Stroke="#363636" 
+                          Width="1140" Margin="20,1,20,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Button Command="{Binding ExportOverSpeedListCommand}" 
+                Content="导 出" 
+                FontSize="16"
+                Visibility="Visible"
+                Foreground="White" 
+                Background="#FF00A7F4"
+                BorderBrush="{x:Null}" 
+                Style="{StaticResource FilletButton}" 
+                VerticalAlignment="Top" 
+                  Height="28" 
+                  Width="100"
+                Margin="0,10,27,0"
+                    Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+                    />
+        </Grid>
+
+
+    </Grid>
+</UserControl>

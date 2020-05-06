@@ -3,10 +3,115 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:ManagementProject.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="550">
-    <Grid Margin="5">
+             mc:Ignorable="d"   d:DesignHeight="340"
+             d:DesignWidth="583">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10 10 6 10" Background="#FF242424">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="车牌"
+                       Foreground="White"
+                       FontSize="16"
+                       Margin="10,0,0,0"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="违停时长(min)" 
+                       Foreground="White" 
+                       FontSize="16" 
+                       Margin="0,0,10,0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+            
+            <ListBox Name="listBox"
+                     Grid.Row="1"
+                     Height="245"
+                     Background="{x:Null}"  
+                     BorderBrush="{x:Null}" 
+                     ItemsSource="{Binding AlarmCarList}"
+                     SelectedIndex="0"
+                     VerticalAlignment="Top"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectAlarmItemComand,Mode=TwoWay}"
+                                      CommandParameter="{Binding SelectedItem, ElementName=listBox}">
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="30" HorizontalAlignment="Center" >
+                            <TextBlock Text="{Binding CarNumber}"  Foreground="White" FontSize="14"  HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding ParkingTime}" Foreground="White" FontSize="14"  HorizontalAlignment="Right">
+                                <!--<Run Text="min"/>-->
+                            </TextBlock>
+                            <Path  Data="M126,112.33333 L293.71669,112.33333"  Opacity="0.6"  Fill="#FF3C3C3C" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="1"  Stretch="Fill" Stroke="#FF3C3C3C" Width="300"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+
+        <Border  Margin="6 10 10 10"  Grid.Column="1" Background="#FF242424">
+
+            <Grid Margin="15 20 10 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="车牌 ：" Foreground="White" FontSize="16" Grid.ColumnSpan="2" Grid.Row="1" >
+                    <Run Text="{Binding AlarmCarNumber}" Foreground="#009FFF"/>
+                </TextBlock>
+
+                <TextBlock Text="车主 ：" Foreground="White" FontSize="16" Height="22" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="2">
+                    <Run Text="{Binding AlarmCarOwner}"  Foreground="#009FFF"/>
+                </TextBlock>
+
+                <TextBlock Text="手机号 ：" Foreground="White" FontSize="16" Grid.ColumnSpan="2" Grid.Row="3">
+                    <Run Text="{Binding PhoneNumber}"  Foreground="#009FFF"/>
+                </TextBlock>
+
+                <TextBlock Text="部门 ：" Foreground="White" FontSize="16" Grid.ColumnSpan="2" Grid.Row="4">
+                    <Run Text="{Binding Department}"  Foreground="#009FFF"/>
+                </TextBlock>
+
+                <TextBlock Text="车牌抓拍" Foreground="White" FontSize="16" Grid.Row="5" Margin="0,2,0,0"/>
+
+                <TextBlock Text="现场抓拍" Foreground="White" FontSize="16" Grid.Column="1"  Grid.Row="5" Margin="0,2,0,0"/>
+
+                <Image  x:Name="carimage" Grid.Row="6" Margin="0,0,10,0" Source="{Binding CarLicenseImage}"/>
+
+                <Image  x:Name="locationimage" Grid.Row="6" Grid.Column="1" Margin="0,0,10,0" Source="{Binding SceneImage}"/>
+                <TextBlock Text="时间 ：" Foreground="White" FontSize="16" Grid.ColumnSpan="2" ><Run Text="{Binding AlarmTime}" Foreground="#009FFF"/></TextBlock>
+            </Grid>
+
+
+        </Border>
+        
+    </Grid>
+
+    <!--<Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -27,10 +132,10 @@
         <Label  Content="现场抓拍" FontSize="18" HorizontalAlignment="Left" Margin="5,15,0,2" Foreground="White" Grid.Row="3" Grid.Column="1"/>
         <Image x:Name="carimage" HorizontalAlignment="Left" Margin="5,16,0,0" Width="226" Grid.Row="4" Height="120" VerticalAlignment="Top"/>
         <Image x:Name="locationimage" HorizontalAlignment="Left" Margin="5,16,0,0" Width="226" Grid.Row="4" Height="120" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="carnumber" FontSize="18" Content="1111" Tag="{Binding AlarmCarNumber}" HorizontalAlignment="Left" Margin="55,13,0,0" Foreground="#FF569CD6" Grid.Row="1" Height="33" VerticalAlignment="Top"/>
-        <Label x:Name="carowner" FontSize="18" Content="1111" Tag="{Binding AlarmCarOwner}" HorizontalAlignment="Left" Margin="55,13,0,0" VerticalAlignment="Top" Foreground="#FF569CD6" RenderTransformOrigin="0.971,0.676" Grid.Row="1" Grid.Column="1"/>
-        <Label x:Name="phonenumber" FontSize="18" Content="1111" Tag="{Binding PhoneNumber}" HorizontalAlignment="Left" Margin="73,14,0,3" Foreground="#FF569CD6" Grid.Row="2"/>
-        <Label x:Name="department" FontSize="18" Content="1111" Tag="{Binding Department}" HorizontalAlignment="Left" Margin="55,14,0,3" Foreground="#FF569CD6" Grid.Row="2" Grid.Column="1"/>
+        <Label x:Name="carnumber"   FontSize="18" Content="{Binding AlarmCarNumber}" Tag="{Binding AlarmCarNumber}" HorizontalAlignment="Left" Margin="55,13,0,0" Foreground="#FF569CD6" Grid.Row="1" Height="33" VerticalAlignment="Top"/>
+        <Label x:Name="carowner"    FontSize="18" Content="{Binding AlarmCarOwner}" Tag="{Binding AlarmCarOwner}" HorizontalAlignment="Left" Margin="55,13,0,0" VerticalAlignment="Top" Foreground="#FF569CD6" RenderTransformOrigin="0.971,0.676" Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="phonenumber" FontSize="18" Content="{Binding PhoneNumber}" Tag="{Binding PhoneNumber}" HorizontalAlignment="Left" Margin="73,14,0,3" Foreground="#FF569CD6" Grid.Row="2"/>
+        <Label x:Name="department"  FontSize="18" Content="{Binding Department}" Tag="{Binding Department}" HorizontalAlignment="Left" Margin="55,14,0,3" Foreground="#FF569CD6" Grid.Row="2" Grid.Column="1"/>
 
-    </Grid>
+    </Grid>-->
 </UserControl>

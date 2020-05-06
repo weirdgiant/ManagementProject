@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,6 +18,47 @@ namespace ManagementProject.UserControls
         public TrackCameraList()
         {
             InitializeComponent();
+            DataContext = new TrackCameraListViewModel();
+        }
+    }
+    /// <summary>
+    /// 相机信息
+    /// </summary>
+    class CameraInfo
+    {
+        /// <summary>
+        /// 相机名称
+        /// </summary>
+        public string Name { get; set; }
+    }
+
+    class TrackCameraListViewModel : TrackCameraListModel
+    {
+        public TrackCameraListViewModel()
+        {
+            CameraLists = new ObservableCollection<CameraInfo>();
+
+            for (int i = 1; i <= 5; i++)
+            {
+                CameraLists.Add(new CameraInfo
+                {
+                    Name = $"教学楼摄像机{i}"
+                });
+            }
+        }
+    }
+    class TrackCameraListModel : INotifyPropertyChangedClass
+    {
+        private ObservableCollection<CameraInfo> cameraLists;
+
+        public ObservableCollection<CameraInfo> CameraLists
+        {
+            get { return cameraLists; }
+            set
+            {
+                cameraLists = value;
+                NotifyPropertyChanged("CameraLists");
+            }
         }
     }
 }

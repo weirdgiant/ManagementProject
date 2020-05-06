@@ -5,11 +5,43 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ManagementProject.PageView"
       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+      xmlns:Control="clr-namespace:ManagementProject"
       xmlns:fightcontrol="clr-namespace:ManagementProject.UserControls.FightControl"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
+      xmlns:eic="clr-namespace:ManagementProject.ViewModel"
       xmlns:cvt="clr-namespace:ManagementProject.Converters"
-      d:DesignHeight="800" d:DesignWidth="1000"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:usercontrols="clr-namespace:ManagementProject.UserControls"
+      d:DesignHeight="1030" d:DesignWidth="1920"
       Title="CollagePage">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" 
+                                   CommandParameter="{Binding ElementName=FightControlGrid}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding PageUnloadedCommand}" 
+                                   CommandParameter="{Binding ElementName=FightControlGrid}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Page.Resources>
+        <!--<DropShadowEffect x:Key="CardShadow" Color="#303030" Opacity=".25" BlurRadius="5" ShadowDepth="3"/>-->
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <!-- throw in some extra colour for our floating action button -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
 
     <Grid Background="#FF5B5B5B">
         <Grid.Resources>
@@ -23,88 +55,30 @@
             <ColumnDefinition Width="240"/>
             <ColumnDefinition Width="589*"/>
         </Grid.ColumnDefinitions>
+
         <Label Content="芒宇拼控" Margin="0,0,0,0" Foreground="White" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF009FFF"/>
 
-        <!--<Grid Grid.Row="1" Grid.Column="1" Width="400" Height="200">
-            
-        </Grid>-->
-
-        <Grid x:Name="FightControlGrid"  Grid.Column="1" Margin="0 0 0 120" Grid.Row="1" Background="#FF5B5B5B" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <GridSplitter Grid.Column="1" 
-                      Grid.RowSpan="5"
-                      Width="5" 
-                      VerticalAlignment="Stretch"
-                      Background="#FF5B5B5B"
-                      HorizontalAlignment="Center"
-                      ShowsPreview="True"/>
-            
-            <GridSplitter Grid.Row="0"
-                      Grid.Column="3" 
-                      Grid.RowSpan="5"
-                      Width="5" 
-                      Background="#FF5B5B5B"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Center"
-                      ShowsPreview="True"/>
-
-            <GridSplitter Grid.Row="1"
-                      Grid.ColumnSpan="5"
-                      Height="5" 
-                      Background="#FF5B5B5B"
-                      HorizontalAlignment="Stretch"
-                      ShowsPreview="True"/>
-
-            <GridSplitter Grid.Row="3"
-                      Grid.Column="0" 
-                      Grid.ColumnSpan="5"
-                      Height="5" 
-                      Background="#FF5B5B5B"
-                      HorizontalAlignment="Stretch"
-                      ShowsPreview="True"/>-->
+        <Grid  x:Name="FightControlGrid" 
+               Grid.Column="1"
+               Margin="0 0 0 160" 
+               Grid.Row="1" 
+               ShowGridLines="False"
+               Background="#FF5B5B5B" >
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="-4" BlurRadius="8" Color="Black"/>
+            </Grid.Effect>
         </Grid>
+
+
         <Grid Grid.Column="1" Background="#FF2D2D2D" >
-            <Button  Content="场景"
-                     x:Name="BtnScenes"
-                     Foreground="White" 
-                     Background="#FF009FFF" 
-                     BorderBrush="{x:Null}"
-                     MouseEnter="BtnScenes_MouseEnter"
-                     Style="{StaticResource FilletButton }" 
-                     Margin="30,0,0,0" Width="75" Height="35" 
-                     HorizontalAlignment="Left"  VerticalAlignment="Center"/>
 
-            <Popup  x:Name="PopScenes"
-                    Width="75"
-                    IsOpen="False"
-                    Margin="30,58,0,-80" 
-                    HorizontalAlignment="Left"
-                    PlacementTarget="{Binding ElementName=BtnScenes}">
 
-                <StackPanel MouseLeave="PopScenes_MouseLeave">
+            <!--<materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionPopupBox}"
+                                     Margin="50,0,0,0"
+                                     Width="40"
+                                     Height="40"
+                                     PlacementMode="BottomAndAlignCentres" >
+                <StackPanel>
                     <Button  x:Name="BtnNewScenes"
                              Content="新建场景"
                              Foreground="White" 
@@ -126,7 +100,56 @@
                              Width="75" Height="35" 
                              HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                 </StackPanel>
-            </Popup>
+            </materialDesign:PopupBox>-->
+
+
+            <ToggleButton Name="bt" 
+                          Style="{StaticResource mySceneToggleButton}"
+                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}},Path=DataContext.IsOpen,Converter={StaticResource DebugConverter}}"     
+                          HorizontalAlignment="Left" 
+                          Margin="30,0,0,0"
+                          Foreground="White" 
+                          Width="75" 
+                          Height="35"
+                          Content="场景"
+                          Background="#FF009FFF"
+                          VerticalAlignment="Center"
+                          Mouse.MouseEnter="Bt_MouseEnter"/>
+
+            <usercontrols:MyPopup  x:Name="PopScenes"
+                                   Width="75"
+                                   IsOpen="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}},Path=DataContext.IsOpen,Converter={StaticResource DebugConverter}}"
+                                   Margin="30,58,0,-50" 
+                                   HorizontalAlignment="Left"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Scroll"
+                                   StaysOpen="False"
+                                   PlacementTarget="{Binding ElementName=bt}"
+                                   >
+
+                <StackPanel Background="#02F0F8FF" MouseLeave="StackPanel_MouseLeave">
+                    <Button  x:Name="BtnNewScenes"
+                             Content="新建场景"
+                             Foreground="White" 
+                             Background="#FF009FFF" 
+                             BorderBrush="{x:Null}"
+                             Command="{Binding NewScenesCommand}"
+                             CommandParameter="{Binding ElementName=FightControlGrid}"
+                             Style="{StaticResource FilletButton }" 
+                             Width="75" Height="35" 
+                             HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                    <Button  x:Name="BtnSaveScenes"
+                             Content="保存场景"
+                             Foreground="White" 
+                             Background="#FF009FFF" 
+                             BorderBrush="{x:Null}"
+                             Command="{Binding SaveScenesCommand}"
+                             CommandParameter="{Binding ElementName=FightControlGrid}"
+                             Style="{StaticResource FilletButton }" 
+                             Width="75" Height="35" 
+                             HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                </StackPanel>
+            </usercontrols:MyPopup>
 
             <Button  Content="新建计划轮巡" 
                      Foreground="White" 
@@ -146,17 +169,6 @@
                      Margin="245,0,0,0" Width="75"  Height="35"
                      HorizontalAlignment="Left"  VerticalAlignment="Center"/>
 
-            <Button  Content="复位窗口" 
-                     Foreground="White" 
-                     Visibility="Collapsed"
-                     Background="#FF009FFF" 
-                     BorderBrush="{x:Null}"
-                     Style="{StaticResource FilletButton }" 
-                     Command="{Binding ResetWinCommand}"
-                     CommandParameter="{Binding ElementName=FightControlGrid}"
-                     Margin="345,0,0,0" Width="75"  Height="35"
-                     HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-
             <Button  Content="关闭平台窗口"
                      Foreground="White" 
                      Background="#FF009FFF" 
@@ -168,8 +180,18 @@
                      HorizontalAlignment="Right"  VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid  Grid.Row="1" Background="#FFDA8DEC">
-            <controls:Accordion  HorizontalAlignment="Stretch"  Margin="0,0,0,0" Background="#FF2E2E2E"  BorderBrush="#FF2E2E2E" VerticalAlignment="Stretch">
+        <Grid  Grid.Row="1">
+
+            <Grid.Resources>
+                <DropShadowEffect x:Key="CardShadow" Color="#303030" Opacity=".25" BlurRadius="5" ShadowDepth="3"/>
+            </Grid.Resources>
+
+            <controls:Accordion HorizontalAlignment="Stretch"
+                                Margin="0,0,0,0" 
+                                Background="#FF2A2A2A"
+                                BorderBrush="#FF2E2E2E"
+                                VerticalAlignment="Stretch">
+
                 <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
                     <controls:AccordionItem.Header>
                         <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
@@ -181,25 +203,44 @@
                         </Grid>
                     </controls:AccordionItem.Header>
                     <controls:AccordionItem.Content>
-                        <ScrollViewer  VerticalScrollBarVisibility="Auto">
-                            <StackPanel >
+                        <StackPanel >
 
-                                <StackPanel Orientation="Horizontal" Width="180" Margin="20" HorizontalAlignment="Center">
-                                    <TextBox Text="输入搜索" Style="{StaticResource WarkTextBoxStyle}"  Width="140" Height="25"/>
-                                    <Button Content="&#xE71E;" 
-                                            Width="30" 
-                                            Style="{StaticResource FilletButton }"
-                                            Margin="10 0 0 0"
-                                            FontFamily="Segoe MDL2 Assets" 
-                                            Background="#FF009FFF" 
-                                            BorderBrush="{x:Null}"/>
+                            <Border Grid.Row="1" Background="#4E000000" Height="35" CornerRadius="12" Margin="25" BorderThickness="0" Effect="{StaticResource CardShadow}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Stretch="Fill" Cursor="Hand" Height="18" Width="18" Fill="White" Margin="8 0" StrokeThickness="1" Stroke="White" Data="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></Path>
+                                    <TextBox Width="150"
+                                             Style="{x:Null}"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             Foreground="White"  
+                                             CaretBrush="White"  
+                                             Text="{Binding Criteria, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                             VerticalAlignment="Center"/>
                                 </StackPanel>
+                            </Border>
 
-                                <TreeView ItemsSource="{Binding CameraItems}"  FontSize="18"  Margin="10" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" Height="715" VerticalScrollBarVisibility="Auto">
+
+                                <TreeView ItemsSource="{Binding CameraItems}" 
+                                          FontSize="12"  
+                                          Margin="10,0"   
+                                          x:Name="TreeView"
+                                          AllowDrop="True"
+                                          Background="{x:Null}" 
+                                          BorderBrush="{x:Null}">
+
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <eic:ExInvokeCommandAction Command="{Binding MouseMoveCommand}"
+                                                                       CommandParameter="{Binding ElementName=TreeView}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
 
                                     <TreeView.ItemContainerStyle>
                                         <Style TargetType="{x:Type TreeViewItem}">
-                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                            <!--<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />-->
+                                            <Setter Property="IsExpanded" Value="True" />
+                                            <Setter Property="Visibility" Value="{Binding IsMatch, Mode=OneWay,Converter={StaticResource BoolToVisibilityConverter}}" />
                                             <Setter Property="Background" Value="{x:Null}" />
                                             <Setter Property="Foreground" Value="White" />
                                         </Style>
@@ -208,42 +249,108 @@
                                     <TreeView.ItemTemplate>
                                         <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Width="20" Margin="3" 
-                                                      Source="{Binding ImageName,Converter={x:Static cvt:HeaderToImageConverter.Instance}}" />
+                                                <!--<Image Width="20" Margin="3" 
+                                                      Source="{Binding ImageName,Converter={x:Static cvt:HeaderToImageConverter.Instance}}" />-->
                                                 <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
                                             </StackPanel>
                                         </HierarchicalDataTemplate>
                                     </TreeView.ItemTemplate>
-
                                 </TreeView>
 
-                            </StackPanel>
-                        </ScrollViewer>
+                            </ScrollViewer>
+
+                        </StackPanel>
                     </controls:AccordionItem.Content>
                 </controls:AccordionItem>
-                <controls:AccordionItem Background="#FF393939"  BorderBrush="#FF2E2E2E">
+
+                <controls:AccordionItem Background="#FF393939"
+                                        BorderBrush="#FF2E2E2E"
+                                        x:Name="ScenesListItem">
+
                     <controls:AccordionItem.Header>
                         <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock 
-                                    Text="场景列表" Foreground="White"
-                                    Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock Text="场景列表"
+                                       Foreground="White"
+                                       VerticalAlignment="Center" />
                         </Grid>
                     </controls:AccordionItem.Header>
                     <controls:AccordionItem.Content>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <fightcontrol:SceneList/>
-                                <fightcontrol:SceneList/>
-                                <fightcontrol:SceneList/>
-                                <fightcontrol:SceneList/>
-                            </StackPanel>
-                        </ScrollViewer>
+                        <ListBox ItemsSource="{Binding SceneLists}"
+                                 x:Name="ListBoxSceneList"
+                                 Background="{x:Null}" 
+                                 BorderBrush="{x:Null}"
+                                 Foreground="{x:Null}"
+                                 HorizontalAlignment="Center"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                 ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <!--<fightcontrol:SceneListControl/>-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="6*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="{Binding name}" 
+                                                       Style="{StaticResource TextBlockSceneName}"
+                                                       Grid.Column="1" 
+                                                       ToolTip="{Binding name}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.SwitchSceneCommand}"
+                                                                               CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+                                                    </i:EventTrigger>
+                                     
+                                                </i:Interaction.Triggers>
+                                            </TextBlock>
+
+                                            <Button Name="BtnDelete"
+                                                    Grid.Column="2"
+                                                    Height="30"
+                                                    Width="30"
+                                                    FontSize="18"
+                                                    Content="&#xE107;"
+                                                    FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                                                    HorizontalAlignment="Right" 
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.DeleteSceneCommand}"
+                                                    CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                                    Style="{StaticResource TransparentButton}" >
+                                            </Button>
+
+                                            <Line Grid.Row="1"  Grid.Column="1"  X1="0" Y1="5" X2="210" Y2="5" Grid.ColumnSpan="2" StrokeThickness="2">
+                                                <Line.Stroke>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="Black" Offset="0"/>
+                                                        <GradientStop Color="White" Offset="1"/>
+                                                        <GradientStop Color="#FF1B1B1B" Offset="0.536"/>
+                                                    </LinearGradientBrush>
+                                                </Line.Stroke>
+                                            </Line>
+
+                                        </Grid>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </controls:AccordionItem.Content>
                 </controls:AccordionItem>
+
                 <controls:AccordionItem Background="#FF393939" BorderBrush="#FF2E2E2E">
                     <controls:AccordionItem.Header>
                         <Grid HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 4">
@@ -256,13 +363,106 @@
                         </Grid>
                     </controls:AccordionItem.Header>
                     <controls:AccordionItem.Content>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <fightcontrol:PlanRotationControl/>
-                                <fightcontrol:PlanRotationControl/>
-                                <fightcontrol:PlanRotationControl/>
-                            </StackPanel>
-                        </ScrollViewer>
+                        <ListBox ItemsSource="{Binding RotationLists}"
+                                 Background="{x:Null}" 
+                                 BorderBrush="{x:Null}"
+                                 Foreground="{x:Null}"
+                                 HorizontalAlignment="Center"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                 ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Center" Width="230">
+                                        <Grid Margin="10 5 5 5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+
+                                            <TextBlock x:Name="TxtName"
+                                                       Text="{Binding name}"
+                                                       ToolTip="{Binding name}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="White" />
+
+                                            <Control:BulletCheckBox x:Name="ChkCamera" 
+                                                                    Style="{StaticResource BulletCheckBox}"
+                                                                    Grid.Column="1"
+                                                                    Background="#A9A9A9" 
+                                                                    CheckedBackground="#00B14B"
+                                                                    CheckedText="ON" 
+                                                                    IsChecked="{Binding isOpen}"
+                                                                    Width="45" 
+                                                                    Height="30"
+                                                                    Text="OFF">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Checked">
+                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.OpenPlanRotationCommand}"
+                                                                               CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+                                                    </i:EventTrigger>
+                                                    <i:EventTrigger EventName="Unchecked">
+                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.ClosePlanRotationCommand}"
+                                                                               CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+
+                                            </Control:BulletCheckBox>
+
+                                            <Button Name="BtnDelete"
+                                                    Grid.Column="2"
+                                                    Height="30"
+                                                    Width="30"
+                                                    FontSize="18"
+                                                    Content="&#xE107;"
+                                                    FontFamily="{StaticResource SegoeMDL2AssetsFont}"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.DeleteRotationCommand}"                                                
+                                                    CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                                    Style="{StaticResource TransparentButton}"/>
+
+                                            <Button Name="BtnEdit"
+                                                    Grid.Column="3"
+                                                    Height="30"
+                                                    Width="30"
+                                                    FontSize="18"
+                                                    Content="&#xE104;"
+                                                    FontFamily="{StaticResource SegoeMDL2AssetsFont}"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},Path=DataContext.EditRotationCommand}" 
+                                                    CommandParameter="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                                    Style="{StaticResource TransparentButton}"/>
+
+
+                                            <Line Grid.Row="1"
+                                                  Visibility="Collapsed"  
+                                                  X1="0" 
+                                                  Y1="2"
+                                                  X2="240"
+                                                  Y2="2" 
+                                                  Grid.ColumnSpan="4" 
+                                                  StrokeThickness="2">
+                                                <Line.Stroke>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="Black" Offset="0"/>
+                                                        <GradientStop Color="White" Offset="1"/>
+                                                        <GradientStop Color="#FF1B1B1B" Offset="0.536"/>
+                                                    </LinearGradientBrush>
+                                                </Line.Stroke>
+                                            </Line>
+
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </controls:AccordionItem.Content>
                 </controls:AccordionItem>
             </controls:Accordion>

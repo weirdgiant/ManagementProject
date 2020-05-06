@@ -3,110 +3,326 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:ManagementProject.UserControls.TimeControl"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:ManagementProject"
         xmlns:UserControls="clr-namespace:ManagementProject.UserControls"
-    xmlns:timecontrol="clr-namespace:ManagementProject.UserControls.TimeControl" x:Class="ManagementProject.EventHistory"
+        xmlns:timecontrol="clr-namespace:ManagementProject.UserControls.TimeControl"
+        xmlns:eventhistorycontrols="clr-namespace:ManagementProject.UserControls.EventHistoryControls" x:Class="ManagementProject.EventHistory"
         mc:Ignorable="d"
-        Title="事件历史" Height="800" Width="1000" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="Manual" WindowStyle="None"  Background="Transparent" OpacityMask="White" AllowsTransparency="True">
+        Title="事件历史"
+        Height="790"
+        Width="1180"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="Manual"
+        WindowStyle="None" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        Opacity="0.95">
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"  
+                                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid  Background="#FF2A2A2A" Opacity="0.9">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-            <RowDefinition  Height="80"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0 " Background="#FF252525">
-            <Button x:Name="closebt" ToolTip="关闭" 
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Command="{Binding CloseCommand}"  
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
-                    HorizontalAlignment="Right" VerticalAlignment="Stretch" Foreground="White" Width="30" Margin="0,0,0,0">
-                <Image Width="15" Source="/ManagementProject;component/ImageSource/Icon/mainwindowicon/close.png" />
-            </Button>
 
-            <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" Width="240" Orientation="Horizontal">
-                <Grid Width="15"/>
-                <Label Content="事件历史" FontSize="12" HorizontalAlignment="Left"  Foreground="White" VerticalContentAlignment="Center"/>
-            </StackPanel>
-        </Grid>
-        <Grid  Grid.Row="1"  Opacity="0.9">
-            <DataGrid  x:Name="listView" 
-                       ColumnHeaderStyle="{StaticResource DataGridHeaderStyleSample}" 
-                       CanUserReorderColumns="False" 
-                       CanUserResizeColumns="True" 
-                       ItemsSource="{Binding AlarmHistory}"
-                       Margin="10,245,10,0" Background="#FF262626" BorderBrush="{x:Null}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="报警时间" Binding="{Binding Path=altime}" Width="*"/>
-                    <DataGridTextColumn Header="报警类型" Binding="{Binding Path=alarmType}" Width="*"/>
-                    <DataGridTextColumn Header="报警地点" Binding="{Binding Path=location}" Width="*"/>
-                    <DataGridTextColumn Header="报警设备" Binding="{Binding Path=sersorname}" Width="*"/>
-                    <DataGridTextColumn Header="报警级别" Binding="{Binding Path=level}" Width="*"/>
-                    <DataGridTextColumn Header="处理状态" Binding="{Binding Path=state}" Width="*"/>
-                    <DataGridTextColumn Header="下载" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Grid Background="#FF252525" Height="135" Margin="20,20,755,0" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="92*"/>
-                </Grid.RowDefinitions>
-                <Label Content="事件发生时间" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
-                <timecontrol:DateTimePicker Margin="40,10,10,0" TimeText="{Binding EventStartTime}" Grid.Row="1" VerticalAlignment="Top"/>
-                <timecontrol:DateTimePicker Margin="40,48,10,0" TimeText="{Binding EventEndTime}" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label Content="到" Foreground="White" HorizontalAlignment="Left" Margin="10,31,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+    <Border CornerRadius="6"  Background="#FF2A2A2A">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="6 6 0 0" Background="#FF252525">
+                <Grid Grid.Row="0 ">
+                    <Button x:Name="closebt" 
+                            ToolTip="关闭" 
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding CloseCommand}"  
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center"
+                            Foreground="White" 
+                            Margin="0,0,10,0"
+                            Content="&#xE106;"
+                            FontWeight="Bold"
+                            FontFamily="/ManagementProject;component/Assets/Fonts/#Segoe MDL2 Assets"
+                            FontSize="16">
+                    </Button>
+                    <TextBlock Text="事件历史"
+                               Margin="15 0 0 0" 
+                               FontSize="22" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center" 
+                               Foreground="White" />
+                </Grid>
+            </Border>
+
+            <Grid  Grid.Row="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Border Height="160" Width="256" CornerRadius="6" Background="#242424">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="事件发生时间"
+                           Margin="20" 
+                           FontSize="16" 
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Row="0"/>
+
+                        <Border Grid.Row="1" Height="31" Width="160" Margin="5 0 0 0" Background="#66706F6F"></Border>
+                        
+                        <timecontrol:DateTimePicker
+                            x:Name="start" 
+                            Width="180"
+                            Margin="55 0 0 0"
+                            TimeText="{Binding EventStartTime}" 
+                            Grid.Row="1"
+                            ButtonFontSize="20"
+                            TextBackground="Transparent"
+                            ButtonForeground="White" 
+                            Foreground="White"/>
+
+                        <Border Grid.Row="2" VerticalAlignment="Center" Height="31" Width="160" Margin="5 0 0 0" Background="#66706F6F"></Border>
+                        
+                        <timecontrol:DateTimePicker
+                            x:Name="end" 
+                            TimeText="{Binding EventEndTime}" 
+                            Grid.Row="2" 
+                            Width="180"
+                            Margin="55 0 0 0"
+                            ButtonFontSize="20"
+                            VerticalAlignment="Center"
+                            TextBackground="Transparent" 
+                            ButtonForeground="White" 
+                            Foreground="White"/>
+
+                        <TextBlock Text="到" 
+                               Foreground="White"
+                               HorizontalAlignment="Left"
+                               Margin="22,0,0,47" 
+                               Grid.Row="1"
+                               VerticalAlignment="Bottom" Grid.RowSpan="2"/>
+
+                    </Grid>
+
+                </Border>
+
+
+                <Border Grid.Column="1" Width="256" Height="160" CornerRadius="6" Background="#242424">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="报警类型"
+                               Margin="20" 
+                               FontSize="16" 
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Grid.Row="0"/>
+
+                        <ComboBox  HorizontalAlignment="Center"
+                                   SelectedIndex="0"
+                                   Margin="10"
+                                   Style="{StaticResource ComboBoxEventHistoryStyle}" 
+                                   ItemsSource="{Binding AlarmTypeInfoList}"
+                                   Text="{Binding AlarmType}"
+                                   Grid.Row="1" 
+                                   FontSize="14"
+                                   VerticalAlignment="Top" 
+                                   Width="180"
+                                   Height="32"
+                                   Background="#353535"
+                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        </ComboBox>
+
+                    </Grid>
+                </Border>
+
+                <Border Grid.Column="2" Width="256" Height="160" CornerRadius="6" Background="#242424">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="报警级别"
+                               Margin="20" 
+                               FontSize="16" 
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Grid.Row="0"/>
+
+                        <ComboBox  HorizontalAlignment="Center"
+                                   SelectedIndex="0"
+                                   Margin="10"
+                                   Style="{StaticResource ComboBoxEventHistoryStyle}" 
+                                   Text="{Binding AlarmLevel}" 
+                                   ItemsSource="{Binding AlarmLevelList}"
+                                   Grid.Row="1" 
+                                   VerticalAlignment="Top" 
+                                   Width="180"
+                                   Height="32"
+                                   FontSize="14"
+                                   Background="#353535"/>
+                    </Grid>
+
+                </Border>
+
+                <Border Grid.Column="3" Width="256" Height="160" CornerRadius="6" Background="#242424">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="处理状态"
+                               Margin="20" 
+                               FontSize="16" 
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Grid.Row="0"/>
+
+                        <ComboBox  HorizontalAlignment="Center"
+                                   SelectedIndex="0"
+                                   Margin="10"
+                                   Style="{StaticResource ComboBoxEventHistoryStyle}" 
+                                   Text="{Binding AlarmState}"  
+                                   ItemsSource="{Binding AlarmStateList}"
+                                   Grid.Row="1" 
+                                   VerticalAlignment="Top" 
+                                   Width="180"
+                                   Height="32"
+                                   FontSize="14"
+                                   Background="#353535"/>
+                    </Grid>
+
+                </Border>
             </Grid>
-            <Grid Background="#FF252525" Height="135" Margin="265,20,510,0" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="19*"/>
-                </Grid.RowDefinitions>
-                <Label Content="报警类型" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
-                <ComboBox  HorizontalAlignment="Left"
-                           SelectedIndex="0"
-                           Style="{StaticResource ComboBoxStyle}" 
-                           Text="{Binding AlarmType}"
-                           ItemsSource="{Binding AlarmTypeInfoList}"
-                           Margin="50,45,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            </Grid>
-            <Grid Background="#FF252525" Height="135" Margin="510,20,265,0" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-                <Label Content="报警级别" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
-                <ComboBox  HorizontalAlignment="Left"  
-                           SelectedIndex="0"
-                           Style="{StaticResource ComboBoxStyle}" 
-                           Text="{Binding AlarmLevel}" 
-                           ItemsSource="{Binding AlarmLevelList}"
-                           Margin="60,42,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            </Grid>
-            <Grid Background="#FF252525" Height="135" Margin="755,20,20,0" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="19*"/>
-                </Grid.RowDefinitions>
-                <Label Content="处理状态" Margin="0,0,0,0" FontSize="14" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0"/>
-                <ComboBox  HorizontalAlignment="Left" 
-                           SelectedIndex="0"
-                           Style="{StaticResource ComboBoxStyle}"  
-                           Text="{Binding AlarmState}"  
-                           ItemsSource="{Binding AlarmStateList}"
-                           Margin="55,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            </Grid>
+
             <Button Command="{Binding SearchCommand}" 
                     Content="查 询" 
-                    FontSize="16" Foreground="White" Background="#FF00A7F4" BorderBrush="{x:Null}" 
+                    FontSize="16"
+                    Visibility="Visible"
+                    Foreground="White" 
+                    Background="#FF00A7F4"
+                    BorderBrush="{x:Null}" 
                     Style="{StaticResource FilletButton}" 
-                    Margin="442,180,436,0" VerticalAlignment="Top" Height="40"/>
+                    Height="30" 
+                    Width="120"
+                    Margin="18"
+                    Grid.Row="2"/>
+
+
+            <Border Grid.Row="3" Margin="20 0 20 20" CornerRadius="6" Width="1140" Height="478" Background="#242424">
+
+                <Grid>
+
+                    <Grid.Resources>
+                        <ResourceDictionary Source="pack://application:,,,/ResourceDictionary/Styles/ActiveVehicleDataGrid.xaml"/>
+                    </Grid.Resources>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid  x:Name="listView" 
+                               Height="400"
+                               IsReadOnly="True" 
+                               VerticalScrollBarVisibility="Hidden"
+                               ItemsSource="{Binding AlarmHistoryData}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding MouseDoubleClickCommand}"
+                                                       CommandParameter="{Binding ElementName=listView,Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="报警时间"  Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=Time}" Width="*"/>
+                            <DataGridTextColumn  Header="报警信号" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=AlarmSignal}" Width="*"/>
+                            <DataGridTextColumn  Header="报警类型" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=Type}" Width="*"/>
+                            <DataGridTextColumn  Header="报警地点" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=Location}" Width="*"/>
+                            <DataGridTextColumn  Header="报警设备" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=Device}" Width="*"/>
+                            <DataGridTextColumn  Header="报警级别" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=Level}" Width="*"/>
+                            <DataGridTextColumn  Header="处理状态" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=State}" Width="*"/>
+                            <DataGridTextColumn  Header="处理说明" Foreground="White" ElementStyle="{StaticResource ContentCenterStyle}" Binding="{Binding Path=ConfirmNote}"  Width="*"/>
+                            <DataGridTemplateColumn Header="下载" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Width="25" Height="25" 
+                                                 Style="{StaticResource TransparentButton }"
+                                                       Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},Path=DataContext.DownloadCommand}" 
+                                                       CommandParameter="{Binding ElementName=listView,Path=SelectedItem}">
+                                            <Image Source="/ManagementProject;component/ImageSource/Icon/History/下载.png"/>
+                                        </Button>
+
+                                        <!--<eventhistorycontrols:DownloadControl VerticalAlignment="Center" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor},Converter={StaticResource DebugConverter}}"/>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <Path Grid.Row="1" 
+                          Data="M80.5,140.5 L1080.0662,140.5" 
+                          HorizontalAlignment="Center"
+                          Height="1"  
+                          Stretch="Fill"
+                          Fill="#363636"
+                          Stroke="#363636" 
+                          Width="1100"/>
+
+                    <UserControls:Pagination 
+                                     Grid.Row="2" 
+                                     x:Name="pg2"
+                                     Margin="12 0 12 5"
+                                     TotalDataCount="{Binding TotalDataCount,Mode=TwoWay}"
+                                     CurrentPageNumber="{Binding CurrentPageNumber,Mode=TwoWay}"
+                                     PageDataCount="{Binding PageDataCount,Mode=OneWayToSource}"
+                                     IsShowPageInfo="True"
+                                     MaxShownPageCount="8"
+                                     VerticalAlignment="Bottom"
+                                     IsShowPageDataCountSelector="True"
+                                     SelectedPageBackground="#FF009FFF"
+                                     Foreground="White"/>
+                </Grid>
+
+            </Border>
 
         </Grid>
-        <UserControls:PageControl Height="Auto" Grid.Row="2"/>
-    </Grid>
+
+    </Border>
+    
 </Window>

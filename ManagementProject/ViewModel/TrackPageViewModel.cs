@@ -1,5 +1,6 @@
 ﻿using ManagementProject.FunctionalWindows;
 using ManagementProject.Model;
+using ManagementProject.PageView;
 using ManagementProject.UserControls;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace ManagementProject.ViewModel
     {
         private TrackInfo _trackInfo;
         private TrackManageButton _trackManageButton;
+        public TrackTabControl _trackTabControl;
+        public MapControl mapControl;
         private MainWindow _mainWin = (MainWindow)Application.Current.MainWindow;
         public TrackManagementViewModel TrackManagementViewModel { get; set; }
         public DelegateCommand OpenTrackerCommand { get; set; }
@@ -21,7 +24,7 @@ namespace ManagementProject.ViewModel
         public DelegateCommand UnLoadCommand { get; set; }
         public TrackPageViewModel()
         {
-            TrackManagementViewModel = new TrackManagementViewModel();
+            TrackManagementViewModel = new TrackManagementViewModel(this);
             OpenTrackerCommand = new DelegateCommand();
             OpenTrackerCommand.ExecuteCommand = new Action<object>(OpenTracker);
             LoadCommand = new DelegateCommand();
@@ -33,21 +36,27 @@ namespace ManagementProject.ViewModel
        
         private void Load(object obj)
         {
+            TrackPage trackPage =(TrackPage)obj;
+            mapControl = trackPage.map;
             GlobalVariable.IsTrackPage = true;
 
             LoadTrackInfoControl();
             LoadTrackBt();
-            Sid = GlobalVariable.SelectedSchoolId;
+            LoadTrackTabControl();
+            //Sid = GlobalVariable.CurrentSid;
         }
 
         private void LoadTrackInfoControl()
         {
-            _trackInfo = new TrackInfo();
-            _trackInfo.Owner = _mainWin;
-            _trackInfo.Topmost = true;
-            _trackInfo.WindowStartupLocation = WindowStartupLocation.Manual;
-            _trackInfo.Left = 1620;
-            _trackInfo.Top = 45;
+            _trackInfo = new TrackInfo
+            {
+                DataContext = TrackManagementViewModel,
+                Owner = _mainWin,
+                Topmost = true,
+                WindowStartupLocation = WindowStartupLocation.Manual,
+                Left = 1597,//1920-323
+                Top = 50
+            };
             _trackInfo.Show();
         }
 
@@ -64,6 +73,20 @@ namespace ManagementProject.ViewModel
 
         }
 
+        private void LoadTrackTabControl()
+        {
+            _trackTabControl = new TrackTabControl();
+            _trackTabControl.DataContext = TrackManagementViewModel;
+            _trackTabControl._trackPageViewModel = this;
+            _trackTabControl.Owner = _mainWin;
+            _trackTabControl.Topmost = true;
+            _trackTabControl.WindowStartupLocation = WindowStartupLocation.Manual;
+            _trackTabControl.Left = 20;
+            _trackTabControl.Top = 70;
+            _trackTabControl.Show();
+
+        }
+
         private void UnLoad(object obj)
         {
             GlobalVariable.IsTrackPage = false;
@@ -74,6 +97,7 @@ namespace ManagementProject.ViewModel
         {
             _trackInfo.Close();
             _trackManageButton.Close();
+            _trackTabControl.Close();
         }
 
         /// <summary>
@@ -82,12 +106,19 @@ namespace ManagementProject.ViewModel
         /// <param name="obj"></param>
         private void OpenTracker(object obj)
         {
-            TrackManagement trWin = new TrackManagement();
-            trWin.Owner = _mainWin;
-            trWin.DataContext = TrackManagementViewModel;
-            trWin.Left = 23;
-            trWin.Top = 165;
-            trWin.ShowDialog();
+            try
+            {
+                TrackManagement trWin = new TrackManagement();
+                trWin.Owner = _trackTabControl;
+                //trWin.Topmost = true;
+                trWin.DataContext = TrackManagementViewModel;
+                trWin.Left = 23;
+                trWin.Top = 165;
+                trWin.ShowDialog();
+            }catch(Exception ex)
+            {
+                Logger.Error(typeof (TrackPageViewModel), "OpenTracker:" + ex.Message );
+            }
         }
     }
 }

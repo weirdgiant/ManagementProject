@@ -168,7 +168,7 @@ namespace MangoMapLibrary.Api
             param["id"] = layer.id.ToString();
 
             string content = Post(url, param);
-            Console.WriteLine(content);
+            
             ApiResult result = JsonConvert.DeserializeObject<ApiResult>(content);
 
             return result.success;
@@ -224,22 +224,35 @@ namespace MangoMapLibrary.Api
         {
             Dictionary<string, string> param = element.Ele.ToDict();
             param["iconExt"] = element.ToIconExt();
+
+            string content = Post(url, param);// msg: deviceId,element.id
             
-            string content = Post(url, param);
-            Console.WriteLine(content);
             ApiResult result = JsonConvert.DeserializeObject<ApiResult>(content);
             if (result.success)
             {
-                element.Id = int.Parse(result.msg);
+                var resultMsg = result.msg.Split(',');//1325,1122
+               
+                if(resultMsg.Length==1)
+                {
+                    element.Id = int.Parse(result.msg);
+                }
+                else if (resultMsg.Length > 1)
+                {
+                    element.Ele.deviceId = int.Parse(resultMsg[0]);
+                    element.Id = int.Parse(resultMsg[1]);
+                }
             }
             return result.success;
         }
 
-        public static void DeleteLayerElement(string url,int eleId)
+        //删除或移除地图元素
+        public static void DeleteLayerElement(string url, int elementId, int deviceId)
         {
             var param = new Dictionary<string, string> {
-               {"id", eleId.ToString()},
+               {"id", elementId.ToString()},
+               {"deviceId", deviceId.ToString()},
             };
+
             Post(url, param);
         }
 
@@ -257,14 +270,35 @@ namespace MangoMapLibrary.Api
             {
                 MangoLayer[] ret = JsonConvert.DeserializeObject<MangoLayer[]>(content);
                 return ret;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                
+                Console.WriteLine(e.Message);
             }
             return null;
         }
 
         public static Device[] GetDeviceList(string url)
+        {
+            //"[{\"id\":536,\"name\":\"后门_人脸_天地伟业\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"RenLian_HouMen\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":537,\"name\":\"正门_人脸_天地伟业\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"Tiandi\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":538,\"name\":\"门外摄像机\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"06565167141325172886\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":539,\"name\":\"展示区_海康\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"Haikang01\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":540,\"name\":\"活动室门前_海康\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"Haikang02\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":541,\"name\":\"会议室_宇视\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"MeetingRoom_1\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null},{\"id\":542,\"name\":\"松下行政走道\",\"deviceLocation\":0,\"deviceCategory\":0,\"code\":\"songxia\",\"deviceExtProperties\":null,\"ip\":null,\"devicePort\":0,\"username\":null,\"password\":null,\"brand\":null,\"deviceDesc\":null,\"deviceNode\":0,\"deviceMacaddr\":null,\"ptz\":1,\"status\":1,\"alertObjId\":0,\"deviceTypeId\":\"BoxCamera\",\"deviceStatus\":0,\"childern\":null,\"childElements\":null,\"count\":0,\"deviceTypeName\":null,\"deviceimg\":null,\"deviceClass\":null,\"deviceTypeCode\":null,\"showType\":0,\"checkedimg\":null,\"alarmimg\":null,\"deviceClassValue\":null,\"deviceClassName\":null,\"imgUrl\":null,\"mapId\":0,\"deviceId\":0,\"longitude\":null,\"latitude\":null,\"iconExt\":null,\"iconAngle\":null,\"roomNum\":null,\"locationAttribute\":null,\"description\":null,\"distance\":0.0,\"deviceIds\":null}]"
+            string content = Post(url);
+            if (content == null)
+            {
+                return null;
+            }
+            try
+            {
+                Device[] ret = JsonConvert.DeserializeObject<Device[]>(content);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                var err = e.Message;//Error converting value {null} to type 'System.Int32'. Path '[0].brand', line 1, position 189
+            }
+            return null;
+        }
+
+        public static Device[] GetDeviceListNotDeploy(string url)
         {
             string content = Post(url);
             if (content == null)
@@ -278,7 +312,7 @@ namespace MangoMapLibrary.Api
             }
             catch (Exception e)
             {
-
+                var err = e.Message;//Error converting value {null} to type 'System.Int32'. Path '[0].brand', line 1, position 189
             }
             return null;
         }
@@ -297,7 +331,7 @@ namespace MangoMapLibrary.Api
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
             return null;
         }
@@ -395,6 +429,8 @@ namespace MangoMapLibrary.Api
         public string code;
         public string name;
 
+        public string deviceTypeName;
+
 
         public Dictionary<string,string> ToDict()
         {
@@ -409,6 +445,7 @@ namespace MangoMapLibrary.Api
                {"mapId", mapId.ToString()},
                {"code", code},
                {"name", name},
+               {"deviceTypeName", deviceTypeName},
             };
             return param;
         }
@@ -484,6 +521,9 @@ namespace MangoMapLibrary.Api
         public int renderMode;
         public string textureFilename;
         public int type;
+
+        public int idx;//排序
+        public int add;//排序,往上1，往下-1
     }
 
     public class MangoMap
@@ -498,6 +538,8 @@ namespace MangoMapLibrary.Api
         public int defaultZoomLevel;
         public int backgroundColor;
     }
+
+    #region Device Class
 
     public class Device
     {
@@ -521,6 +563,55 @@ namespace MangoMapLibrary.Api
         public string unitType;
         public string deviceTypeId;
         public string deviceStatus;
+
+        public Device[] childern;
+        public DeviceElements[] childElements;
+
+        public int count;
+        public string deviceTypeName;
+        public string deviceimg;
+        public string deviceClass;
+        public string deviceTypeCode;
+        public int showType;
+        public string checkedimg;
+        public string alarmimg;
+        public string deviceClassValue;
+        public string deviceClassName;
+        public string imgUrl;
+        public int mapId;
+        public int deviceId;
+        public string longitude;
+        public string latitude;
+        public string iconExt;
+        public string iconAngle;
+        public string roomNum;
+        public string locationAttribute;
+        public string description;
+        public double distance;
+        public string deviceIds;
+
+    }
+
+    public class DeviceElements
+    {
+        public int id;
+        public int deviceId;
+        public double longitude;
+        public double latitude;
+        public double deviceTypeCode;
+        public int iconAngle;
+        public string iconExt;
+        public int mapId;
+
+        /// <summary>
+        /// 唯一识别码
+        /// </summary>
+        public string code;
+        public string name;
+        public string deviceClassValue;
+        public string deviceClassName;
+        public string imgUrl;
+        public string deviceClass;
     }
 
     public class DeviceType
@@ -547,5 +638,6 @@ namespace MangoMapLibrary.Api
                 alarmImage.Clone() as Bitmap);
             return set;
         }
-    }
+    } 
+    #endregion
 }

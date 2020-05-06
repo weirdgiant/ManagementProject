@@ -5,14 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagementProject.UserControls"
              mc:Ignorable="d" 
+             Background="Transparent"
              d:DesignHeight="50" d:DesignWidth="50">
-    <Grid>
-        <WindowsFormsHost >
+    <Border>
+        <WindowsFormsHost  Background="Transparent">
             <ElementHost >
                 <Button x:Name="bt" Style="{StaticResource GelButton}"  >
-                    <Image Name="btimage"  />
+                    <Image Margin="10" Name="btimage"  />
                 </Button>
             </ElementHost>
         </WindowsFormsHost>
-    </Grid>
+    </Border>
 </UserControl>

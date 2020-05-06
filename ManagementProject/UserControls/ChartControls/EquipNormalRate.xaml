@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="ManagementProject.UserControls.ChartControls.EquipNormalRate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementProject.UserControls.ChartControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="357" d:DesignWidth="480">
+    <Grid>
+
+        <TextBlock Text="设备正常率"
+                   FontSize="22" 
+                   Foreground="#FF009DFD"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Margin="25,10,0,0"/>
+
+        <TextBlock Text="设备数量："  FontSize="16" Foreground="White" FontWeight="Light" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,25,0">
+                <Run Text="{Binding Count}" FontFamily="Arial"/>
+                <Run Text="个" FontWeight="Light"/>
+        </TextBlock>
+
+        <Viewbox Width="255" Height="255">
+            <Grid>
+                <Grid.Resources>
+                    <local:NormalRateConvert x:Key="NormalRateConvert"/>
+                </Grid.Resources>
+                <local:CircularProgressBar
+                                    x:Name="cpb"
+                                    Width="210"
+                                    Height="210"
+                                    Thickness="10"
+                                    Radius="100"
+                                    Value="{Binding ProgressValue}"
+                                    Style="{StaticResource CircularProgressBarStyle}"
+                                    Fill="Transparent"
+                                    StrokeThickness="8"
+                                    StrokeMode="Middle"
+                                    Stroke="Transparent"
+                                    StartLineCap="Round"
+                                    EndLineCap="Triangle" >
+                    <local:CircularProgressBar.Background>
+                        <RadialGradientBrush GradientOrigin="1,0" RadiusX="1" RadiusY="1">
+                            <GradientStop Color="#00f6ff" Offset="1" />
+                            <GradientStop Color="#00ffa2" Offset="0.5" />
+                            <GradientStop Color="#009fff" Offset="0" />
+                        </RadialGradientBrush>
+                    </local:CircularProgressBar.Background>
+                </local:CircularProgressBar>
+
+                <TextBlock Text="设备正常率"
+                               Foreground="White"
+                               Panel.ZIndex="1"
+                               Visibility="Visible"
+                               FontSize="16"
+                               FontFamily="Arial"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" Margin="87,79,88,158"/>
+
+                <Ellipse Visibility="{Binding ShowEllipse,Converter={StaticResource BoolToVisibilityConverter}}" 
+                         Width="20" 
+                         Height="20" 
+                         Stroke="White"
+                         Fill="#0099ff" 
+                         StrokeThickness="6"
+                         Margin="23" 
+                         VerticalAlignment="Top"/>
+
+                <Ellipse  Width="155" Height="155" Fill="#053b65"/>
+
+                <!--<TextBlock Text="{Binding Path=Value, ElementName=cpb, StringFormat={}{0:0.0}%}"-->
+                <TextBlock Text="{Binding Path=Value, ElementName=cpb, Converter={StaticResource NormalRateConvert}}"
+                           FontSize="45"
+                           MaxWidth="295"
+                           FontFamily="Arial"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Foreground="#00FFA5"  >
+                    <!--<Run Text="%"/>-->
+                </TextBlock>
+
+                <Ellipse Stroke="#044e80" Width="255" Height="255"/>
+                <Ellipse Stroke="#044e80" Width="235" Height="235"/>
+
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
