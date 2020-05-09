@@ -417,7 +417,7 @@ namespace ManagementProject.ViewModel
 
             for (int i = 0; i < dateTimes.Count; i++)
             {
-                if (i > 0 && (dateTimes[i] - dateTimes[i - 1]) < TimeSpan.FromSeconds(Duration))
+                if (i > 0 &&dateTimes.Count>1&& (dateTimes[i] - dateTimes[i - 1]) < TimeSpan.FromSeconds(Duration))
                 {
                     MessageBox.Show("当前存在多个场景的播放时间点冲突，请重新选择时间点！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
@@ -427,11 +427,17 @@ namespace ManagementProject.ViewModel
             if (RotationLists.Count == 1)
                 return true;
 
+            
+
             foreach (var rotation in RotationLists)
             {
+                if (rotation.id == planRotation.id)
+                {
+                    rotation.duration = planRotation.duration;
+                }
                 var timeSpan = TimeSpan.FromSeconds(rotation.duration);
                 var times = rotation.time.Split(',');
-
+               
                 for (int i = 0; i < dateTimes.Count; i++)
                 {
                     for (int j = 0; j < times.Length; j++)
@@ -444,7 +450,7 @@ namespace ManagementProject.ViewModel
                             MessageBox.Show($"当前存在与{rotation.name}中多个场景的播放时间点冲突、，请重新选择时间点！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return false;
                         }
-                    }
+                    } 
                 }
             }
             return true;

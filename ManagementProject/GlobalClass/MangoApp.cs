@@ -101,7 +101,7 @@ namespace ManagementProject
         /// <returns></returns>
         public OutStream Async(object message, short protocol)
         {
-            if (!this.client.isConnected())
+            if (!client.isConnected())
                 return null;
             Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " Async:" + protocol.ToString());
             return handler.Await(client, message, protocol);

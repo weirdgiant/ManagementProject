@@ -136,7 +136,7 @@ namespace ManagementProject.ViewModel
         private void GetSelectedCamera(object obj)
         {
             List<string> idList=new List<string> ();
-           
+            CameraPanel.Children.Clear();
             foreach (var item in CameraLists)
             {
                 CameraPanel.Children.Add(CameraLabel(item .Name, item.Code));

@@ -42,7 +42,7 @@
                 <lvc:Axis Title="" MinValue="0" LabelFormatter="{Binding YFormatter}">
 
                     <lvc:Axis.Separator>
-                        <lvc:Separator StrokeThickness="1" >
+                        <lvc:Separator  StrokeThickness="1" >
                             <lvc:Separator.Stroke>
                                 <SolidColorBrush  Opacity="0.2" Color="#018ee4" />
                             </lvc:Separator.Stroke>

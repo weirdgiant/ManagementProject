@@ -68,7 +68,6 @@ namespace ManagementProject.UserControls
 
             Unloaded += MapControl_Unloaded;
             deviceinfobt.bt.Click += Bt_Click;
-
         }
 
         private void Bt_Click(object sender, RoutedEventArgs e)
@@ -93,7 +92,7 @@ namespace ManagementProject.UserControls
             deviceinfobt.BtImage = new BitmapImage(new Uri("/ManagementProject;component/ImageSource/Icon/设备信息.png", UriKind.Relative));
             SetMapName();
             //载入建筑资源
-            this.LoadResource();
+            LoadResource();
         }
 
         private void SetMapName()

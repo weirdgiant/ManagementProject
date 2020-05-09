@@ -688,6 +688,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="ExpanderHeaderFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -739,6 +740,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="ExpanderStyle1" TargetType="{x:Type Expander}">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Background" Value="Transparent"/>

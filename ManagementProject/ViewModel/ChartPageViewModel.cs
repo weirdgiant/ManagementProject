@@ -35,9 +35,6 @@ namespace ManagementProject.ViewModel
             InitHistory();
         }
 
-
-
-
         private async void ExportToExcel(object obj)
         {
             if (obj == null)

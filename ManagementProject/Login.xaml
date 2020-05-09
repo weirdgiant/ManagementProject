@@ -36,7 +36,7 @@
         </Grid.ColumnDefinitions>
         <Image x:Name="image" Margin="0,0,0,0"  Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Source="ImageSource/background/bg_login_mango.png"/>
 
-        <Grid Margin="0,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4">
+        <Grid Margin="0,0,0,0" FocusManager.FocusedElement="{Binding ElementName=username}" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="33*"/>
                 <ColumnDefinition Width="22*"/>

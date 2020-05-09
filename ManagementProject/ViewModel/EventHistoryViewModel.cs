@@ -200,6 +200,10 @@ namespace ManagementProject.ViewModel
             AlarmHistory.Clear();
             string url = AppConfig.ServerBaseUri + AppConfig.GetAllAlarmInfo;
             Alarm[] alarms = HttpAPi.GetAllAlarmInfo(url, alarmFilter);
+            if (alarms==null)
+            {
+                return;
+            }
             alarms = alarms.Where(x => x.confirmtime !=null).ToArray();
 
             if (AlarmState== "模拟报警" && GlobalVariable.IsFake)

@@ -406,7 +406,7 @@
                                       Margin="0 5 0 0"
                                       VerticalAlignment="Top">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding deviceType}" Width="*">
+                                    <DataGridTextColumn Binding="{Binding deviceType}" Width="*" >
                                         <DataGridTextColumn.Header>
                                             <TextBlock Text="设备类型" Foreground="#009efe"  FontSize="14" />
                                         </DataGridTextColumn.Header>

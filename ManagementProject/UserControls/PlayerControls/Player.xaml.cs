@@ -42,7 +42,7 @@ namespace ManagementProject.UserControls
         public IntPtr WindowHandle { get; set; }
         public bool NeedRestorePlay { get; set; }
         private DigitalRec _direc { get; set; }
-        private SpinLock spinLock { get; set; } = new SpinLock(true);
+        private SpinLock spinLock= new SpinLock(true);
         public UnvOnePlayer OnePlayer { get; set; }
         private PlayerWindowType _playerWinType;
 

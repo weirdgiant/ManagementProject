@@ -11,8 +11,6 @@ namespace ManagementProject.Model
    public class MonitorEquipmentModel : INotifyPropertyChangedClass
     {
 
-
-
         private ObservableCollection<DeviceItemsInfo> devices;
 
         public ObservableCollection<DeviceItemsInfo> DeviceItems

@@ -3,13 +3,9 @@ using com.mango.protocol.msg;
 using ManagementProject.Model;
 using MangoApi;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace ManagementProject.ViewModel
 {
@@ -70,6 +66,7 @@ namespace ManagementProject.ViewModel
                     password = PassWord
                 };
                 OutStream message = App.mango.Async(login, (short)login.protocol);
+                    
                     if (message != null)
                     {
                         SC_LOGIN ret = (SC_LOGIN)Package.SCStruct<SC_LOGIN>(message);
